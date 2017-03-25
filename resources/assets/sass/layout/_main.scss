@@ -1,0 +1,21 @@
+#header {
+    @extend .top-bar;
+}
+
+#main {
+    @include grid-row(16) {
+        .content {
+            // 5/16 = 31.25%
+            @include grid-column(5);
+        }
+
+        .sidebar {
+            // 11/16 = 68.75%
+            @include grid-column(11);
+        }
+    }
+}
+
+footer {
+    @include grid-row;
+}

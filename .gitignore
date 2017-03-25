@@ -1,0 +1,45 @@
+/vendor
+.env
+.env.*
+!.env.example
+
+composer.phar
+.DS_Store
+Thumbs.db
+#*#
+*~
+*.swp
+.#
+.idea
+_ide_helper.php
+_ide_helper_models.php
+/tags
+
+# Frontend Development modules
+node_modules
+bower_components
+.sass-cache
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+storage/debugbar/
+
+/.env.production
+
+ingore.php
+
+public/static/swagger-ui
+
+/.php_cs.cache
+
+# build file
+#/public/static/user/js/app.js
+#/public/static/user/css/app.css
+#/public/static/user/css/app.css.map
+
+*.sql
+
+/database/testing/testdb.sqlite

@@ -143,8 +143,7 @@ return [
     |
     */
 
-    'providers' => [
-
+    'providers' => array_merge([
         /*
          * Laravel Framework Service Providers...
          */
@@ -177,12 +176,6 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
 
         /*
-         * Laravel Rocket Service Providers...
-         */
-        LaravelRocket\Foundation\Providers\ServiceProvider::class,
-        LaravelRocket\Generator\Providers\ServiceProvider::class,
-
-        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
@@ -194,7 +187,13 @@ return [
         App\Providers\ServiceServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
 
-    ],
+        /*
+         * Laravel Rocket Service Providers...
+         */
+        LaravelRocket\Foundation\Providers\ServiceProvider::class,
+        LaravelRocket\Generator\Providers\ServiceProvider::class,
+
+    ], $additionalProviders),
 
     /*
     |--------------------------------------------------------------------------

@@ -293,12 +293,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-rocket/foundation.git",
-                "reference": "a50d806fd81e30f5f4aa441e63dcfe1204d7659f"
+                "reference": "9978419aed7d5984bbadf376b7f536726016a62e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-rocket/foundation/zipball/a50d806fd81e30f5f4aa441e63dcfe1204d7659f",
-                "reference": "a50d806fd81e30f5f4aa441e63dcfe1204d7659f",
+                "url": "https://api.github.com/repos/laravel-rocket/foundation/zipball/9978419aed7d5984bbadf376b7f536726016a62e",
+                "reference": "9978419aed7d5984bbadf376b7f536726016a62e",
                 "shasum": ""
             },
             "require": {
@@ -336,7 +336,7 @@
                 "source": "https://github.com/laravel-rocket/foundation/tree/master",
                 "issues": "https://github.com/laravel-rocket/foundation/issues"
             },
-            "time": "2017-03-26T02:14:46+00:00"
+            "time": "2017-03-26T12:04:05+00:00"
         },
         {
             "name": "laravel-rocket/generator",
@@ -344,12 +344,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-rocket/generator.git",
-                "reference": "fba3c7b164767b84154da20898840d509dad8bad"
+                "reference": "5e59a454fd0d1fff98c60bbe65f4e6ac2dd9ecdb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-rocket/generator/zipball/fba3c7b164767b84154da20898840d509dad8bad",
-                "reference": "fba3c7b164767b84154da20898840d509dad8bad",
+                "url": "https://api.github.com/repos/laravel-rocket/generator/zipball/5e59a454fd0d1fff98c60bbe65f4e6ac2dd9ecdb",
+                "reference": "5e59a454fd0d1fff98c60bbe65f4e6ac2dd9ecdb",
                 "shasum": ""
             },
             "require": {
@@ -389,7 +389,7 @@
                 "source": "https://github.com/laravel-rocket/generator/tree/master",
                 "issues": "https://github.com/laravel-rocket/generator/issues"
             },
-            "time": "2017-03-26T09:51:05+00:00"
+            "time": "2017-03-26T12:48:38+00:00"
         },
         {
             "name": "laravel/framework",

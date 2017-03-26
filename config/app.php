@@ -241,6 +241,16 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'DateTimeHelper' => LaravelRocket\Foundation\Facades\DateTimeHelper::class,
+        'LocaleHelper' => LaravelRocket\Foundation\Facades\LocaleHelper::class,
+        'URLHelper' => LaravelRocket\Foundation\Facades\URLHelper::class,
+        'CollectionHelper' => LaravelRocket\Foundation\Facades\CollectionHelper::class,
+        'StringHelper' => LaravelRocket\Foundation\Facades\StringHelper::class,
+        'PaginationHelper' => LaravelRocket\Foundation\Facades\PaginationHelper::class,
+        'TypeHelper' => LaravelRocket\Foundation\Facades\TypeHelper::class,
+        'RedirectHelper' => LaravelRocket\Foundation\Facades\RedirectHelper::class,
+
     ],
 
 ];

@@ -1,7 +1,6 @@
-<div class="container">
+<div class="wrapper">
     @include('shared.user.header')
-    <div class="main">
-        @yield('content')
-    </div>
+    @yield('content')
     @include('shared.user.footer')
 </div>
+

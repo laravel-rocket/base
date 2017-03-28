@@ -23,6 +23,11 @@ class ServiceServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton(
+            \App\Services\UserServiceInterface::class,
+            \App\Services\Production\UserService::class
+        );
+
         /* NEW BINDING */
     }
 }

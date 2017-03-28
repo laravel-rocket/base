@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
-class ResetPasswordRequest extends BaseRequest
+use LaravelRocket\Foundation\Http\Requests\Request;
+
+class ResetPasswordRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.

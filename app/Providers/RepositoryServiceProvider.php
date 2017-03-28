@@ -23,6 +23,11 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton(
+            \App\Repositories\UserRepositoryInterface::class,
+            \App\Repositories\Eloquent\UserRepository::class
+        );
+
         /* NEW BINDING */
     }
 }

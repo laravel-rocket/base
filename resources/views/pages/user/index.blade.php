@@ -9,12 +9,18 @@
     @parent
 @stop
 
-@section('title') Laravel Rocket @stop
+@section('title')
+Top
+@stop
 
 @section('scripts')
     @parent
 @stop
 
 @section('content')
-HEY
+<section>
+    <div class="container">
+        Top Page
+    </div>
+</section>
 @stop

@@ -28,6 +28,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Eloquent\UserRepository::class
         );
 
+        $this->app->singleton(
+            \App\Repositories\UserPasswordResetRepositoryInterface::class,
+            \App\Repositories\Eloquent\UserPasswordResetRepository::class
+        );
+
         /* NEW BINDING */
     }
 }

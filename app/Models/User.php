@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use LaravelRocket\Foundation\Models\AuthenticatableBase;
 
-class User extends Authenticatable
+class User extends AuthenticatableBase
 {
     use Notifiable;
 

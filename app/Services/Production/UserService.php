@@ -2,6 +2,7 @@
 
 namespace App\Services\Production;
 
+use App\Repositories\UserPasswordResetRepositoryInterface;
 use App\Repositories\UserRepositoryInterface;
 use App\Services\UserServiceInterface;
 use LaravelRocket\Foundation\Services\Production\AuthenticatableService;

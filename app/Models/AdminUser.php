@@ -3,11 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
-use LaravelRocket\Foundation\Models\AuthenticatableBase;
+use LaravelRocket\Foundation\Models\Base;
 
-class User extends AuthenticatableBase
+
+class AdminUser extends Base
 {
     use Notifiable;
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'admin_users';
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +30,7 @@ class User extends AuthenticatableBase
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
@@ -33,12 +41,17 @@ class User extends AuthenticatableBase
 
     protected $dates  = [];
 
-    protected $presenter = \App\Presenters\UserPresenter::class;
+    protected $presenter = \App\Presenters\AdminUserPresenter::class;
 
     // Relations
     public function profileImage()
     {
         return $this->belongsTo('App\Models\File', 'profile_image_id', 'id');
+    }
+
+    public function roles()
+    {
+        return $this->hasMany('App\Models\AdminUserRole', 'admin_user_id', 'id');
     }
 
     // Utility Functions

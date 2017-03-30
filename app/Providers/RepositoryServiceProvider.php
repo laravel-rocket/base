@@ -33,6 +33,21 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Eloquent\UserPasswordResetRepository::class
         );
 
+        $this->app->singleton(
+            \App\Repositories\AdminUserRepositoryInterface::class,
+            \App\Repositories\Eloquent\AdminUserRepository::class
+        );
+
+        $this->app->singleton(
+            \App\Repositories\AdminUserRoleRepositoryInterface::class,
+            \App\Repositories\Eloquent\AdminUserRoleRepository::class
+        );
+
+        $this->app->singleton(
+            \App\Repositories\FileRepositoryInterface::class,
+            \App\Repositories\Eloquent\FileRepository::class
+        );
+
         /* NEW BINDING */
     }
 }

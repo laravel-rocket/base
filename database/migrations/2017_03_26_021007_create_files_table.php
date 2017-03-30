@@ -21,7 +21,7 @@ class CreateFilesTable extends Migration
             $table->string('entity_type')->default('');
             $table->bigInteger('entity_id')->default(0);
 
-            $table->boolean('is_local')->default(false);
+                $table->string('place_type')->default(false);
 
             $table->string('file_type')->default('');
             $table->string('file_category_type')->default('');
@@ -33,6 +33,7 @@ class CreateFilesTable extends Migration
 
             $table->string('media_type')->default('');
             $table->string('format')->default('');
+            $table->string('original_file_name')->default('');
 
             $table->unsignedBigInteger('file_size')->default(0);
             $table->unsignedInteger('width')->default(0);

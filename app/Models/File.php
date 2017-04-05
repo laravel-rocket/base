@@ -11,7 +11,7 @@ class File extends Base
     const FILE_TYPE_FILE = 'file';
     const FILE_TYPE_IMAGE = 'image';
 
-    const PLACE_TYPE_S3 = 's3';
+    const STORAGE_TYPE_S3 = 's3';
 
 
     /**
@@ -31,7 +31,7 @@ class File extends Base
         'title',
         'entity_type',
         'entity_id',
-        'place_type',
+        'storage_type',
         'file_type',
         'file_category_type',
         's3_key',
@@ -52,9 +52,9 @@ class File extends Base
      *
      * @var array
      */
-    protected $hidden = [];
+    protected $hidden    = [];
 
-    protected $dates  = [];
+    protected $dates     = [];
 
     protected $presenter = \App\Presenters\FilePresenter::class;
 

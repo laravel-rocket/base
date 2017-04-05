@@ -49,7 +49,7 @@ $factory->define(\App\Models\File::class, function(Faker\Generator $faker) {
         'title'              => $faker->sentence,
         'entity_type'        => '',
         'entity_id'          => 0,
-        'place_type'         => '',
+        'storage_type'       => '',
         'file_type'          => '',
         'file_category_type' => '',
         's3_key'             => $faker->word,

@@ -33,6 +33,11 @@ class ServiceServiceProvider extends ServiceProvider
             \App\Services\Production\FileService::class
         );
 
+        $this->app->singleton(
+            \App\Services\AdminUserServiceInterface::class,
+            \App\Services\Production\AdminUserService::class
+        );
+
         /* NEW BINDING */
     }
 }

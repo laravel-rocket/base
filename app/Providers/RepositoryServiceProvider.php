@@ -44,6 +44,11 @@ class RepositoryServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton(
+            \App\Repositories\AdminPasswordResetRepositoryInterface::class,
+            \App\Repositories\Eloquent\AdminPasswordResetRepository::class
+        );
+
+        $this->app->singleton(
             \App\Repositories\FileRepositoryInterface::class,
             \App\Repositories\Eloquent\FileRepository::class
         );

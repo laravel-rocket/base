@@ -19,7 +19,6 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \LaravelRocket\Foundation\Http\Middleware\SecurityHeaders::class,
-
     ];
 
     /**
@@ -36,6 +35,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\User\SetDefaultValues::class,
         ],
         'admin' => [
             \App\Http\Middleware\EncryptCookies::class,
@@ -45,6 +45,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\Admin\SetDefaultValues::class,
         ],
     ];
 
@@ -56,11 +57,16 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+
+        'admin.auth' => \App\Http\Middleware\Admin\Authenticate::class,
+        'admin.guest' => \App\Http\Middleware\Admin\RedirectIfAuthenticated::class,
+        'admin.values' => \App\Http\Middleware\Admin\SetDefaultValues::class,
+        'user.auth' => \App\Http\Middleware\User\Authenticate::class,
+        'user.guest' => \App\Http\Middleware\User\RedirectIfAuthenticated::class,
+        'user.values' => \App\Http\Middleware\User\SetDefaultValues::class,
     ];
 }

@@ -2,11 +2,11 @@
 
 namespace App\Repositories\Eloquent;
 
-use LaravelRocket\Foundation\Repositories\Eloquent\SingleKeyModelRepository;
+use LaravelRocket\Foundation\Repositories\Eloquent\AuthenticatableRepository;
 use App\Repositories\UserRepositoryInterface;
 use App\Models\User;
 
-class UserRepository extends SingleKeyModelRepository implements UserRepositoryInterface
+class UserRepository extends AuthenticatableRepository implements UserRepositoryInterface
 {
 
     public function getBlankModel()

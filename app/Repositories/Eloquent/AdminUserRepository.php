@@ -2,11 +2,11 @@
 
 namespace App\Repositories\Eloquent;
 
-use LaravelRocket\Foundation\Repositories\Eloquent\SingleKeyModelRepository;
+use LaravelRocket\Foundation\Repositories\Eloquent\AuthenticatableRepository;
 use App\Repositories\AdminUserRepositoryInterface;
 use App\Models\AdminUser;
 
-class AdminUserRepository extends SingleKeyModelRepository implements AdminUserRepositoryInterface
+class AdminUserRepository extends AuthenticatableRepository implements AdminUserRepositoryInterface
 {
 
     public function getBlankModel()

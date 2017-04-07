@@ -19,7 +19,7 @@ use LaravelRocket\Foundation\Repositories\SingleKeyModelRepositoryInterface;
 interface FileRepositoryInterface extends SingleKeyModelRepositoryInterface
 {
     /**
-     * @return \App\Models\\File
+     * @return \App\Models\File
      */
     public function getBlankModel();
 }

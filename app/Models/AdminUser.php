@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
-use LaravelRocket\Foundation\Models\Base;
+use LaravelRocket\Foundation\Models\AuthenticatableBase;
 
 
-class AdminUser extends Base
+class AdminUser extends AuthenticatableBase
 {
     use Notifiable;
 

@@ -2,7 +2,8 @@
 
 namespace App\Repositories;
 
-use LaravelRocket\Foundation\Repositories\SingleKeyModelRepositoryInterface;
+use LaravelRocket\Foundation\Repositories\AuthenticatableRepositoryInterface;
+
 /**
  *
  * @method \App\Models\AdminUser[] getEmptyList()
@@ -16,10 +17,10 @@ use LaravelRocket\Foundation\Repositories\SingleKeyModelRepositoryInterface;
  * @method \App\Models\AdminUser save($model);
  */
 
-interface AdminUserRepositoryInterface extends SingleKeyModelRepositoryInterface
+interface AdminUserRepositoryInterface extends AuthenticatableRepositoryInterface
 {
     /**
-     * @return \App\Models\\AdminUser
+     * @return \App\Models\AdminUser
      */
     public function getBlankModel();
 }

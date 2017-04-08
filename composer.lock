@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.25.5",
+            "version": "3.25.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "6874b16a262b4e368a25a6991461fce11cff4415"
+                "reference": "fe98140a4811abbe9104477b167dc3c7f9a8391b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/6874b16a262b4e368a25a6991461fce11cff4415",
-                "reference": "6874b16a262b4e368a25a6991461fce11cff4415",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/fe98140a4811abbe9104477b167dc3c7f9a8391b",
+                "reference": "fe98140a4811abbe9104477b167dc3c7f9a8391b",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +84,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-04-06T20:54:52+00:00"
+            "time": "2017-04-07T20:21:45+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -605,12 +605,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-rocket/generator.git",
-                "reference": "0a84e7fc9430258680fef4dd1c2aa05826c8e672"
+                "reference": "f34cb0f37c249f05089f3928483aa3027650545f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-rocket/generator/zipball/0a84e7fc9430258680fef4dd1c2aa05826c8e672",
-                "reference": "0a84e7fc9430258680fef4dd1c2aa05826c8e672",
+                "url": "https://api.github.com/repos/laravel-rocket/generator/zipball/f34cb0f37c249f05089f3928483aa3027650545f",
+                "reference": "f34cb0f37c249f05089f3928483aa3027650545f",
                 "shasum": ""
             },
             "require": {
@@ -650,7 +650,7 @@
                 "source": "https://github.com/laravel-rocket/generator/tree/master",
                 "issues": "https://github.com/laravel-rocket/generator/issues"
             },
-            "time": "2017-04-07T10:15:04+00:00"
+            "time": "2017-04-08T03:57:35+00:00"
         },
         {
             "name": "laravel/framework",

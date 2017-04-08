@@ -7,8 +7,8 @@ use LaravelRocket\Foundation\Models\Base;
 
 class AdminUserRole extends Base
 {
-
-    
+    const ROLE_SUPER_USER = 'super_user';
+    const ROLE_SITE_ADMIN = 'site_admin';
     /**
      * The database table used by the model.
      *
@@ -38,7 +38,7 @@ class AdminUserRole extends Base
     protected $presenter = \App\Presenters\AdminUserRolePresenter::class;
 
     // Relations
-    
+
 
     // Utility Functions
 

@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware\Admin;
 
-use App\Services\AdminUserNotificationServiceInterface;
 use App\Services\AdminUserServiceInterface;
 
 class SetDefaultValues
@@ -12,7 +11,7 @@ class SetDefaultValues
     /**
      * Create a new filter instance.
      *
-     * @param AdminUserServiceInterface             $adminUserService
+     * @param AdminUserServiceInterface $adminUserService
      */
     public function __construct(
         AdminUserServiceInterface $adminUserService
@@ -33,6 +32,7 @@ class SetDefaultValues
         $user = $this->adminUserService->getUser();
         view()->share('authUser', $user);
         view()->share('menu', '');
+
         return $next($request);
     }
 }

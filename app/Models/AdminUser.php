@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use LaravelRocket\Foundation\Models\AuthenticatableBase;
 
-
 class AdminUser extends AuthenticatableBase
 {
     use Notifiable;

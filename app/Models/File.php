@@ -4,7 +4,6 @@ namespace App\Models;
 
 use LaravelRocket\Foundation\Models\Base;
 
-
 class File extends Base
 {
 
@@ -12,7 +11,6 @@ class File extends Base
     const FILE_TYPE_IMAGE = 'image';
 
     const STORAGE_TYPE_S3 = 's3';
-
 
     /**
      * The database table used by the model.
@@ -59,7 +57,6 @@ class File extends Base
     protected $presenter = \App\Presenters\FilePresenter::class;
 
     // Relations
-
 
     // Utility Functions
 

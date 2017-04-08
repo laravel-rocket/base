@@ -10,17 +10,17 @@ interface FileServiceInterface extends BaseServiceInterface
      * @param string $categoryType
      * @param string $text
      * @param string $mediaType
-     * @param array $metaInputs
+     * @param array  $metaInputs
      *
      * @return \App\Models\File|null
      */
     public function uploadFromText($categoryType, $text, $mediaType, $metaInputs);
 
     /**
-     * @param int $categoryType
+     * @param int    $categoryType
      * @param string $path
      * @param string $mediaType
-     * @param array $metaInputs
+     * @param array  $metaInputs
      *
      * @return \App\Models\File|null
      */

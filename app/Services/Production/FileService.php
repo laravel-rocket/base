@@ -144,7 +144,7 @@ class FileService extends BaseService implements FileServiceInterface
 
     /**
      * @param string $key
-     * @param array $size
+     * @param array  $size
      *
      * @return null|string
      */
@@ -158,7 +158,7 @@ class FileService extends BaseService implements FileServiceInterface
     }
 
     /**
-     * @param string $seed
+     * @param string      $seed
      * @param string|null $postFix
      * @param string|null $ext
      *

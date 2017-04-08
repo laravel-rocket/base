@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Eloquent;
 
-
 use App\Repositories\UserPasswordResetRepositoryInterface;
 use LaravelRocket\Foundation\Repositories\Eloquent\PasswordResettableRepository;
 

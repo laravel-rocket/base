@@ -58,6 +58,22 @@ return [
                 'password' => 'Password',
             ],
         ],
+        'users'   => [
+            'columns'  => [
+                'name' => 'Name',
+                'email' => 'Email',
+                'password' => 'Password',
+                'profile_image_id' => 'Profile_image_id',
+            ],
+        ],
+        'admin-users'   => [
+            'columns'  => [
+                'name' => 'Name',
+                'email' => 'Email',
+                'password' => 'Password',
+                'profile_image_id' => 'Profile_image_id',
+            ],
+        ],
         /* NEW PAGE STRINGS */
     ],
     'roles'    => [

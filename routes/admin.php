@@ -1,6 +1,6 @@
 <?php
 
-\Route::group(['prefix' => 'admin'], function () {
+\Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     \Route::group(['middleware' => ['admin.guest']], function () {
         \Route::get('signin', 'Admin\AuthController@getSignIn');
@@ -13,5 +13,8 @@
 
     \Route::group(['middleware' => ['admin.auth']], function () {
         \Route::get('/', 'Admin\IndexController@index');
+        \Route::resource('users', 'Admin\UserController');
+        \Route::resource('admin-users', 'Admin\AdminUserController');
+        /* NEW ADMIN RESOURCE ROUTE */
     });
 });

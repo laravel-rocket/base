@@ -19,18 +19,19 @@
   ],
   "require": {
     "php": ">=7.0",
+    "aws/aws-sdk-php": "~3.24",
+    "laravel-rocket/foundation": "dev-master",
+    "laravel-rocket/generator": "dev-master",
     "laravel/framework": "5.4.*",
     "laravel/socialite": "~3.0",
     "laravel/tinker": "~1.0",
-    "aws/aws-sdk-php": "~3.24",
-    "laravelcollective/html": "5.4.*",
-    "laravel-rocket/foundation": "dev-master",
-    "laravel-rocket/generator": "dev-master"
+    "laravelcollective/html": "5.4.*"
   },
   "require-dev": {
     "barryvdh/laravel-debugbar": "~2.3",
     "barryvdh/laravel-ide-helper": "~2.3",
     "doctrine/dbal": "~2.5",
+    "friendsofphp/php-cs-fixer": "^2.2",
     "fzaninotto/faker": "~1.4",
     "laravel/browser-kit-testing": "^1.0",
     "mockery/mockery": "0.9.*",

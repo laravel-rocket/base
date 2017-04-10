@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Middleware\Admin;
 
 use App\Services\AdminUserServiceInterface;
@@ -8,6 +7,7 @@ class SetDefaultValues
 {
     /** @var AdminUserServiceInterface */
     protected $adminUserService;
+
     /**
      * Create a new filter instance.
      *

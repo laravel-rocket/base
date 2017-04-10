@@ -1,5 +1,4 @@
 <?php
-
 namespace Tests\Services;
 
 use LaravelRocket\Foundation\Tests\TestCase;
@@ -20,5 +19,4 @@ class RoutingTest extends TestCase
             }
         }
     }
-
 }

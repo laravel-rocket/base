@@ -1,5 +1,4 @@
 <?php
-
 namespace Tests\Repositories;
 
 use App\Models\AdminUserRole;
@@ -11,17 +10,17 @@ class AdminUserRoleRepositoryTest extends TestCase
 
     public function testGetInstance()
     {
-        /** @var  \App\Repositories\AdminUserRoleRepositoryInterface $repository */
+        /** @var \App\Repositories\AdminUserRoleRepositoryInterface $repository */
         $repository = \App::make(\App\Repositories\AdminUserRoleRepositoryInterface::class);
         $this->assertNotNull($repository);
     }
 
     public function testGetList()
     {
-        $models = factory(AdminUserRole::class, 3)->create();
+        $models           = factory(AdminUserRole::class, 3)->create();
         $adminUserRoleIds = $models->pluck('id')->toArray();
 
-        /** @var  \App\Repositories\AdminUserRoleRepositoryInterface $repository */
+        /** @var \App\Repositories\AdminUserRoleRepositoryInterface $repository */
         $repository = \App::make(\App\Repositories\AdminUserRoleRepositoryInterface::class);
         $this->assertNotNull($repository);
 
@@ -34,10 +33,10 @@ class AdminUserRoleRepositoryTest extends TestCase
 
     public function testFind()
     {
-        $models = factory(AdminUserRole::class, 3)->create();
+        $models           = factory(AdminUserRole::class, 3)->create();
         $adminUserRoleIds = $models->pluck('id')->toArray();
 
-        /** @var  \App\Repositories\AdminUserRoleRepositoryInterface $repository */
+        /** @var \App\Repositories\AdminUserRoleRepositoryInterface $repository */
         $repository = \App::make(\App\Repositories\AdminUserRoleRepositoryInterface::class);
         $this->assertNotNull($repository);
 
@@ -49,7 +48,7 @@ class AdminUserRoleRepositoryTest extends TestCase
     {
         $adminUserRoleData = factory(AdminUserRole::class)->make();
 
-        /** @var  \App\Repositories\AdminUserRoleRepositoryInterface $repository */
+        /** @var \App\Repositories\AdminUserRoleRepositoryInterface $repository */
         $repository = \App::make(\App\Repositories\AdminUserRoleRepositoryInterface::class);
         $this->assertNotNull($repository);
 
@@ -61,7 +60,7 @@ class AdminUserRoleRepositoryTest extends TestCase
     {
         $adminUserRoleData = factory(AdminUserRole::class)->create();
 
-        /** @var  \App\Repositories\AdminUserRoleRepositoryInterface $repository */
+        /** @var \App\Repositories\AdminUserRoleRepositoryInterface $repository */
         $repository = \App::make(\App\Repositories\AdminUserRoleRepositoryInterface::class);
         $this->assertNotNull($repository);
 
@@ -73,7 +72,7 @@ class AdminUserRoleRepositoryTest extends TestCase
     {
         $adminUserRoleData = factory(AdminUserRole::class)->create();
 
-        /** @var  \App\Repositories\AdminUserRoleRepositoryInterface $repository */
+        /** @var \App\Repositories\AdminUserRoleRepositoryInterface $repository */
         $repository = \App::make(\App\Repositories\AdminUserRoleRepositoryInterface::class);
         $this->assertNotNull($repository);
 
@@ -82,5 +81,4 @@ class AdminUserRoleRepositoryTest extends TestCase
         $adminUserRoleCheck = $repository->find($adminUserRoleData->id);
         $this->assertNull($adminUserRoleCheck);
     }
-
 }

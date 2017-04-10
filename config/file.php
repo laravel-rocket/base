@@ -1,12 +1,12 @@
 <?php
 
 return [
-    'storage'    => [
-        'local'   => [
+    'storage' => [
+        'local' => [
             'path' => realpath(base_path('public/uploads')),
             'url'  => '/uploads',
         ],
-        's3'      => [
+        's3' => [
             'region'  => env('AWS_IMAGE_REGION'),
             'buckets' => [
                 env('AWS_IMAGE_BUCKET'),
@@ -15,7 +15,7 @@ return [
         'default' => env('STORAGE_TYPE', 'local'),
     ],
     'acceptable' => [
-        'file'  => [
+        'file' => [
             'application/pdf'          => 'pdf',
             'application/octet-stream' => '',
             'application/zip'          => 'zip',
@@ -31,7 +31,7 @@ return [
         ],
     ],
     'categories' => [
-        'default-file'  => [
+        'default-file' => [
             'name'       => 'default',
             'type'       => 'file',
             'size'       => [300, 300],

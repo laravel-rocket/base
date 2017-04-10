@@ -1,14 +1,12 @@
 <?php
-
 namespace App\Repositories\Eloquent;
 
-use LaravelRocket\Foundation\Repositories\Eloquent\AuthenticatableRepository;
-use App\Repositories\AdminUserRepositoryInterface;
 use App\Models\AdminUser;
+use App\Repositories\AdminUserRepositoryInterface;
+use LaravelRocket\Foundation\Repositories\Eloquent\AuthenticatableRepository;
 
 class AdminUserRepository extends AuthenticatableRepository implements AdminUserRepositoryInterface
 {
-
     public function getBlankModel()
     {
         return new AdminUser();
@@ -25,5 +23,4 @@ class AdminUserRepository extends AuthenticatableRepository implements AdminUser
         return [
         ];
     }
-
 }

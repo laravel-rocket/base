@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
@@ -38,7 +37,7 @@ class AdminUser extends AuthenticatableBase
         'remember_token',
     ];
 
-    protected $dates  = [];
+    protected $dates = [];
 
     protected $presenter = \App\Presenters\AdminUserPresenter::class;
 
@@ -54,5 +53,4 @@ class AdminUser extends AuthenticatableBase
     }
 
     // Utility Functions
-
 }

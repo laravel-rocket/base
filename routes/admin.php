@@ -1,7 +1,6 @@
 <?php
 
 \Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-
     \Route::group(['middleware' => ['admin.guest']], function () {
         \Route::get('signin', 'Admin\AuthController@getSignIn');
         \Route::post('signin', 'Admin\AuthController@postSignIn');

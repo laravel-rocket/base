@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Http\Middleware\Admin;
 
-use Closure;
 use App\Services\AdminUserServiceInterface;
+use Closure;
 
 class Authenticate
 {
@@ -34,7 +33,8 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return \RedirectHelper::guest(action('Admin\AuthController@getSignIn'), $this->adminUserService->getGuardName());
+                return \RedirectHelper::guest(action('Admin\AuthController@getSignIn'),
+                    $this->adminUserService->getGuardName());
             }
         }
         view()->share('authUser', $this->adminUserService->getUser());

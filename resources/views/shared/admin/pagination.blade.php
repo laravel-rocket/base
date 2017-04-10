@@ -9,7 +9,7 @@
             @if( $page['current'] )
                 <li class="c-pagination__page c-pagination__page--is-active"><a>{{ $page['number'] }}</a></li>
             @else
-                <li class="c-pagination__page" ><a href="{!! $page['link'] !!}">{{ $page['number'] }}</a></li>
+                <li class="c-pagination__page"><a href="{!! $page['link'] !!}">{{ $page['number'] }}</a></li>
             @endif
         @endforeach
         @if( isset($lastPageLink) )

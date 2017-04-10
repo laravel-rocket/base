@@ -1,5 +1,4 @@
 <?php
-
 namespace Tests;
 
 use LaravelRocket\Foundation\Tests\TestCase as BaseTestCase;
@@ -11,7 +10,7 @@ abstract class TestCase extends BaseTestCase
     /** @var bool */
     protected $useDatabase = false;
 
-    /** @var string  */
+    /** @var string */
     protected $baseUrl = 'http://localhost:8000';
 
     /** @var \Faker\Generator */
@@ -22,7 +21,7 @@ abstract class TestCase extends BaseTestCase
         parent::setUp();
         if ($this->useDatabase) {
             \DB::disableQueryLog();
-            exec('cp ' .database_path('testing/stubdb.sqlite') .' ' . database_path('testing/testdb.sqlite'));
+            exec('cp '.database_path('testing/stubdb.sqlite').' '.database_path('testing/testdb.sqlite'));
         }
     }
 
@@ -30,7 +29,7 @@ abstract class TestCase extends BaseTestCase
     {
         if ($this->useDatabase) {
             \DB::disconnect();
-            exec('rm ' . database_path('testing/testdb.sqlite'));
+            exec('rm '.database_path('testing/testdb.sqlite'));
         }
         parent::tearDown();
     }

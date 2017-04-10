@@ -1,13 +1,11 @@
 <?php
-
 namespace App\Http\Requests\Admin;
 
-use LaravelRocket\Foundation\Http\Requests\Request;
 use App\Repositories\UserRepositoryInterface;
+use LaravelRocket\Foundation\Http\Requests\Request;
 
 class UserRequest extends Request
 {
-
     /** @var \App\Repositories\UserRepositoryInterface */
     protected $userRepository;
 
@@ -41,5 +39,4 @@ class UserRequest extends Request
     {
         return $this->userRepository->messages();
     }
-
 }

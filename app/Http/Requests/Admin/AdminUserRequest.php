@@ -1,13 +1,11 @@
 <?php
-
 namespace App\Http\Requests\Admin;
 
-use LaravelRocket\Foundation\Http\Requests\Request;
 use App\Repositories\AdminUserRepositoryInterface;
+use LaravelRocket\Foundation\Http\Requests\Request;
 
 class AdminUserRequest extends Request
 {
-
     /** @var \App\Repositories\AdminUserRepositoryInterface */
     protected $adminUserRepository;
 
@@ -41,5 +39,4 @@ class AdminUserRequest extends Request
     {
         return $this->adminUserRepository->messages();
     }
-
 }

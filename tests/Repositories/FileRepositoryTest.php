@@ -1,5 +1,4 @@
 <?php
-
 namespace Tests\Repositories;
 
 use App\Models\File;
@@ -11,17 +10,17 @@ class FileRepositoryTest extends TestCase
 
     public function testGetInstance()
     {
-        /** @var  \App\Repositories\FileRepositoryInterface $repository */
+        /** @var \App\Repositories\FileRepositoryInterface $repository */
         $repository = \App::make(\App\Repositories\FileRepositoryInterface::class);
         $this->assertNotNull($repository);
     }
 
     public function testGetList()
     {
-        $models = factory(File::class, 3)->create();
+        $models  = factory(File::class, 3)->create();
         $fileIds = $models->pluck('id')->toArray();
 
-        /** @var  \App\Repositories\FileRepositoryInterface $repository */
+        /** @var \App\Repositories\FileRepositoryInterface $repository */
         $repository = \App::make(\App\Repositories\FileRepositoryInterface::class);
         $this->assertNotNull($repository);
 
@@ -34,10 +33,10 @@ class FileRepositoryTest extends TestCase
 
     public function testFind()
     {
-        $models = factory(File::class, 3)->create();
+        $models  = factory(File::class, 3)->create();
         $fileIds = $models->pluck('id')->toArray();
 
-        /** @var  \App\Repositories\FileRepositoryInterface $repository */
+        /** @var \App\Repositories\FileRepositoryInterface $repository */
         $repository = \App::make(\App\Repositories\FileRepositoryInterface::class);
         $this->assertNotNull($repository);
 
@@ -49,7 +48,7 @@ class FileRepositoryTest extends TestCase
     {
         $fileData = factory(File::class)->make();
 
-        /** @var  \App\Repositories\FileRepositoryInterface $repository */
+        /** @var \App\Repositories\FileRepositoryInterface $repository */
         $repository = \App::make(\App\Repositories\FileRepositoryInterface::class);
         $this->assertNotNull($repository);
 
@@ -61,7 +60,7 @@ class FileRepositoryTest extends TestCase
     {
         $fileData = factory(File::class)->create();
 
-        /** @var  \App\Repositories\FileRepositoryInterface $repository */
+        /** @var \App\Repositories\FileRepositoryInterface $repository */
         $repository = \App::make(\App\Repositories\FileRepositoryInterface::class);
         $this->assertNotNull($repository);
 
@@ -73,7 +72,7 @@ class FileRepositoryTest extends TestCase
     {
         $fileData = factory(File::class)->create();
 
-        /** @var  \App\Repositories\FileRepositoryInterface $repository */
+        /** @var \App\Repositories\FileRepositoryInterface $repository */
         $repository = \App::make(\App\Repositories\FileRepositoryInterface::class);
         $this->assertNotNull($repository);
 
@@ -82,5 +81,4 @@ class FileRepositoryTest extends TestCase
         $fileCheck = $repository->find($fileData->id);
         $this->assertNull($fileCheck);
     }
-
 }

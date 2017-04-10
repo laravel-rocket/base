@@ -1,11 +1,9 @@
 <?php
-
 namespace App\Repositories;
 
 use LaravelRocket\Foundation\Repositories\AuthenticatableRepositoryInterface;
 
 /**
- *
  * @method \App\Models\AdminUser[] getEmptyList()
  * @method \App\Models\AdminUser[]|\Traversable|array all($order = null, $direction = null)
  * @method \App\Models\AdminUser[]|\Traversable|array get($order, $direction, $offset, $limit)
@@ -16,7 +14,6 @@ use LaravelRocket\Foundation\Repositories\AuthenticatableRepositoryInterface;
  * @method \App\Models\AdminUser update($model, $input)
  * @method \App\Models\AdminUser save($model);
  */
-
 interface AdminUserRepositoryInterface extends AuthenticatableRepositoryInterface
 {
     /**

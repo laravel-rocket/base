@@ -54,7 +54,8 @@
 
         <div class="c-admincrud__form @if ($errors->has('profile_image_id')) c-admincrud__form--is-error @endif">
             @if( !empty($adminUser->profileImage) )
-                <img id="profile-image-id-preview" src="{!! $adminUser->profileImage->getThumbnailUrl(480, 300) !!}" alt=""
+                <img id="profile-image-id-preview" src="{!! $adminUser->profileImage->getThumbnailUrl(480, 300) !!}"
+                     alt=""
                      class="c-admincrud__preview-image"/>'
             @else
                 <img id="profile-image-id-preview" src="{!! \URLHelper::asset('img/no_image.jpg', 'common') !!}" alt=""

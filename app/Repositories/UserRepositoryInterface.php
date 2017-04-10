@@ -1,11 +1,9 @@
 <?php
-
 namespace App\Repositories;
 
 use LaravelRocket\Foundation\Repositories\AuthenticatableRepositoryInterface;
 
 /**
- *
  * @method \App\Models\User[] getEmptyList()
  * @method \App\Models\User[]|\Traversable|array all($order = null, $direction = null)
  * @method \App\Models\User[]|\Traversable|array get($order, $direction, $offset, $limit)
@@ -16,7 +14,6 @@ use LaravelRocket\Foundation\Repositories\AuthenticatableRepositoryInterface;
  * @method \App\Models\User update($model, $input)
  * @method \App\Models\User save($model);
  */
-
 interface UserRepositoryInterface extends AuthenticatableRepositoryInterface
 {
     /**

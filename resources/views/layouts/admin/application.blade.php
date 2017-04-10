@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="{{ \App::getLocale() }}">
 <head>

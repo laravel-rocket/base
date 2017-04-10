@@ -1,14 +1,12 @@
 <?php
-
 namespace App\Repositories\Eloquent;
 
-use LaravelRocket\Foundation\Repositories\Eloquent\SingleKeyModelRepository;
-use App\Repositories\FileRepositoryInterface;
 use App\Models\File;
+use App\Repositories\FileRepositoryInterface;
+use LaravelRocket\Foundation\Repositories\Eloquent\SingleKeyModelRepository;
 
 class FileRepository extends SingleKeyModelRepository implements FileRepositoryInterface
 {
-
     public function getBlankModel()
     {
         return new File();
@@ -25,5 +23,4 @@ class FileRepository extends SingleKeyModelRepository implements FileRepositoryI
         return [
         ];
     }
-
 }

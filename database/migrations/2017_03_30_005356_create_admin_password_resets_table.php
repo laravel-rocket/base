@@ -12,7 +12,7 @@ class CreateAdminPasswordResetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('admin_password_resets', function(Blueprint $table) {
+        Schema::create('admin_password_resets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('email')->index();
             $table->string('token')->index();

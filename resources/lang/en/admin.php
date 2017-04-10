@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'menu'     => [
+    'menu' => [
         'dashboard'          => 'Dashboard',
         'admin_users'        => 'Admin Users',
         'users'              => 'Users',
@@ -14,13 +14,13 @@ return [
             'delete_success' => 'Successfully deleted.',
         ],
     ],
-    'errors'   => [
-        'general'  => [
+    'errors' => [
+        'general' => [
             'save_failed' => 'Failed To Save. Please contact with developers',
         ],
         'requests' => [
             'me' => [
-                'email'    => [
+                'email' => [
                     'required' => 'Email Required',
                     'email'    => 'Email is not valid',
                 ],
@@ -30,8 +30,8 @@ return [
             ],
         ],
     ],
-    'pages'    => [
-        'common'                   => [
+    'pages' => [
+        'common' => [
             'buttons' => [
                 'create'          => 'Create New',
                 'edit'            => 'Edit',
@@ -44,39 +44,39 @@ return [
                 'reset_password'  => 'Reset Password',
             ],
         ],
-        'auth'                     => [
+        'auth' => [
             'buttons' => [
                 'sign_in' => 'Sign In',
                 'sign_up' => 'Sign Up',
-                'reset' => 'Reset Password',
-                'forgot' => 'Send Reset Email',
+                'reset'   => 'Reset Password',
+                'forgot'  => 'Send Reset Email',
             ],
             'messages' => [
-                'remember_me' => 'Remember Me',
+                'remember_me'     => 'Remember Me',
                 'forgot_password' => 'Forget Password',
-                'email' => 'Email',
-                'password' => 'Password',
+                'email'           => 'Email',
+                'password'        => 'Password',
             ],
         ],
-        'users'   => [
-            'columns'  => [
-                'name' => 'Name',
-                'email' => 'Email',
-                'password' => 'Password',
+        'users' => [
+            'columns' => [
+                'name'             => 'Name',
+                'email'            => 'Email',
+                'password'         => 'Password',
                 'profile_image_id' => 'Profile_image_id',
             ],
         ],
-        'admin-users'   => [
-            'columns'  => [
-                'name' => 'Name',
-                'email' => 'Email',
-                'password' => 'Password',
+        'admin-users' => [
+            'columns' => [
+                'name'             => 'Name',
+                'email'            => 'Email',
+                'password'         => 'Password',
                 'profile_image_id' => 'Profile_image_id',
             ],
         ],
         /* NEW PAGE STRINGS */
     ],
-    'roles'    => [
+    'roles' => [
         'super_user' => 'Super User',
         'site_admin' => 'Site Administrator',
     ],

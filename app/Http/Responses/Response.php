@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Responses;
 
 class Response
@@ -48,14 +47,15 @@ class Response
     }
 
     /**
-     * @param  string     $name
-     * @param  mixed      $default
+     * @param string $name
+     * @param mixed  $default
+     *
      * @return mixed|null
      */
     public function get($name, $default = null)
     {
         if (!array_key_exists($name, $this->columns)) {
-            return null;
+            return;
         }
         if (array_key_exists($name, $this->data)) {
             return $this->data[$name];
@@ -65,6 +65,14 @@ class Response
         }
 
         return $default;
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function response()
+    {
+        return response()->json($this->toArray(), $this->statusCode);
     }
 
     /**
@@ -82,13 +90,5 @@ class Response
         }
 
         return $ret;
-    }
-
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function response()
-    {
-        return response()->json($this->toArray(), $this->statusCode);
     }
 }

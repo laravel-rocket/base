@@ -41,7 +41,7 @@ class CSVSeeder extends Seeder
         }
 
         $header = null;
-        $data = [];
+        $data   = [];
 
         if (($handle = fopen($filename, 'r')) !== false) {
             while (($row = fgetcsv($handle, 1500, $delimiter)) !== false) {

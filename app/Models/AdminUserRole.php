@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use LaravelRocket\Foundation\Models\Base;
@@ -32,12 +31,11 @@ class AdminUserRole extends Base
      */
     protected $hidden = [];
 
-    protected $dates  = [];
+    protected $dates = [];
 
     protected $presenter = \App\Presenters\AdminUserRolePresenter::class;
 
     // Relations
 
     // Utility Functions
-
 }

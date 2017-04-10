@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ForgotPasswordRequest;
@@ -82,8 +81,8 @@ class PasswordController extends Controller
      */
     public function postResetPassword(ResetPasswordRequest $request)
     {
-        $email = $request->get('email');
-        $token = $request->get('token');
+        $email    = $request->get('email');
+        $token    = $request->get('token');
         $password = $request->get('password');
         if ($password == $request->get('password_confirmation')) {
             if ($this->authenticatableService->resetPassword($email, $password, $token)) {

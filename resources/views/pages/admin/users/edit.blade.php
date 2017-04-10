@@ -54,11 +54,11 @@
 
         <div class="c-admincrud__form @if ($errors->has('profile_image_id')) c-admincrud__form--is-error @endif">
             @if( !empty($user->profileImage) )
-            <img id="profile-image-id-preview" src="{!! $user->profileImage->getThumbnailUrl(480, 300) !!}" alt=""
-                 class="c-admincrud__preview-image"/>'
+                <img id="profile-image-id-preview" src="{!! $user->profileImage->getThumbnailUrl(480, 300) !!}" alt=""
+                     class="c-admincrud__preview-image"/>'
             @else
-            <img id="profile-image-id-preview" src="{!! \URLHelper::asset('img/no_image.jpg', 'common') !!}" alt=""
-                 class="c-admincrud__preview-image"/>'
+                <img id="profile-image-id-preview" src="{!! \URLHelper::asset('img/no_image.jpg', 'common') !!}" alt=""
+                     class="c-admincrud__preview-image"/>'
             @endif
             <label for="profile_image_id">@lang('admin.pages.users.columns.profile_image_id')</label>
             <input type="file" class="c-admincrud__image-field" id="%%id%%" name="profile_image_id">

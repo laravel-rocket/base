@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Models\AdminUserRole;
+use Illuminate\Database\Seeder;
 
 class AdminUserSeeder extends Seeder
 {
@@ -17,14 +17,14 @@ class AdminUserSeeder extends Seeder
         $adminUserRoleRepository = \App::make('App\Repositories\AdminUserRoleRepositoryInterface');
 
         $adminUser = $adminUserRepository->create([
-            'name' => 'TestUser',
-            'email' => 'test@example.com',
+            'name'     => 'TestUser',
+            'email'    => 'test@example.com',
             'password' => 'testtest',
         ]);
 
         $adminUserRoleRepository->create([
             'admin_user_id' => $adminUser->id,
-            'role' => AdminUserRole::ROLE_SUPER_USER,
+            'role'          => AdminUserRole::ROLE_SUPER_USER,
         ]);
     }
 }

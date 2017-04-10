@@ -1,13 +1,11 @@
 <?php
-
 namespace App\Models;
 
 use LaravelRocket\Foundation\Models\Base;
 
 class File extends Base
 {
-
-    const FILE_TYPE_FILE = 'file';
+    const FILE_TYPE_FILE  = 'file';
     const FILE_TYPE_IMAGE = 'image';
 
     const STORAGE_TYPE_S3 = 's3';
@@ -50,14 +48,13 @@ class File extends Base
      *
      * @var array
      */
-    protected $hidden    = [];
+    protected $hidden = [];
 
-    protected $dates     = [];
+    protected $dates = [];
 
     protected $presenter = \App\Presenters\FilePresenter::class;
 
     // Relations
 
     // Utility Functions
-
 }

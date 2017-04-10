@@ -1,10 +1,9 @@
 <?php
-
 namespace App\Repositories;
 
 use LaravelRocket\Foundation\Repositories\SingleKeyModelRepositoryInterface;
+
 /**
- *
  * @method \App\Models\File[] getEmptyList()
  * @method \App\Models\File[]|\Traversable|array all($order = null, $direction = null)
  * @method \App\Models\File[]|\Traversable|array get($order, $direction, $offset, $limit)
@@ -15,7 +14,6 @@ use LaravelRocket\Foundation\Repositories\SingleKeyModelRepositoryInterface;
  * @method \App\Models\File update($model, $input)
  * @method \App\Models\File save($model);
  */
-
 interface FileRepositoryInterface extends SingleKeyModelRepositoryInterface
 {
     /**

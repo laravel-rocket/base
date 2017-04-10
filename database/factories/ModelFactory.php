@@ -12,7 +12,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Models\User::class, function(Faker\Generator $faker) {
+$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -24,7 +24,7 @@ $factory->define(App\Models\User::class, function(Faker\Generator $faker) {
     ];
 });
 
-$factory->define(\App\Models\AdminUser::class, function(Faker\Generator $faker) {
+$factory->define(\App\Models\AdminUser::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -36,14 +36,14 @@ $factory->define(\App\Models\AdminUser::class, function(Faker\Generator $faker) 
     ];
 });
 
-$factory->define(\App\Models\AdminUserRole::class, function(Faker\Generator $faker) {
+$factory->define(\App\Models\AdminUserRole::class, function (Faker\Generator $faker) {
     return [
         'admin_user_id' => 0,
         'role'          => '',
     ];
 });
 
-$factory->define(\App\Models\File::class, function(Faker\Generator $faker) {
+$factory->define(\App\Models\File::class, function (Faker\Generator $faker) {
     return [
         'url'                => $faker->url,
         'title'              => $faker->sentence,

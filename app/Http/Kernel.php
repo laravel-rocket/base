@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -58,15 +57,15 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'bindings'   => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'can'        => \Illuminate\Auth\Middleware\Authorize::class,
+        'throttle'   => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
-        'admin.auth' => \App\Http\Middleware\Admin\Authenticate::class,
-        'admin.guest' => \App\Http\Middleware\Admin\RedirectIfAuthenticated::class,
+        'admin.auth'   => \App\Http\Middleware\Admin\Authenticate::class,
+        'admin.guest'  => \App\Http\Middleware\Admin\RedirectIfAuthenticated::class,
         'admin.values' => \App\Http\Middleware\Admin\SetDefaultValues::class,
-        'user.auth' => \App\Http\Middleware\User\Authenticate::class,
-        'user.guest' => \App\Http\Middleware\User\RedirectIfAuthenticated::class,
-        'user.values' => \App\Http\Middleware\User\SetDefaultValues::class,
+        'user.auth'    => \App\Http\Middleware\User\Authenticate::class,
+        'user.guest'   => \App\Http\Middleware\User\RedirectIfAuthenticated::class,
+        'user.values'  => \App\Http\Middleware\User\SetDefaultValues::class,
     ];
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Services\Production;
 
 use App\Repositories\UserPasswordResetRepositoryInterface;
@@ -19,7 +18,7 @@ class UserService extends AuthenticatableService implements UserServiceInterface
         UserRepositoryInterface $userRepository,
         UserPasswordResetRepositoryInterface $userPasswordResetRepository
     ) {
-        $this->authenticatableRepository = $userRepository;
+        $this->authenticatableRepository    = $userRepository;
         $this->passwordResettableRepository = $userPasswordResetRepository;
     }
 

@@ -10,7 +10,7 @@
 @stop
 
 @section('title')
-Top
+    Top
 @stop
 
 @section('scripts')
@@ -18,9 +18,9 @@ Top
 @stop
 
 @section('content')
-<section>
-    <div class="container">
-        Top Page
-    </div>
-</section>
+    <section>
+        <div class="container">
+            Top Page
+        </div>
+    </section>
 @stop

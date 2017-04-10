@@ -1,5 +1,4 @@
 <?php
-
 namespace Tests\Repositories;
 
 use App\Models\User;
@@ -11,17 +10,17 @@ class UserRepositoryTest extends TestCase
 
     public function testGetInstance()
     {
-        /** @var  \App\Repositories\UserRepositoryInterface $repository */
+        /** @var \App\Repositories\UserRepositoryInterface $repository */
         $repository = \App::make(\App\Repositories\UserRepositoryInterface::class);
         $this->assertNotNull($repository);
     }
 
     public function testGetList()
     {
-        $models = factory(User::class, 3)->create();
+        $models  = factory(User::class, 3)->create();
         $userIds = $models->pluck('id')->toArray();
 
-        /** @var  \App\Repositories\UserRepositoryInterface $repository */
+        /** @var \App\Repositories\UserRepositoryInterface $repository */
         $repository = \App::make(\App\Repositories\UserRepositoryInterface::class);
         $this->assertNotNull($repository);
 
@@ -34,10 +33,10 @@ class UserRepositoryTest extends TestCase
 
     public function testFind()
     {
-        $models = factory(User::class, 3)->create();
+        $models  = factory(User::class, 3)->create();
         $userIds = $models->pluck('id')->toArray();
 
-        /** @var  \App\Repositories\UserRepositoryInterface $repository */
+        /** @var \App\Repositories\UserRepositoryInterface $repository */
         $repository = \App::make(\App\Repositories\UserRepositoryInterface::class);
         $this->assertNotNull($repository);
 
@@ -49,7 +48,7 @@ class UserRepositoryTest extends TestCase
     {
         $userData = factory(User::class)->make();
 
-        /** @var  \App\Repositories\UserRepositoryInterface $repository */
+        /** @var \App\Repositories\UserRepositoryInterface $repository */
         $repository = \App::make(\App\Repositories\UserRepositoryInterface::class);
         $this->assertNotNull($repository);
 
@@ -61,7 +60,7 @@ class UserRepositoryTest extends TestCase
     {
         $userData = factory(User::class)->create();
 
-        /** @var  \App\Repositories\UserRepositoryInterface $repository */
+        /** @var \App\Repositories\UserRepositoryInterface $repository */
         $repository = \App::make(\App\Repositories\UserRepositoryInterface::class);
         $this->assertNotNull($repository);
 
@@ -73,7 +72,7 @@ class UserRepositoryTest extends TestCase
     {
         $userData = factory(User::class)->create();
 
-        /** @var  \App\Repositories\UserRepositoryInterface $repository */
+        /** @var \App\Repositories\UserRepositoryInterface $repository */
         $repository = \App::make(\App\Repositories\UserRepositoryInterface::class);
         $this->assertNotNull($repository);
 
@@ -82,5 +81,4 @@ class UserRepositoryTest extends TestCase
         $userCheck = $repository->find($userData->id);
         $this->assertNull($userCheck);
     }
-
 }

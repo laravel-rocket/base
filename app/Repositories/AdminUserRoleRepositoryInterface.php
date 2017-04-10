@@ -1,10 +1,9 @@
 <?php
-
 namespace App\Repositories;
 
 use LaravelRocket\Foundation\Repositories\SingleKeyModelRepositoryInterface;
+
 /**
- *
  * @method \App\Models\AdminUserRole[] getEmptyList()
  * @method \App\Models\AdminUserRole[]|\Traversable|array all($order = null, $direction = null)
  * @method \App\Models\AdminUserRole[]|\Traversable|array get($order, $direction, $offset, $limit)
@@ -15,7 +14,6 @@ use LaravelRocket\Foundation\Repositories\SingleKeyModelRepositoryInterface;
  * @method \App\Models\AdminUserRole update($model, $input)
  * @method \App\Models\AdminUserRole save($model);
  */
-
 interface AdminUserRoleRepositoryInterface extends SingleKeyModelRepositoryInterface
 {
     /**

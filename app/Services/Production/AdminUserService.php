@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Services\Production;
 
 use App\Repositories\AdminPasswordResetRepositoryInterface;
@@ -19,7 +18,7 @@ class AdminUserService extends AuthenticatableService implements AdminUserServic
         AdminUserRepositoryInterface $adminUserRepository,
         AdminPasswordResetRepositoryInterface $adminUserPasswordResetRepository
     ) {
-        $this->authenticatableRepository = $adminUserRepository;
+        $this->authenticatableRepository    = $adminUserRepository;
         $this->passwordResettableRepository = $adminUserPasswordResetRepository;
     }
 

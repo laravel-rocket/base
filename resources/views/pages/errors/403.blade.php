@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -6,41 +5,47 @@
     <title>403 - forbidden </title>
     <style>
         @import url(http://fonts.googleapis.com/css?family=Bree+Serif|Source+Sans+Pro:300,400);
-        *{
+
+        * {
             maring: 0;
             padding: 0;
         }
-        body{
+
+        body {
             font-family: 'Source Sans Pro', sans-serif;
             background: #eeeeee;
             color: #888888;
         }
-        a:link{
+
+        a:link {
             color: #888888;
             text-decoration: none;
         }
-        a:active{
+
+        a:active {
             color: #1f3759;
             text-decoration: none;
         }
-        a:hover{
+
+        a:hover {
             color: #9fb7d9;
             text-decoration: none;
         }
-        a:visited{
+
+        a:visited {
             color: #888888;
             text-decoration: none;
         }
 
-        a.underline, .underline{
+        a.underline, .underline {
             text-decoration: underline;
         }
 
-        .bree-font{
+        .bree-font {
             font-family: 'Bree Serif', serif;
         }
 
-        #content{
+        #content {
             margin: 0 auto;
             width: 960px;
         }
@@ -63,29 +68,33 @@
             float: left;
             display: block;
         }
-        nav{
+
+        nav {
             float: right;
             display: block;
         }
-        nav ul > li{
+
+        nav ul > li {
             list-style: none;
             float: left;
             margin: 0 2em;
             display: block;
         }
 
-        #main-body{
+        #main-body {
             text-align: center;
         }
 
-        .enormous-font{
+        .enormous-font {
             font-size: 10em;
             margin-bottom: 0em;
         }
-        .big-font{
+
+        .big-font {
             font-size: 2em;
         }
-        hr{
+
+        hr {
             width: 25%;
             height: 1px;
             background: #888888;
@@ -101,7 +110,8 @@
         <p class="enormous-font bree-font"> 403 </p>
         <p class="big-font"> You can not access to this page..</p>
         <hr>
-        <p class="big-font"> Let’s return to the <a href="{!! action('User\IndexController@index') !!}">home page</a></p>
+        <p class="big-font"> Let’s return to the <a href="{!! action('User\IndexController@index') !!}">home page</a>
+        </p>
     </div>
 </div>
 </body>

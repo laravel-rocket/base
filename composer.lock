@@ -551,12 +551,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-rocket/foundation.git",
-                "reference": "aec20ca4d2bb44238d3989f67ed34cd35c5d5db2"
+                "reference": "ec2867a77a285612e524da42fcef8c68cc0d7187"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-rocket/foundation/zipball/aec20ca4d2bb44238d3989f67ed34cd35c5d5db2",
-                "reference": "aec20ca4d2bb44238d3989f67ed34cd35c5d5db2",
+                "url": "https://api.github.com/repos/laravel-rocket/foundation/zipball/ec2867a77a285612e524da42fcef8c68cc0d7187",
+                "reference": "ec2867a77a285612e524da42fcef8c68cc0d7187",
                 "shasum": ""
             },
             "require": {
@@ -567,6 +567,7 @@
                 "php": ">=7.0"
             },
             "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.2",
                 "fzaninotto/faker": "^1.5",
                 "laravel/browser-kit-testing": "^1.0",
                 "laravel/laravel": "5.4.*",
@@ -597,7 +598,7 @@
                 "source": "https://github.com/laravel-rocket/foundation/tree/master",
                 "issues": "https://github.com/laravel-rocket/foundation/issues"
             },
-            "time": "2017-04-07 11:17:55"
+            "time": "2017-04-11T12:04:04+00:00"
         },
         {
             "name": "laravel-rocket/generator",
@@ -605,12 +606,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-rocket/generator.git",
-                "reference": "3b6d9b4b86c943560cb1fd45b89364179e3ec083"
+                "reference": "e7b2ddb251c9fd1475286d28a39633e1521ecbfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-rocket/generator/zipball/3b6d9b4b86c943560cb1fd45b89364179e3ec083",
-                "reference": "3b6d9b4b86c943560cb1fd45b89364179e3ec083",
+                "url": "https://api.github.com/repos/laravel-rocket/generator/zipball/e7b2ddb251c9fd1475286d28a39633e1521ecbfa",
+                "reference": "e7b2ddb251c9fd1475286d28a39633e1521ecbfa",
                 "shasum": ""
             },
             "require": {
@@ -621,6 +622,7 @@
             },
             "require-dev": {
                 "doctrine/dbal": "~2.3",
+                "friendsofphp/php-cs-fixer": "^2.2",
                 "fzaninotto/faker": "^1.5",
                 "laravel/laravel": "5.4.*",
                 "phpunit/phpunit": "~6.0"
@@ -650,20 +652,20 @@
                 "source": "https://github.com/laravel-rocket/generator/tree/master",
                 "issues": "https://github.com/laravel-rocket/generator/issues"
             },
-            "time": "2017-04-08 13:59:39"
+            "time": "2017-04-11T06:20:39+00:00"
         },
         {
             "name": "laravel/framework",
-            "version": "v5.4.17",
+            "version": "v5.4.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "f7675d59e3863a58ecdff1a5ee1dcd0cff788f4b"
+                "reference": "d15ded55b5e690199393ea93a57edcbae20d1ffc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/f7675d59e3863a58ecdff1a5ee1dcd0cff788f4b",
-                "reference": "f7675d59e3863a58ecdff1a5ee1dcd0cff788f4b",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/d15ded55b5e690199393ea93a57edcbae20d1ffc",
+                "reference": "d15ded55b5e690199393ea93a57edcbae20d1ffc",
                 "shasum": ""
             },
             "require": {
@@ -779,7 +781,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-04-03T13:07:39+00:00"
+            "time": "2017-04-10T19:27:41+00:00"
         },
         {
             "name": "laravel/socialite",

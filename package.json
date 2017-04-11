@@ -13,9 +13,13 @@
     "jquery": "^3.1.1",
     "laravel-mix": "^0.8.3",
     "lodash": "^4.17.4",
+    "font-awesome": "^4.7.0",
+    "foundation-sites": "^6.3.1",
+    "html5shiv": "^3.7.3",
+    "lazysizes": "^1.4.0",
+    "nprogress": "^0.2.0",
     "vue": "^2.1.10"
   },
   "dependencies": {
-    "foundation-sites": "^6.3.1"
   }
 }

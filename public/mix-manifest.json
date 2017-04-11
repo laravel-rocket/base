@@ -1,3 +1,6 @@
 {
-  "/js/app.js": "/js/app.js"
+  "/static/admin/js/app.js": "/static/admin/js/app.js",
+  "/static/admin/css/app.css": "/static/admin/css/app.css",
+  "/static/user/css/app.css": "/static/user/css/app.css",
+  "/static/user/js/app.js": "/static/user/js/app.js"
 }

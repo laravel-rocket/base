@@ -1,0 +1,5 @@
+.c-admin__sidebar {
+    @extend .off-canvas;
+    @extend .position-left;
+    @extend .reveal-for-large;
+}

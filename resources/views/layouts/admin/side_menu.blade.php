@@ -1,6 +1,6 @@
-<aside class="main-sidebar">
+<aside class="c-admin__sidebar">
 
-    <section class="c-admin__sidebar">
+    <section class="c-admin__section">
 
         <div class="c-user-panel">
             <div class="c-user-panel__profile-image">

@@ -1,10 +1,11 @@
 // ==========================================================================
 // Foundation
 // ==========================================================================
-@import "foundation/_base";
-@import "foundation/_variables";
+@import "../common/foundation/base";
+@import "foundation/variables";
 // ==========================================================================
 // Layout
 // ==========================================================================
-@import "layout/_main";
-
+@include foundation-everything;
+@import "layout/main";
+@import "layout/side_menu";

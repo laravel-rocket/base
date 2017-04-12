@@ -1,0 +1,11 @@
+.c-auth-box {
+
+    &__wrapper {
+        @extend .large-4, .large-centered, .medium-6, .medium-centered, .columns;
+    }
+
+    background: $dialog-background-color;
+    border: $dialog-border;
+    margin: 100px 0;
+    padding: 40px 20px 0 20px;
+}

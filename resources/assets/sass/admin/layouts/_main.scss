@@ -1,3 +1,7 @@
+body {
+    background: $body-bg;
+}
+
 #header {
     @extend .top-bar;
 }

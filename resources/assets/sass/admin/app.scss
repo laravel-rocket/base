@@ -4,8 +4,13 @@
 @import "../common/foundation/base";
 @import "foundation/variables";
 // ==========================================================================
-// Layout
+// Layouts
 // ==========================================================================
 @include foundation-everything;
-@import "layout/main";
-@import "layout/side_menu";
+@import "layouts/main";
+@import "layouts/side_menu";
+// ==========================================================================
+// Components
+// ==========================================================================
+@import "objects/components/auth-box";
+@import "objects/components/form";

@@ -53,6 +53,7 @@ class AdminUser extends AuthenticatableBase
     }
 
     // Utility Functions
+
     /**
      * @param string $targetRole
      * @param bool   $checkSubRoles

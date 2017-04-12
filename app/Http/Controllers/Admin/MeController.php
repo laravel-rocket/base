@@ -1,12 +1,9 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MeUpdateRequest;
-use App\Http\Requests\PaginationRequest;
 use App\Repositories\AdminUserRepositoryInterface;
-use App\Services\AdminUserNotificationServiceInterface;
 use App\Services\AdminUserServiceInterface;
 
 class MeController extends Controller
@@ -21,7 +18,7 @@ class MeController extends Controller
         AdminUserServiceInterface $adminUserService,
         AdminUserRepositoryInterface $adminUserRepository
     ) {
-        $this->adminUserService = $adminUserService;
+        $this->adminUserService    = $adminUserService;
         $this->adminUserRepository = $adminUserRepository;
     }
 
@@ -37,7 +34,7 @@ class MeController extends Controller
         $password = $request->get('password');
 
         $update = [
-            'name' => $request->get('name', ''),
+            'name'  => $request->get('name', ''),
             'email' => $request->get('email', ''),
         ];
 
@@ -50,5 +47,4 @@ class MeController extends Controller
         return redirect()->action('Admin\MeController@index')->with('message-success',
             trans('admin.messages.general.update_success'));
     }
-
 }

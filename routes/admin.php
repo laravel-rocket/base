@@ -13,6 +13,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::group(['middleware' => ['admin.auth']], function () {
         Route::get('/', 'Admin\IndexController@index')->name('index');
         Route::post('signout', 'Admin\AuthController@postSignOut')->name('signOut');
+        Route::get('/me', 'Admin\MeController@index');
+        Route::put('/me', 'Admin\MeController@update');
         Route::resource('users', 'Admin\UserController');
         Route::resource('admin-users', 'Admin\AdminUserController');
         /* NEW ADMIN RESOURCE ROUTE */

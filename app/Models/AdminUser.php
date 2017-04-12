@@ -53,4 +53,32 @@ class AdminUser extends AuthenticatableBase
     }
 
     // Utility Functions
+    /**
+     * @param string $targetRole
+     * @param bool   $checkSubRoles
+     *
+     * @return bool
+     */
+    public function hasRole($targetRole, $checkSubRoles = true)
+    {
+        $roles = [];
+        foreach ($this->roles as $role) {
+            $roles[] = $role->role;
+        }
+        if (in_array($targetRole, $roles)) {
+            return true;
+        }
+        if (!$checkSubRoles) {
+            return false;
+        }
+        $roleConfigs = config('admin_user.roles', []);
+        foreach ($roles as $role) {
+            $subRoles = array_get($roleConfigs, "$role.sub_roles", []);
+            if (in_array($targetRole, $subRoles)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

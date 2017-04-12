@@ -50,5 +50,5 @@ class MeController extends Controller
         return redirect()->action('Admin\MeController@index')->with('message-success',
             trans('admin.messages.general.update_success'));
     }
-    
+
 }

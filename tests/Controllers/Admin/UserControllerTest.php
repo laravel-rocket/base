@@ -33,7 +33,7 @@ class UserControllerTest extends TestCase
 
     public function testCreateModel()
     {
-        $this->action('GET', 'Admin\UserController@create');
+        $response = $this->action('GET', 'Admin\UserController@create');
         $this->assertResponseOk();
     }
 

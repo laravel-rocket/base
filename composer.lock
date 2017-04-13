@@ -551,12 +551,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-rocket/foundation.git",
-                "reference": "694a7c26418c1f1ddf37fea272e769b935a5ec53"
+                "reference": "81ea8cdaa30e0a99bb69213609cff122d6d8ffe7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-rocket/foundation/zipball/694a7c26418c1f1ddf37fea272e769b935a5ec53",
-                "reference": "694a7c26418c1f1ddf37fea272e769b935a5ec53",
+                "url": "https://api.github.com/repos/laravel-rocket/foundation/zipball/81ea8cdaa30e0a99bb69213609cff122d6d8ffe7",
+                "reference": "81ea8cdaa30e0a99bb69213609cff122d6d8ffe7",
                 "shasum": ""
             },
             "require": {
@@ -598,7 +598,7 @@
                 "source": "https://github.com/laravel-rocket/foundation/tree/master",
                 "issues": "https://github.com/laravel-rocket/foundation/issues"
             },
-            "time": "2017-04-13T02:04:55+00:00"
+            "time": "2017-04-13T05:19:14+00:00"
         },
         {
             "name": "laravel-rocket/generator",

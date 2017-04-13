@@ -8,6 +8,9 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false">
+    <listeners>
+        <listener class="Tests\Listeners\DatabaseSetupListener" file="./tests/Listeners/DatabaseSetupListener.php"/>
+    </listeners>
     <testsuites>
         <testsuite name="Application Test Suite">
             <directory>./tests/</directory>

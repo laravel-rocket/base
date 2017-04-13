@@ -1,7 +1,7 @@
 <?php
 namespace Tests\Controllers\Admin;
 
-use LaravelRocket\Foundation\Tests\TestCase;
+use Tests\TestCase;
 
 class AdminUserControllerTest extends TestCase
 {

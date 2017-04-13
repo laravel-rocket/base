@@ -1,7 +1,7 @@
 <?php
 namespace Tests\Repositories;
 
-use LaravelRocket\Foundation\Tests\TestCase;
+use Tests\TestCase;
 
 class UserPasswordResetRepositoryTest extends TestCase
 {

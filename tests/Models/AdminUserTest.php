@@ -2,7 +2,7 @@
 namespace Tests\Models;
 
 use App\Models\AdminUser;
-use LaravelRocket\Foundation\Tests\TestCase;
+use Tests\TestCase;
 
 class AdminUserTest extends TestCase
 {

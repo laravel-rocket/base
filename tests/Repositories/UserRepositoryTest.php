@@ -2,7 +2,7 @@
 namespace Tests\Repositories;
 
 use App\Models\User;
-use LaravelRocket\Foundation\Tests\TestCase;
+use Tests\TestCase;
 
 class UserRepositoryTest extends TestCase
 {

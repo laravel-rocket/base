@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.25.6",
+            "version": "3.25.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "fe98140a4811abbe9104477b167dc3c7f9a8391b"
+                "reference": "d4f1104f5ac9c755875c5e6e9bade2c70708219a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/fe98140a4811abbe9104477b167dc3c7f9a8391b",
-                "reference": "fe98140a4811abbe9104477b167dc3c7f9a8391b",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/d4f1104f5ac9c755875c5e6e9bade2c70708219a",
+                "reference": "d4f1104f5ac9c755875c5e6e9bade2c70708219a",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +84,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-04-07T20:21:45+00:00"
+            "time": "2017-04-11T22:31:27+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -551,12 +551,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-rocket/foundation.git",
-                "reference": "ec2867a77a285612e524da42fcef8c68cc0d7187"
+                "reference": "694a7c26418c1f1ddf37fea272e769b935a5ec53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-rocket/foundation/zipball/ec2867a77a285612e524da42fcef8c68cc0d7187",
-                "reference": "ec2867a77a285612e524da42fcef8c68cc0d7187",
+                "url": "https://api.github.com/repos/laravel-rocket/foundation/zipball/694a7c26418c1f1ddf37fea272e769b935a5ec53",
+                "reference": "694a7c26418c1f1ddf37fea272e769b935a5ec53",
                 "shasum": ""
             },
             "require": {
@@ -571,7 +571,7 @@
                 "fzaninotto/faker": "^1.5",
                 "laravel/browser-kit-testing": "^1.0",
                 "laravel/laravel": "5.4.*",
-                "phpunit/phpunit": "~6.0"
+                "phpunit/phpunit": "~5.7"
             },
             "type": "library",
             "autoload": {
@@ -598,7 +598,7 @@
                 "source": "https://github.com/laravel-rocket/foundation/tree/master",
                 "issues": "https://github.com/laravel-rocket/foundation/issues"
             },
-            "time": "2017-04-11T12:04:04+00:00"
+            "time": "2017-04-13T02:04:55+00:00"
         },
         {
             "name": "laravel-rocket/generator",
@@ -606,12 +606,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-rocket/generator.git",
-                "reference": "e7b2ddb251c9fd1475286d28a39633e1521ecbfa"
+                "reference": "950ae8bf22d189c4b1474c6209bb77d890bca417"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-rocket/generator/zipball/e7b2ddb251c9fd1475286d28a39633e1521ecbfa",
-                "reference": "e7b2ddb251c9fd1475286d28a39633e1521ecbfa",
+                "url": "https://api.github.com/repos/laravel-rocket/generator/zipball/950ae8bf22d189c4b1474c6209bb77d890bca417",
+                "reference": "950ae8bf22d189c4b1474c6209bb77d890bca417",
                 "shasum": ""
             },
             "require": {
@@ -652,7 +652,7 @@
                 "source": "https://github.com/laravel-rocket/generator/tree/master",
                 "issues": "https://github.com/laravel-rocket/generator/issues"
             },
-            "time": "2017-04-11T06:20:39+00:00"
+            "time": "2017-04-13T01:37:37+00:00"
         },
         {
             "name": "laravel/framework",
@@ -3621,16 +3621,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "5a5a9fc8025a08d8919be87d6884d5a92520cefe"
+                "reference": "8e6e04167378abf1ddb4d3522d8755c5fd90d102"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/5a5a9fc8025a08d8919be87d6884d5a92520cefe",
-                "reference": "5a5a9fc8025a08d8919be87d6884d5a92520cefe",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/8e6e04167378abf1ddb4d3522d8755c5fd90d102",
+                "reference": "8e6e04167378abf1ddb4d3522d8755c5fd90d102",
                 "shasum": ""
             },
             "require": {
@@ -3659,7 +3659,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2017-01-26T22:05:40+00:00"
+            "time": "2017-04-12T18:52:22+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",

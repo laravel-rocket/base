@@ -2,7 +2,7 @@
 namespace Tests\Repositories;
 
 use App\Models\File;
-use LaravelRocket\Foundation\Tests\TestCase;
+use Tests\TestCase;
 
 class FileRepositoryTest extends TestCase
 {

@@ -57,4 +57,81 @@ class File extends Base
     // Relations
 
     // Utility Functions
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        if (config('app.offline_mode', false)) {
+            return \URLHelper::asset('img/local.png', 'common');
+        }
+
+        return !empty($this->url) ? $this->url : 'https://placehold.jp/1440x900.jpg';
+    }
+
+    /**
+     * @param int $width
+     * @param int $height
+     *
+     * @return string
+     */
+    public function getThumbnailUrl($width, $height)
+    {
+        if (config('app.offline_mode', false)) {
+            return $this->getUrl();
+        }
+
+        if (empty($this->url)) {
+            if ($height == 0) {
+                $height = intval($width / 4 * 3);
+            }
+
+            return 'https://placehold.jp/'.$width.'x'.$height.'.jpg';
+        }
+
+        $categoryType = $this->file_category_type;
+        $confList = config('file.categories');
+
+        $conf = array_get($confList, $categoryType);
+
+        if (empty($conf)) {
+            return $this->getUrl();
+        }
+
+        if( array_get($conf, 'type') !== 'image' ) {
+            return $this->getUrl();
+        }
+
+        $size = array_get($conf, 'size');
+        if ($width === $size[0] && $height === $size[1]) {
+            return $this->getUrl();
+        }
+
+        if (preg_match(' /^(.+?)\.([^\.]+)$/', $this->url, $match)) {
+            $base = $match[1];
+            $ext = $match[2];
+
+            foreach (array_get($conf, 'thumbnails', []) as $thumbnail) {
+                if ($width === $thumbnail[0] && $height === $thumbnail[1]) {
+                    return $base.'_'.$thumbnail[0].'_'.$thumbnail[1].'.'.$ext;
+                }
+                if ($thumbnail[1] == 0 && $height == 0 && $width <= $thumbnail[0]) {
+                    return $base.'_'.$thumbnail[0].'_'.$thumbnail[1].'.'.$ext;
+                }
+                if ($thumbnail[1] == 0 && $height != 0 && $size[1] != 0) {
+                    if (floor($width / $height * 1000) === floor($size[0] / $size[1] * 1000) && $width <= $thumbnail[0]) {
+                        return $base.'_'.$thumbnail[0].'_'.$thumbnail[1].'.'.$ext;
+                    }
+                }
+                if ($thumbnail[1] > 0 && $height > 0) {
+                    if (floor($width / $height * 1000) === floor($thumbnail[0] / $thumbnail[1] * 1000) && $width <= $thumbnail[0]) {
+                        return $base.'_'.$thumbnail[0].'_'.$thumbnail[1].'.'.$ext;
+                    }
+                }
+            }
+        }
+
+        return $this->getUrl();
+    }
+
 }

@@ -1,4 +1,4 @@
-@extends('layouts.admin.application', ['menu' => '%%classes-snake%%'] )
+@extends('layouts.admin.application', ['menu' => 'admin_user'] )
 
 @section('metadata')
 @stop
@@ -52,17 +52,17 @@
             <input type="password" id="password" name="password" value="">
         </div>
 
-        <div class="c-admincrud__form @if ($errors->has('profile_image_id')) c-admincrud__form--is-error @endif">
+        <div class="c-admincrud__form @if ($errors->has('profile_image')) c-admincrud__form--is-error @endif">
             @if( !empty($adminUser->profileImage) )
-                <img id="profile-image-id-preview" src="{!! $adminUser->profileImage->getThumbnailUrl(480, 300) !!}"
+                <img id="profile-image-id-preview" src="{!! $adminUser->profileImage->getThumbnailUrl(300, 300) !!}"
                      alt=""
                      class="c-admincrud__preview-image"/>'
             @else
-                <img id="profile-image-id-preview" src="{!! \URLHelper::asset('img/no_image.jpg', 'common') !!}" alt=""
+                <img id="profile-image-id-preview" src="{!! \URLHelper::asset('img/user.png', 'common') !!}" alt=""
                      class="c-admincrud__preview-image"/>'
             @endif
-            <label for="profile_image_id">@lang('admin.pages.admin-users.columns.profile_image_id')</label>
-            <input type="file" class="c-admincrud__image-field" id="%%id%%" name="profile_image_id">
+            <label for="profile_image">@lang('admin.pages.admin-users.columns.profile_image')</label>
+            <input type="file" class="c-admincrud__image-field" id="profile_image" name="profile_image">
         </div>
         <button type="submit" class="button">@lang('admin.pages.common.buttons.save')</button>
     </form>

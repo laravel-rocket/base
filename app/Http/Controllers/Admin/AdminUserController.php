@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminUserRequest;
 use App\Repositories\AdminUserRepositoryInterface;
+use App\Services\FileServiceInterface;
 use LaravelRocket\Foundation\Http\Requests\PaginationRequest;
 
 class AdminUserController extends Controller
@@ -11,10 +12,15 @@ class AdminUserController extends Controller
     /** @var \App\Repositories\AdminUserRepositoryInterface */
     protected $adminUserRepository;
 
+    /** @var FileServiceInterface $fileService */
+    protected $fileService;
+
     public function __construct(
-        AdminUserRepositoryInterface $adminUserRepository
+        AdminUserRepositoryInterface $adminUserRepository,
+        FileServiceInterface $fileService
     ) {
         $this->adminUserRepository = $adminUserRepository;
+        $this->fileService = $fileService;
     }
 
     /**
@@ -70,6 +76,19 @@ class AdminUserController extends Controller
             return redirect()->back()->withErrors(trans('admin.errors.general.save_failed'));
         }
 
+        if ($request->hasFile('profile_image')) {
+            $image = $adminUser->profileImage;
+            if (!empty($image)) {
+                $this->fileService->delete($image);
+            }
+
+            $file = $request->file('profile_image');
+            $mediaType = $file->getClientMimeType();
+            $path = $file->getPathname();
+            $image = $this->fileService->upload('profile-image', $path, $mediaType, []);
+            $this->adminUserRepository->update($adminUser, ['profile_image_id' => $image->id]);
+        }
+
         return redirect()->action('Admin\AdminUserController@index')
             ->with('message-success', trans('admin.messages.general.create_success'));
     }
@@ -122,6 +141,19 @@ class AdminUserController extends Controller
             abort(404);
         }
         $input = $request->only(['name', 'email', 'password']);
+
+        if ($request->hasFile('profile_image')) {
+            $image = $adminUser->profileImage;
+            if (!empty($image)) {
+                $this->fileService->delete($image);
+            }
+
+            $file = $request->file('profile_image');
+            $mediaType = $file->getClientMimeType();
+            $path = $file->getPathname();
+            $image = $this->fileService->upload('profile-image', $path, $mediaType, []);
+            $input['profile_image_id'] = $image->id;
+        }
 
         $this->adminUserRepository->update($adminUser, $input);
 

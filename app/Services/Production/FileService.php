@@ -73,7 +73,7 @@ class FileService extends BaseService implements FileServiceInterface
             'file_type'          => File::FILE_TYPE_IMAGE,
             'file_category_type' => $categoryType,
             'entity_type'        => array_get($metaInputs, 'entityType', ''),
-            'entity_id'          => array_get($metaInputs, 'entityId', ''),
+            'entity_id'          => array_get($metaInputs, 'entityId', 0),
             's3_key'             => '',
             's3_bucket'          => '',
             's3_region'          => '',
@@ -185,6 +185,8 @@ class FileService extends BaseService implements FileServiceInterface
                 'key' => $key,
             ]);
         }
+
+        $this->fileRepository->delete($model);
 
         return true;
     }

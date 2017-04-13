@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'menu' => [
+    'menu'     => [
         'dashboard'          => 'Dashboard',
         'admin_users'        => 'Admin Users',
         'users'              => 'Users',
@@ -14,13 +14,13 @@ return [
             'delete_success' => 'Successfully deleted.',
         ],
     ],
-    'errors' => [
-        'general' => [
+    'errors'   => [
+        'general'  => [
             'save_failed' => 'Failed To Save. Please contact with developers',
         ],
         'requests' => [
             'me' => [
-                'email' => [
+                'email'    => [
                     'required' => 'Email Required',
                     'email'    => 'Email is not valid',
                 ],
@@ -30,8 +30,8 @@ return [
             ],
         ],
     ],
-    'pages' => [
-        'common' => [
+    'pages'    => [
+        'common'      => [
             'buttons' => [
                 'create'          => 'Create New',
                 'edit'            => 'Edit',
@@ -44,8 +44,8 @@ return [
                 'reset_password'  => 'Reset Password',
             ],
         ],
-        'auth' => [
-            'buttons' => [
+        'auth'        => [
+            'buttons'  => [
                 'sign_in' => 'Sign In',
                 'sign_up' => 'Sign Up',
                 'reset'   => 'Reset Password',
@@ -58,25 +58,25 @@ return [
                 'password'        => 'Password',
             ],
         ],
-        'users' => [
+        'users'       => [
             'columns' => [
-                'name'             => 'Name',
-                'email'            => 'Email',
-                'password'         => 'Password',
-                'profile_image_id' => 'Profile_image_id',
+                'name'          => 'Name',
+                'email'         => 'Email',
+                'password'      => 'Password',
+                'profile_image' => 'Profile Image',
             ],
         ],
         'admin-users' => [
             'columns' => [
-                'name'             => 'Name',
-                'email'            => 'Email',
-                'password'         => 'Password',
-                'profile_image_id' => 'Profile_image_id',
+                'name'          => 'Name',
+                'email'         => 'Email',
+                'password'      => 'Password',
+                'profile_image' => 'Profile Image',
             ],
         ],
         /* NEW PAGE STRINGS */
     ],
-    'roles' => [
+    'roles'    => [
         'super_user' => 'Super User',
         'site_admin' => 'Site Administrator',
     ],

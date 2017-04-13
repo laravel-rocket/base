@@ -8,3 +8,7 @@ machine:
     DB_HOST: 127.0.0.1
     DB_DATABASE: circle_test
     DB_USERNAME: root
+
+test:
+  override:
+    - vendor/bin/phpunit

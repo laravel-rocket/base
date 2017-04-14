@@ -44,12 +44,12 @@ class AdminUser extends AuthenticatableBase
     // Relations
     public function profileImage()
     {
-        return $this->belongsTo('App\Models\File', 'profile_image_id', 'id');
+        return $this->belongsTo(\App\Models\File::class, 'profile_image_id', 'id');
     }
 
     public function roles()
     {
-        return $this->hasMany('App\Models\AdminUserRole', 'admin_user_id', 'id');
+        return $this->hasMany(\App\Models\AdminUserRole::class, 'admin_user_id', 'id');
     }
 
     // Utility Functions

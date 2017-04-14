@@ -54,12 +54,12 @@ class FileService extends BaseService implements FileServiceInterface
     {
         $conf = config('file.categories.'.$categoryType);
         if (empty($conf)) {
-            return;
+            return null;
         }
 
         $acceptableFileList = config('file.acceptable.'.$conf['type']);
         if (!array_key_exists($mediaType, $acceptableFileList)) {
-            return;
+            return null;
         }
         $ext = array_get($acceptableFileList, $mediaType);
 
@@ -92,7 +92,7 @@ class FileService extends BaseService implements FileServiceInterface
             $format  = array_get($conf, 'format', 'jpeg');
             $size    = $this->imageService->convert($path, $dstPath, $format, array_get($conf, 'size'));
             if (!file_exists($dstPath)) {
-                return;
+                return null;
             }
             $modelData['width']  = array_get($size, 'width', 0);
             $modelData['height'] = array_get($size, 'height', 0);
@@ -107,7 +107,7 @@ class FileService extends BaseService implements FileServiceInterface
             $result = $fileUploadServices->upload($dstPath, $mediaType, $key, $conf);
 
             if (!array_get($result, 'success', false)) {
-                return;
+                return null;
             }
 
             $modelData['url']    = array_get($result, 'url', 0);
@@ -181,7 +181,7 @@ class FileService extends BaseService implements FileServiceInterface
 
         $fileUploadServices = array_get($this->fileUploadServices, $storageType);
         if (!empty($fileUploadServices)) {
-            $result = $fileUploadServices->delete([
+            $fileUploadServices->delete([
                 'key' => $key,
             ]);
         }
@@ -203,6 +203,6 @@ class FileService extends BaseService implements FileServiceInterface
             return $match[1].'_'.$size[0].'_'.$size[1].'.'.$match[2];
         }
 
-        return;
+        return null;
     }
 }

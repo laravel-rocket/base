@@ -7,10 +7,10 @@
 // Layouts
 // ==========================================================================
 @include foundation-everything;
-@import "layouts/main";
-@import "layouts/side_menu";
+@import "layout/main";
+@import "layout/side_menu";
 // ==========================================================================
 // Components
 // ==========================================================================
-@import "objects/components/auth-box";
-@import "objects/components/form";
+@import "object/component/auth-box";
+@import "object/component/form";

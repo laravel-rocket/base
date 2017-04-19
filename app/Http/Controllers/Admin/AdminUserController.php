@@ -20,7 +20,7 @@ class AdminUserController extends Controller
         FileServiceInterface $fileService
     ) {
         $this->adminUserRepository = $adminUserRepository;
-        $this->fileService = $fileService;
+        $this->fileService         = $fileService;
     }
 
     /**
@@ -82,10 +82,10 @@ class AdminUserController extends Controller
                 $this->fileService->delete($image);
             }
 
-            $file = $request->file('profile_image');
+            $file      = $request->file('profile_image');
             $mediaType = $file->getClientMimeType();
-            $path = $file->getPathname();
-            $image = $this->fileService->upload('profile-image', $path, $mediaType, []);
+            $path      = $file->getPathname();
+            $image     = $this->fileService->upload('profile-image', $path, $mediaType, []);
             $this->adminUserRepository->update($adminUser, ['profile_image_id' => $image->id]);
         }
 
@@ -148,10 +148,10 @@ class AdminUserController extends Controller
                 $this->fileService->delete($image);
             }
 
-            $file = $request->file('profile_image');
-            $mediaType = $file->getClientMimeType();
-            $path = $file->getPathname();
-            $image = $this->fileService->upload('profile-image', $path, $mediaType, []);
+            $file                      = $request->file('profile_image');
+            $mediaType                 = $file->getClientMimeType();
+            $path                      = $file->getPathname();
+            $image                     = $this->fileService->upload('profile-image', $path, $mediaType, []);
             $input['profile_image_id'] = $image->id;
         }
 

@@ -57,6 +57,7 @@ class File extends Base
     // Relations
 
     // Utility Functions
+
     /**
      * @return string
      */
@@ -90,7 +91,7 @@ class File extends Base
         }
 
         $categoryType = $this->file_category_type;
-        $confList = config('file.categories');
+        $confList     = config('file.categories');
 
         $conf = array_get($confList, $categoryType);
 
@@ -98,7 +99,7 @@ class File extends Base
             return $this->getUrl();
         }
 
-        if( array_get($conf, 'type') !== 'image' ) {
+        if (array_get($conf, 'type') !== 'image') {
             return $this->getUrl();
         }
 
@@ -109,7 +110,7 @@ class File extends Base
 
         if (preg_match(' /^(.+?)\.([^\.]+)$/', $this->url, $match)) {
             $base = $match[1];
-            $ext = $match[2];
+            $ext  = $match[2];
 
             foreach (array_get($conf, 'thumbnails', []) as $thumbnail) {
                 if ($width === $thumbnail[0] && $height === $thumbnail[1]) {
@@ -133,5 +134,4 @@ class File extends Base
 
         return $this->getUrl();
     }
-
 }

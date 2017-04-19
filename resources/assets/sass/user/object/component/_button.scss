@@ -1,0 +1,6 @@
+$button-border-width: 1px;
+$button-border-style: solid;
+
+.c-button {
+    @include button;
+}

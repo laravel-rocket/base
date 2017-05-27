@@ -8,7 +8,9 @@ class File extends Base
     const FILE_TYPE_FILE  = 'file';
     const FILE_TYPE_IMAGE = 'image';
 
-    const STORAGE_TYPE_S3 = 's3';
+    const STORAGE_TYPE_S3    = 's3';
+    const STORAGE_TYPE_LOCAL = 'local';
+    const STORAGE_TYPE_URL   = 'url';
 
     /**
      * The database table used by the model.
@@ -52,6 +54,10 @@ class File extends Base
 
     protected $dates = [];
 
+    protected $casts    = [
+        'thumbnails' => 'array',
+    ];
+
     protected $presenter = \App\Presenters\FilePresenter::class;
 
     // Relations
@@ -82,6 +88,11 @@ class File extends Base
             return $this->getUrl();
         }
 
+        $defaultThumbnailUrl = $this->thumbnail_url;
+        if (empty($defaultThumbnailUrl)) {
+            $defaultThumbnailUrl = $this->getUrl();
+        }
+
         if (empty($this->url)) {
             if ($height == 0) {
                 $height = intval($width / 4 * 3);
@@ -96,23 +107,28 @@ class File extends Base
         $conf = array_get($confList, $categoryType);
 
         if (empty($conf)) {
-            return $this->getUrl();
+            return $defaultThumbnailUrl;
         }
 
         if (array_get($conf, 'type') !== 'image') {
-            return $this->getUrl();
+            return $defaultThumbnailUrl;
         }
 
         $size = array_get($conf, 'size');
         if ($width === $size[0] && $height === $size[1]) {
-            return $this->getUrl();
+            return $defaultThumbnailUrl;
+        }
+
+        $thumbnails = $this->thumbnails;
+        if (!is_array($thumbnails)) {
+            $thumbnails = [];
         }
 
         if (preg_match(' /^(.+?)\.([^\.]+)$/', $this->url, $match)) {
             $base = $match[1];
             $ext  = $match[2];
 
-            foreach (array_get($conf, 'thumbnails', []) as $thumbnail) {
+            foreach ($thumbnails as $thumbnail) {
                 if ($width === $thumbnail[0] && $height === $thumbnail[1]) {
                     return $base.'_'.$thumbnail[0].'_'.$thumbnail[1].'.'.$ext;
                 }
@@ -132,6 +148,6 @@ class File extends Base
             }
         }
 
-        return $this->getUrl();
+        return $defaultThumbnailUrl;
     }
 }

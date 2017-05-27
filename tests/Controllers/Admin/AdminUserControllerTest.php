@@ -27,7 +27,7 @@ class AdminUserControllerTest extends TestCase
 
     public function testGetList()
     {
-        $response = $this->action('GET', 'Admin\AdminUserController@index');
+        $this->action('GET', 'Admin\AdminUserController@index');
         $this->assertResponseOk();
     }
 
@@ -42,6 +42,7 @@ class AdminUserControllerTest extends TestCase
         $adminUser = factory(\App\Models\AdminUser::class)->make();
         $this->action('POST', 'Admin\AdminUserController@store', [
                 '_token' => csrf_token(),
+                'password' => str_random(12),
             ] + $adminUser->toArray());
         $this->assertResponseStatus(302);
     }

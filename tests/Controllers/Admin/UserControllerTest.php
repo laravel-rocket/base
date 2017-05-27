@@ -27,13 +27,13 @@ class UserControllerTest extends TestCase
 
     public function testGetList()
     {
-        $response = $this->action('GET', 'Admin\UserController@index');
+        $this->action('GET', 'Admin\UserController@index');
         $this->assertResponseOk();
     }
 
     public function testCreateModel()
     {
-        $response = $this->action('GET', 'Admin\UserController@create');
+        $this->action('GET', 'Admin\UserController@create');
         $this->assertResponseOk();
     }
 
@@ -42,6 +42,7 @@ class UserControllerTest extends TestCase
         $user = factory(\App\Models\User::class)->make();
         $this->action('POST', 'Admin\UserController@store', [
                 '_token' => csrf_token(),
+                'password' => str_random(12),
             ] + $user->toArray());
         $this->assertResponseStatus(302);
     }

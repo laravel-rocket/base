@@ -39,6 +39,8 @@ class CreateFilesTable extends Migration
             $table->unsignedInteger('width')->default(0);
             $table->unsignedInteger('height')->default(0);
 
+            $table->text('thumbnails')->nullable();
+
             $table->boolean('is_enabled')->default(true);
 
             $table->softDeletes();

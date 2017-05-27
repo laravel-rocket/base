@@ -7,7 +7,7 @@
 @stop
 
 @section('scripts')
-@stoper
+@stop
 
 @section('title')
     {{ $user->id }} | Users | Admin

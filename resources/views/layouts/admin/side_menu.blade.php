@@ -7,7 +7,7 @@
                 <img src="{!! $authUser->present()->profileImage->url !!}" alt="User Image">
             </div>
             <div class="c-user-panel__info">
-                <p>{!! $authUser->name !!}</p>
+                <p>{!! $authUser->present()->name !!}</p>
             </div>
         </div>
 

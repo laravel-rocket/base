@@ -18,6 +18,7 @@ class AdminUserPresenter extends BasePresenter
         $image = $this->entity->profileImage;
         if (!$image) {
             $image = new File();
+            $image->url = \URLHelper::asset('img/user.png', 'common');
         }
 
         return $image;

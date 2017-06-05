@@ -1,26 +1,21 @@
-@extends('layouts.admin.application', [
-    'bodyClasses' => ''
-])
+@extends('layouts.admin.application',['menu' => 'dashboard'] )
 
 @section('metadata')
 @stop
 
 @section('styles')
-    @parent
-@stop
-
-@section('title')
-    Top
 @stop
 
 @section('scripts')
-    @parent
+@stop
+
+@section('title')
+    {{ config('site.name') }} | Admin | Dashboard
+@stop
+
+@section('header')
+    Dashboard
 @stop
 
 @section('content')
-    <section>
-        <div class="container">
-            Top Page
-        </div>
-    </section>
 @stop

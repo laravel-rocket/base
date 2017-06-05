@@ -1,0 +1,6 @@
+            <li @if( $menu=='%%column-spinal%%') class="active" @endif >
+                <a href="{!! action('Admin\%%MODEL%%Controller@index') !!}">
+                    <i class="fa fa-users"></i>
+                    <span>%%models-spinal%%</span>
+                </a>
+            </li>

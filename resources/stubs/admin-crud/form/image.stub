@@ -1,0 +1,16 @@
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group text-center">
+                @if( !empty($%%model%%->%%relation%%) )
+                    <img id="%%column-spinal%%-preview"  style="max-width: 500px; width: 100%;" src="{!! $%%model%%->%%relation%%->getThumbnailUrl(480, 300) !!}" alt="" class="margin" />
+                @else
+                    <img id="%%column-spinal%%-preview" style="max-width: 500px; width: 100%;" src="{!! \URLHelper::asset('img/no_image.jpg', 'common') !!}" alt="" class="margin" />
+                @endif
+                <input type="file" style="display: none;"  id="%%column-spinal%%" name="%%column%%">
+                <p class="help-block" style="font-weight: bolder;">
+                    @lang('admin.pages.%%models-spinal%%.columns.%%column%%')
+                    <label for="%%column%%" style="font-weight: 100; color: #549cca; margin-left: 10px; cursor: pointer;">@lang('admin.pages.common.buttons.edit')</label>
+                </p>
+            </div>
+        </div>
+    </div>

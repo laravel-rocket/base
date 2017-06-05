@@ -41,7 +41,7 @@
                 <input type="hidden" name="token" value="{{ $token }}"/>
                 <div class="row">
                     <div class="col-xs-12">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">@lang('admin.pages.auth.buttons.reset_password')</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">@lang('admin.pages.auth.buttons.reset')</button>
                     </div><!-- /.col -->
                 </div>
             </form>

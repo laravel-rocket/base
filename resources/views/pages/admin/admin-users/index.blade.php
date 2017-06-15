@@ -54,5 +54,4 @@
     <div class="c-admincrud__pagination">
         {!! \PaginationHelper::render($offset, $limit, $count, $baseUrl, [], 5, 'shared.admin.pagination') !!}
     </div>
-    </div>
 @stop

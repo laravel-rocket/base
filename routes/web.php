@@ -15,6 +15,6 @@ Route::group([], function () {
     });
 
     Route::group(['middleware' => ['user.auth']], function () {
-        /* NEW WEB RESOURCE ROUTE */
+        Route::post('signout', 'User\AuthController@postSignOut')->name('signOut.post');
     });
 });

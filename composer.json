@@ -25,7 +25,9 @@
     "laravel/framework": "5.4.*",
     "laravel/socialite": "~3.0",
     "laravel/tinker": "~1.0",
-    "laravelcollective/html": "5.4.*"
+    "laravelcollective/html": "5.4.*",
+    "laravel/passport": "^2.0",
+    "facebook/graph-sdk": "^5.3"
   },
   "require-dev": {
     "barryvdh/laravel-debugbar": "~2.3",

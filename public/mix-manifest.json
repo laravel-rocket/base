@@ -1,6 +1,6 @@
 {
-  "/static/admin/js/app.js": "/static/admin/js/app.js",
-  "/static/admin/css/app.css": "/static/admin/css/app.css",
-  "/static/user/css/app.css": "/static/user/css/app.css",
-  "/static/user/js/app.js": "/static/user/js/app.js"
+  "/static/admin/js/app.js": "/static/admin/js/app.a50d5170bea712768539.js",
+  "/static/admin/css/app.css": "/static/admin/css/app.cbf2efc3f00f75b9eaaa.css",
+  "/static/user/css/app.css": "/static/user/css/app.cbf2efc3f00f75b9eaaa.css",
+  "/static/user/js/app.js": "/static/user/js/app.42f22c149b3425eb9040.js"
 }

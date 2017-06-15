@@ -4,6 +4,8 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
+use LaravelRocket\Foundation\Services\SlackServiceInterface;
 
 class Handler extends ExceptionHandler
 {
@@ -32,6 +34,16 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        if ($this->shouldReport($exception)) {
+            if (in_array(app()->environment(), config('slack.targetEnvironment', []))) {
+                if (!$exception instanceof TokenMismatchException) {
+                    // notify to slack
+                    $slackService = \App::make(SlackServiceInterface::class);
+                    $slackService->exception($exception);
+                }
+            }
+        }
+
         parent::report($exception);
     }
 

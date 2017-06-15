@@ -19,7 +19,5 @@
     "lazysizes": "^1.4.0",
     "nprogress": "^0.2.0",
     "vue": "^2.1.10"
-  },
-  "dependencies": {
   }
 }

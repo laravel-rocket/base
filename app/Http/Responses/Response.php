@@ -68,6 +68,18 @@ class Response
     }
 
     /**
+     * @param int $statusCode
+     *
+     * @return $this
+     */
+    public function withStatus($statusCode)
+    {
+        $this->statusCode = (int) $statusCode;
+
+        return $this;
+    }
+
+    /**
      * @return \Illuminate\Http\JsonResponse
      */
     public function response()

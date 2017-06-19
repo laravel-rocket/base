@@ -193,6 +193,7 @@ return [
          */
         LaravelRocket\Foundation\Providers\ServiceProvider::class,
         LaravelRocket\Generator\Providers\ServiceProvider::class,
+        LaravelRocket\Foundation\Providers\ProxyServiceProvider::class,
 
     ], $additionalProviders),
 

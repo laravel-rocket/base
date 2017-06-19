@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.29.5",
+            "version": "3.29.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "a6b48c2526ecc14cfb3410b88b9a21f75442eb9b"
+                "reference": "76540001ff938c072db5367a7c945296984b999b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/a6b48c2526ecc14cfb3410b88b9a21f75442eb9b",
-                "reference": "a6b48c2526ecc14cfb3410b88b9a21f75442eb9b",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/76540001ff938c072db5367a7c945296984b999b",
+                "reference": "76540001ff938c072db5367a7c945296984b999b",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +84,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-06-14T20:58:25+00:00"
+            "time": "2017-06-16T17:29:33+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -652,12 +652,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-rocket/foundation.git",
-                "reference": "c3bbe421bb8eef316899e60303d6fdcb975d4a93"
+                "reference": "4f3300ab61f3b7c4decba4c5950d6ec8fcad722f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-rocket/foundation/zipball/c3bbe421bb8eef316899e60303d6fdcb975d4a93",
-                "reference": "c3bbe421bb8eef316899e60303d6fdcb975d4a93",
+                "url": "https://api.github.com/repos/laravel-rocket/foundation/zipball/4f3300ab61f3b7c4decba4c5950d6ec8fcad722f",
+                "reference": "4f3300ab61f3b7c4decba4c5950d6ec8fcad722f",
                 "shasum": ""
             },
             "require": {
@@ -699,7 +699,7 @@
                 "source": "https://github.com/laravel-rocket/foundation/tree/master",
                 "issues": "https://github.com/laravel-rocket/foundation/issues"
             },
-            "time": "2017-06-08T14:48:43+00:00"
+            "time": "2017-06-19T07:44:50+00:00"
         },
         {
             "name": "laravel-rocket/generator",
@@ -757,16 +757,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.4.26",
+            "version": "v5.4.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "a7ebbfab64111e24f8e584db64e2be9279ded357"
+                "reference": "66f5e1b37cbd66e730ea18850ded6dc0ad570404"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/a7ebbfab64111e24f8e584db64e2be9279ded357",
-                "reference": "a7ebbfab64111e24f8e584db64e2be9279ded357",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/66f5e1b37cbd66e730ea18850ded6dc0ad570404",
+                "reference": "66f5e1b37cbd66e730ea18850ded6dc0ad570404",
                 "shasum": ""
             },
             "require": {
@@ -882,7 +882,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-06-13T18:58:49+00:00"
+            "time": "2017-06-15T19:08:25+00:00"
         },
         {
             "name": "laravel/passport",

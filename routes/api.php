@@ -15,3 +15,5 @@ Route::group(['prefix' => 'api', 'as' => 'api.', 'namespace' => 'Api'], function
         });
     });
 });
+
+/* %%ROUTES%% */

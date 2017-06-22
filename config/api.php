@@ -1,59 +1,48 @@
 <?php
 
 return [
-    'errors'  => [
-        'unknown'        => [
+    'errors'         => [
+        'unknown'             => [
             'code'       => 1000,
             'message'    => 'Unknown Error',
             'statusCode' => 400,
         ],
-        'notFound'       => [
+        'notFound'            => [
             'code'       => 1001,
             'message'    => 'Not Found',
             'statusCode' => 400,
         ],
-        'authFailed'     => [
+        'authFailed'          => [
             'code'       => 1002,
             'message'    => 'Auth Failed',
             'statusCode' => 401,
         ],
-        'signInFailed'     => [
-            'code'       => 1012,
-            'message'    => 'Please check username or password',
-            'statusCode' => 401,
-        ],
-        'signInRequired' => [
+        'signInRequired'      => [
             'code'       => 1003,
             'message'    => 'Sign In Required',
             'statusCode' => 401,
         ],
-        'wrongParameter' => [
-            'code'        => 1004,
-            'message'     => 'Wrong Parameters',
-            'statusCode' => 400,
+        'operationNotAllowed' => [
+            'code'       => 1004,
+            'message'    => 'You can not do this operation',
+            'statusCode' => 403,
         ],
-        'severError'     => [
+        'severError'          => [
             'code'       => 1005,
             'message'    => 'Server error',
             'statusCode' => 500,
         ],
-        'saveError'     => [
+        'wrongParameter'      => [
             'code'       => 1006,
-            'message'    => 'Save error',
-            'statusCode' => 500,
-        ],
-        'operationNotAllowed'     => [
-            'code'       => 1007,
-            'message'    => 'You can not do this operation',
-            'statusCode' => 403,
+            'message'    => 'Wrong Parameters',
+            'statusCode' => 400,
         ],
     ],
-    'validateErrors' => [
-    ],
-    'headers' => [
+    'validateErrors' => [],
+    'headers'        => [
         'locale'    => 'X-ROCKET-LOCALE',
         'version'   => 'X-ROCKET-VERSION',
-        'osType'    => 'X-ROCKET-OS-VERSION',
-        'osVersion' => 'X-ROCKET-OS-TYPE',
+        'osVersion' => 'X-ROCKET-OS-VERSION',
+        'osName'    => 'X-ROCKET-OS-NAME',
     ],
 ];

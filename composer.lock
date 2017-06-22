@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.29.7",
+            "version": "3.30.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "76540001ff938c072db5367a7c945296984b999b"
+                "reference": "c84ce7a758ce3bbe8ff54abfa2e0646941fe5fc4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/76540001ff938c072db5367a7c945296984b999b",
-                "reference": "76540001ff938c072db5367a7c945296984b999b",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c84ce7a758ce3bbe8ff54abfa2e0646941fe5fc4",
+                "reference": "c84ce7a758ce3bbe8ff54abfa2e0646941fe5fc4",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +84,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-06-16T17:29:33+00:00"
+            "time": "2017-06-21T21:38:23+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -652,12 +652,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-rocket/foundation.git",
-                "reference": "4f3300ab61f3b7c4decba4c5950d6ec8fcad722f"
+                "reference": "9a8b6a403b1d58dcc1f8c87e96f8bc7e84601e9b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-rocket/foundation/zipball/4f3300ab61f3b7c4decba4c5950d6ec8fcad722f",
-                "reference": "4f3300ab61f3b7c4decba4c5950d6ec8fcad722f",
+                "url": "https://api.github.com/repos/laravel-rocket/foundation/zipball/9a8b6a403b1d58dcc1f8c87e96f8bc7e84601e9b",
+                "reference": "9a8b6a403b1d58dcc1f8c87e96f8bc7e84601e9b",
                 "shasum": ""
             },
             "require": {
@@ -699,7 +699,7 @@
                 "source": "https://github.com/laravel-rocket/foundation/tree/master",
                 "issues": "https://github.com/laravel-rocket/foundation/issues"
             },
-            "time": "2017-06-19T07:44:50+00:00"
+            "time": "2017-06-19T20:53:32+00:00"
         },
         {
             "name": "laravel-rocket/generator",
@@ -707,12 +707,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-rocket/generator.git",
-                "reference": "edf9b3098ea86eb3813bd7392267118aed70e1b8"
+                "reference": "16f11cbad424bdcc162fc97eef873bfbd64d5ba7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-rocket/generator/zipball/edf9b3098ea86eb3813bd7392267118aed70e1b8",
-                "reference": "edf9b3098ea86eb3813bd7392267118aed70e1b8",
+                "url": "https://api.github.com/repos/laravel-rocket/generator/zipball/16f11cbad424bdcc162fc97eef873bfbd64d5ba7",
+                "reference": "16f11cbad424bdcc162fc97eef873bfbd64d5ba7",
                 "shasum": ""
             },
             "require": {
@@ -726,7 +726,8 @@
                 "friendsofphp/php-cs-fixer": "^2.2",
                 "fzaninotto/faker": "^1.5",
                 "laravel/laravel": "5.4.*",
-                "phpunit/phpunit": "~6.0"
+                "phpunit/phpunit": "~6.0",
+                "symfony/yaml": "~3.2"
             },
             "type": "library",
             "autoload": {
@@ -753,7 +754,7 @@
                 "source": "https://github.com/laravel-rocket/generator/tree/master",
                 "issues": "https://github.com/laravel-rocket/generator/issues"
             },
-            "time": "2017-05-01T21:47:20+00:00"
+            "time": "2017-06-22T06:40:04+00:00"
         },
         {
             "name": "laravel/framework",
@@ -1505,16 +1506,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.22.1",
+            "version": "1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "1e044bc4b34e91743943479f1be7a1d5eb93add0"
+                "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1e044bc4b34e91743943479f1be7a1d5eb93add0",
-                "reference": "1e044bc4b34e91743943479f1be7a1d5eb93add0",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
+                "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
                 "shasum": ""
             },
             "require": {
@@ -1535,7 +1536,7 @@
                 "phpunit/phpunit-mock-objects": "2.3.0",
                 "ruflin/elastica": ">=0.90 <3.0",
                 "sentry/sentry": "^0.13",
-                "swiftmailer/swiftmailer": "~5.3"
+                "swiftmailer/swiftmailer": "^5.3|^6.0"
             },
             "suggest": {
                 "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
@@ -1579,7 +1580,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2017-03-13T07:08:03+00:00"
+            "time": "2017-06-19T01:22:40+00:00"
         },
         {
             "name": "mtdowling/cron-expression",
@@ -2023,16 +2024,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.8.6",
+            "version": "v0.8.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "7028d6d525fb183d50b249b7c07598e3d386b27d"
+                "reference": "be969b9dc89dcaefdb9a3117fa91fa38bca19f50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/7028d6d525fb183d50b249b7c07598e3d386b27d",
-                "reference": "7028d6d525fb183d50b249b7c07598e3d386b27d",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/be969b9dc89dcaefdb9a3117fa91fa38bca19f50",
+                "reference": "be969b9dc89dcaefdb9a3117fa91fa38bca19f50",
                 "shasum": ""
             },
             "require": {
@@ -2092,7 +2093,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2017-06-04T10:34:20+00:00"
+            "time": "2017-06-20T12:51:31+00:00"
         },
         {
             "name": "ramsey/uuid",

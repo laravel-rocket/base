@@ -3,8 +3,8 @@ info:
   title: Example API
   description: Example API
   version: 1.0.0
-host: api.example.com
-basePath: /v1/
+host: example.com
+basePath: /api/v1/
 schemes:
   - https
 produces:

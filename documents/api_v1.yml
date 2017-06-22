@@ -1,0 +1,318 @@
+swagger: '2.0'
+info:
+  title: Example API
+  description: Example API
+  version: 1.0.0
+host: example.com
+basePath: /api/v1/
+schemes:
+  - https
+produces:
+  - application/json
+consumes:
+  - multipart/form-data
+  - application/x-www-form-urlencoded
+paths:
+  /signup:
+    post:
+      description: Sign up new user.
+      operationId: userSignUp
+      parameters:
+        - name: email
+          in: formData
+          description: Email
+          required: true
+          type: string
+        - name: password
+          in: formData
+          description: Password
+          required: true
+          type: string
+        - name: name
+          in: formData
+          description: name
+          required: true
+          type: string
+      tags:
+        - authentication
+      responses:
+        '201':
+          description: registration successful
+          schema:
+            $ref: '#/definitions/AccessToken'
+        '400':
+          description: Error
+          schema:
+            $ref: '#/definitions/Status'
+  /signin:
+    post:
+      description: Sign in with oauth2 Resource Owner Password Credentials. ( Resource Owner Password Credentials Grant )
+      operationId: userSignIn
+      parameters:
+        - name: email
+          in: formData
+          description: use Email
+          required: true
+          type: string
+        - name: password
+          in: formData
+          description: Password
+          required: true
+          type: string
+      tags:
+        - authentication
+      responses:
+        '200':
+          description: sign in successful
+          schema:
+            $ref: '#/definitions/AccessToken'
+        '400':
+          description: Error
+          schema:
+            $ref: '#/definitions/Status'
+  /signin/facebook:
+    post:
+      description: Sign in with Facebook Token
+      operationId: facebookSignIn
+      parameters:
+        - name: facebook_token
+          in: formData
+          description: facebook token got at client
+          required: true
+          type: string
+      tags:
+        - authentication
+      responses:
+        '200':
+          description: sign in successful
+          schema:
+            $ref: '#/definitions/AccessToken'
+        '400':
+          description: Error
+          schema:
+            $ref: '#/definitions/Status'
+  /forgot-password:
+    post:
+      description: User forgot password.
+      operationId: userForgetPassword
+      parameters:
+        - name: email
+          in: query
+          description: Email of user
+          required: true
+          type: string
+      tags:
+        - authentication
+      responses:
+        '200':
+          description: Password reset email sent successfully
+          schema:
+            $ref: '#/definitions/Status'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Status'
+  /signout:
+    post:
+      description: Sign out.
+      operationId: userSignOut
+      parameters: []
+      tags:
+        - authentication
+      responses:
+        '200':
+          description: sign out successful
+          schema:
+            $ref: '#/definitions/Status'
+        '400':
+          description: Error
+          schema:
+            $ref: '#/definitions/Status'
+  /token/refresh:
+    post:
+      description: Refresh Token
+      operationId: userTokenRefresh
+      parameters:
+        - name: refresh_token
+          in: formData
+          description: refresh token
+          required: true
+          type: string
+      tags:
+        - authentication
+      responses:
+        '200':
+          description: receive new token successfully
+          schema:
+            $ref: '#/definitions/AccessToken'
+        '400':
+          description: Error
+          schema:
+            $ref: '#/definitions/Status'
+  /me:
+    get:
+      description: Get User Informations
+      operationId: getUserInfo
+      parameters: []
+      responses:
+        '200':
+          description: Successfully get user's informations
+          schema:
+            $ref: '#/definitions/Me'
+        '400':
+          description: Error
+          schema:
+            $ref: '#/definitions/Status'
+    put:
+      description: Update User Informations
+      operationId: putUserInfo
+      parameters:
+        - name: email
+          in: formData
+          description: Email
+          required: false
+          type: string
+        - name: password
+          in: formData
+          description: Password ( If not specified, System will not change password)
+          required: false
+          type: string
+        - name: name
+          in: formData
+          description: name
+          required: false
+          type: string
+        - name: profile_image
+          in: formData
+          description: user's profile photo
+          required: false
+          type: file
+      responses:
+        '200':
+          description: Successfully update user's informations
+          schema:
+            $ref: '#/definitions/Me'
+        '400':
+          description: Error
+          schema:
+            $ref: '#/definitions/Status'
+definitions:
+  List:
+    description: Basic structure for Set of Resources with pagination
+    type: object
+    required:
+      - hasNext
+      - offset
+      - limit
+    properties:
+      hasNext:
+        type: boolean
+      offset:
+        type: integer
+      limit:
+        type: integer
+  Status:
+    description: This structure is only for indicating "success/error". Common structure for Error based on RFC7807 ( https://tools.ietf.org/html/rfc7807 )
+    type: object
+    required:
+      - isSuccess
+      - type
+      - title
+      - status
+      - errorCode
+      - detail
+    properties:
+      isSuccess:
+        description: if it works fine
+        type: boolean
+      type:
+        description: Ref RFC7807 spec. A URI reference [RFC3986] that identifies the problem type
+        type: string
+      title:
+        description: Ref RFC7807 spec. A short, human-readable summary of the problem type.
+        type: string
+      status:
+        description: The HTTP status code generated by the origin server for this occurrence of the problem.
+        type: integer
+      errorCode:
+        description: 4 digits error code defined in the service. ( Refer error code list )
+        type: integer
+      detail:
+        description: A human-readable explanation specific to this occurrence of the problem. Don't use this text to analyze error content systematially. Because this text can be changed to describe better.
+        type: string
+      invalidParams:
+        description: If something wrong with params, this params returns an array of invalid params.
+        type: array
+        items:
+          $ref: '#/definitions/Parameter'
+  Image:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Unique identifier representing a specific Advertiser
+      title:
+        type: string
+        description: Name of image upload.
+      url:
+        type: string
+        description: Url of image.
+      mediaType:
+        type: string
+        description: Type image/png.
+      fileSize:
+        type: integer
+        description: size of image.
+      width:
+        type: integer
+        description: image width.
+      height:
+        type: integer
+        description: image height.
+  AccessToken:
+    description: OAuth2 Responce
+    type: object
+    properties:
+      accessToken:
+        type: string
+        description: access token
+      tokenType:
+        type: string
+        description: "beader"
+      rememberToken:
+        type: string
+        description: remember token
+      expiresIn:
+        type: integer
+        description: when accesstoken expire
+  User:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Unique identifier representing a specific campaign
+      name:
+        type: string
+        description: name of user.
+      profileImage:
+        type: object
+        $ref: '#/definitions/Image'
+  Users:
+    allOf:
+      - $ref: '#/definitions/List'
+      - required:
+          - items
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+  Me:
+    allOf:
+      - $ref: '#/definitions/User'
+      - required:
+          - email
+        properties:
+          email:
+            description: Email Address of the user
+            type: string

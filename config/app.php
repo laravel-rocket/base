@@ -174,6 +174,7 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -192,6 +193,7 @@ return [
          */
         LaravelRocket\Foundation\Providers\ServiceProvider::class,
         LaravelRocket\Generator\Providers\ServiceProvider::class,
+        LaravelRocket\Foundation\Providers\ProxyServiceProvider::class,
 
     ], $additionalProviders),
 

@@ -47,4 +47,11 @@ class AuthController extends Controller
 
         return \RedirectHelper::intended(action('User\IndexController@index'));
     }
+
+    public function postSignOut()
+    {
+        $this->userService->signOut();
+
+        return \Redirect::action('User\AuthController@getSignIn');
+    }
 }

@@ -46,6 +46,12 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\Admin\SetDefaultValues::class,
         ],
+        'api' => [
+            \App\Http\Middleware\Api\V1\ErrorHandling::class,
+            \App\Http\Middleware\Api\V1\SetDefaultValues::class,
+            'throttle:60,1',
+            'bindings',
+        ],
     ];
 
     /**
@@ -67,5 +73,6 @@ class Kernel extends HttpKernel
         'user.auth'    => \App\Http\Middleware\User\Authenticate::class,
         'user.guest'   => \App\Http\Middleware\User\RedirectIfAuthenticated::class,
         'user.values'  => \App\Http\Middleware\User\SetDefaultValues::class,
+        'api.auth'     => \App\Http\Middleware\Api\V1\Authenticate::class,
     ];
 }

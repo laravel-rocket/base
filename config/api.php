@@ -43,6 +43,6 @@ return [
         'locale'    => 'X-ROCKET-LOCALE',
         'version'   => 'X-ROCKET-VERSION',
         'osVersion' => 'X-ROCKET-OS-VERSION',
-        'osName'    => 'X-ROCKET-OS-NAME',
+        'osType'    => 'X-ROCKET-OS-TYPE',
     ],
 ];

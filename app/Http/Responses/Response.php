@@ -95,7 +95,11 @@ class Response
         $ret = [];
         foreach (array_keys($this->columns) as $column) {
             if (array_key_exists($column, $this->data)) {
-                $ret[$column] = $this->data[$column];
+                if( $this->data[$column] instanceof Response ) {
+                    $ret[$column] = $this->data[$column]->toArray();
+                }else {
+                    $ret[$column] = $this->data[$column];
+                }
             } elseif (!in_array($column, $this->optionalColumns)) {
                 $ret[$column] = $this->columns[$column];
             }

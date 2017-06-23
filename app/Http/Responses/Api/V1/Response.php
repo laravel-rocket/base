@@ -18,4 +18,22 @@ class Response extends ResponseBase
 
         return $response;
     }
+
+    protected static function date($date)
+    {
+        if($date instanceof \DateTime) {
+            return $date->format('Y-m-d');
+        }
+
+        return null;
+    }
+
+    protected static function dateTime($dateTime)
+    {
+        if($dateTime instanceof \DateTime) {
+            return $dateTime->format('U');
+        }
+
+        return null;
+    }
 }

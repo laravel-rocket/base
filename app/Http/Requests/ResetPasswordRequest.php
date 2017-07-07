@@ -37,7 +37,7 @@ class ResetPasswordRequest extends Request
             'email.required'                 => trans('validation.required'),
             'email.email'                    => trans('validation.email'),
             'password.required'              => trans('validation.required'),
-            'password.min'                   => trans('validation.min.numeric'),
+            'password.min'                   => trans('validation.min.string'),
             'password_confirmation.required' => trans('validation.required'),
         ];
     }

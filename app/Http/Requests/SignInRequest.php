@@ -34,7 +34,7 @@ class SignInRequest extends Request
             'email.required'    => trans('validation.required'),
             'email.email'       => trans('validation.email'),
             'password.required' => trans('validation.required'),
-            'password.min'      => trans('validation.min', ['min' => 6]),
+            'password.min'      => trans('validation.min.string', ['min' => 6]),
         ];
     }
 }

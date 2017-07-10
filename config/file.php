@@ -3,10 +3,12 @@
 return [
     'storage' => [
         'local' => [
+            'type' => 'local',
             'path' => realpath(base_path('public/uploads')),
             'url'  => '/uploads',
         ],
         's3' => [
+            'type' => 's3',
             'region'  => env('AWS_IMAGE_REGION'),
             'buckets' => [
                 env('AWS_IMAGE_BUCKET'),

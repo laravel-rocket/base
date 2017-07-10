@@ -63,7 +63,8 @@ class FileService extends BaseService implements FileServiceInterface
         }
         $ext = array_get($acceptableFileList, $mediaType);
 
-        $storageType = $this->getStorageConfig($categoryType);
+        $storageConfig = $this->getStorageConfig($categoryType);
+        $storageType   = array_get($storageConfig, 'type');
 
         $model     = null;
         $modelData = [

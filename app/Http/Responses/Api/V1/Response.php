@@ -21,7 +21,7 @@ class Response extends ResponseBase
 
     protected static function date($date)
     {
-        if($date instanceof \DateTime) {
+        if ($date instanceof \DateTime) {
             return $date->format('Y-m-d');
         }
 
@@ -30,7 +30,7 @@ class Response extends ResponseBase
 
     protected static function dateTime($dateTime)
     {
-        if($dateTime instanceof \DateTime) {
+        if ($dateTime instanceof \DateTime) {
             return $dateTime->format('U');
         }
 

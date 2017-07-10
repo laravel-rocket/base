@@ -1,21 +1,19 @@
 <?php
-
 namespace Tests\Smokes\Api\V1;
 
 use App\Models\User;
-use Tests\TestCase as BaseTestCase;
 use Laravel\Passport\ClientRepository;
+use Tests\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {
     /** @var bool */
     protected $useDatabase = true;
 
-    protected $clientName = "TEST_CLIENT";
+    protected $clientName = 'TEST_CLIENT';
 
     public function setUp()
     {
-
 
         //        exec('php artisan migrate --database testing');
         parent::setUp();
@@ -30,9 +28,9 @@ class TestCase extends BaseTestCase
     protected function getClientIdAndSecret()
     {
         $client = \DB::table('oauth_clients')->where('name', $this->clientName)->first();
-        if( empty($client) ) {
+        if (empty($client)) {
             $clients = new ClientRepository();
-            $client = $clients->createPasswordGrantClient(
+            $client  = $clients->createPasswordGrantClient(
                 null, $this->clientName, 'http://localhost'
             );
         }
@@ -45,9 +43,9 @@ class TestCase extends BaseTestCase
      */
     protected function getAuthenticationHeader()
     {
-        $email = $this->faker->email;
+        $email    = $this->faker->email;
         $password = $this->faker->password(8);
-        $user = factory(User::class)->create([
+        $user     = factory(User::class)->create([
             'email'    => $email,
             'password' => $password,
         ]);
@@ -67,14 +65,13 @@ class TestCase extends BaseTestCase
             $this->transformHeadersToServerVars($headers));
         $data = json_decode($response->getContent(), true);
 
-        $type = $data['tokenType'];
+        $type  = $data['tokenType'];
         $token = $data['accessToken'];
 
         $headers = [
-            'Authorization' => $type .' ' . $token,
+            'Authorization' => $type.' '.$token,
         ];
 
         return $headers;
     }
-
 }

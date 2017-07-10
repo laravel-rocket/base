@@ -8,7 +8,7 @@ return [
             'url'  => '/uploads',
         ],
         's3' => [
-            'type' => 's3',
+            'type'    => 's3',
             'region'  => env('AWS_IMAGE_REGION'),
             'buckets' => [
                 env('AWS_IMAGE_BUCKET'),

@@ -41,7 +41,7 @@ class AdminUserControllerTest extends TestCase
     {
         $adminUser = factory(\App\Models\AdminUser::class)->make();
         $this->action('POST', 'Admin\AdminUserController@store', [
-                '_token' => csrf_token(),
+                '_token'   => csrf_token(),
                 'password' => str_random(12),
             ] + $adminUser->toArray());
         $this->assertResponseStatus(302);

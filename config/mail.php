@@ -120,6 +120,6 @@ return [
         ],
     ],
 
-    'tester' => env('MAIL_TESTER','noname@example.com'),
+    'tester' => env('MAIL_TESTER', 'noname@example.com'),
 
 ];

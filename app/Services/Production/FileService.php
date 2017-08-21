@@ -63,7 +63,8 @@ class FileService extends BaseService implements FileServiceInterface
         }
         $ext = array_get($acceptableFileList, $mediaType);
 
-        $storageType = $this->getStorageConfig($categoryType);
+        $storageConfig = $this->getStorageConfig($categoryType);
+        $storageType   = array_get($storageConfig, 'type');
 
         $model     = null;
         $modelData = [
@@ -135,6 +136,27 @@ class FileService extends BaseService implements FileServiceInterface
         return $model;
     }
 
+    public function delete($model)
+    {
+        $storageType = $model->storageType;
+        $key         = $model->key;
+
+        if (empty($key)) {
+            return true;
+        }
+
+        $fileUploadServices = array_get($this->fileUploadServices, $storageType);
+        if (!empty($fileUploadServices)) {
+            $fileUploadServices->delete([
+                'key' => $key,
+            ]);
+        }
+
+        $this->fileRepository->delete($model);
+
+        return true;
+    }
+
     protected function getStorageConfig($categoryType)
     {
         $storageType = config('file.storage.default');
@@ -143,9 +165,9 @@ class FileService extends BaseService implements FileServiceInterface
         if (!empty($config)) {
             $storageType = array_get($config, 'storage', $storageType);
         }
-        $storageConfig = config('file.storage.', $storageType);
+        $storageConfig = config('file.storage.'.$storageType);
         if (empty($storageConfig)) {
-            $storageConfig = config('file.storage.', config('file.storage.default'));
+            $storageConfig = config('file.storage.'.config('file.storage.default'));
         }
         if (empty($storageConfig)) {
             $storageConfig = config('file.storage.local');
@@ -157,7 +179,7 @@ class FileService extends BaseService implements FileServiceInterface
     protected function getCategoryConfig($categoryType)
     {
         $config = config('file.categories.'.$categoryType);
-        if (empty($conf)) {
+        if (empty($config)) {
             $config = config('file.categories.default-file');
         }
 
@@ -182,27 +204,6 @@ class FileService extends BaseService implements FileServiceInterface
         }
 
         return $filename;
-    }
-
-    public function delete($model)
-    {
-        $storageType = $model->storageType;
-        $key         = $model->key;
-
-        if (empty($key)) {
-            return true;
-        }
-
-        $fileUploadServices = array_get($this->fileUploadServices, $storageType);
-        if (!empty($fileUploadServices)) {
-            $fileUploadServices->delete([
-                'key' => $key,
-            ]);
-        }
-
-        $this->fileRepository->delete($model);
-
-        return true;
     }
 
     /**

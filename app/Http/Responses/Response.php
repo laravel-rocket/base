@@ -95,9 +95,9 @@ class Response
         $ret = [];
         foreach (array_keys($this->columns) as $column) {
             if (array_key_exists($column, $this->data)) {
-                if( $this->data[$column] instanceof Response ) {
+                if ($this->data[$column] instanceof self) {
                     $ret[$column] = $this->data[$column]->toArray();
-                }else {
+                } else {
                     $ret[$column] = $this->data[$column];
                 }
             } elseif (!in_array($column, $this->optionalColumns)) {

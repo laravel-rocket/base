@@ -11,7 +11,7 @@ class AuthenticationTest extends TestCase
     {
         $headers = [];
 
-        $email = $this->faker->email;
+        $email    = $this->faker->email;
         $password = $this->faker->password(8);
 
         list($clientId, $clientSecret) = $this->getClientIdAndSecret();
@@ -36,9 +36,9 @@ class AuthenticationTest extends TestCase
 
     public function testSignIn()
     {
-        $email = $this->faker->email;
+        $email    = $this->faker->email;
         $password = $this->faker->password(8);
-        $user = factory(User::class)->create([
+        $user     = factory(User::class)->create([
             'email'    => $email,
             'password' => $password,
         ]);
@@ -62,9 +62,9 @@ class AuthenticationTest extends TestCase
 
     public function testSignOut()
     {
-        $email = $this->faker->email;
+        $email    = $this->faker->email;
         $password = $this->faker->password(8);
-        $user = factory(User::class)->create([
+        $user     = factory(User::class)->create([
             'email'    => $email,
             'password' => $password,
         ]);
@@ -85,16 +85,15 @@ class AuthenticationTest extends TestCase
         $data = json_decode($response->getContent(), true);
         $this->assertResponseStatus(200);
 
-        $type = $data['tokenType'];
+        $type  = $data['tokenType'];
         $token = $data['accessToken'];
 
         $headers = [
-            'Authorization' => $type .' ' . $token,
+            'Authorization' => $type.' '.$token,
         ];
 
         $response = $this->call('POST', '/api/v1/signout', $input, [], [], $this->transformHeadersToServerVars($headers));
-        $data = json_decode($response->getContent(), true);
+        $data     = json_decode($response->getContent(), true);
         $this->assertResponseStatus(200);
     }
-
 }

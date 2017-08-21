@@ -41,7 +41,7 @@ class UserControllerTest extends TestCase
     {
         $user = factory(\App\Models\User::class)->make();
         $this->action('POST', 'Admin\UserController@store', [
-                '_token' => csrf_token(),
+                '_token'   => csrf_token(),
                 'password' => str_random(12),
             ] + $user->toArray());
         $this->assertResponseStatus(302);

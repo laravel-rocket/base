@@ -20,9 +20,9 @@ return [
     ],
 
     'ses' => [
-        'key'    => env('SES_KEY'),
-        'secret' => env('SES_SECRET'),
-        'region' => 'us-east-1',
+        'key'    => env('AWS_KEY'),
+        'secret' => env('AWS_SECRET'),
+        'region' => env('AWS_SES_REGION'),
     ],
 
     'sparkpost' => [
@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model'  => App\User::class,
+        'model'  => \App\Models\User::class,
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

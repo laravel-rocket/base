@@ -12,6 +12,8 @@ Route::group([], function () {
         Route::post('reset-password', 'User\PasswordController@postResetPassword')->name('resetPassword.post');
         Route::get('signup', 'User\AuthController@getSignUp')->name('signUp.post');
         Route::post('signup', 'User\AuthController@postSignUp')->name('signUp.post');
+
+        /* NEW SERVICE AUTH ROOT */
     });
 
     Route::group(['middleware' => ['user.auth']], function () {

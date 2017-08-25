@@ -35,4 +35,5 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    /* NEW SERVICE INFO */
 ];

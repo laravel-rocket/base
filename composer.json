@@ -15,6 +15,10 @@
     {
       "type": "vcs",
       "url": "https://github.com/laravel-rocket/generator"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/laravel-rocket/service-auth"
     }
   ],
   "require": {
@@ -22,6 +26,7 @@
     "aws/aws-sdk-php": "~3.24",
     "laravel-rocket/foundation": "dev-master",
     "laravel-rocket/generator": "dev-master",
+    "laravel-rocket/service-auth": "dev-master",
     "laravel/framework": "5.4.*",
     "laravel/socialite": "~3.0",
     "laravel/tinker": "~1.0",

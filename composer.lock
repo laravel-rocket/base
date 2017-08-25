@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.34.1",
+            "version": "3.34.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "3f8381b457afb59d91cc109ff5a3652ab641a8a2"
+                "reference": "eee45c7189f6fe0b70aac86495718ccfdc067495"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3f8381b457afb59d91cc109ff5a3652ab641a8a2",
-                "reference": "3f8381b457afb59d91cc109ff5a3652ab641a8a2",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/eee45c7189f6fe0b70aac86495718ccfdc067495",
+                "reference": "eee45c7189f6fe0b70aac86495718ccfdc067495",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +84,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-08-23T19:38:48+00:00"
+            "time": "2017-08-24T18:09:26+00:00"
         },
         {
             "name": "defuse/php-encryption",
@@ -828,12 +828,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-rocket/service-auth.git",
-                "reference": "30d9d13654c9cf57b8f9ab0fd36464b6b0801913"
+                "reference": "b7540b0b5ccb39d6022283b645dfadd35761af19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-rocket/service-auth/zipball/30d9d13654c9cf57b8f9ab0fd36464b6b0801913",
-                "reference": "30d9d13654c9cf57b8f9ab0fd36464b6b0801913",
+                "url": "https://api.github.com/repos/laravel-rocket/service-auth/zipball/b7540b0b5ccb39d6022283b645dfadd35761af19",
+                "reference": "b7540b0b5ccb39d6022283b645dfadd35761af19",
                 "shasum": ""
             },
             "require": {
@@ -875,7 +875,7 @@
                 "source": "https://github.com/laravel-rocket/service-auth/tree/master",
                 "issues": "https://github.com/laravel-rocket/service-auth/issues"
             },
-            "time": "2017-08-24T13:41:31+00:00"
+            "time": "2017-08-24T22:47:24+00:00"
         },
         {
             "name": "laravel/framework",

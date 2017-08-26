@@ -19,7 +19,6 @@ class CreateAdminUserRolesTable extends Migration
 
             $table->timestamps();
 
-            $table->index(['admin_user_id']);
             $table->index(['role', 'admin_user_id']);
         });
 

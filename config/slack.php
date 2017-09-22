@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'targetEnvironment' => ['production'],
+    'targetEnvironment' => [], // if you want to enable slack post, set ['production'],
     'webHookUrl'        => env('SLACK_WEB_HOOK_URL'),
     'types'             => [
         'serious-alert' => [

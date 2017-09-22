@@ -211,6 +211,18 @@ definitions:
         type: integer
       limit:
         type: integer
+  Parameter:
+    description: Param info
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        description: param name
+        type: string
+      message:
+        description: message for the param
+        type: string
   Status:
     description: This structure is only for indicating "success/error". Common structure for Error based on RFC7807 ( https://tools.ietf.org/html/rfc7807 )
     type: object

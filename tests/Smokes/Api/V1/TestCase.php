@@ -41,7 +41,7 @@ class TestCase extends BaseTestCase
     /**
      * @return array
      */
-    protected function getAuthenticationHeader()
+    protected function getAuthenticationHeaders()
     {
         $email    = $this->faker->email;
         $password = $this->faker->password(8);

@@ -70,8 +70,10 @@ class UserController extends Controller
             return redirect()->back()->withErrors(trans('admin.errors.general.save_failed'));
         }
 
-        return redirect()->action('Admin\UserController@index')->with('message-success',
-            trans('admin.messages.general.create_success'));
+        return redirect()->action('Admin\UserController@index')->with(
+            'message-success',
+            trans('admin.messages.general.create_success')
+        );
     }
 
     /**
@@ -125,8 +127,10 @@ class UserController extends Controller
 
         $this->userRepository->update($user, $input);
 
-        return redirect()->action('Admin\UserController@show', [$id])->with('message-success',
-            trans('admin.messages.general.update_success'));
+        return redirect()->action('Admin\UserController@show', [$id])->with(
+            'message-success',
+            trans('admin.messages.general.update_success')
+        );
     }
 
     /**
@@ -145,7 +149,9 @@ class UserController extends Controller
         }
         $this->userRepository->delete($user);
 
-        return redirect()->action('Admin\UserController@index')->with('message-success',
-            trans('admin.messages.general.delete_success'));
+        return redirect()->action('Admin\UserController@index')->with(
+            'message-success',
+            trans('admin.messages.general.delete_success')
+        );
     }
 }

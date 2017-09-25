@@ -44,7 +44,9 @@ class MeController extends Controller
 
         $this->adminUserRepository->update($adminUser, $update);
 
-        return redirect()->action('Admin\MeController@index')->with('message-success',
-            trans('admin.messages.general.update_success'));
+        return redirect()->action('Admin\MeController@index')->with(
+            'message-success',
+            trans('admin.messages.general.update_success')
+        );
     }
 }

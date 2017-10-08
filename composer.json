@@ -7,26 +7,12 @@
   ],
   "license": "MIT",
   "type": "project",
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/laravel-rocket/foundation"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/laravel-rocket/generator"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/laravel-rocket/service-auth"
-    }
-  ],
   "require": {
     "php": ">=7.0",
     "aws/aws-sdk-php": "~3.24",
-    "laravel-rocket/foundation": "dev-master",
-    "laravel-rocket/generator": "dev-master",
-    "laravel-rocket/service-auth": "dev-master",
+    "laravel-rocket/foundation": "1.0.*",
+    "laravel-rocket/generator": "1.0.*",
+    "laravel-rocket/service-auth": "1.0.*",
     "laravel/framework": "5.4.*",
     "laravel/socialite": "~3.0",
     "laravel/tinker": "~1.0",

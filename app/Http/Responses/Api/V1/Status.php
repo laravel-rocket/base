@@ -42,7 +42,7 @@ class Status extends Response
         return $response;
     }
 
-    public static function ok($message = '', $extraData = [])
+    public static function ok($message = '', $extraData = [], $statusCode = 200)
     {
         $response = new static([
             'isSuccess'     => true,
@@ -52,7 +52,7 @@ class Status extends Response
             'errorCode'     => 0,
             'detail'        => $message,
             'invalidParams' => [],
-        ], 200);
+        ], $statusCode);
 
         return $response;
     }

@@ -9,26 +9,28 @@
   "type": "project",
   "require": {
     "php": ">=7.0",
+    "fideloper/proxy": "~3.3",
     "aws/aws-sdk-php": "~3.24",
-    "laravel-rocket/foundation": "1.0.*",
-    "laravel-rocket/generator": "1.0.*",
-    "laravel-rocket/service-auth": "1.0.*",
-    "laravel/framework": "5.4.*",
+    "laravel-rocket/foundation": "~2.0",
+    "laravel-rocket/generator": "~2.0",
+    "laravel-rocket/service-auth": "~2.0",
+    "laravel/framework": "5.5.*",
     "laravel/socialite": "~3.0",
     "laravel/tinker": "~1.0",
-    "laravelcollective/html": "5.4.*",
+    "laravelcollective/html": "5.5.*",
     "laravel/passport": "^3.0",
-    "facebook/graph-sdk": "^5.3"
+    "facebook/graph-sdk": "~5.6"
   },
   "require-dev": {
-    "barryvdh/laravel-debugbar": "~2.3",
-    "barryvdh/laravel-ide-helper": "~2.3",
+    "barryvdh/laravel-debugbar": "~2.4",
+    "barryvdh/laravel-ide-helper": "~2.4",
     "doctrine/dbal": "~2.5",
-    "friendsofphp/php-cs-fixer": "^2.2",
-    "fzaninotto/faker": "~1.4",
-    "laravel/browser-kit-testing": "^1.0",
-    "mockery/mockery": "0.9.*",
-    "phpunit/phpunit": "~5.7"
+    "friendsofphp/php-cs-fixer": "~2.8",
+    "fzaninotto/faker": "~1.7",
+    "laravel/browser-kit-testing": "~2.0",
+    "mockery/mockery": "~1.0",
+    "phpunit/phpunit": "~6.0",
+    "filp/whoops": "~2.0"
   },
   "autoload": {
     "classmap": [

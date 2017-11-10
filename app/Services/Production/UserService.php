@@ -44,5 +44,4 @@ class UserService extends AuthenticatableService implements UserServiceInterface
 
         return parent::createWithImageUrl($input, $imageUrl);
     }
-
 }

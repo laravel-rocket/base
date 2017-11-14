@@ -3,23 +3,16 @@ namespace App\Http\Requests\Api\V1;
 
 use App\Exceptions\APIErrorException;
 use LaravelRocket\Foundation\Http\Requests\Request as BaseRequest;
+use \Illuminate\Contracts\Validation\Validator;
 
 class Request extends BaseRequest
 {
-    /**
-     * Get the failed validation response for the request.
-     *
-     * @param array $errors
-     *
-     * @return APIErrorException
-     *
-     * @throws APIErrorException
-     */
-    public function response(array $errors)
+
+    protected function failedValidation(Validator $validator)
     {
         $transformed = [];
 
-        foreach ($errors as $field => $message) {
+        foreach ($validator->errors() as $field => $message) {
             $transformed[] = [
                 'name'    => $field,
                 'message' => $message[0],
@@ -27,6 +20,7 @@ class Request extends BaseRequest
         }
         throw new APIErrorException('wrongParameter', 'Wrong Parameters', ['invalidParams' => $transformed]);
     }
+
 
     /**
      * Get the validation rules that apply to the request.

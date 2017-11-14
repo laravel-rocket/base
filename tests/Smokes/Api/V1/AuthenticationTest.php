@@ -34,6 +34,26 @@ class AuthenticationTest extends TestCase
         $this->assertResponseStatus(201);
     }
 
+    public function testSignUpWithoutParam()
+    {
+        $headers = [];
+
+        $email    = $this->faker->email;
+        $password = $this->faker->password(8);
+
+        list($clientId, $clientSecret) = $this->getClientIdAndSecret();
+
+        $input = [
+        ];
+
+        $response = $this->call('POST', '/api/v1/signup', $input, [], [],
+            $this->transformHeadersToServerVars($headers));
+
+        $data = json_decode($response->getContent(), true);
+
+        $this->assertResponseStatus(400);
+    }
+
     public function testSignIn()
     {
         $email    = $this->faker->email;

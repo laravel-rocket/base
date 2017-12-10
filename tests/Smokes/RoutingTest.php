@@ -12,10 +12,12 @@ class RoutingTest extends TestCase
         $routeCollection = \Route::getRoutes();
 
         foreach ($routeCollection as $route) {
-            if (in_array('GET', $route->methods) && strpos($route->uri, '{') === False ) {
+            if (in_array('GET', $route->methods) && strpos($route->uri, '{') === false) {
                 $response = $this->call('GET', $route->uri);
-                $this->assertTrue(in_array($response->status(), [200, 201, 301, 302, 307]),
-                    $route->uri.' produces error');
+                $this->assertTrue(
+                    in_array($response->status(), [200, 201, 301, 302, 307]),
+                    $route->uri.' produces error'
+                );
             }
         }
     }

@@ -31,4 +31,14 @@ interface FileServiceInterface extends BaseServiceInterface
      * @return bool|null
      */
     public function delete($model);
+
+    /**
+     * @param string $categoryType
+     * @param string $url
+     * @param string $mediaType
+     * @param array  $metaInputs
+     *
+     * @return \App\Models\File|null
+     */
+    public function createFromUrl($categoryType, $url, $mediaType, $metaInputs);
 }

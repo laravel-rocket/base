@@ -31,7 +31,9 @@ class TestCase extends BaseTestCase
         if (empty($client)) {
             $clients = new ClientRepository();
             $client  = $clients->createPasswordGrantClient(
-                null, $this->clientName, 'http://localhost'
+                null,
+                $this->clientName,
+                'http://localhost'
             );
         }
 
@@ -61,8 +63,14 @@ class TestCase extends BaseTestCase
             'client_secret' => $clientSecret,
         ];
 
-        $response = $this->call('POST', '/api/v1/signin', $input, [], [],
-            $this->transformHeadersToServerVars($headers));
+        $response = $this->call(
+            'POST',
+            '/api/v1/signin',
+            $input,
+            [],
+            [],
+            $this->transformHeadersToServerVars($headers)
+        );
         $data = json_decode($response->getContent(), true);
 
         $type  = $data['tokenType'];

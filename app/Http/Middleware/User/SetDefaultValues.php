@@ -31,6 +31,10 @@ class SetDefaultValues
         $user = $this->userService->getUser();
         view()->share('authUser', $user);
 
+        $queryParameters = [];
+        parse_str($request->getQueryString(), $queryParameters);
+        view()->share('queryParameters', $queryParameters);
+
         return $next($request);
     }
 }

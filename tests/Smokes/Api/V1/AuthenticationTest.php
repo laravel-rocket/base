@@ -26,8 +26,14 @@ class AuthenticationTest extends TestCase
             'client_secret' => $clientSecret,
         ];
 
-        $response = $this->call('POST', '/api/v1/signup', $input, [], [],
-            $this->transformHeadersToServerVars($headers));
+        $response = $this->call(
+            'POST',
+            '/api/v1/signup',
+            $input,
+            [],
+            [],
+            $this->transformHeadersToServerVars($headers)
+        );
 
         $data = json_decode($response->getContent(), true);
 
@@ -46,8 +52,14 @@ class AuthenticationTest extends TestCase
         $input = [
         ];
 
-        $response = $this->call('POST', '/api/v1/signup', $input, [], [],
-            $this->transformHeadersToServerVars($headers));
+        $response = $this->call(
+            'POST',
+            '/api/v1/signup',
+            $input,
+            [],
+            [],
+            $this->transformHeadersToServerVars($headers)
+        );
 
         $data = json_decode($response->getContent(), true);
 
@@ -74,8 +86,14 @@ class AuthenticationTest extends TestCase
             'client_secret' => $clientSecret,
         ];
 
-        $response = $this->call('POST', '/api/v1/signin', $input, [], [],
-            $this->transformHeadersToServerVars($headers));
+        $response = $this->call(
+            'POST',
+            '/api/v1/signin',
+            $input,
+            [],
+            [],
+            $this->transformHeadersToServerVars($headers)
+        );
         $data = json_decode($response->getContent(), true);
         $this->assertResponseStatus(200);
     }
@@ -100,8 +118,14 @@ class AuthenticationTest extends TestCase
             'client_secret' => $clientSecret,
         ];
 
-        $response = $this->call('POST', '/api/v1/signin', $input, [], [],
-            $this->transformHeadersToServerVars($headers));
+        $response = $this->call(
+            'POST',
+            '/api/v1/signin',
+            $input,
+            [],
+            [],
+            $this->transformHeadersToServerVars($headers)
+        );
         $data = json_decode($response->getContent(), true);
         $this->assertResponseStatus(200);
 

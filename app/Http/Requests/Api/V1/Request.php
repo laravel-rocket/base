@@ -2,12 +2,11 @@
 namespace App\Http\Requests\Api\V1;
 
 use App\Exceptions\APIErrorException;
+use Illuminate\Contracts\Validation\Validator;
 use LaravelRocket\Foundation\Http\Requests\Request as BaseRequest;
-use \Illuminate\Contracts\Validation\Validator;
 
 class Request extends BaseRequest
 {
-
     protected function failedValidation(Validator $validator)
     {
         $transformed = [];
@@ -20,7 +19,6 @@ class Request extends BaseRequest
         }
         throw new APIErrorException('wrongParameter', 'Wrong Parameters', ['invalidParams' => $transformed]);
     }
-
 
     /**
      * Get the validation rules that apply to the request.

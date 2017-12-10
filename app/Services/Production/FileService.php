@@ -157,6 +157,38 @@ class FileService extends BaseService implements FileServiceInterface
         return true;
     }
 
+    public function createFromUrl($categoryType, $url, $mediaType, $metaInputs)
+    {
+        $conf = config('file.categories.'.$categoryType);
+        if (empty($conf)) {
+            return null;
+        }
+
+        $modelData = [
+            'url'                => $url,
+            'storage_type'       => File::STORAGE_TYPE_URL,
+            'title'              => array_get($metaInputs, 'title', ''),
+            'file_type'          => array_get($conf, 'type', File::FILE_TYPE_FILE),
+            'file_category_type' => $categoryType,
+            'entity_type'        => array_get($metaInputs, 'entityType', ''),
+            'entity_id'          => array_get($metaInputs, 'entityId', 0),
+            's3_key'             => '',
+            's3_bucket'          => '',
+            's3_region'          => '',
+            's3_extension'       => '',
+            'media_type'         => $mediaType,
+            'format'             => $mediaType,
+            'file_size'          => 0,
+            'original_filename'  => array_get($metaInputs, 'originalFileName', ''),
+            'width'              => 0,
+            'height'             => 0,
+            'is_enabled'         => true,
+        ];
+        $model = $this->fileRepository->create($modelData);
+
+        return $model;
+    }
+
     protected function getStorageConfig($categoryType)
     {
         $storageType = config('file.storage.default');

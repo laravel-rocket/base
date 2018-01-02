@@ -111,11 +111,11 @@ class FileService extends BaseService implements FileServiceInterface
                 return null;
             }
 
-            $modelData['url']        = array_get($result, 'url', 0);
-            $modelData['bucket']     = array_get($result, 'bucket', 0);
-            $modelData['region']     = array_get($result, 'region', 0);
-            $modelData['key']        = array_get($result, 'key', 0);
-            $modelData['thumbnails'] = [];
+            $modelData['url']           = array_get($result, 'url', 0);
+            $modelData['s3_bucket']     = array_get($result, 's3_bucket', array_get($result, 'bucket', ''));
+            $modelData['s3_region']     = array_get($result, 's3_region', array_get($result, 'region', ''));
+            $modelData['s3_key']        = array_get($result, 's3_key', array_get($result, 'key', ''));
+            $modelData['thumbnails']    = [];
 
             if ($conf['type'] == File::FILE_TYPE_IMAGE) {
                 $format = array_get($conf, 'format', 'jpeg');
@@ -139,7 +139,7 @@ class FileService extends BaseService implements FileServiceInterface
     public function delete($model)
     {
         $storageType = $model->storageType;
-        $key         = $model->key;
+        $key         = $model->s3_key;
 
         if (empty($key)) {
             return true;
@@ -148,7 +148,7 @@ class FileService extends BaseService implements FileServiceInterface
         $fileUploadServices = array_get($this->fileUploadServices, $storageType);
         if (!empty($fileUploadServices)) {
             $fileUploadServices->delete([
-                'key' => $key,
+                's3_key' => $key,
             ]);
         }
 

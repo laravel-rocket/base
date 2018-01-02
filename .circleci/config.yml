@@ -56,4 +56,4 @@ jobs:
             php artisan db:seed
       - run:
           name: Run Tests
-          command: vendor/bin/phpunit
+          command: vendor/bin/phpunit -d memory_limit=512M

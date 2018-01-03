@@ -21,7 +21,7 @@ class CreateFilesTable extends Migration
             $table->string('entity_type')->default('');
             $table->bigInteger('entity_id')->default(0);
 
-            $table->string('storage_type')->default(false);
+            $table->string('storage_type')->default('');
 
             $table->string('file_type')->default('');
             $table->string('file_category_type')->default('');

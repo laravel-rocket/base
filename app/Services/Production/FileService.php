@@ -57,6 +57,19 @@ class FileService extends BaseService implements FileServiceInterface
             return null;
         }
 
+        // Support Android Retrofit Bad Data Format
+        $checkData = @file_get_contents($path);
+        if (starts_with($checkData, 'Content-Length:')) {
+            $pos = strpos($checkData, "\r\n\r\n");
+            if ($pos !== false) {
+                \Log::info('Detect Wrong Data');
+                $checkData = substr($checkData, $pos + 4);
+                $path      = $path.'.removed';
+                file_put_contents($path, $checkData);
+                $mediaType = mime_content_type($path);
+            }
+        }
+
         $acceptableFileList = config('file.acceptable.'.$conf['type']);
         if (!array_key_exists($mediaType, $acceptableFileList)) {
             return null;

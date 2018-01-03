@@ -3,7 +3,7 @@ namespace App\Http\Requests\Api\V1;
 
 use App\Exceptions\APIErrorException;
 use Illuminate\Contracts\Validation\Validator;
-use LaravelRocket\Foundation\Http\Requests\Request as BaseRequest;
+use LaravelRocket\Foundation\Http\Requests\APIRequest as BaseRequest;
 
 class Request extends BaseRequest
 {

@@ -30,7 +30,8 @@
     "laravel/browser-kit-testing": "~2.0",
     "mockery/mockery": "~1.0",
     "phpunit/phpunit": "~6.0",
-    "filp/whoops": "~2.0"
+    "filp/whoops": "~2.0",
+    "takaaki-mizuno/mwb-parser": "0.*"
   },
   "autoload": {
     "classmap": [

@@ -26,7 +26,6 @@
                     <span>Users</span>
                 </a>
             </li>
-            <!-- %%SIDEMENU%% -->
         </ul>
     </section>
 </aside>

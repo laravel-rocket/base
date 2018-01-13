@@ -1,7 +1,7 @@
 <div class="c-admin__wrapper">
     <div class="c-admin__wrapper-inner">
     @include('shared.admin.header')
-    @include('layouts.admin.side_menu')
+    @include('shared.admin.side_menu')
     <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->

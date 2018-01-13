@@ -1291,12 +1291,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-rocket/generator.git",
-                "reference": "f657cd367f2b3021314442a667fa176ce982d167"
+                "reference": "7040e2bc5ba4160cfb589a63ad77a3b41a72c066"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-rocket/generator/zipball/f657cd367f2b3021314442a667fa176ce982d167",
-                "reference": "f657cd367f2b3021314442a667fa176ce982d167",
+                "url": "https://api.github.com/repos/laravel-rocket/generator/zipball/7040e2bc5ba4160cfb589a63ad77a3b41a72c066",
+                "reference": "7040e2bc5ba4160cfb589a63ad77a3b41a72c066",
                 "shasum": ""
             },
             "require": {
@@ -1334,7 +1334,7 @@
                 }
             ],
             "description": "Code Generator For Laravel Rocket",
-            "time": "2018-01-13T05:05:52+00:00"
+            "time": "2018-01-13T06:58:12+00:00"
         },
         {
             "name": "laravel-rocket/service-auth",

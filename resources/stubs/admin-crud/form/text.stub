@@ -1,0 +1,8 @@
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group @if ($errors->has('%%column%%')) has-error @endif">
+                <label for="%%column%%">@lang('admin.pages.%%models-spinal%%.columns.%%column%%')</label>
+                <input type="text" id="%%column%%" class="form-control" name="%%column%%" value="{{ old('%%column%%') ? old('%%column%%') : $%%model%%->%%column%% }}">
+            </div>
+        </div>
+    </div>

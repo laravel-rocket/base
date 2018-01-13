@@ -56,6 +56,7 @@ return [
                 'forgot_password' => 'Forget Password',
                 'email'           => 'Email',
                 'password'        => 'Password',
+                'please_sign_in'  => 'Please Sign In',
             ],
         ],
         'users'       => [

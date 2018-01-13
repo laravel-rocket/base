@@ -1,10 +1,8 @@
-<footer id="footer">
-    <div class="footer-content">
-        <div class="container">
-        </div>
+<!-- Main Footer -->
+<footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
     </div>
-    <div class="copyright-content">
-        <div class="container">
-        </div>
-    </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; {{ \DateTimeHelper::now()->format('Y') }} <a href="{!! \URL::action('User\IndexController@index') !!}">{{ config('site.name') }}</a>.</strong> All rights reserved.
 </footer>

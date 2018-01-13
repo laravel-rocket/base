@@ -1,25 +1,30 @@
-<aside class="c-admin__sidebar">
+<aside class="main-sidebar">
 
-    <section class="c-admin__section">
+    <section class="sidebar">
 
-        <div class="c-user-panel">
-            <div class="c-user-panel__profile-image">
-                <img src="{!! $authUser->present()->profileImage->url !!}" alt="User Image">
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="{!! $authUser->present()->profileImage->url !!}" class="img-circle" alt="User Image">
             </div>
-            <div class="c-user-panel__info">
-                <p>{!! $authUser->present()->name !!}</p>
+            <div class="pull-left info">
+                <p>{!! $authUser->name !!}</p>
+                <!-- Status -->
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
 
-        <ul class="c-admin__sidemenu">
-            <li class="c-admin__sidemenuitem @if( $menu=='dashboard') c-admin__sidemenu-item--is-active @endif "><a
-                    href="{!! action('Admin\IndexController@index') !!}"><i class="fa fa-dashboard"></i>
-                    <span>Dashboard</span></a></li>
-            <li class="c-admin__sidemenuitem @if( $menu=='user') c-admin__sidemenu-item--is-active @endif "><a
-                    href="{!! action('Admin\UserController@index') !!}"><i class="fa fa-users"></i>
-                    <span>Users</span></a></li>
-            <li class="c-admin__sidemenuitem @if( $menu=='admin_user') c-admin__sidemenu-item--is-active @endif "><a
-                    href="{!! action('Admin\AdminUserController@index') !!}"><i class="fa fa-users"></i> <span>AdminUsers</span></a>
+        <ul class="sidebar-menu">
+            <li class="header">MENU</li>
+            <li @if( $menu=='dashboard') class="active" @endif ><a href="{{ action('Admin\IndexController@index') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+            </li>
+            <li @if( $menu=='admin_user') class="active" @endif ><a
+                    href="{!! URL::action('Admin\AdminUserController@index') !!}"><i class="fa fa-user-secret"></i>
+                    <span>Admin Users</span></a></li>
+            <li @if( $menu=='user') class="active" @endif >
+                <a href="{!! action('Admin\UserController@index') !!}">
+                    <i class="fa fa-users"></i>
+                    <span>Users</span>
+                </a>
             </li>
             <!-- %%SIDEMENU%% -->
         </ul>

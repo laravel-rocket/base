@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "edf0863f981caaf75edb5c1356a5f59e",
+    "content-hash": "1326003111488ebbb2688a57e728cec6",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1287,16 +1287,16 @@
         },
         {
             "name": "laravel-rocket/generator",
-            "version": "dev-version2.1",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-rocket/generator.git",
-                "reference": "0f7628730abe4487134b7524aa6c8cd4d66dbf36"
+                "reference": "cd812a33710ebe193af0080acf5c9b0fd55dea98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-rocket/generator/zipball/0f7628730abe4487134b7524aa6c8cd4d66dbf36",
-                "reference": "0f7628730abe4487134b7524aa6c8cd4d66dbf36",
+                "url": "https://api.github.com/repos/laravel-rocket/generator/zipball/cd812a33710ebe193af0080acf5c9b0fd55dea98",
+                "reference": "cd812a33710ebe193af0080acf5c9b0fd55dea98",
                 "shasum": ""
             },
             "require": {
@@ -1334,7 +1334,7 @@
                 }
             ],
             "description": "Code Generator For Laravel Rocket",
-            "time": "2018-01-13T11:45:29+00:00"
+            "time": "2018-01-14T03:45:01+00:00"
         },
         {
             "name": "laravel-rocket/service-auth",
@@ -2884,16 +2884,16 @@
         },
         {
             "name": "ramsey/uuid",
-            "version": "3.7.1",
+            "version": "3.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "45cffe822057a09e05f7bd09ec5fb88eeecd2334"
+                "reference": "bba83ad77bb9deb6d3c352a7361b818e415b221d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/45cffe822057a09e05f7bd09ec5fb88eeecd2334",
-                "reference": "45cffe822057a09e05f7bd09ec5fb88eeecd2334",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/bba83ad77bb9deb6d3c352a7361b818e415b221d",
+                "reference": "bba83ad77bb9deb6d3c352a7361b818e415b221d",
                 "shasum": ""
             },
             "require": {
@@ -2905,7 +2905,7 @@
             },
             "require-dev": {
                 "apigen/apigen": "^4.1",
-                "codeception/aspect-mock": "^1.0 | ^2.0",
+                "codeception/aspect-mock": "^1.0 | ~2.0.0",
                 "doctrine/annotations": "~1.2.0",
                 "goaop/framework": "1.0.0-alpha.2 | ^1.0 | ^2.1",
                 "ircmaxell/random-lib": "^1.1",
@@ -2913,7 +2913,7 @@
                 "mockery/mockery": "^0.9.4",
                 "moontoast/math": "^1.1",
                 "php-mock/php-mock-phpunit": "^0.3|^1.1",
-                "phpunit/phpunit": "^4.7|>=5.0 <5.4",
+                "phpunit/phpunit": "^4.7|^5.0",
                 "satooshi/php-coveralls": "^0.6.1",
                 "squizlabs/php_codesniffer": "^2.3"
             },
@@ -2962,7 +2962,7 @@
                 "identifier",
                 "uuid"
             ],
-            "time": "2017-09-22T20:46:04+00:00"
+            "time": "2018-01-13T22:22:03+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -6753,18 +6753,9 @@
             "time": "2016-11-23T20:04:58+00:00"
         }
     ],
-    "aliases": [
-        {
-            "alias": "2.1.0",
-            "alias_normalized": "2.1.0.0",
-            "version": "dev-version2.1",
-            "package": "laravel-rocket/generator"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "laravel-rocket/generator": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

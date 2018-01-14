@@ -1234,16 +1234,16 @@
         },
         {
             "name": "laravel-rocket/foundation",
-            "version": "2.0.11",
+            "version": "2.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-rocket/foundation.git",
-                "reference": "f7be2ad7cf1defd7428825ef808aa293c0f90208"
+                "reference": "11d3ef2cd45586f23ae67f6d256f5345e67bb31f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-rocket/foundation/zipball/f7be2ad7cf1defd7428825ef808aa293c0f90208",
-                "reference": "f7be2ad7cf1defd7428825ef808aa293c0f90208",
+                "url": "https://api.github.com/repos/laravel-rocket/foundation/zipball/11d3ef2cd45586f23ae67f6d256f5345e67bb31f",
+                "reference": "11d3ef2cd45586f23ae67f6d256f5345e67bb31f",
                 "shasum": ""
             },
             "require": {
@@ -1283,7 +1283,7 @@
                 }
             ],
             "description": "Core Components of Laravel Rocket",
-            "time": "2017-12-27T00:38:44+00:00"
+            "time": "2018-01-14T04:37:23+00:00"
         },
         {
             "name": "laravel-rocket/generator",

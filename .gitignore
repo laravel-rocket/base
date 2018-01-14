@@ -44,4 +44,5 @@ public/static/swagger-ui
 
 /database/testing/testdb.sqlite
 /documents/db/*
+/documents/db.mwb.bak
 

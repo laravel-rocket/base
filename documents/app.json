@@ -24,6 +24,41 @@
           ]
         }
       }
+    },
+    "files": {
+      "columns": {
+        "file_type": {
+          "type": "type",
+          "options": [
+            {
+              "name": "Image",
+              "value": "image"
+            },
+            {
+              "name": "Video",
+              "value": "video"
+            }
+          ]
+        },
+        "storage_type": {
+          "type": "type",
+          "options": [
+            {
+              "name": "S3",
+              "value": "s3"
+            },
+            {
+              "name": "Local",
+              "value": "local"
+            },
+            {
+              "name": "URL",
+              "value": "url"
+            }
+          ]
+        }
+      }
+
     }
   }
 }

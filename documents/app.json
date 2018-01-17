@@ -1,0 +1,29 @@
+{
+  "tables": {
+    "admin_users": {
+      "relations": {
+        "adminRoles": {
+          "selection": "multiple",
+          "target": "role"
+        }
+      }
+    },
+    "admin_user_roles": {
+      "columns": {
+        "role": {
+          "type": "type",
+          "options": [
+            {
+              "name": "Super User",
+              "value": "super_user"
+            },
+            {
+              "name": "Site Admin",
+              "value": "site_admin"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

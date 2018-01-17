@@ -15,11 +15,18 @@
 
         <ul class="sidebar-menu">
             <li class="header">MENU</li>
-            <li @if( $menu=='dashboard') class="active" @endif ><a href="{{ action('Admin\IndexController@index') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+            <li @if( $menu=='dashboard') class="active" @endif >
+                <a href="{{ action('Admin\IndexController@index') }}">
+                    <i class="fa fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
             </li>
-            <li @if( $menu=='admin_user') class="active" @endif ><a
-                    href="{!! URL::action('Admin\AdminUserController@index') !!}"><i class="fa fa-user-secret"></i>
-                    <span>Admin Users</span></a></li>
+            <li @if( $menu=='admin_user') class="active" @endif >
+                <a href="{!! URL::action('Admin\AdminUserController@index') !!}">
+                    <i class="fa fa-user-secret"></i>
+                    <span>Admin Users</span>
+                </a>
+            </li>
             <li @if( $menu=='user') class="active" @endif >
                 <a href="{!! action('Admin\UserController@index') !!}">
                     <i class="fa fa-users"></i>

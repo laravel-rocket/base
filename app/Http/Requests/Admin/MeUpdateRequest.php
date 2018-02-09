@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Requests\Admin;
 
-use LaravelRocket\Foundation\Http\Requests\Request;
+use App\Http\Requests\Request;
 
 class MeUpdateRequest extends Request
 {

@@ -1,8 +1,6 @@
 <?php
 namespace App\Http\Requests;
 
-use LaravelRocket\Foundation\Http\Requests\Request;
-
 class SignUpRequest extends Request
 {
     /*

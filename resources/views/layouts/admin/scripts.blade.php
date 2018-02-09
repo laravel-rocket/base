@@ -8,9 +8,13 @@
 <script src="{!! \URLHelper::asset('libs//plugins/iCheck/icheck.min.js', 'admin') !!}"></script>
 <script src="{!! \URLHelper::asset('libs/bootstrap-fileinput/js/fileinput.min.js', 'admin') !!}"></script>
 <script src="{!! \URLHelper::asset('libs/bootstrap-fileinput/js/locales/' . \LocaleHelper::getLocale() . '.js', 'admin') !!}"></script>
+<script src="{!! \URLHelper::asset('libs/select2/js/select2.js', 'admin') !!}"></script>
 <script src="{!! \URLHelper::asset('libs/adminlte/js/app.min.js', 'admin') !!}"></script>
 <script type="text/javascript">
     var Boilerplate = {
         'csrfToken': "{!! csrf_token() !!}"
     };
+    $(function() {
+        $('.select2').select2();
+    });
 </script>

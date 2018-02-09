@@ -1,4 +1,7 @@
 {
+  "config": {
+      
+  },
   "tables": {
     "admin_users": {
       "relations": {

@@ -4,4 +4,5 @@
 <link rel="stylesheet" href="{!! \URLHelper::asset('libs/adminlte/css/skins/skin-blue.min.css','admin') !!}">
 <link rel="stylesheet" href="{!! \URLHelper::asset('libs/plugins/iCheck/square/blue.css', 'admin') !!}">
 <link rel="stylesheet" href="{!! \URLHelper::asset('libs/bootstrap-fileinput/css/fileinput.min.css', 'admin') !!}">
+<link rel="stylesheet" href="{!! \URLHelper::asset('libs/select2/css/select2.min.css','admin') !!}">
 <link rel="stylesheet" href="{!! \URLHelper::asset('css/addon.css', 'admin') !!}">

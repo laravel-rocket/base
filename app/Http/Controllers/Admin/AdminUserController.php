@@ -2,9 +2,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
 use App\Http\Requests\Admin\AdminUserRequest;
+use App\Models\AdminUser;
 use App\Repositories\AdminUserRepositoryInterface;
-use App\Services\FileServiceInterface;
 use LaravelRocket\Foundation\Http\Requests\PaginationRequest;
 
 class AdminUserController extends Controller
@@ -12,15 +13,10 @@ class AdminUserController extends Controller
     /** @var \App\Repositories\AdminUserRepositoryInterface */
     protected $adminUserRepository;
 
-    /** @var FileServiceInterface $fileService */
-    protected $fileService;
-
     public function __construct(
-        AdminUserRepositoryInterface $adminUserRepository,
-        FileServiceInterface $fileService
+        AdminUserRepositoryInterface $adminUserRepository
     ) {
         $this->adminUserRepository = $adminUserRepository;
-        $this->fileService         = $fileService;
     }
 
     /**
@@ -38,11 +34,11 @@ class AdminUserController extends Controller
         $adminUsers = $this->adminUserRepository->get('id', 'desc', $offset, $limit);
 
         return view('pages.admin.admin-users.index', [
-            'adminUsers' => $adminUsers,
-            'count'      => $count,
-            'offset'     => $offset,
-            'limit'      => $limit,
-            'baseUrl'    => action('Admin\AdminUserController@index'),
+            'models'  => $adminUsers,
+            'count'   => $count,
+            'offset'  => $offset,
+            'limit'   => $limit,
+            'baseUrl' => action('Admin\AdminUserController@index'),
         ]);
     }
 
@@ -62,31 +58,23 @@ class AdminUserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request
+     * @param   $request
      *
      * @return \Response|\Illuminate\Http\RedirectResponse
      */
     public function store(AdminUserRequest $request)
     {
-        $input = $request->only(['name', 'email', 'password']);
+        $input = $request->only([
+            'name',
+            'email',
+            'password',
+            'profile_image_id',
+        ]);
 
         $adminUser = $this->adminUserRepository->create($input);
 
         if (empty($adminUser)) {
             return redirect()->back()->withErrors(trans('admin.errors.general.save_failed'));
-        }
-
-        if ($request->hasFile('profile_image')) {
-            $image = $adminUser->profileImage;
-            if (!empty($image)) {
-                $this->fileService->delete($image);
-            }
-
-            $file      = $request->file('profile_image');
-            $mediaType = $file->getClientMimeType();
-            $path      = $file->getPathname();
-            $image     = $this->fileService->upload('profile-image', $path, $mediaType, []);
-            $this->adminUserRepository->update($adminUser, ['profile_image_id' => $image->id]);
         }
 
         return redirect()->action('Admin\AdminUserController@index')
@@ -135,26 +123,17 @@ class AdminUserController extends Controller
      */
     public function update($id, AdminUserRequest $request)
     {
-        /** @var \App\Models\AdminUser $adminUser */
         $adminUser = $this->adminUserRepository->find($id);
         if (empty($adminUser)) {
             abort(404);
         }
-        $input = $request->only(['name', 'email', 'password']);
 
-        if ($request->hasFile('profile_image')) {
-            $image = $adminUser->profileImage;
-            if (!empty($image)) {
-                $this->fileService->delete($image);
-            }
-
-            $file                      = $request->file('profile_image');
-            $mediaType                 = $file->getClientMimeType();
-            $path                      = $file->getPathname();
-            $image                     = $this->fileService->upload('profile-image', $path, $mediaType, []);
-            $input['profile_image_id'] = $image->id;
-        }
-
+        $input = $request->only([
+            'name',
+            'email',
+            'password',
+            'profile_image_id',
+        ]);
         $this->adminUserRepository->update($adminUser, $input);
 
         return redirect()->action('Admin\AdminUserController@show', [$id])
@@ -170,7 +149,6 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {
-        /** @var \App\Models\AdminUser $adminUser */
         $adminUser = $this->adminUserRepository->find($id);
         if (empty($adminUser)) {
             abort(404);

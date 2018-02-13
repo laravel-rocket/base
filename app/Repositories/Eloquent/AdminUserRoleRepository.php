@@ -23,4 +23,9 @@ class AdminUserRoleRepository extends SingleKeyModelRepository implements AdminU
         return [
         ];
     }
+
+    protected function buildQueryByFilter($query, $filter)
+    {
+        return parent::buildQueryByFilter($query, $filter);
+    }
 }

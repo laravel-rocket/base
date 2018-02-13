@@ -1,4 +1,4 @@
-@extends('layouts.admin.application', ['menu' => 'users'] )
+@extends('layouts.admin.application', ['menu' => 'admin-user-roles'] )
 
 @section('metadata')
 @stop
@@ -14,11 +14,11 @@
 @stop
 
 @section('header')
-User
+AdminUserRole
 @stop
 
 @section('breadcrumb')
-    <li class="active">User</li>
+    <li class="active">AdminUserRole</li>
 @stop
 
 @section('content')
@@ -26,7 +26,7 @@ User
         <div class="box-header with-border">
             <h3 class="box-title">
                 <p class="text-right">
-                    <a href="{!! action('Admin\UserController@create') !!}" class="btn btn-block btn-primary btn-sm">@lang('admin.pages.common.buttons.create')</a>
+                    <a href="{!! action('Admin\AdminUserRoleController@create') !!}" class="btn btn-block btn-primary btn-sm">@lang('admin.pages.common.buttons.create')</a>
                 </p>
             </h3>
             {!! \PaginationHelper::render($offset, $limit, $count, $baseUrl, []) !!}
@@ -35,20 +35,18 @@ User
             <table class="table table-bordered">
                 <tr>
                     <th style="width: 10px">ID</th>
-                    <th>@lang('tables/users/columns.name')</th>
-                    <th>@lang('tables/users/columns.email')</th>
-                    <th>@lang('tables/users/columns.profile_image_id')</th>
+                    <th>@lang('tables/admin-user-roles/columns.admin_user_id')</th>
+                    <th>@lang('tables/admin-user-roles/columns.role')</th>
                     <th style="width: 40px">&nbsp;</th>
                 </tr>
                 @foreach( $models as $model )
                     <tr>
                         <td>{{ $model->id }}</td>
-                                <td>{{ $model->present()->name }}</td>
-                                <td>{{ $model->present()->email }}</td>
-                                <td>{{ $model->present()->profile_image_id }}</td>
+                                <td>{{ $model->present()->admin_user_id }}</td>
+                                <td>{{ $model->present()->role }}</td>
                         <td>
-                            <a href="{!! action('Admin\UserController@show', $model->id) !!}" class="btn btn-block btn-primary btn-sm">@lang('admin.pages.common.buttons.edit')</a>
-                            <a href="#" class="btn btn-block btn-danger btn-sm delete-button" data-delete-url="{!! action('Admin\UserController@destroy', $model->id) !!}">@lang('admin.pages.common.buttons.delete')</a>
+                            <a href="{!! action('Admin\AdminUserRoleController@show', $model->id) !!}" class="btn btn-block btn-primary btn-sm">@lang('admin.pages.common.buttons.edit')</a>
+                            <a href="#" class="btn btn-block btn-danger btn-sm delete-button" data-delete-url="{!! action('Admin\AdminUserRoleController@destroy', $model->id) !!}">@lang('admin.pages.common.buttons.delete')</a>
                         </td>
                     </tr>
                 @endforeach

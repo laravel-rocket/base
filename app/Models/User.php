@@ -5,9 +5,21 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use LaravelRocket\Foundation\Models\AuthenticatableBase;
 
+/**
+ * App\Models\User.
+ *
+ * @method \App\Presenters\UserPresenter present()
+ */
 class User extends AuthenticatableBase
 {
     use HasApiTokens, Notifiable;
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -22,16 +34,14 @@ class User extends AuthenticatableBase
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = [];
 
-    protected $dates = [];
+    protected $dates  = [
+    ];
 
     protected $presenter = \App\Presenters\UserPresenter::class;
 

@@ -64,6 +64,8 @@ class AdminUserRepositoryTest extends TestCase
         $repository = \App::make(\App\Repositories\AdminUserRepositoryInterface::class);
         $this->assertNotNull($repository);
 
+        $adminUserData = factory(AdminUser::class)->make();
+
         $adminUserCheck = $repository->update($adminUserData, $adminUserData->toFillableArray());
         $this->assertNotNull($adminUserCheck);
     }

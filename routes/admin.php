@@ -18,5 +18,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::resource('users', 'Admin\UserController');
         Route::resource('admin-users', 'Admin\AdminUserController');
         /* NEW ADMIN RESOURCE ROUTE */
+        Route::resource('files', 'Admin\FileController');
+        Route::resource('admin-user-roles', 'Admin\AdminUserRoleController');
     });
 });

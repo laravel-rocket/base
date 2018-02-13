@@ -1,14 +1,12 @@
-<?php
+<?PHP
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(\App\Models\AdminUser::class, function (Faker\Generator $faker) {
-    static $password;
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\AdminUser::class, function (Faker\Generator $faker) {
 
     return [
-        'name'             => $faker->name,
-        'email'            => $faker->unique()->safeEmail,
-        'password'         => $password ?: $password = bcrypt('secret'),
+        'name' => $faker->name,
+        'email' => $faker->email,
+        'password' => $faker->password,
         'profile_image_id' => 0,
-        'remember_token'   => '',
     ];
 });

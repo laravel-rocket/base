@@ -3,14 +3,14 @@ namespace Tests\Controllers\Admin;
 
 use Tests\TestCase;
 
-class UserControllerTest extends TestCase
+class FileControllerTest extends TestCase
 {
     protected $useDatabase = true;
 
     public function testGetInstance()
     {
-        /** @var \App\Http\Controllers\Admin\UserController $controller */
-        $controller = \App::make(\App\Http\Controllers\Admin\UserController::class);
+        /** @var \App\Http\Controllers\Admin\FileController $controller */
+        $controller = \App::make(\App\Http\Controllers\Admin\FileController::class);
         $this->assertNotNull($controller);
     }
 
@@ -27,29 +27,29 @@ class UserControllerTest extends TestCase
 
     public function testGetList()
     {
-        $response = $this->action('GET', 'Admin\UserController@index');
+        $response = $this->action('GET', 'Admin\FileController@index');
         $this->assertResponseOk();
     }
 
     public function testCreateModel()
     {
-        $this->action('GET', 'Admin\UserController@create');
+        $this->action('GET', 'Admin\FileController@create');
         $this->assertResponseOk();
     }
 
     public function testStoreModel()
     {
-        $user = factory(\App\Models\User::class)->make();
-        $this->action('POST', 'Admin\UserController@store', [
+        $file = factory(\App\Models\File::class)->make();
+        $this->action('POST', 'Admin\FileController@store', [
                 '_token' => csrf_token(),
-            ] + $user->toArray());
+            ] + $file->toArray());
         $this->assertResponseStatus(302);
     }
 
     public function testEditModel()
     {
-        $user = factory(\App\Models\User::class)->create();
-        $this->action('GET', 'Admin\UserController@show', [$user->id]);
+        $file = factory(\App\Models\File::class)->create();
+        $this->action('GET', 'Admin\FileController@show', [$file->id]);
         $this->assertResponseOk();
     }
 
@@ -57,34 +57,34 @@ class UserControllerTest extends TestCase
     {
         $faker = \Faker\Factory::create();
 
-        $user = factory(\App\Models\User::class)->create();
+        $file = factory(\App\Models\File::class)->create();
 
         $testData = str_random(10);
-        $id       = $user->id;
+        $id       = $file->id;
 
-        $user->name = $testData;
+        $file->url = $testData;
 
-        $this->action('PUT', 'Admin\UserController@update', [$id], [
+        $this->action('PUT', 'Admin\FileController@update', [$id], [
                 '_token' => csrf_token(),
-            ] + $user->toArray());
+            ] + $file->toArray());
         $this->assertResponseStatus(302);
 
-        $newUser = \App\Models\User::find($id);
-        $this->assertEquals($testData, $newUser->name);
+        $newFile = \App\Models\File::find($id);
+        $this->assertEquals($testData, $newFile->url);
     }
 
     public function testDeleteModel()
     {
-        $user = factory(\App\Models\User::class)->create();
+        $file = factory(\App\Models\File::class)->create();
 
-        $id = $user->id;
+        $id = $file->id;
 
-        $this->action('DELETE', 'Admin\UserController@destroy', [$id], [
+        $this->action('DELETE', 'Admin\FileController@destroy', [$id], [
             '_token' => csrf_token(),
         ]);
         $this->assertResponseStatus(302);
 
-        $checkUser = \App\Models\User::find($id);
-        $this->assertNull($checkUser);
+        $checkFile = \App\Models\File::find($id);
+        $this->assertNull($checkFile);
     }
 }

@@ -33,6 +33,18 @@
                     <span>Users</span>
                 </a>
             </li>
+            <li @if( $menu=='files') class="active" @endif >
+                <a href="{!! action('Admin\FileController@index') !!}">
+                    <i class="far fa-file"></i>
+                    <span>Files</span>
+                </a>
+            </li>
+            <li @if( $menu=='admin-user-roles') class="active" @endif >
+                <a href="{!! action('Admin\AdminUserRoleController@index') !!}">
+                    <i class="far fa-file"></i>
+                    <span>AdminUserRoles</span>
+                </a>
+            </li>
         </ul>
     </section>
 </aside>

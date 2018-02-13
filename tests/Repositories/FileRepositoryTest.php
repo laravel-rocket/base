@@ -64,6 +64,8 @@ class FileRepositoryTest extends TestCase
         $repository = \App::make(\App\Repositories\FileRepositoryInterface::class);
         $this->assertNotNull($repository);
 
+        $fileData = factory(File::class)->make();
+
         $fileCheck = $repository->update($fileData, $fileData->toFillableArray());
         $this->assertNotNull($fileCheck);
     }

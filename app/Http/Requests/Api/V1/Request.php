@@ -2,8 +2,8 @@
 namespace App\Http\Requests\Api\V1;
 
 use App\Exceptions\APIErrorException;
-use Illuminate\Contracts\Validation\Validator;
 use App\Http\Requests\Request as BaseRequest;
+use Illuminate\Contracts\Validation\Validator;
 
 class Request extends BaseRequest
 {

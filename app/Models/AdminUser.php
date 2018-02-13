@@ -2,11 +2,17 @@
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 use LaravelRocket\Foundation\Models\AuthenticatableBase;
 
+/**
+ * App\Models\AdminUser.
+ *
+ * @method \App\Presenters\AdminUserPresenter present()
+ */
 class AdminUser extends AuthenticatableBase
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
 
     /**
      * The database table used by the model.
@@ -32,12 +38,10 @@ class AdminUser extends AuthenticatableBase
      *
      * @var array
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = [];
 
-    protected $dates = [];
+    protected $dates  = [
+    ];
 
     protected $presenter = \App\Presenters\AdminUserPresenter::class;
 
@@ -47,39 +51,10 @@ class AdminUser extends AuthenticatableBase
         return $this->belongsTo(\App\Models\File::class, 'profile_image_id', 'id');
     }
 
-    public function roles()
+    public function adminUserRoles()
     {
         return $this->hasMany(\App\Models\AdminUserRole::class, 'admin_user_id', 'id');
     }
 
     // Utility Functions
-
-    /**
-     * @param string $targetRole
-     * @param bool   $checkSubRoles
-     *
-     * @return bool
-     */
-    public function hasRole($targetRole, $checkSubRoles = true)
-    {
-        $roles = [];
-        foreach ($this->roles as $role) {
-            $roles[] = $role->role;
-        }
-        if (in_array($targetRole, $roles)) {
-            return true;
-        }
-        if (!$checkSubRoles) {
-            return false;
-        }
-        $roleConfigs = config('admin_user.roles', []);
-        foreach ($roles as $role) {
-            $subRoles = array_get($roleConfigs, "$role.sub_roles", []);
-            if (in_array($targetRole, $subRoles)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
 }

@@ -3,10 +3,17 @@ namespace App\Models;
 
 use LaravelRocket\Foundation\Models\Base;
 
+/**
+ * App\Models\AdminUserRole.
+ *
+ * @method \App\Presenters\AdminUserRolePresenter present()
+ */
 class AdminUserRole extends Base
 {
-    const ROLE_SUPER_USER = 'super_user';
-    const ROLE_SITE_ADMIN = 'site_admin';
+    const ROLE_SITE_ADMIN            = 'site_admin';
+    const ROLE_SUPER_USER            = 'super_user';
+    const ROLE_SUPER_USER_SITE_ADMIN = 'site_admin';
+
     /**
      * The database table used by the model.
      *
@@ -31,11 +38,16 @@ class AdminUserRole extends Base
      */
     protected $hidden = [];
 
-    protected $dates = [];
+    protected $dates  = [
+    ];
 
     protected $presenter = \App\Presenters\AdminUserRolePresenter::class;
 
     // Relations
+    public function adminUser()
+    {
+        return $this->belongsTo(\App\Models\AdminUser::class, 'admin_user_id', 'id');
+    }
 
     // Utility Functions
 }

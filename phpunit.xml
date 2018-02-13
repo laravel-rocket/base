@@ -25,7 +25,7 @@
         <env name="APP_ENV" value="testing"/>
         <env name="DB_CONNECTION" value="mysql"/>
         <env name="DB_HOST" value="localhost"/>
-        <env name="DB_DATABASE" value="laravel-rocket-test"/>
+        <env name="DB_DATABASE" value="laravel_rocket_test"/>
         <env name="DB_USERNAME" value="root"/>
         <env name="DB_PASSWORD" value=""/>
         <env name="CACHE_DRIVER" value="array"/>

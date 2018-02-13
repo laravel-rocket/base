@@ -1,26 +1,36 @@
 <?php
 namespace App\Presenters;
 
-use App\Models\File;
 use LaravelRocket\Foundation\Presenters\BasePresenter;
 
 /**
- * @property \App\Models\User $entity
+ * @property  \App\Models\User $entity
+ * @property  int $id
+ * @property  string $name
+ * @property  string $email
+ * @property  string $password
+ * @property  int $profile_image_id
+ * @property  string $remember_token
+ * @property  \Carbon\Carbon $created_at
+ * @property  \Carbon\Carbon $updated_at
  */
 class UserPresenter extends BasePresenter
 {
-    protected $multilingualFields = [];
+    protected $multilingualFields = [
+    ];
 
-    protected $imageFields = ['profile_image'];
+    protected $imageFields = [
+    'profile_image',
+    ];
 
     public function profileImage()
     {
-        $image = $this->entity->profileImage;
-        if (!$image) {
-            $image      = new File();
-            $image->url = \URLHelper::asset('img/user.png', 'common');
+        $model = $this->entity->profileImage;
+        if (!$model) {
+            $model      = new \App\Models\File();
+            $model->url = \URLHelper::asset('images/user.png', 'common');
         }
 
-        return $image;
+        return $model;
     }
 }

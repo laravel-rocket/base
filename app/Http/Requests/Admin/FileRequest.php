@@ -1,18 +1,18 @@
 <?php
 namespace App\Http\Requests\Admin;
 
-use App\Repositories\AdminUserRepositoryInterface;
+use App\Repositories\FileRepositoryInterface;
 use LaravelRocket\Foundation\Http\Requests\Request;
 
-class AdminUserRequest extends Request
+class FileRequest extends Request
 {
-    /** @var \App\Repositories\AdminUserRepositoryInterface */
-    protected $adminUserRepository;
+    /** @var \App\Repositories\FileRepositoryInterface */
+    protected $fileRepository;
 
-    public function __construct(AdminUserRepositoryInterface $adminUserRepository)
+    public function __construct(FileRepositoryInterface $fileRepository)
     {
         parent::__construct();
-        $this->adminUserRepository = $adminUserRepository;
+        $this->fileRepository = $fileRepository;
     }
 
     /**
@@ -32,11 +32,11 @@ class AdminUserRequest extends Request
      */
     public function rules()
     {
-        return $this->adminUserRepository->rules();
+        return $this->fileRepository->rules();
     }
 
     public function messages()
     {
-        return $this->adminUserRepository->messages();
+        return $this->fileRepository->messages();
     }
 }

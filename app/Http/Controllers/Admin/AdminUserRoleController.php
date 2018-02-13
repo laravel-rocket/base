@@ -3,20 +3,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
-use App\Http\Requests\Admin\UserRequest;
-use App\Models\User;
-use App\Repositories\UserRepositoryInterface;
+use App\Http\Requests\Admin\AdminUserRoleRequest;
+use App\Models\AdminUserRole;
+use App\Repositories\AdminUserRoleRepositoryInterface;
 use LaravelRocket\Foundation\Http\Requests\PaginationRequest;
 
-class UserController extends Controller
+class AdminUserRoleController extends Controller
 {
-    /** @var \App\Repositories\UserRepositoryInterface */
-    protected $userRepository;
+    /** @var \App\Repositories\AdminUserRoleRepositoryInterface */
+    protected $adminUserRoleRepository;
 
     public function __construct(
-        UserRepositoryInterface $userRepository
+        AdminUserRoleRepositoryInterface $adminUserRoleRepository
     ) {
-        $this->userRepository = $userRepository;
+        $this->adminUserRoleRepository = $adminUserRoleRepository;
     }
 
     /**
@@ -28,17 +28,17 @@ class UserController extends Controller
      */
     public function index(PaginationRequest $request)
     {
-        $offset = $request->offset();
-        $limit  = $request->limit();
-        $count  = $this->userRepository->count();
-        $users  = $this->userRepository->get('id', 'desc', $offset, $limit);
+        $offset         = $request->offset();
+        $limit          = $request->limit();
+        $count          = $this->adminUserRoleRepository->count();
+        $adminUserRoles = $this->adminUserRoleRepository->get('id', 'desc', $offset, $limit);
 
-        return view('pages.admin.users.index', [
-            'models'  => $users,
+        return view('pages.admin.admin-user-roles.index', [
+            'models'  => $adminUserRoles,
             'count'   => $count,
             'offset'  => $offset,
             'limit'   => $limit,
-            'baseUrl' => action('Admin\UserController@index'),
+            'baseUrl' => action('Admin\AdminUserRoleController@index'),
         ]);
     }
 
@@ -49,9 +49,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.users.edit', [
-            'isNew'     => true,
-            'user'      => $this->userRepository->getBlankModel(),
+        return view('pages.admin.admin-user-roles.edit', [
+            'isNew'         => true,
+            'adminUserRole' => $this->adminUserRoleRepository->getBlankModel(),
         ]);
     }
 
@@ -62,22 +62,20 @@ class UserController extends Controller
      *
      * @return \Response|\Illuminate\Http\RedirectResponse
      */
-    public function store(UserRequest $request)
+    public function store(AdminUserRoleRequest $request)
     {
         $input = $request->only([
-            'name',
-            'email',
-            'password',
-            'profile_image_id',
+            'admin_user_id',
+            'role',
         ]);
 
-        $user = $this->userRepository->create($input);
+        $adminUserRole = $this->adminUserRoleRepository->create($input);
 
-        if (empty($user)) {
+        if (empty($adminUserRole)) {
             return redirect()->back()->withErrors(trans('admin.errors.general.save_failed'));
         }
 
-        return redirect()->action('Admin\UserController@index')
+        return redirect()->action('Admin\AdminUserRoleController@index')
             ->with('message-success', trans('admin.messages.general.create_success'));
     }
 
@@ -90,14 +88,14 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = $this->userRepository->find($id);
-        if (empty($user)) {
+        $adminUserRole = $this->adminUserRoleRepository->find($id);
+        if (empty($adminUserRole)) {
             abort(404);
         }
 
-        return view('pages.admin.users.edit', [
-            'isNew' => false,
-            'user'  => $user,
+        return view('pages.admin.admin-user-roles.edit', [
+            'isNew'         => false,
+            'adminUserRole' => $adminUserRole,
         ]);
     }
 
@@ -110,7 +108,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return redirect()->action('Admin\UserController@show', [$id]);
+        return redirect()->action('Admin\AdminUserRoleController@show', [$id]);
     }
 
     /**
@@ -121,22 +119,20 @@ class UserController extends Controller
      *
      * @return \Response|\Illuminate\Http\RedirectResponse
      */
-    public function update($id, UserRequest $request)
+    public function update($id, AdminUserRoleRequest $request)
     {
-        $user = $this->userRepository->find($id);
-        if (empty($user)) {
+        $adminUserRole = $this->adminUserRoleRepository->find($id);
+        if (empty($adminUserRole)) {
             abort(404);
         }
 
         $input = $request->only([
-            'name',
-            'email',
-            'password',
-            'profile_image_id',
+            'admin_user_id',
+            'role',
         ]);
-        $this->userRepository->update($user, $input);
+        $this->adminUserRoleRepository->update($adminUserRole, $input);
 
-        return redirect()->action('Admin\UserController@show', [$id])
+        return redirect()->action('Admin\AdminUserRoleController@show', [$id])
             ->with('message-success', trans('admin.messages.general.update_success'));
     }
 
@@ -149,13 +145,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = $this->userRepository->find($id);
-        if (empty($user)) {
+        $adminUserRole = $this->adminUserRoleRepository->find($id);
+        if (empty($adminUserRole)) {
             abort(404);
         }
-        $this->userRepository->delete($user);
+        $this->adminUserRoleRepository->delete($adminUserRole);
 
-        return redirect()->action('Admin\UserController@index')
+        return redirect()->action('Admin\AdminUserRoleController@index')
             ->with('message-success', trans('admin.messages.general.delete_success'));
     }
 }

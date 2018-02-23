@@ -3,7 +3,7 @@ namespace Tests\Services;
 
 use Tests\TestCase;
 
-class APIUserInterfaceServiceTest extends TestCase
+class APIUserServiceTest extends TestCase
 {
     public function testGetInstance()
     {

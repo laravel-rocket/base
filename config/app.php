@@ -1,7 +1,7 @@
 <?php
 
 $additionalProviders = [];
-if (env('APP_ENV') === 'local') {
+if(env('APP_ENV') === 'local') {
     $additionalProviders += [
         \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         \Barryvdh\Debugbar\ServiceProvider::class,
@@ -246,6 +246,7 @@ return [
         'View'         => Illuminate\Support\Facades\View::class,
 
         'DateTimeHelper'   => LaravelRocket\Foundation\Facades\DateTimeHelper::class,
+        'DataHelper'       => LaravelRocket\Foundation\Facades\DataHelper::class,
         'LocaleHelper'     => LaravelRocket\Foundation\Facades\LocaleHelper::class,
         'URLHelper'        => LaravelRocket\Foundation\Facades\URLHelper::class,
         'CollectionHelper' => LaravelRocket\Foundation\Facades\CollectionHelper::class,
@@ -253,7 +254,7 @@ return [
         'PaginationHelper' => LaravelRocket\Foundation\Facades\PaginationHelper::class,
         'TypeHelper'       => LaravelRocket\Foundation\Facades\TypeHelper::class,
         'RedirectHelper'   => LaravelRocket\Foundation\Facades\RedirectHelper::class,
-
+        'CountryHelper'    => LaravelRocket\Foundation\Facades\CountryHelper::class,
     ],
 
 ];

@@ -9,6 +9,7 @@
 <script src="{!! \URLHelper::asset('libs/bootstrap-fileinput/js/fileinput.min.js', 'admin') !!}"></script>
 <script src="{!! \URLHelper::asset('libs/bootstrap-fileinput/js/locales/' . \LocaleHelper::getLocale() . '.js', 'admin') !!}"></script>
 <script src="{!! \URLHelper::asset('libs/select2/js/select2.js', 'admin') !!}"></script>
+<script src="{!! \URLHelper::asset('libs/bootstrap-datepicker/js/bootstrap-datepciker.min.js', 'admin') !!}"></script>
 <script src="{!! \URLHelper::asset('libs/adminlte/js/app.min.js', 'admin') !!}"></script>
 <script type="text/javascript">
     var Boilerplate = {

@@ -35,6 +35,7 @@ return [
             'buttons' => [
                 'create'          => 'Create New',
                 'edit'            => 'Edit',
+                'show'            => 'Show',
                 'save'            => 'Save',
                 'delete'          => 'Delete',
                 'cancel'          => 'Cancel',

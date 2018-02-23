@@ -1,6 +1,11 @@
 {
   "config": {
-      
+
+  },
+  "auth": {
+    "socials": [
+      "facebook"
+    ]
   },
   "tables": {
     "admin_users": {

@@ -2,7 +2,6 @@
 namespace App\Http\Requests\Admin;
 
 use App\Repositories\FileRepositoryInterface;
-use LaravelRocket\Foundation\Http\Requests\Request;
 
 class FileRequest extends Request
 {

@@ -2,7 +2,6 @@
 namespace App\Http\Requests\Admin;
 
 use App\Repositories\UserRepositoryInterface;
-use LaravelRocket\Foundation\Http\Requests\Request;
 
 class UserRequest extends Request
 {

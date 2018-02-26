@@ -21,7 +21,7 @@ class User extends Response
             $modelArray = [
                 'id'           => $model->id,
                 'name'         => $model->name,
-                'profileImage' => empty($model->profileImage) ? null : new Image($model->profileImage),
+                'profileImage' => empty($model->profileImage) ? null : Image::updateWithModel($model->profileImage),
             ];
             $response = new static($modelArray, 200);
         }

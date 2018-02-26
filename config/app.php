@@ -255,6 +255,7 @@ return [
         'TypeHelper'       => LaravelRocket\Foundation\Facades\TypeHelper::class,
         'RedirectHelper'   => LaravelRocket\Foundation\Facades\RedirectHelper::class,
         'CountryHelper'    => LaravelRocket\Foundation\Facades\CountryHelper::class,
+        'FileHelper'       => LaravelRocket\Foundation\Facades\FileHelper::class,
     ],
 
 ];

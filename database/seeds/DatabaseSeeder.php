@@ -4,6 +4,18 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+    /** @var array $seeders */
+    protected $seeders = [
+        'AdminUserSeeder',
+    ];
+
+    protected $environments = [
+        'testing'     => [],
+        'local'       => [],
+        'development' => [],
+        'production'  => [],
+    ];
+
     /**
      * Run the database seeds.
      *
@@ -11,9 +23,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call('AdminUserSeeder');
-        if (app()->environment() === 'testing') {
-            // Add More Seed For Testing
+        foreach ($this->seeders as $seeder) {
+            $this->call($seeder);
+        }
+        foreach ($this->environments as $environment => $seeders) {
+            if (app()->environment() === $environment) {
+                foreach ($seeders as $seeder) {
+                    $this->call($seeder);
+                }
+            }
         }
     }
 }

@@ -67,6 +67,27 @@
         }
       }
 
+    },
+    "admin_user_notifications": {
+      "columns": {
+        "type": {
+          "type": "type",
+          "options": [
+            {
+              "name": "Information",
+              "value": "information"
+            },
+            {
+              "name": "Warning",
+              "value": "warning"
+            },
+            {
+              "name": "Alert",
+              "value": "alert"
+            }
+          ]
+        }
+      }
     }
   }
 }

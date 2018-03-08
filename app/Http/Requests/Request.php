@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Requests;
 
-use LaravelRocket\Foundation\Http\Requests\APIRequest as BaseRequest;
+use LaravelRocket\Foundation\Http\Requests\Request as BaseRequest;
 
 class Request extends BaseRequest
 {

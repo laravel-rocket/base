@@ -40,6 +40,8 @@ class Handler extends ExceptionHandler
      * @param \Exception $exception
      *
      * @return void
+     *
+     * @throws \Exception
      */
     public function report(Exception $exception)
     {
@@ -51,7 +53,6 @@ class Handler extends ExceptionHandler
                         $slackService = \App::make(SlackServiceInterface::class);
                         $slackService->exception($exception);
                     } catch (\Throwable $t) {
-                    } catch (\Exception $e) {
                     }
                 }
             }

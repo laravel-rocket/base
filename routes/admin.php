@@ -2,8 +2,8 @@
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::group(['middleware' => ['admin.guest']], function () {
-        Route::get('signin', 'Admin\AuthController@getSignIn')->name('signIn.get');
-        Route::post('signin', 'Admin\AuthController@postSignIn')->name('signIn.post');
+        Route::get('sign-in', 'Admin\AuthController@getSignIn')->name('signIn.get');
+        Route::post('sign-in', 'Admin\AuthController@postSignIn')->name('signIn.post');
         Route::get('forgot-password', 'Admin\PasswordController@getForgotPassword')->name('forgetPassword.get');
         Route::post('forgot-password', 'Admin\PasswordController@postForgotPassword')->name('forgetPassword.post');
         Route::get('reset-password/{token}', 'Admin\PasswordController@getResetPassword')->name('resetPassword.get');
@@ -11,14 +11,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     });
 
     Route::group(['middleware' => ['admin.auth']], function () {
-        Route::get('/', 'Admin\IndexController@index')->name('index');
-        Route::post('signout', 'Admin\AuthController@postSignOut')->name('signOut');
-        Route::get('/me', 'Admin\MeController@index')->name('me.get');
-        Route::put('/me', 'Admin\MeController@update')->name('me.put');
-        Route::resource('users', 'Admin\UserController');
-        Route::resource('admin-users', 'Admin\AdminUserController');
-        /* NEW ADMIN RESOURCE ROUTE */
-        Route::resource('files', 'Admin\FileController');
-        Route::resource('admin-user-roles', 'Admin\AdminUserRoleController');
+        Route::post('sign-out', 'Admin\AuthController@postSignOut')->name('signOut');
+        Route::get('/{any?}', 'Admin\IndexController@index')->name('index')->where('any', '.*');
     });
 });

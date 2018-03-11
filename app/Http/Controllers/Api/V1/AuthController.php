@@ -3,9 +3,9 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Exceptions\Api\V1\APIErrorException;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\V1\PsrServerRequest;
 use App\Http\Requests\Api\V1\Auth\SignInRequest;
 use App\Http\Requests\Api\V1\Auth\SignUpRequest;
+use App\Http\Requests\Api\V1\PsrServerRequest;
 use App\Http\Responses\Api\V1\AccessToken;
 use App\Http\Responses\Api\V1\Status;
 use App\Services\UserServiceInterface;
@@ -33,6 +33,7 @@ class AuthController extends Controller
      * @param \App\Http\Requests\Api\V1\Auth\SignUpRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \App\Exceptions\Api\V1\APIErrorException
      * @throws \League\OAuth2\Server\Exception\OAuthServerException
      */
@@ -68,6 +69,7 @@ class AuthController extends Controller
      * @param \App\Http\Requests\Api\V1\Auth\SignInRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \App\Exceptions\Api\V1\APIErrorException
      * @throws \League\OAuth2\Server\Exception\OAuthServerException
      */

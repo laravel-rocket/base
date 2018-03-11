@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Responses\Api\Admin;
 
 class Information extends Response
@@ -12,14 +11,14 @@ class Information extends Response
 
     /**
      * @param \App\Models\AdminUser $authUser
-     * @param array $notifications
+     * @param array                 $notifications
      *
      * @return static
      */
     public static function updateWithData($authUser, $notifications)
     {
         $response = new static([], 400);
-        if(!empty($authUser)) {
+        if (!empty($authUser)) {
             $modelArray = [
                 'authUser'          => AdminUser::updateWithModel($authUser),
                 'notifications'     => $notifications,

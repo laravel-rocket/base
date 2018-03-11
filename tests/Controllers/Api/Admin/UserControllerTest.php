@@ -1,56 +1,43 @@
-<?php
-namespace Tests\Controllers\Admin;
+<?PHP
+
+namespace Tests\Controllers\Api\Admin;
 
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase
 {
+
     protected $useDatabase = true;
 
     public function testGetInstance()
     {
-        /** @var \App\Http\Controllers\Admin\UserController $controller */
-        $controller = \App::make(\App\Http\Controllers\Admin\UserController::class);
+        /** @var    \App\Http\Controllers\Api\Admin\UserController $controller */
+        $controller = \App::make(\App\Http\Controllers\Api\Admin\UserController::class);
         $this->assertNotNull($controller);
     }
 
     public function setUp()
     {
         parent::setUp();
-        $authUser     = factory(\App\Models\AdminUser::class)->create();
+        $authUser = factory(\App\Models\AdminUser::class)->create();
         $authUserRole = factory(\App\Models\AdminUserRole::class)->create([
             'admin_user_id' => $authUser->id,
-            'role'          => \App\Models\AdminUserRole::ROLE_SUPER_USER,
+            'role' => \App\Models\AdminUserRole::ROLE_SUPER_USER,
         ]);
         $this->be($authUser, 'admins');
     }
 
     public function testGetList()
     {
-        $response = $this->action('GET', 'Admin\UserController@index');
-        $this->assertResponseOk();
-    }
-
-    public function testCreateModel()
-    {
-        $this->action('GET', 'Admin\UserController@create');
+        $response = $this->action('GET', 'Api\Admin\UserController@index');
         $this->assertResponseOk();
     }
 
     public function testStoreModel()
     {
         $user = factory(\App\Models\User::class)->make();
-        $this->action('POST', 'Admin\UserController@store', [
-                '_token' => csrf_token(),
-            ] + $user->toArray());
+        $this->action('POST', 'Api\Admin\UserController@store', $user->toArray());
         $this->assertResponseStatus(302);
-    }
-
-    public function testEditModel()
-    {
-        $user = factory(\App\Models\User::class)->create();
-        $this->action('GET', 'Admin\UserController@show', [$user->id]);
-        $this->assertResponseOk();
     }
 
     public function testUpdateModel()
@@ -60,13 +47,11 @@ class UserControllerTest extends TestCase
         $user = factory(\App\Models\User::class)->create();
 
         $testData = str_random(10);
-        $id       = $user->id;
+        $id = $user->id;
 
         $user->name = $testData;
 
-        $this->action('PUT', 'Admin\UserController@update', [$id], [
-                '_token' => csrf_token(),
-            ] + $user->toArray());
+        $this->action('PUT', 'Api\Admin\UserController@update', [$id], $user->toArray());
         $this->assertResponseStatus(302);
 
         $newUser = \App\Models\User::find($id);
@@ -79,12 +64,11 @@ class UserControllerTest extends TestCase
 
         $id = $user->id;
 
-        $this->action('DELETE', 'Admin\UserController@destroy', [$id], [
-            '_token' => csrf_token(),
-        ]);
+        $this->action('DELETE', 'Api\Admin\UserController@destroy', [$id]);
         $this->assertResponseStatus(302);
 
         $checkUser = \App\Models\User::find($id);
         $this->assertNull($checkUser);
     }
+
 }

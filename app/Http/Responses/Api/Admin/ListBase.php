@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Responses\Api\Admin;
 
 class ListBase extends Response
@@ -20,16 +19,16 @@ class ListBase extends Response
 
     /**
      * @param array $models
-     * @param int $offset
-     * @param int $limit
-     * @param int $count
+     * @param int   $offset
+     * @param int   $limit
+     * @param int   $count
      *
      * @return static
      */
     public static function updateListWithModel($models, $offset = 0, $limit = 10, $count = 0)
     {
         $items = [];
-        foreach($models as $model) {
+        foreach ($models as $model) {
             $items[] = (static::$itemsResponseModel)::updateWithModel($model)->toArray();
         }
         $response = new static([

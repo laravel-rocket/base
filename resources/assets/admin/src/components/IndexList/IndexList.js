@@ -11,8 +11,7 @@ class IndexList extends React.Component {
   constructor() {
     super();
     this.handlePaginationClick = this.handlePaginationClick.bind(this);
-    this.state = {
-    }
+    this.state = {}
   }
 
   handlePaginationClick(page) {
@@ -23,7 +22,58 @@ class IndexList extends React.Component {
   }
 
   buildHeader() {
+    const headers = [];
+    const {
+      columns,
+      columnInfo,
+    } = this.props;
+    for (
+      let i = 0;
+      i < columns.length;
+      i++
+    ) {
+      const headerText = "" + columnInfo[columns[i]]['name'];
+      headers.push(<th key={'header-' + columns[i]}>{headerText}</th>);
+    }
+    headers.push(<th key={'header-buttons'}>&nbsp;</th>);
+    return headers;
+  }
 
+  buildRowItemContent(item, key, id) {
+    const {
+      columns,
+      columnInfo,
+    } = this.props;
+    switch(columnInfo[key]['type']) {
+      case 'image':
+        return (<img key={'image-' + id + '-' + key} src={item.url} className={'img-thumbnails'} width={50} height={50}/>);
+    }
+
+    return item;
+  }
+
+  buildRowItem(row) {
+    const rowItems = [];
+    const {
+      columns,
+      columnInfo,
+    } = this.props;
+    for (
+      let i = 0;
+      i < columns.length;
+      i++
+    ) {
+      const rowData = this.buildRowItemContent(row[columns[i]], columns[i], row['id']);
+      rowItems.push(<td key={'data-' + row['id'] + '-' + columns[i]}>{rowData}</td>);
+    }
+    rowItems.push(
+      <td key={'data-' + row['id'] + '-buttons'}>
+        <Button size="sm" color="primary"><i className="fa fa-folder"></i> Show</Button>
+        <Button size="sm" color="info"><i className="fa fa-pencil"></i> Edit</Button>
+        <Button size="sm" color="danger"><i className="fa fa-trash-o"></i> Delete</Button>
+      </td>
+    );
+    return rowItems;
   }
 
   buildRows() {
@@ -37,15 +87,10 @@ class IndexList extends React.Component {
       i < list.items.length;
       i++
     ) {
+      const rowItem = this.buildRowItem(list.items[i]);
       rows.push(
         <tr key={list.items[i].id}>
-          <td>{list.items[i].id}</td>
-          <td>{list.items[i].name}</td>
-          <td>
-            <Button size="sm" color="primary"><i className="fa fa-folder"></i> Show</Button>
-            <Button size="sm" color="info"><i className="fa fa-pencil"></i> Edit</Button>
-            <Button size="sm" color="danger"><i className="fa fa-trash-o"></i> Delete</Button>
-          </td>
+          {rowItem}
         </tr>
       );
     }
@@ -54,6 +99,7 @@ class IndexList extends React.Component {
   }
 
   render() {
+    const header = this.buildHeader();
     const rows = this.buildRows();
     const {
       list,
@@ -64,9 +110,7 @@ class IndexList extends React.Component {
         <Table responsive>
           <thead>
           <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>&nbsp;</th>
+            {header}
           </tr>
           </thead>
           <tbody>
@@ -81,14 +125,14 @@ class IndexList extends React.Component {
 
 IndexList.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.string),
-  columnNames: PropTypes.object,
+  columnInfo: PropTypes.object,
   list: PropTypes.object,
   getIndexList: PropTypes.func.isRequired,
 };
 
 IndexList.defaultProps = {
   columns: ['id'],
-  columnNames: {id: 'ID'},
+  columnInfo: {id: {name: 'ID', type: "integer", editable: false}},
   list: {
     count: 0,
     offset: 0,

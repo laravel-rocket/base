@@ -21,7 +21,6 @@ class IndexController extends Controller
     {
         $authUser = $this->adminUserService->getUser();
 
-
         return Status::ok()->response();
     }
 
@@ -30,6 +29,6 @@ class IndexController extends Controller
         /** @var \App\Models\AdminUser $authUser */
         $authUser = $this->adminUserService->getUser();
 
-        return Information::updateWithData($authUser,[])->response();
+        return Information::updateWithData($authUser, [])->response();
     }
 }

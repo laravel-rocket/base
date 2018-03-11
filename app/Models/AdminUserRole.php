@@ -7,6 +7,20 @@ use LaravelRocket\Foundation\Models\Base;
  * App\Models\AdminUserRole.
  *
  * @method \App\Presenters\AdminUserRolePresenter present()
+ *
+ * @property int $id
+ * @property int $admin_user_id
+ * @property string $role
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \App\Models\AdminUser $adminUser
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AdminUserRole whereAdminUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AdminUserRole whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AdminUserRole whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AdminUserRole whereRole($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AdminUserRole whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class AdminUserRole extends Base
 {

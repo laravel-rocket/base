@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Responses\Api\Admin;
 
 class AdminUserRole extends Response
@@ -17,7 +16,7 @@ class AdminUserRole extends Response
     public static function updateWithModel($model)
     {
         $response = new static([], 400);
-        if(!empty($model)) {
+        if (!empty($model)) {
             $modelArray = [
                 'name'         => $model->present()->role,
                 'role'         => $model->role,

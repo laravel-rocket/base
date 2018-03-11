@@ -46,3 +46,5 @@ public/static/swagger-ui
 /documents/db/*
 /documents/db.mwb.bak
 
+flow-typed
+yarn-error.log

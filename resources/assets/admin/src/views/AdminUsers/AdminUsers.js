@@ -10,6 +10,7 @@ import {
 } from "reactstrap";
 import AdminUserRepository from "../../repositories/AdminUserRepository";
 import IndexList from "../../components/IndexList/IndexList";
+import columns from './_columns'
 
 class AdminUsers extends Component {
 
@@ -64,7 +65,7 @@ class AdminUsers extends Component {
                 <i className="fa fa-align-justify"></i> Admin Users
               </CardHeader>
               <CardBlock className="card-body">
-                <IndexList list={this.state.params.list} stategetIndexList={this.getIndexList}/>
+                <IndexList columns={columns.list} columnInfo={columns.columns} list={this.state.params.list} stategetIndexList={this.getIndexList}/>
               </CardBlock>
             </Card>
           </Col>

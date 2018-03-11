@@ -8,6 +8,7 @@ class AdminUser extends Response
         'id'           => '',
         'name'         => '',
         'profileImage' => null,
+        'email'        => '',
         'roles'        => [],
     ];
 
@@ -29,6 +30,7 @@ class AdminUser extends Response
                 'id'           => $model->id,
                 'name'         => $model->name,
                 'profileImage' => Image::updateWithModel($model->present()->profileImage),
+                'email'        => $model->email,
                 'roles'        => $roles,
             ];
             $response   = new static($modelArray, 200);

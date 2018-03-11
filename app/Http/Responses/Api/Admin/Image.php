@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Responses\Api\Admin;
 
 class Image extends Response
@@ -18,9 +17,9 @@ class Image extends Response
     public static function updateWithModel($model)
     {
         $response = new static([], 400);
-        if(!empty($model)) {
+        if (!empty($model)) {
             $modelArray = [
-                'id'  => $model->id,
+                'id'  => $model->id ?: 0,
                 'url' => $model->url,
 
             ];

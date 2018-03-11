@@ -14,7 +14,7 @@
     "laravel/tinker": "~1.0",
     "aws/aws-sdk-php": "~3.24",
     "laravel-rocket/foundation": "~2.2",
-    "laravel-rocket/generator": "~2.2",
+    "laravel-rocket/generator": "dev-master as 2.2.2",
     "laravel-rocket/service-auth": "~2.2",
     "laravel/socialite": "~3.0",
     "laravelcollective/html": "5.5.*",

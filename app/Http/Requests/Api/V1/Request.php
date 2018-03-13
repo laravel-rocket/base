@@ -1,12 +1,17 @@
 <?php
 namespace App\Http\Requests\Api\V1;
 
-use App\Exceptions\APIErrorException;
+use App\Exceptions\Api\V1\APIErrorException;
 use App\Http\Requests\Request as BaseRequest;
 use Illuminate\Contracts\Validation\Validator;
 
 class Request extends BaseRequest
 {
+    /**
+     * @param \Illuminate\Contracts\Validation\Validator $validator
+     *
+     * @throws \App\Exceptions\Api\V1\APIErrorException
+     */
     protected function failedValidation(Validator $validator)
     {
         $transformed = [];

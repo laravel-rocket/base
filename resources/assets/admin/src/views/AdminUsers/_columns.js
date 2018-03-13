@@ -39,7 +39,6 @@ export default {
     "email",
   ],
   "edit": [
-    "id",
     "profileImage",
     "name",
     "email",

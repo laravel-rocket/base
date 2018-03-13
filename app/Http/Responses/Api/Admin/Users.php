@@ -1,5 +1,4 @@
-<?PHP
-
+<?php
 namespace App\Http\Responses\Api\Admin;
 
 class Users extends ListBase

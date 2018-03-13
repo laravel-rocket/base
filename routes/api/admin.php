@@ -9,6 +9,7 @@ Route::group(['prefix' => 'api', 'as' => 'api.', 'namespace' => 'Api'], function
             ]);
             Route::resource('users', 'UserController')->only([
                 'index', 'show', 'store', 'update', 'destroy',
-            ]);        });
+            ]);
+        });
     });
 });

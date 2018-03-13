@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Responses\Api\Admin;
 
 class AdminUser extends Response
@@ -20,12 +19,12 @@ class AdminUser extends Response
     public static function updateWithModel($model)
     {
         $roles = [];
-        foreach($model->adminUserRoles as $role) {
+        foreach ($model->adminUserRoles as $role) {
             $roles[] = AdminUserRole::updateWithModel($role)->toArray();
         }
 
         $response = new static([], 400);
-        if(!empty($model)) {
+        if (!empty($model)) {
             $modelArray = [
                 'id'           => $model->id,
                 'name'         => $model->name,

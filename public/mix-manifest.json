@@ -1,4 +1,6 @@
 {
-    "/static/admin/js/index.js": "/static/admin/js/index.js?id=8e3624fb7016668ad314",
-    "/static/admin/css/style.css": "/static/admin/css/style.css?id=dab4a77ed1fe60040fb6"
+    "/static/admin/js/app.js": "/static/admin/js/app.js?id=eceeeeee80a14268c329",
+    "/static/admin/css/app.css": "/static/admin/css/app.css?id=dab4a77ed1fe60040fb6",
+    "/static/user/css/app.css": "/static/user/css/app.css?id=09eb6de5d23aa04365d3",
+    "/static/user/js/app.js": "/static/user/js/app.js?id=00bd75f50ac884fdad4e"
 }

@@ -6,9 +6,18 @@ import {
   PaginationItem,
   PaginationLink
 } from "reactstrap";
-import BaseRepository from "../../repositories/BaseRepository";
 
 class Pagination extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.handleOnClick = this.handleOnClick.bind(this);
+  }
+
+  handleOnClick(page, e) {
+    e.preventDefault();
+    this.props.onChange(page);
+  }
 
   isFirstPageVisible(has_previous_page) {
     const {hideDisabled, hideNavigation, hideFirstLastPages} = this.props;
@@ -41,7 +50,7 @@ class Pagination extends React.Component {
       firstPageText,
       lastPageText,
       totalItemsCount,
-      onChange,
+      handleOnClick,
       itemClass,
       getPageUrl
     } = this.props;
@@ -61,7 +70,7 @@ class Pagination extends React.Component {
           active={i === activePage}
           className={itemClass}
           key={i}
-          onClick={onChange}
+          onClick={(e) => { this.handleOnClick(i, e) }}
         >
           <PaginationLink href={getPageUrl(i)}>
             {i + ""}
@@ -75,7 +84,7 @@ class Pagination extends React.Component {
       <PaginationItem
         className={itemClass}
         key={"prev" + paginationInfo.previous_page}
-        onClick={onChange}
+        onClick={(e) => { this.handleOnClick(paginationInfo.previous_page, e) }}
         disabled={!paginationInfo.has_previous_page}
       >
         <PaginationLink href={getPageUrl(paginationInfo.previous_page)}>
@@ -89,7 +98,7 @@ class Pagination extends React.Component {
       <PaginationItem
         className={itemClass}
         key={"first"}
-        onClick={onChange}
+        onClick={(e) => { this.handleOnClick(1, e) }}
         disabled={!paginationInfo.has_previous_page}
       >
         <PaginationLink href={getPageUrl(1)}>
@@ -103,7 +112,7 @@ class Pagination extends React.Component {
       <PaginationItem
         className={itemClass}
         key={"next" + paginationInfo.next_page}
-        onClick={onChange}
+        onClick={(e) => { this.handleOnClick(paginationInfo.next_page, e) }}
         disabled={!paginationInfo.has_next_page}
       >
         <PaginationLink href={getPageUrl(paginationInfo.next_page)}>
@@ -117,7 +126,7 @@ class Pagination extends React.Component {
       <PaginationItem
         className={itemClass}
         key={"last"}
-        onClick={onChange}
+        onClick={(e) => { this.handleOnClick(paginationInfo.total_pages, e) }}
         disabled={paginationInfo.current_page === paginationInfo.total_pages}
       >
         <PaginationLink href={getPageUrl(paginationInfo.total_pages)}>

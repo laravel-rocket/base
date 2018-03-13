@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Responses\Api\Admin;
 
 use App\Http\Responses\Response as ResponseBase;
@@ -28,7 +27,7 @@ class Response extends ResponseBase
     public static function updateWithModels($models)
     {
         $response = [];
-        foreach($models as $model) {
+        foreach ($models as $model) {
             $response[] = static::updateWithModel($model);
         }
 
@@ -37,7 +36,7 @@ class Response extends ResponseBase
 
     protected static function date($date)
     {
-        if($date instanceof \DateTime) {
+        if ($date instanceof \DateTime) {
             return $date->format('Y-m-d');
         }
 
@@ -46,7 +45,7 @@ class Response extends ResponseBase
 
     protected static function dateTime($dateTime)
     {
-        if($dateTime instanceof \DateTime) {
+        if ($dateTime instanceof \DateTime) {
             return $dateTime->format('U');
         }
 

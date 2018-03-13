@@ -37,7 +37,7 @@ class UserControllerTest extends TestCase
     {
         $user = factory(\App\Models\User::class)->make();
         $this->action('POST', 'Api\Admin\UserController@store', $user->toArray());
-        $this->assertResponseStatus(302);
+        $this->assertResponseStatus(201);
     }
 
     public function testUpdateModel()
@@ -52,7 +52,7 @@ class UserControllerTest extends TestCase
         $user->name = $testData;
 
         $this->action('PUT', 'Api\Admin\UserController@update', [$id], $user->toArray());
-        $this->assertResponseStatus(302);
+        $this->assertResponseStatus(200);
 
         $newUser = \App\Models\User::find($id);
         $this->assertEquals($testData, $newUser->name);
@@ -65,7 +65,7 @@ class UserControllerTest extends TestCase
         $id = $user->id;
 
         $this->action('DELETE', 'Api\Admin\UserController@destroy', [$id]);
-        $this->assertResponseStatus(302);
+        $this->assertResponseStatus(200);
 
         $checkUser = \App\Models\User::find($id);
         $this->assertNull($checkUser);

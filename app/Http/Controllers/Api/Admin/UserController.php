@@ -1,5 +1,4 @@
-<?PHP
-
+<?php
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Exceptions\Api\Admin\APIErrorException;
@@ -8,22 +7,22 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Admin\User\IndexRequest;
 use App\Http\Requests\Api\Admin\User\StoreRequest;
 use App\Http\Requests\Api\Admin\User\UpdateRequest;
+use App\Http\Responses\Api\Admin\Status;
 use App\Http\Responses\Api\Admin\User;
 use App\Http\Responses\Api\Admin\Users;
-use App\Http\Responses\Api\Admin\Status;
 use App\Repositories\UserRepositoryInterface;
 use App\Services\AdminUserServiceInterface;
 use App\Services\FileServiceInterface;
 
 class UserController extends Controller
 {
-    /** @var  \App\Repositories\UserRepositoryInterface */
+    /** @var \App\Repositories\UserRepositoryInterface */
     protected $userRepository;
 
-    /** @var  \App\Services\AdminUserServiceInterface $adminUserServicee */
+    /** @var \App\Services\AdminUserServiceInterface $adminUserServicee */
     protected $adminUserService;
 
-    /** @var  \App\Services\FileServiceInterface $fileService */
+    /** @var \App\Services\FileServiceInterface $fileService */
     protected $fileService;
 
     public function __construct(
@@ -31,7 +30,7 @@ class UserController extends Controller
         FileServiceInterface $fileService,
         AdminUserServiceInterface $adminUserService
     ) {
-        $this->userRepository = $userRepository;
+        $this->userRepository      = $userRepository;
         $this->adminUserService    = $adminUserService;
         $this->fileService         = $fileService;
     }
@@ -39,9 +38,9 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  IndexRequest $request
+     * @param IndexRequest $request
      *
-     * @return  \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(IndexRequest $request)
     {
@@ -57,7 +56,7 @@ class UserController extends Controller
         }
 
         $count      = $this->userRepository->count();
-        $users = $this->userRepository->getByFilter($filter, $order, $direction, $offset, $limit);
+        $users      = $this->userRepository->getByFilter($filter, $order, $direction, $offset, $limit);
 
         return Users::updateListWithModel($users, $offset, $limit, $count)->response();
     }
@@ -65,11 +64,11 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param    StoreRequest $request
+     * @param StoreRequest $request
      *
-     * @throws  APIErrorException
+     * @throws APIErrorException
      *
-     * @return  \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(StoreRequest $request)
     {
@@ -80,9 +79,9 @@ class UserController extends Controller
         ]);
 
         if ($request->hasFile('profile_image')) {
-            $file      = $request->file('profile_image');
-            $mediaType = $file->getClientMimeType();
-            $path      = $file->getPathname();
+            $file          = $request->file('profile_image');
+            $mediaType     = $file->getClientMimeType();
+            $path          = $file->getPathname();
             $fileModel     = $this->fileService->upload('default-image', $path, $mediaType, []);
             if (!empty($fileModel)) {
                 $input['profile_image_id'] = $fileModel->id;
@@ -95,17 +94,17 @@ class UserController extends Controller
             throw new APIErrorException('unknown', 'User Creation Failed');
         }
 
-        return User::updateWithModel($user)->response();
+        return User::updateWithModel($user)->withStatus(201)->response();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
-     * @throws  APIErrorException
+     * @throws APIErrorException
      *
-     * @return  \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
@@ -118,12 +117,12 @@ class UserController extends Controller
     }
 
     /**
-     * @param  int                                                   $id
-     * @param  UpdateRequest $request
+     * @param int           $id
+     * @param UpdateRequest $request
      *
-     * @return  \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      *
-     * @throws  \App\Exceptions\Api\Admin\APIErrorException
+     * @throws \App\Exceptions\Api\Admin\APIErrorException
      */
     public function update($id, UpdateRequest $request)
     {
@@ -138,11 +137,10 @@ class UserController extends Controller
         'password',
         ]);
 
-
         if ($request->hasFile('profile_image')) {
-            $file      = $request->file('profile_image');
-            $mediaType = $file->getClientMimeType();
-            $path      = $file->getPathname();
+            $file          = $request->file('profile_image');
+            $mediaType     = $file->getClientMimeType();
+            $path          = $file->getPathname();
             $fileModel     = $this->fileService->upload('default-image', $path, $mediaType, []);
             if (!empty($fileModel)) {
                 if (!empty($user->profileImage)) {
@@ -158,11 +156,11 @@ class UserController extends Controller
     }
 
     /**
-     * @param  int $id
+     * @param int $id
      *
-     * @return  \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      *
-     * @throws  \App\Exceptions\Api\Admin\APIErrorException
+     * @throws \App\Exceptions\Api\Admin\APIErrorException
      */
     public function destroy($id)
     {

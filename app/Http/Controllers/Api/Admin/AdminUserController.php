@@ -5,8 +5,8 @@ use App\Exceptions\Api\Admin\APIErrorException;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\Admin\AdminUserRequest;
-use App\Http\Requests\Api\Admin\AdminUsers\IndexRequest;
-use App\Http\Requests\Api\Admin\AdminUsers\UpdateRequest;
+use App\Http\Requests\Api\Admin\AdminUser\IndexRequest;
+use App\Http\Requests\Api\Admin\AdminUser\UpdateRequest;
 use App\Http\Responses\Api\Admin\AdminUser;
 use App\Http\Responses\Api\Admin\AdminUsers;
 use App\Http\Responses\Api\Admin\Status;
@@ -118,8 +118,8 @@ class AdminUserController extends Controller
     }
 
     /**
-     * @param int                                                   $id
-     * @param \App\Http\Requests\Api\Admin\AdminUsers\UpdateRequest $request
+     * @param int                                                  $id
+     * @param \App\Http\Requests\Api\Admin\AdminUser\UpdateRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
      *

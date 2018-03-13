@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import {
   Table,
   Button,
+  Card,
+  CardHeader,
+  CardBlock,
 } from "reactstrap";
 import Pagination from "../Pagination/Pagination";
 
@@ -18,7 +21,7 @@ class IndexList extends React.Component {
     const {
       getIndexList,
     } = this.props;
-    getIndexList()
+    getIndexList(page);
   }
 
   buildHeader() {
@@ -44,9 +47,10 @@ class IndexList extends React.Component {
       columns,
       columnInfo,
     } = this.props;
-    switch(columnInfo[key]['type']) {
+    switch (columnInfo[key]['type']) {
       case 'image':
-        return (<img key={'image-' + id + '-' + key} src={item.url} className={'img-thumbnails'} width={50} height={50}/>);
+        return (
+          <img key={'image-' + id + '-' + key} src={item.url} className={'img-thumbnails'} width={50} height={50}/>);
     }
 
     return item;
@@ -68,9 +72,12 @@ class IndexList extends React.Component {
     }
     rowItems.push(
       <td key={'data-' + row['id'] + '-buttons'}>
-        <Button size="sm" color="primary"><i className="fa fa-folder"></i> Show</Button>
-        <Button size="sm" color="info"><i className="fa fa-pencil"></i> Edit</Button>
-        <Button size="sm" color="danger"><i className="fa fa-trash-o"></i> Delete</Button>
+        <Button size="sm" color="primary" onClick={e => this.props.onShowClick(row['id'])}><i
+          className="fa fa-folder"></i> Show</Button>{' '}
+        <Button size="sm" color="info" onClick={e => this.props.onEditClick(row['id'])}><i
+          className="fa fa-pencil"></i> Edit</Button>{' '}
+        <Button size="sm" color="danger" onClick={e => this.props.onDeleteClick(row['id'])}><i
+          className="fa fa-trash-o"></i> Delete</Button>
       </td>
     );
     return rowItems;
@@ -81,6 +88,9 @@ class IndexList extends React.Component {
     const {
       list,
     } = this.props;
+    if( !list.items ){
+      return rows;
+    }
 
     for (
       let i = 0;
@@ -103,36 +113,60 @@ class IndexList extends React.Component {
     const rows = this.buildRows();
     const {
       list,
+      activePage,
+      totalItemCount
     } = this.props;
 
     return (
-      <div>
-        <Table responsive>
-          <thead>
-          <tr>
-            {header}
-          </tr>
-          </thead>
-          <tbody>
-          {rows}
-          </tbody>
-        </Table>
-        <Pagination totalItemsCount={list.count} onChange={this.handlePaginationClick}/>
-      </div>
+      <Card>
+        <CardHeader>
+          <i className="fa fa-align-justify"></i> {this.props.title}
+        </CardHeader>
+        <CardBlock className="card-body">
+          <div>
+            <Table responsive>
+              <thead>
+              <tr>
+                {header}
+              </tr>
+              </thead>
+              <tbody>
+              {rows}
+              </tbody>
+            </Table>
+            <Pagination
+              activePage={activePage}
+              itemsCountPerPage={list.limit}
+              totalItemsCount={list.count || 0}
+              onChange={this.handlePaginationClick}/>
+          </div>
+        </CardBlock>
+      </Card>
     );
   }
 }
 
 IndexList.propTypes = {
+  activePage: PropTypes.number,
+  totalItemCount: PropTypes.number,
+  title: PropTypes.string,
   columns: PropTypes.arrayOf(PropTypes.string),
   columnInfo: PropTypes.object,
   list: PropTypes.object,
   getIndexList: PropTypes.func.isRequired,
+  basePath: PropTypes.string.isRequired,
+  onShowClick: PropTypes.func.isRequired,
+  onEditClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
 };
 
 IndexList.defaultProps = {
+  activePage: 1,
+  totalItemCount: 0,
+  title: '',
   columns: ['id'],
   columnInfo: {id: {name: 'ID', type: "integer", editable: false}},
+  basePath: "",
   list: {
     count: 0,
     offset: 0,
@@ -147,6 +181,13 @@ IndexList.defaultProps = {
       items: [],
     }
   },
+  onShowClick: () => {
+  },
+  onEditClick: () => {
+  },
+  onDeleteClick: () => {
+  },
+
 };
 
 export default IndexList;

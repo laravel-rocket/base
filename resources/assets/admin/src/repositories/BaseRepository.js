@@ -1,3 +1,5 @@
+import MetaInfoHelper from "../helpers/MetaInfoHelper";
+
 class BaseRepository {
 
   constructor() {
@@ -40,16 +42,28 @@ class BaseRepository {
   }
 
   put(url, params = {}) {
-    return this.request('PUT', url, params);
+    params['_method'] = 'put';
+    return this.request('POST', url, params);
   }
 
   delete(url, params = {}) {
-    return this.request('DELETE', url, params);
+    params['_method'] = 'delete';
+    return this.request('POST', url, params);
+  }
+
+  getCSRFToken()
+  {
+    const tokens = MetaInfoHelper.get('csrf-token');
+    if( tokens.length > 0 ){
+      return tokens[0];
+    }
+
+    return "";
   }
 
   request(method, url, params = {}) {
     let realUrl = this.BASE_URL + url;
-    const formData = new FormData();
+    let formData = new FormData();
     if (method === 'GET' || method === 'HEAD') {
       let query = Object.keys(params)
         .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
@@ -60,9 +74,16 @@ class BaseRepository {
         .catch(error => console.log('Error', error)).then(response => response.json());
     }
 
-    params.forEach(function (val, key) {
-      formData.append(val, key);
-    });
+    if(params instanceof FormData){
+        formData = param;
+    }else{
+      Object.keys(params).forEach(function (key) {
+        formData.append(key, params[key]);
+      });
+    }
+
+    const token = this.getCSRFToken();
+    formData.append('_token',token);
     return fetch(realUrl, {
       credentials: "same-origin", method: method, body: formData})
       .catch(error => console.log('Error', error)).then(response => response.json());

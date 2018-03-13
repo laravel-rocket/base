@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Requests\Api\Admin\AdminUsers;
+namespace App\Http\Requests\Api\Admin\AdminUser;
 
 use App\Http\Requests\Api\Admin\Request;
 

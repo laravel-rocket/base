@@ -23,7 +23,6 @@ class Header extends Component {
     this.handleSidebarToggle = this.handleSidebarToggle.bind(this);
     this.handleSidebarMinimize = this.handleSidebarMinimize.bind(this);
     this.handleMobileSidebarToggle = this.handleMobileSidebarToggle.bind(this);
-    this.handleAsideToggle = this.handleAsideToggle.bind(this);
 
     this.state = {
       profileDropDownOpen: false,
@@ -63,11 +62,6 @@ class Header extends Component {
     document.body.classList.toggle('sidebar-mobile-show');
   }
 
-  handleAsideToggle(e) {
-    e.preventDefault();
-    document.body.classList.toggle('aside-menu-hidden');
-  }
-
   render() {
     const notificaitons = ObjectHelper.get(this.state, "params.information.notifications", [] ).map((notification) =>
       <DropdownItem><i className="fa fa-bell"></i> Notificaiton</DropdownItem>
@@ -98,7 +92,7 @@ class Header extends Component {
           <NavItem>
             <Dropdown isOpen={this.state.profileDropDownOpen} toggle={this.handleProfileDropDownToggle}>
               <DropdownToggle className="nav-link dropdown-toggle">
-                <img src={ ObjectHelper.get(this.state, "params.information.authUser.url", '' )} className="img-avatar" alt=""/>
+                <img src={ ObjectHelper.get(this.state, "params.information.authUser.profileImage.url", '' )} className="img-avatar" alt=""/>
                 <span className="d-md-down-none">{ ObjectHelper.get(this.state,"params.information.authUser.name", 'Unknown' )  }</span>
               </DropdownToggle>
               <DropdownMenu right className={this.state.profileDropDownOpen ? 'show' : ''}>
@@ -109,8 +103,8 @@ class Header extends Component {
               </DropdownMenu>
             </Dropdown>
           </NavItem>
+          <NavItem></NavItem>
         </Nav>
-        <NavbarToggler className="d-md-down-none" type="button" onClick={this.handleAsideToggle}>&#9776;</NavbarToggler>
       </header>
     )
   }

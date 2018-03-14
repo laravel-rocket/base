@@ -4,7 +4,7 @@ import {
   Input,
 } from "reactstrap";
 
-class ImageInput extends React.Component {
+class ImageInput extends Component {
 
   constructor() {
     super();

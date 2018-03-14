@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Exceptions\Api\Admin\APIErrorException;
@@ -12,6 +13,7 @@ use App\Http\Responses\Api\Admin\AdminUsers;
 use App\Http\Responses\Api\Admin\Status;
 
 use App\Repositories\AdminUserRepositoryInterface;
+use App\Repositories\AdminUserRoleRepositoryInterface;
 use App\Services\AdminUserServiceInterface;
 use App\Services\FileServiceInterface;
 
@@ -26,14 +28,20 @@ class AdminUserController extends Controller
     /** @var \App\Services\FileServiceInterface $fileService */
     protected $fileService;
 
+    /** @var \App\Repositories\AdminUserRoleRepositoryInterface $adminUserRoleRepository */
+    protected $adminUserRoleRepository;
+
     public function __construct(
         AdminUserRepositoryInterface $adminUserRepository,
         FileServiceInterface $fileService,
-        AdminUserServiceInterface $adminUserService
-    ) {
-        $this->adminUserRepository = $adminUserRepository;
-        $this->adminUserService    = $adminUserService;
-        $this->fileService         = $fileService;
+        AdminUserServiceInterface $adminUserService,
+        AdminUserRoleRepositoryInterface $adminUserRoleRepository
+    )
+    {
+        $this->adminUserRepository     = $adminUserRepository;
+        $this->adminUserService        = $adminUserService;
+        $this->fileService             = $fileService;
+        $this->adminUserRoleRepository = $adminUserRoleRepository;
     }
 
     /**
@@ -52,7 +60,7 @@ class AdminUserController extends Controller
 
         $queryWord = $request->get('query');
         $filter    = [];
-        if (!empty($queryWord)) {
+        if(!empty($queryWord)) {
             $filter['query'] = $queryWord;
         }
 
@@ -79,21 +87,24 @@ class AdminUserController extends Controller
             'password',
         ]);
 
-        if ($request->hasFile('profile_image_id')) {
+        if($request->hasFile('profile_image_id')) {
             $file      = $request->file('profile_image_id');
             $mediaType = $file->getClientMimeType();
             $path      = $file->getPathname();
             $image     = $this->fileService->upload('profile-image', $path, $mediaType, []);
-            if (!empty($image)) {
+            if(!empty($image)) {
                 $input['profile_image_id'] = $image->id;
             }
         }
 
         $adminUser = $this->adminUserRepository->create($input);
 
-        if (empty($adminUser)) {
+        if(empty($adminUser)) {
             throw new APIErrorException('unknown', 'AdminUser Creation Failed');
         }
+
+        $roles = $request->get('roles', []);
+        $this->adminUserRoleRepository->updateMultipleEntries($adminUser->id, 'admin_user_id', 'role', $roles);
 
         return AdminUser::updateWithModel($adminUser)->response();
     }
@@ -110,7 +121,7 @@ class AdminUserController extends Controller
     public function show($id)
     {
         $adminUser = $this->adminUserRepository->find($id);
-        if (empty($adminUser)) {
+        if(empty($adminUser)) {
             throw new APIErrorException('notFound', 'AdminUser not found');
         }
 
@@ -118,7 +129,7 @@ class AdminUserController extends Controller
     }
 
     /**
-     * @param int                                                  $id
+     * @param int $id
      * @param \App\Http\Requests\Api\Admin\AdminUser\UpdateRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
@@ -128,7 +139,7 @@ class AdminUserController extends Controller
     public function update($id, UpdateRequest $request)
     {
         $adminUser = $this->adminUserRepository->find($id);
-        if (empty($adminUser)) {
+        if(empty($adminUser)) {
             throw new APIErrorException('notFound', 'AdminUser not found');
         }
 
@@ -138,13 +149,13 @@ class AdminUserController extends Controller
             'password',
         ]);
 
-        if ($request->hasFile('profile_image_id')) {
+        if($request->hasFile('profile_image_id')) {
             $file      = $request->file('profile_image_id');
             $mediaType = $file->getClientMimeType();
             $path      = $file->getPathname();
             $image     = $this->fileService->upload('profile-image', $path, $mediaType, []);
-            if (!empty($image)) {
-                if (!empty($adminUser->profileImage)) {
+            if(!empty($image)) {
+                if(!empty($adminUser->profileImage)) {
                     $this->fileService->delete($adminUser->profileImage);
                 }
                 $input['profile_image_id'] = $image->id;
@@ -152,6 +163,9 @@ class AdminUserController extends Controller
         }
 
         $adminUser = $this->adminUserRepository->update($adminUser, $input);
+
+        $roles = $request->get('roles', []);
+        $this->adminUserRoleRepository->updateMultipleEntries($adminUser->id, 'admin_user_id', 'role', $roles);
 
         return AdminUser::updateWithModel($adminUser)->response();
     }
@@ -166,7 +180,7 @@ class AdminUserController extends Controller
     public function destroy($id)
     {
         $adminUser = $this->adminUserRepository->find($id);
-        if (empty($adminUser)) {
+        if(empty($adminUser)) {
             throw new APIErrorException('notFound', 'AdminUser not found');
         }
 

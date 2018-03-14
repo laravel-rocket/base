@@ -1,40 +1,21 @@
-import React, {Component} from "react";
+import React from "react";
 import {
   Row,
   Col,
+  Card,
+  CardHeader,
+  CardBlock,
+  Button,
 } from "reactstrap";
 
 import ShowTable from "../../components/ShowTable/ShowTable";
-import columns from './_columns'
-import info from "./_info";
-import {withRouter} from 'react-router-dom'
+import Base from "./Base";
 
-class Show extends Component {
-
-  constructor(props) {
-    super(props);
-    this.setPageInfo();
-    this.setColumnInfo();
-    this.bindMethods();
-    this.setInitialState(props);
-    this.setRepository();
-  }
-
-  setPageInfo() {
-    this.title = info.title;
-    this.path = info.path;
-  }
-
-  setRepository() {
-    this.repository = null;
-  }
-
-  setColumnInfo() {
-    this.columns = columns;
-  }
+class Show extends Base {
 
   bindMethods() {
     this.get = this.get.bind(this);
+    this.handleEditClick = this.handleEditClick.bind(this);
   }
 
   setInitialState(props) {
@@ -50,7 +31,7 @@ class Show extends Component {
     }
   }
 
-  componentWillMount() {
+  componetWillMount() {
     let {id} = this.props.match.params;
     this.get(id);
   }
@@ -68,10 +49,18 @@ class Show extends Component {
     });
   }
 
+  // Event Handlers
+  handleEditClick() {
+    this.props.history.push(this.path + '/' + this.props.match.params.id + '/edit');
+  }
+
+  // Utility Functions
   get(id) {
     this.repository.show(id).then(repos => {
       this.setState({params: {model: repos}});
       console.log(this.state);
+    }).catch(error => {
+      this.props.methods.errorMessage('Data Fetch Failed. Please access again later');
     });
   }
 
@@ -80,12 +69,21 @@ class Show extends Component {
       <div className="animated fadeIn">
         <Row>
           <Col xs="12" lg="12">
-            <ShowTable
-              title={this.title}
-              columns={this.columns.show}
-              columnInfo={this.columns.columns}
-              model={this.state.params.model}
-            />
+            <Card>
+              <CardHeader>
+                {this.title}
+                <Button className="float-right" size="sm" color="primary" onClick={e => { this.handleEditClick() }}>
+                  <i className="fa fa-pencil"></i> Edit
+                </Button>
+              </CardHeader>
+              <CardBlock className="card-body">
+                <ShowTable
+                  columns={this.columns.show}
+                  columnInfo={this.columns.columns}
+                  model={this.state.params.model}
+                />
+              </CardBlock>
+            </Card>
           </Col>
         </Row>
       </div>

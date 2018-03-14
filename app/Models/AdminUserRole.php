@@ -26,7 +26,6 @@ class AdminUserRole extends Base
 {
     const ROLE_SITE_ADMIN            = 'site_admin';
     const ROLE_SUPER_USER            = 'super_user';
-    const ROLE_SUPER_USER_SITE_ADMIN = 'site_admin';
 
     /**
      * The database table used by the model.

@@ -3,13 +3,11 @@ import PropTypes from "prop-types";
 import {
   Table,
   Button,
-  Card,
-  CardHeader,
-  CardBlock,
+  Badge
 } from "reactstrap";
 import Pagination from "../Pagination/Pagination";
 
-class IndexList extends React.Component {
+class IndexList extends Component {
 
   constructor() {
     super();
@@ -44,13 +42,30 @@ class IndexList extends React.Component {
 
   buildRowItemContent(item, key, id) {
     const {
-      columns,
       columnInfo,
     } = this.props;
     switch (columnInfo[key]['type']) {
       case 'image':
         return (
           <img key={'image-' + id + '-' + key} src={item.url} className={'img-thumbnails'} width={50} height={50}/>);
+      case 'checkbox':
+        const options = [];
+        if (!Array.isArray(item)) {
+          return options;
+        }
+        for (
+          let i = 0;
+          i < item.length;
+          i++
+        ) {
+          if (columnInfo[key].presentation === 'badge') {
+            options.push(<Badge color="secondary"
+                                key={key + '_' + item[i]}>{columnInfo[key].optionNames[item[i]]}</Badge>)
+          } else {
+            options.push(<div key={key + '_' + item[i]}>{columnInfo[key].optionNames[item[i]]}</div>)
+          }
+        }
+        return (<div>{options}</div>)
     }
 
     return item;
@@ -60,7 +75,6 @@ class IndexList extends React.Component {
     const rowItems = [];
     const {
       columns,
-      columnInfo,
     } = this.props;
     for (
       let i = 0;
@@ -88,7 +102,7 @@ class IndexList extends React.Component {
     const {
       list,
     } = this.props;
-    if( !list.items ){
+    if (!list.items) {
       return rows;
     }
 
@@ -118,30 +132,28 @@ class IndexList extends React.Component {
     } = this.props;
 
     return (
-      <Card>
-        <CardHeader>
-          <i className="fa fa-align-justify"></i> {this.props.title}
-        </CardHeader>
-        <CardBlock className="card-body">
-          <div>
-            <Table responsive>
-              <thead>
-              <tr>
-                {header}
-              </tr>
-              </thead>
-              <tbody>
-              {rows}
-              </tbody>
-            </Table>
-            <Pagination
-              activePage={activePage}
-              itemsCountPerPage={list.limit}
-              totalItemsCount={list.count || 0}
-              onChange={this.handlePaginationClick}/>
-          </div>
-        </CardBlock>
-      </Card>
+      <div>
+        <Pagination
+          activePage={activePage}
+          itemsCountPerPage={list.limit}
+          totalItemsCount={totalItemCount || 0}
+          onChange={this.handlePaginationClick}/>
+        <Table responsive>
+          <thead>
+          <tr>
+            {header}
+          </tr>
+          </thead>
+          <tbody>
+          {rows}
+          </tbody>
+        </Table>
+        <Pagination
+          activePage={activePage}
+          itemsCountPerPage={list.limit}
+          totalItemsCount={totalItemCount || 0}
+          onChange={this.handlePaginationClick}/>
+      </div>
     );
   }
 }
@@ -149,7 +161,6 @@ class IndexList extends React.Component {
 IndexList.propTypes = {
   activePage: PropTypes.number,
   totalItemCount: PropTypes.number,
-  title: PropTypes.string,
   columns: PropTypes.arrayOf(PropTypes.string),
   columnInfo: PropTypes.object,
   list: PropTypes.object,
@@ -163,7 +174,6 @@ IndexList.propTypes = {
 IndexList.defaultProps = {
   activePage: 1,
   totalItemCount: 0,
-  title: '',
   columns: ['id'],
   columnInfo: {id: {name: 'ID', type: "integer", editable: false}},
   basePath: "",

@@ -1,37 +1,16 @@
-import React, {Component} from "react";
+import React from "react";
 import {
   Row,
   Col,
+  Card,
+  CardHeader,
+  CardBlock,
 } from "reactstrap";
 
 import EditTable from "../../components/EditTable/EditTable";
-import columns from './_columns'
-import info from "./_info";
-import {withRouter} from 'react-router-dom'
+import Base from "./Base";
 
-class Edit extends Component {
-
-  constructor(props) {
-    super(props);
-    this.setPageInfo();
-    this.setColumnInfo();
-    this.bindMethods();
-    this.setInitialState(props);
-    this.setRepository();
-  }
-
-  setPageInfo() {
-    this.title = info.title;
-    this.path = info.path;
-  }
-
-  setRepository() {
-    this.repository = null;
-  }
-
-  setColumnInfo() {
-    this.columns = columns;
-  }
+class Edit extends Base {
 
   bindMethods() {
     this.get = this.get.bind(this);
@@ -76,6 +55,8 @@ class Edit extends Component {
     this.repository.show(id).then(repos => {
       this.setState({id: id, model: repos});
       console.log(this.state);
+    }).catch(error => {
+      this.props.methods.errorMessage('Data Fetch Failed. Please access again later');
     });
   }
 
@@ -84,13 +65,19 @@ class Edit extends Component {
       <div className="animated fadeIn">
         <Row>
           <Col xs="12" lg="12">
-            <EditTable
-              title={this.title}
-              columns={this.columns.edit}
-              columnInfo={this.columns.columns}
-              model={this.state.model}
-              onSubmit={this.handleOnSubmit}
-            />
+            <Card>
+              <CardHeader>
+                {this.title}
+              </CardHeader>
+              <CardBlock className="card-body">
+                <EditTable
+                  columns={this.columns.edit}
+                  columnInfo={this.columns.columns}
+                  model={this.state.model}
+                  onSubmit={this.handleOnSubmit}
+                />
+              </CardBlock>
+            </Card>
           </Col>
         </Row>
       </div>

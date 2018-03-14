@@ -20,7 +20,7 @@ class AdminUser extends Response
     {
         $roles = [];
         foreach ($model->adminUserRoles as $role) {
-            $roles[] = AdminUserRole::updateWithModel($role)->toArray();
+            $roles[] = $role->role;
         }
 
         $response = new static([], 400);

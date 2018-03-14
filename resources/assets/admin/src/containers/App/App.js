@@ -2,11 +2,10 @@ import React, {Component} from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
 import {Container} from 'reactstrap';
 import {PropsRoute} from 'react-router-with-props';
-import Header from '../../components/Header/';
-import Sidebar from '../../components/Sidebar/';
-import Breadcrumb from '../../components/Breadcrumb/';
-import Aside from '../../components/Aside/';
-import Footer from '../../components/Footer/';
+import Header from '../../components/Header/Header';
+import Sidebar from '../../components/Sidebar/Sidebar';
+import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
+import Footer from '../../components/Footer/Footer';
 import Dashboard from '../../views/Dashboard/';
 import InformationRepository from '../../repositories/InformationRepository';
 
@@ -14,6 +13,7 @@ import AdminUserIndex from '../../views/AdminUsers/AdminUserIndex';
 import AdminUserShow from '../../views/AdminUsers/AdminUserShow';
 import AdminUserEdit from "../../views/AdminUsers/AdminUserEdit";
 import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal";
+import MessageBox from "../../components/MessageBox/MessageBox";
 
 class App extends Component {
   constructor() {
@@ -31,14 +31,22 @@ class App extends Component {
           onOKCallback: null,
           onCancelCallback: null,
         },
+        alert: {
+          errorMessage: "",
+          successMessage: "",
+        }
       },
       methods: {
         getInformation: this.getInformation.bind(this),
         confirmation: this.confirmation.bind(this),
+        errorMessage: this.errorMessage.bind(this),
+        successMessage: this.successMessage.bind(this),
       }
     };
     this.handleConfirmationOnOK = this.handleConfirmationOnOK.bind(this);
     this.handleConfirmationOnCancel = this.handleConfirmationOnCancel.bind(this);
+    this.handleOnSuccessAlertDismiss = this.handleOnSuccessAlertDismiss.bind(this);
+    this.handleOnErrorAlertDismiss = this.handleOnErrorAlertDismiss.bind(this);
   }
 
   getInformation() {
@@ -82,6 +90,54 @@ class App extends Component {
     }
   }
 
+  handleOnSuccessAlertDismiss() {
+    this.setState({
+      params: {
+        ...this.state.params,
+        alert: {
+          ...this.state.params.alert,
+          successMessage: "",
+        }
+      }
+    });
+  }
+
+  handleOnErrorAlertDismiss() {
+    this.setState({
+      params: {
+        ...this.state.params,
+        alert: {
+          ...this.state.params.alert,
+          errorMessage: "",
+        }
+      }
+    });
+  }
+
+  successMessage(message) {
+    this.setState({
+      params: {
+        ...this.state.params,
+        alert: {
+          ...this.state.params.alert,
+          successMessage: message,
+        }
+      }
+    });
+  }
+
+  errorMessage(message) {
+    this.setState({
+      params: {
+        ...this.state.params,
+        alert: {
+          ...this.state.params.alert,
+          successMessage: message,
+        }
+      }
+    });
+  }
+
   // Event Handlers
   confirmation(title, message, onOKCallback, onCancelCallback) {
     this.setState({
@@ -115,6 +171,11 @@ class App extends Component {
             <div>
               <Breadcrumb/>
               <Container fluid>
+                <MessageBox
+                  onDismissError={this.handleOnSuccessAlertDismiss}
+                  onDismissSuccess={this.handleOnSuccessAlertDismiss}
+                  errorMessage={this.state.params.alert.errorMessage}
+                  successMessage={this.state.params.alert.successMessage}/>
                 <Switch>
                   <PropsRoute path="/dashboard" name="Dashboard" component={Dashboard} {...this.state}/>
                   <PropsRoute path="/admin-users/:id/edit" name="Admin Users Edit" component={AdminUserEdit} {...this.state}/>
@@ -126,7 +187,6 @@ class App extends Component {
               </Container>
             </div>
           </main>
-          <Aside/>
         </div>
         <Footer/>
       </div>

@@ -8,7 +8,7 @@ import {
   Button
 } from "reactstrap";
 
-class ConfirmationModal extends React.Component {
+class ConfirmationModal extends Component {
 
   constructor() {
     super();

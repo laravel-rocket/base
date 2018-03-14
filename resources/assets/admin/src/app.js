@@ -12,7 +12,7 @@ import 'simple-line-icons/css/simple-line-icons.css';
 import '../scss/app.scss'
 
 // Containers
-import App from './containers/App/'
+import App from './containers/App/App'
 
 const history = createBrowserHistory();
 

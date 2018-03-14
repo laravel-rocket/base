@@ -6,16 +6,12 @@ import {
   FormGroup,
   Label,
   Input,
-  Card,
-  CardBlock,
-  CardHeader,
-  CardFooter,
   Button,
 } from "reactstrap";
 import DatePicker from 'react-datepicker';
 import ImageInput from "../ImageInput/ImageInput";
 
-class EditTable extends React.Component {
+class EditTable extends Component {
   constructor() {
     super();
     this.state = {
@@ -35,16 +31,36 @@ class EditTable extends React.Component {
   }
 
   handleDataChange(key, data) {
+    const {
+      columnInfo,
+    } = this.props;
     const newFormData = this.state.formData;
     const newModelData = this.state.model;
-    newFormData[key] = data;
-    newModelData[key] = data;
+
+    switch (columnInfo[key].type) {
+      case "checkbox":
+        if (!Array.isArray(newModelData[key])) {
+          newModelData[key] = [];
+          newFormData[key] = [];
+        }
+        const pos = newModelData[key].indexOf(data);
+        if (pos >= 0) {
+          newModelData[key].splice(pos, 1);
+        } else {
+          newModelData[key].push(data);
+        }
+        newFormData[key] = newModelData[key];
+        break;
+      default:
+        newFormData[key] = data;
+        newModelData[key] = data;
+    }
+
     this.setState({
       ...this.state,
       model: newModelData,
       formData: newFormData,
     });
-    this.state.formData[key] = data;
     console.log(this.state);
   }
 
@@ -67,7 +83,7 @@ class EditTable extends React.Component {
     if (item === undefined) {
       item = '';
     }
-    switch (columnInfo[key]['type']) {
+    switch (columnInfo[key].type) {
       case 'password':
         return (
           <FormGroup key={'input-' + key}>
@@ -104,6 +120,38 @@ class EditTable extends React.Component {
             <Label htmlFor={key}>{columnInfo[key].name}</Label>
             <ImageInput onChange={e => this.handleDataChange(key, e.target.value)} currentImageUrl={item.url}
                         name={key} thumbnailSize={200}/>
+          </FormGroup>
+        );
+      case 'checkbox':
+        const options = [];
+        for (
+          let i = 0;
+          i < columnInfo[key].options.length;
+          i++
+        ) {
+          const option = columnInfo[key].options[i];
+          options.push(
+            <div className="checkbox" key={key + '_' + option}>
+              <Label check htmlFor={key + '_' + option}>
+                <Input
+                  onChange={e => this.handleDataChange(key, e.target.value)}
+                  checked={item.indexOf(option) >= 0}
+                  type="checkbox"
+                  id={key + '_' + option}
+                  name={key}
+                  value={option}/> {columnInfo[key].optionNames[option]}
+              </Label>
+            </div>
+          )
+        }
+        return (
+          <FormGroup key={'input-' + key} row>
+            <Col md="3"><Label>{columnInfo[key].name}</Label></Col>
+            <Col md="9">
+              <FormGroup check>
+                {options}
+              </FormGroup>
+            </Col>
           </FormGroup>
         );
       case 'datetime':
@@ -147,29 +195,25 @@ class EditTable extends React.Component {
     const rows = this.buildRows();
 
     return (
-      <Card>
-        <CardHeader>
-          <i className="fa fa-align-justify"></i> {this.props.title}
-        </CardHeader>
-        <CardBlock className="card-body">
-          <div>
-            {rows}
-          </div>
-        </CardBlock>
-        <CardFooter>
-          <Button type="submit" size="sm" color="primary" onClick={e => {this.handleSubmit()}}><i
-            className="fa fa-dot-circle-o"></i> Submit</Button>
-          {' '}
-          <Button type="reset" size="sm" color="danger" onClick={e => {this.handleReset()}}><i
-            className="fa fa-ban"></i> Reset</Button>
-        </CardFooter>
-      </Card>
+      <div>
+        {rows}
+        <Row>
+          <Col xs="12">
+            <Button type="submit" size="sm" color="primary" onClick={e => {
+              this.handleSubmit()
+            }}><i className="fa fa-dot-circle-o"></i> Submit</Button>
+            {' '}
+            <Button type="reset" size="sm" color="danger" onClick={e => {
+              this.handleReset()
+            }}><i className="fa fa-ban"></i> Reset</Button>
+          </Col>
+        </Row>
+      </div>
     );
   }
 }
 
 EditTable.propTypes = {
-  title: PropTypes.string,
   columns: PropTypes.arrayOf(PropTypes.string),
   columnInfo: PropTypes.object,
   model: PropTypes.object,
@@ -177,7 +221,6 @@ EditTable.propTypes = {
 };
 
 EditTable.defaultProps = {
-  title: '',
   columns: ['id'],
   columnInfo: {id: {name: 'ID', type: "integer", editable: false}},
   model: {},

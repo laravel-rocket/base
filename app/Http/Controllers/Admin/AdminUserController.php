@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminUserRequest;
 use App\Models\AdminUser;
 use App\Repositories\AdminUserRepositoryInterface;
+use App\Repositories\AdminUserRoleRepositoryInterface;
 use LaravelRocket\Foundation\Http\Requests\PaginationRequest;
 
 class AdminUserController extends Controller
@@ -13,10 +14,15 @@ class AdminUserController extends Controller
     /** @var \App\Repositories\AdminUserRepositoryInterface */
     protected $adminUserRepository;
 
+    /** @var \App\Repositories\AdminUserRoleRepositoryInterface $adminUserRoleRepository */
+    protected $adminUserRoleRepository;
+
     public function __construct(
-        AdminUserRepositoryInterface $adminUserRepository
+        AdminUserRepositoryInterface $adminUserRepository,
+        AdminUserRoleRepositoryInterface $adminUserRoleRepository
     ) {
         $this->adminUserRepository = $adminUserRepository;
+        $this->adminUserRoleRepository = $adminUserRoleRepository;
     }
 
     /**
@@ -69,9 +75,12 @@ class AdminUserController extends Controller
             'email',
             'password',
             'profile_image_id',
+            'roles',
         ]);
 
         $adminUser = $this->adminUserRepository->create($input);
+
+
 
         if (empty($adminUser)) {
             return redirect()->back()->withErrors(trans('admin.errors.general.save_failed'));

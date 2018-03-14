@@ -1,37 +1,17 @@
-import React, {Component} from "react";
+import React from "react";
 import {
   Row,
   Col,
+  Card,
+  CardHeader,
+  CardBlock,
+  Button,
 } from "reactstrap";
 
 import IndexList from "../../components/IndexList/IndexList";
-import columns from './_columns'
-import info from './_info'
-import {withRouter} from 'react-router-dom'
+import Base from "./Base";
 
-class Index extends Component {
-
-  constructor(props) {
-    super(props);
-    this.setPageInfo();
-    this.setColumnInfo();
-    this.bindMethods();
-    this.setInitialState(props);
-    this.setRepository();
-  }
-
-  setPageInfo() {
-    this.title = info.title;
-    this.path = info.path;
-  }
-
-  setRepository() {
-    this.repository = null;
-  }
-
-  setColumnInfo() {
-    this.columns = columns;
-  }
+class Index extends Base {
 
   bindMethods() {
     this.getIndexList = this.getIndexList.bind(this);
@@ -41,6 +21,7 @@ class Index extends Component {
     this.deleteItem = this.deleteItem.bind(this);
     this.reloadPage = this.reloadPage.bind(this);
     this.getIndexListByPage = this.getIndexListByPage.bind(this);
+    this.handleCreateNew = this.handleCreateNew.bind(this);
   }
 
   setInitialState(props) {
@@ -127,12 +108,17 @@ class Index extends Component {
         }
       });
       console.log(this.state);
+    }).catch(error => {
+      this.props.methods.errorMessage('Data Fetch Failed. Please access again later');
     });
   }
 
   deleteItem(id) {
     this.repository.destroy(id).then(repos => {
+      this.props.methods.successMessage('Delete Item Successfully');
       this.reloadPage();
+    }).catch(error => {
+      this.props.methods.errorMessage('Delete Item Failed');
     });
   }
 
@@ -142,6 +128,10 @@ class Index extends Component {
 
   handleEditClick(id) {
     this.props.history.push(this.path + '/' + id + '/edit');
+  }
+
+  handleCreateNew() {
+    this.props.history.push(this.path + '/create');
   }
 
   handleDeleteClick(id) {
@@ -156,19 +146,28 @@ class Index extends Component {
       <div className="animated fadeIn">
         <Row>
           <Col xs="12" lg="12">
-            <IndexList
-              activePage={this.state.params.page}
-              totalItemCount={this.state.params.list.count || 0}
-              title={this.title}
-              basePath={this.path}
-              columns={this.columns.list}
-              columnInfo={this.columns.columns}
-              list={this.state.params.list}
-              getIndexList={this.getIndexListByPage}
-              onDeleteClick={this.handleDeleteClick}
-              onEditClick={this.handleEditClick}
-              onShowClick={this.handleShowClick}
-            />
+            <Card>
+              <CardHeader>
+                {this.title}
+                <Button className="float-right" size="sm" color="primary" onClick={this.handleCreateNew}>
+                  <i className="fa fa-plus-circle"></i> Create New
+                </Button>
+              </CardHeader>
+              <CardBlock className="card-body">
+                <IndexList
+                  activePage={this.state.params.page}
+                  totalItemCount={this.state.params.list.count || 0}
+                  basePath={this.path}
+                  columns={this.columns.list}
+                  columnInfo={this.columns.columns}
+                  list={this.state.params.list}
+                  getIndexList={this.getIndexListByPage}
+                  onDeleteClick={this.handleDeleteClick}
+                  onEditClick={this.handleEditClick}
+                  onShowClick={this.handleShowClick}
+                />
+              </CardBlock>
+            </Card>
           </Col>
         </Row>
       </div>

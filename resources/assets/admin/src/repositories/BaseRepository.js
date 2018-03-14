@@ -71,7 +71,7 @@ class BaseRepository {
       realUrl = realUrl + '?' + query;
 
       return fetch(realUrl, {credentials: "same-origin", method: method})
-        .catch(error => console.log('Error', error)).then(response => response.json());
+        .then(response => response.json()).catch(error => console.log('Error', error));
     }
 
     if(params instanceof FormData){
@@ -86,7 +86,7 @@ class BaseRepository {
     formData.append('_token',token);
     return fetch(realUrl, {
       credentials: "same-origin", method: method, body: formData})
-      .catch(error => console.log('Error', error)).then(response => response.json());
+      .then(response => response.json()).catch(error => console.log('Error', error));
   }
 }
 

@@ -7,7 +7,7 @@ import {
   PaginationLink
 } from "reactstrap";
 
-class Pagination extends React.Component {
+class Pagination extends Component {
 
   constructor(props) {
     super(props);

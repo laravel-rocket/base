@@ -11,6 +11,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     });
 
     Route::group(['middleware' => ['admin.auth']], function () {
+
         Route::post('sign-out', 'Admin\AuthController@postSignOut')->name('signOut');
         Route::get('/{any?}', 'Admin\IndexController@index')->name('index')->where('any', '.*');
     });

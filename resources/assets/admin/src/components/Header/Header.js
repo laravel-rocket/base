@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {NavLink} from 'react-router-dom';
 import {
   Badge,
   Dropdown,
@@ -6,7 +7,6 @@ import {
   DropdownItem,
   Nav,
   NavItem,
-  NavLink,
   NavbarToggler,
   NavbarBrand,
   DropdownToggle
@@ -97,7 +97,9 @@ class Header extends Component {
               </DropdownToggle>
               <DropdownMenu right className={this.state.profileDropDownOpen ? 'show' : ''}>
                 <DropdownItem header tag="div" className="text-center"><strong>Settings</strong></DropdownItem>
-                <DropdownItem><i className="fa fa-user"></i> Profile</DropdownItem>
+                <DropdownItem>
+                  <NavLink to="/me"><i className="fa fa-user"></i> Profile</NavLink>
+                </DropdownItem>
                 <DropdownItem divider/>
                 <DropdownItem><i className="fa fa-lock"></i> Logout</DropdownItem>
               </DropdownMenu>

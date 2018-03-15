@@ -43,6 +43,7 @@ class Edit extends Base {
     if (id > 0) {
       this.repository.update(id, formData).then(repos => {
         this.props.history.push(this.path + '/' + id);
+        this.props.methods.successMessage('Successfully Updated ');
       });
     } else {
       this.repository.store(formData).then(repos => {

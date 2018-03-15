@@ -8,16 +8,22 @@ import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import Footer from '../../components/Footer/Footer';
 import Dashboard from '../../views/Dashboard/';
 import InformationRepository from '../../repositories/InformationRepository';
+import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal";
+import MessageBox from "../../components/MessageBox/MessageBox";
+
+import MeEdit from "../../views/Me/MeEdit";
 
 import AdminUserIndex from '../../views/AdminUsers/AdminUserIndex';
 import AdminUserShow from '../../views/AdminUsers/AdminUserShow';
 import AdminUserEdit from "../../views/AdminUsers/AdminUserEdit";
-import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal";
-import MessageBox from "../../components/MessageBox/MessageBox";
+
+import UserIndex from '../../views/Users/UserIndex';
+import UserShow from '../../views/Users/UserShow';
+import UserEdit from "../../views/Users/UserEdit";
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       params: {
         information: {
@@ -47,6 +53,11 @@ class App extends Component {
     this.handleConfirmationOnCancel = this.handleConfirmationOnCancel.bind(this);
     this.handleOnSuccessAlertDismiss = this.handleOnSuccessAlertDismiss.bind(this);
     this.handleOnErrorAlertDismiss = this.handleOnErrorAlertDismiss.bind(this);
+
+    props.history.listen((location, action) => {
+      this.handleOnSuccessAlertDismiss();
+      this.handleOnErrorAlertDismiss();
+    });
   }
 
   getInformation() {
@@ -178,10 +189,15 @@ class App extends Component {
                   successMessage={this.state.params.alert.successMessage}/>
                 <Switch>
                   <PropsRoute path="/dashboard" name="Dashboard" component={Dashboard} {...this.state}/>
+                  <PropsRoute path="/me" name="Edit Profile" component={MeEdit} {...this.state}/>
                   <PropsRoute path="/admin-users/:id/edit" name="Admin Users Edit" component={AdminUserEdit} {...this.state}/>
                   <PropsRoute path="/admin-users/create" name="Admin Users Create" component={AdminUserEdit} {...this.state}/>
                   <PropsRoute path="/admin-users/:id" name="Admin Users Show" component={AdminUserShow} {...this.state}/>
                   <PropsRoute path="/admin-users" name="Admin Users" component={AdminUserIndex} {...this.state}/>
+                  <PropsRoute path="/users/:id/edit" name="Users Edit" component={UserEdit} {...this.state}/>
+                  <PropsRoute path="/users/create" name="Users Create" component={UserEdit} {...this.state}/>
+                  <PropsRoute path="/users/:id" name="Users Show" component={UserShow} {...this.state}/>
+                  <PropsRoute path="/users" name="Users" component={UserIndex} {...this.state}/>
                   <Redirect from="/" to="/dashboard"/>
                 </Switch>
               </Container>

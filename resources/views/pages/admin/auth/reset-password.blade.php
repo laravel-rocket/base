@@ -1,52 +1,62 @@
-@extends('layouts.admin.application', ['noFrame' => true, 'bodyClasses' => 'hold-transition login-page'])
+@extends('layouts.admin.application_guest')
 
 @section('metadata')
 @stop
 
 @section('styles')
+    @parent
 @stop
 
 @section('scripts')
-@stop
-
-@section('title')
-@stop
-
-@section('header')
-    Reset Password
+    @parent
 @stop
 
 @section('content')
-    <body class="login-page">
-    <div class="login-box">
-        <div class="login-logo">
-            <a href="{!! action('User\IndexController@index') !!}"><b>{{ config('site.name') }}</b> Admin</a>
-        </div>
-        <div class="login-box-body">
-            <p class="login-box-msg">@lang('admin.pages.auth.messages.reset_password')</p>
-            <form action="{!! URL::action('Admin\PasswordController@postResetPassword') !!}" method="post">
-                {!! csrf_field() !!}
-                <div class="form-group has-feedback">
-                    <input type="email" name="email" class="form-control" placeholder="Email"/>
-                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                </div>
-                <div class="form-group has-feedback">
-                    <input type="password" name="password" class="form-control" placeholder="Password"/>
-                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                </div>
-                <div class="form-group has-feedback">
-                    <input type="password" name="password_confirmation" class="form-control" placeholder="Email"/>
-                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                </div>
-                <input type="hidden" name="token" value="{{ $token }}"/>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">@lang('admin.pages.auth.buttons.reset')</button>
-                    </div><!-- /.col -->
-                </div>
-            </form>
-        </div><!-- /.login-box-body -->
-    </div><!-- /.login-box -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                @include('shared.admin.message-box')
+                <div class="card-group">
+                    <div class="card p-8">
+                        <div class="card-body">
+                            <h1>Reset Password</h1>
+                            <p class="text-muted">@lang('admin.pages.auth.messages.reset_password')</p>
+                            <form method="post" action="{{ action('Admin\PasswordController@postResetPassword') }}">
+                                {{ csrf_field() }}
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                    </div>
+                                    <input type="text" name="email" class="form-control" placeholder="Email Address">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                    </div>
+                                    <input type="password" name="password" class="form-control" placeholder="New Password">
+                                </div>
 
-    </body>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                    </div>
+                                    <input type="password" name="password_confirmation" class="form-control" placeholder="New Password Type Again">
+                                </div>
+                                <input type="hidden" name="token" value="{{ $token }}"/>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button type="submit"
+                                                class="btn btn-primary px-4">@lang('admin.pages.auth.buttons.reset')</button>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
+

@@ -24,6 +24,4 @@ class IndexControllerTest extends TestCase
         ]);
         $this->be($authUser, 'admins');
     }
-
-
 }

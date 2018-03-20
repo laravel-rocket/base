@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {
   Badge,
   Dropdown,
@@ -11,6 +11,7 @@ import {
   NavbarBrand,
   DropdownToggle
 } from 'reactstrap';
+
 import ObjectHelper from "../../helpers/ObjectHelper";
 
 class Header extends Component {
@@ -23,12 +24,17 @@ class Header extends Component {
     this.handleSidebarToggle = this.handleSidebarToggle.bind(this);
     this.handleSidebarMinimize = this.handleSidebarMinimize.bind(this);
     this.handleMobileSidebarToggle = this.handleMobileSidebarToggle.bind(this);
+    this.handleSignOutOnClick = this.handleSignOutOnClick.bind(this);
 
     this.state = {
       profileDropDownOpen: false,
       notificationDropDownOpen: false,
       params: props.params
     };
+  }
+
+  handleSignOutOnClick(e) {
+    this.props.methods.signOut(e);
   }
 
   componentWillReceiveProps(newProps) {
@@ -63,7 +69,7 @@ class Header extends Component {
   }
 
   render() {
-    const notificaitons = ObjectHelper.get(this.state, "params.information.notifications", [] ).map((notification) =>
+    const notificaitons = ObjectHelper.get(this.state, "params.information.notifications", []).map((notification) =>
       <DropdownItem><i className="fa fa-bell"></i> Notificaiton</DropdownItem>
     );
 
@@ -77,31 +83,34 @@ class Header extends Component {
             <Dropdown isOpen={this.state.notificationDropDownOpen} toggle={this.handleNotificationDropDownToggle}>
               <DropdownToggle className="nav-link dropdown-toggle">
                 <i className="icon-bell"></i>
-                { ObjectHelper.get(this.state, "params.information.notificationCount", 0 ) > 0 &&
-                <Badge pill color="danger">{ObjectHelper.get(this.state, "params.information.notificationCount", 0 ) }</Badge>
+                {ObjectHelper.get(this.state, "params.information.notificationCount", 0) > 0 &&
+                <Badge pill
+                       color="danger">{ObjectHelper.get(this.state, "params.information.notificationCount", 0)}</Badge>
                 }
               </DropdownToggle>
               <DropdownMenu right className={this.state.notificationDropDownOpen ? 'show' : ''}>
-                { ObjectHelper.get(this.state, "params.information.notificationCount", 0 ) <= 0 &&
-                <DropdownItem><div className="text-center">No Unread Notification</div></DropdownItem>
+                {ObjectHelper.get(this.state, "params.information.notificationCount", 0) <= 0 &&
+                <DropdownItem>
+                  <div className="text-center">No Unread Notification</div>
+                </DropdownItem>
                 }
-                { notificaitons }
+                {notificaitons}
               </DropdownMenu>
             </Dropdown>
           </NavItem>
           <NavItem>
             <Dropdown isOpen={this.state.profileDropDownOpen} toggle={this.handleProfileDropDownToggle}>
               <DropdownToggle className="nav-link dropdown-toggle">
-                <img src={ ObjectHelper.get(this.state, "params.information.authUser.profileImage.url", '' )} className="img-avatar" alt=""/>
-                <span className="d-md-down-none">{ ObjectHelper.get(this.state,"params.information.authUser.name", 'Unknown' )  }</span>
+                <img src={ObjectHelper.get(this.state, "params.information.authUser.profileImage.url", '')}
+                     className="img-avatar" alt=""/>
+                <span
+                  className="d-md-down-none">{ObjectHelper.get(this.state, "params.information.authUser.name", 'Unknown')}</span>
               </DropdownToggle>
               <DropdownMenu right className={this.state.profileDropDownOpen ? 'show' : ''}>
                 <DropdownItem header tag="div" className="text-center"><strong>Settings</strong></DropdownItem>
-                <DropdownItem>
-                  <NavLink to="/me"><i className="fa fa-user"></i> Profile</NavLink>
-                </DropdownItem>
+                <DropdownItem onClick={this.props.methods.moveToProfileEdit}><i className="fa fa-user"></i> Profile</DropdownItem>
                 <DropdownItem divider/>
-                <DropdownItem><i className="fa fa-lock"></i> Logout</DropdownItem>
+                <DropdownItem onClick={(e)=>{this.handleSignOutOnClick(e)}}><i className="fa fa-lock"></i>Sign out</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </NavItem>

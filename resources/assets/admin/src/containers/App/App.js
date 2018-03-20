@@ -20,6 +20,7 @@ import AdminUserEdit from "../../views/AdminUsers/AdminUserEdit";
 import UserIndex from '../../views/Users/UserIndex';
 import UserShow from '../../views/Users/UserShow';
 import UserEdit from "../../views/Users/UserEdit";
+import AuthService from "../../services/AuthService";
 
 class App extends Component {
   constructor(props) {
@@ -47,13 +48,14 @@ class App extends Component {
         confirmation: this.confirmation.bind(this),
         errorMessage: this.errorMessage.bind(this),
         successMessage: this.successMessage.bind(this),
+        signOut: this.signOut.bind(this),
+        moveToProfileEdit: this.moveToProfileEdit.bind(this),
       }
     };
     this.handleConfirmationOnOK = this.handleConfirmationOnOK.bind(this);
     this.handleConfirmationOnCancel = this.handleConfirmationOnCancel.bind(this);
     this.handleOnSuccessAlertDismiss = this.handleOnSuccessAlertDismiss.bind(this);
     this.handleOnErrorAlertDismiss = this.handleOnErrorAlertDismiss.bind(this);
-
     props.history.listen((location, action) => {
       this.handleOnSuccessAlertDismiss();
       this.handleOnErrorAlertDismiss();
@@ -147,6 +149,20 @@ class App extends Component {
         }
       }
     });
+  }
+
+  signOut()
+  {
+    AuthService.signOut().then(repos => {
+      window.location = '/admin'
+    }).catch(error => {
+      this.props.methods.errorMessage('Sign out failed. Please access again later');
+    });
+  }
+
+  moveToProfileEdit()
+  {
+    this.props.history.push('/me');
   }
 
   // Event Handlers

@@ -1,17 +1,15 @@
-<?PHP
-
+<?php
 namespace Tests\Controllers\Api\Admin;
 
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase
 {
-
     protected $useDatabase = true;
 
     public function testGetInstance()
     {
-        /** @var    \App\Http\Controllers\Api\Admin\UserController $controller */
+        /** @var \App\Http\Controllers\Api\Admin\UserController $controller */
         $controller = \App::make(\App\Http\Controllers\Api\Admin\UserController::class);
         $this->assertNotNull($controller);
     }
@@ -19,10 +17,10 @@ class UserControllerTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $authUser = factory(\App\Models\AdminUser::class)->create();
+        $authUser     = factory(\App\Models\AdminUser::class)->create();
         $authUserRole = factory(\App\Models\AdminUserRole::class)->create([
             'admin_user_id' => $authUser->id,
-            'role' => \App\Models\AdminUserRole::ROLE_SUPER_USER,
+            'role'          => \App\Models\AdminUserRole::ROLE_SUPER_USER,
         ]);
         $this->be($authUser, 'admins');
     }
@@ -47,7 +45,7 @@ class UserControllerTest extends TestCase
         $user = factory(\App\Models\User::class)->create();
 
         $testData = str_random(10);
-        $id = $user->id;
+        $id       = $user->id;
 
         $user->name = $testData;
 
@@ -70,5 +68,4 @@ class UserControllerTest extends TestCase
         $checkUser = \App\Models\User::find($id);
         $this->assertNull($checkUser);
     }
-
 }

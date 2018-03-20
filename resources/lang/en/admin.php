@@ -54,10 +54,11 @@ return [
             ],
             'messages' => [
                 'remember_me'     => 'Remember Me',
-                'forgot_password' => 'Forget Password',
+                'forgot_password' => 'Please enter your Email to send password reset link',
                 'email'           => 'Email',
                 'password'        => 'Password',
-                'please_sign_in'  => 'Please Sign In',
+                'please_sign_in'  => 'Sign In With Your Email Address And Password',
+                'reset_password'  => 'Please enter your Email and new password twice',
             ],
         ],
         'users'       => [

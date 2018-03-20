@@ -1,16 +1,10 @@
 <?php
-
 namespace App\Http\Controllers\Api\Admin;
 
-use App\Exceptions\Api\Admin\APIErrorException;
 use App\Http\Controllers\Controller;
 
-use App\Http\Requests\Admin\AdminUserRequest;
-use App\Http\Requests\Api\Admin\AdminUser\IndexRequest;
 use App\Http\Requests\Api\Admin\AdminUser\UpdateRequest;
 use App\Http\Responses\Api\Admin\AdminUser;
-use App\Http\Responses\Api\Admin\AdminUsers;
-use App\Http\Responses\Api\Admin\Status;
 
 use App\Repositories\AdminUserRepositoryInterface;
 use App\Repositories\AdminUserRoleRepositoryInterface;
@@ -36,8 +30,7 @@ class MeController extends Controller
         FileServiceInterface $fileService,
         AdminUserServiceInterface $adminUserService,
         AdminUserRoleRepositoryInterface $adminUserRoleRepository
-    )
-    {
+    ) {
         $this->adminUserRepository     = $adminUserRepository;
         $this->adminUserService        = $adminUserService;
         $this->fileService             = $fileService;
@@ -61,7 +54,6 @@ class MeController extends Controller
      * @param \App\Http\Requests\Api\Admin\AdminUser\UpdateRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
-     *
      */
     public function update(UpdateRequest $request)
     {
@@ -73,13 +65,13 @@ class MeController extends Controller
             'password',
         ]);
 
-        if($request->hasFile('profile_image_id')) {
+        if ($request->hasFile('profile_image_id')) {
             $file      = $request->file('profile_image_id');
             $mediaType = $file->getClientMimeType();
             $path      = $file->getPathname();
             $image     = $this->fileService->upload('profile-image', $path, $mediaType, []);
-            if(!empty($image)) {
-                if(!empty($adminUser->profileImage)) {
+            if (!empty($image)) {
+                if (!empty($adminUser->profileImage)) {
                     $this->fileService->delete($adminUser->profileImage);
                 }
                 $input['profile_image_id'] = $image->id;

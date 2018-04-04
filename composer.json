@@ -17,7 +17,7 @@
     "laravel-rocket/generator": "2.3.*",
     "laravel-rocket/service-auth": "2.2.*",
     "laravel/socialite": "~3.0",
-    "laravelcollective/html": "5.5.*",
+    "laravelcollective/html": "5.6.*",
     "laravel/passport": "^3.0",
     "facebook/graph-sdk": "~5.6",
     "predis/predis": "^1.1"

@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Exceptions\Api\V1\APIErrorException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\V1\Auth\RefreshTokenRequest;
 use App\Http\Requests\Api\V1\Auth\SignInRequest;
 use App\Http\Requests\Api\V1\Auth\SignUpRequest;
 use App\Http\Requests\Api\V1\PsrServerRequest;
@@ -90,10 +91,27 @@ class AuthController extends Controller
         return AccessToken::updateWithResponse($response)->response();
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function postSignOut()
     {
         $this->userService->signOut();
 
         return Status::ok()->response();
+    }
+
+    /**
+     * @param \App\Http\Requests\API\V1\Auth\RefreshTokenRequest $request
+     *
+     * @return \Psr\Http\Message\ResponseInterface
+     *
+     * @throws \League\OAuth2\Server\Exception\OAuthServerException
+     */
+    public function postRefreshToken(RefreshTokenRequest $request)
+    {
+        $serverRequest = PsrServerRequest::createFromRequest($request);
+
+        return $this->server->respondToAccessTokenRequest($serverRequest, new Psr7Response);
     }
 }

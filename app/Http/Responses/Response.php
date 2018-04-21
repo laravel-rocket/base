@@ -55,7 +55,7 @@ class Response
     public function get($name, $default = null)
     {
         if (!array_key_exists($name, $this->columns)) {
-            return;
+            return $default;
         }
         if (array_key_exists($name, $this->data)) {
             return $this->data[$name];
@@ -97,6 +97,15 @@ class Response
             if (array_key_exists($column, $this->data)) {
                 if ($this->data[$column] instanceof self) {
                     $ret[$column] = $this->data[$column]->toArray();
+                } elseif (is_array($this->data[$column])) {
+                    $ret[$column] = [];
+                    foreach ($this->data[$column] as $item) {
+                        if ($item instanceof self) {
+                            $ret[$column][] = $item->toArray();
+                        } else {
+                            $ret[$column][] = $item;
+                        }
+                    }
                 } else {
                     $ret[$column] = $this->data[$column];
                 }

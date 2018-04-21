@@ -36,4 +36,14 @@ class Response extends ResponseBase
 
         return null;
     }
+
+    protected static function generateArray(array $items, string $class)
+    {
+        $ret = [];
+        foreach ($items as $item) {
+            $ret[] = $class::updateWithModel($item);
+        }
+
+        return $ret;
+    }
 }

@@ -21,7 +21,7 @@
                         <div class="card-body">
                             <h1>Forgot Password</h1>
                             <p class="text-muted">@lang('admin.pages.auth.messages.forgot_password')</p>
-                            <form method="post" action="{{ action('Admin\PasswordController@reset_password') }}">
+                            <form method="post" action="{{ action('Admin\PasswordController@postForgotPassword') }}">
                                 {{ csrf_field() }}
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">

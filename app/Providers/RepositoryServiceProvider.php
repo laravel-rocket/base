@@ -51,6 +51,9 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Eloquent\FileRepository::class
         );
 
-        /* NEW BINDING */
+        $this->app->singleton(
+            \App\Repositories\UserServiceAuthenticationRepositoryInterface::class,
+            \App\Repositories\Eloquent\UserServiceAuthenticationRepository::class
+        );
     }
 }

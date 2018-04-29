@@ -41,6 +41,9 @@ class ServiceServiceProvider extends ServiceProvider
             \App\Services\Production\APIUserService::class
         );
 
-        /* NEW BINDING */
+        $this->app->singleton(
+            \App\Services\UserServiceAuthenticationServiceInterface::class,
+            \App\Services\Production\UserServiceAuthenticationService::class
+        );
     }
 }

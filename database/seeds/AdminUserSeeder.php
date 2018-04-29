@@ -16,10 +16,10 @@ class AdminUserSeeder extends Seeder
         /** @var \App\Repositories\AdminUserRoleRepositoryInterface $adminUserRoleRepository */
         $adminUserRoleRepository = \App::make('App\Repositories\AdminUserRoleRepositoryInterface');
 
-        foreach(range(1, 30) as $index) {
+        foreach (range(1, 30) as $index) {
             $adminUser = $adminUserRepository->create([
-                'name'     => 'TestUser' . $index,
-                'email'    => 'test' . $index . '@example.com',
+                'name'     => 'TestUser'.$index,
+                'email'    => 'test'.$index.'@example.com',
                 'password' => 'testtest',
             ]);
 

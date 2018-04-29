@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.54.6",
+            "version": "3.55.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "ea86c808c9c8a1cd39dab2baa1b9dd38e03323ec"
+                "reference": "28a1828814ce34d056492fa494f1e4bbaddaf33e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/ea86c808c9c8a1cd39dab2baa1b9dd38e03323ec",
-                "reference": "ea86c808c9c8a1cd39dab2baa1b9dd38e03323ec",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/28a1828814ce34d056492fa494f1e4bbaddaf33e",
+                "reference": "28a1828814ce34d056492fa494f1e4bbaddaf33e",
                 "shasum": ""
             },
             "require": {
@@ -84,20 +84,20 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2018-04-20T18:14:14+00:00"
+            "time": "2018-04-26T21:09:13+00:00"
         },
         {
             "name": "defuse/php-encryption",
-            "version": "v2.1.0",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/defuse/php-encryption.git",
-                "reference": "5176f5abb38d3ea8a6e3ac6cd3bbb54d8185a689"
+                "reference": "0d4d27c368ca6798bc162469e43248c363c73495"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/defuse/php-encryption/zipball/5176f5abb38d3ea8a6e3ac6cd3bbb54d8185a689",
-                "reference": "5176f5abb38d3ea8a6e3ac6cd3bbb54d8185a689",
+                "url": "https://api.github.com/repos/defuse/php-encryption/zipball/0d4d27c368ca6798bc162469e43248c363c73495",
+                "reference": "0d4d27c368ca6798bc162469e43248c363c73495",
                 "shasum": ""
             },
             "require": {
@@ -106,7 +106,7 @@
                 "php": ">=5.4.0"
             },
             "require-dev": {
-                "nikic/php-parser": "^2.0|^3.0",
+                "nikic/php-parser": "^2.0|^3.0|^4.0",
                 "phpunit/phpunit": "^4|^5"
             },
             "bin": [
@@ -147,7 +147,7 @@
                 "security",
                 "symmetric key cryptography"
             ],
-            "time": "2017-05-18T21:28:48+00:00"
+            "time": "2018-04-23T19:33:40+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -969,16 +969,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.3.2",
+            "version": "6.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "68d0ea14d5a3f42a20e87632a5f84931e2709c90"
+                "reference": "407b0cb880ace85c9b63c5f9551db498cb2d50ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/68d0ea14d5a3f42a20e87632a5f84931e2709c90",
-                "reference": "68d0ea14d5a3f42a20e87632a5f84931e2709c90",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/407b0cb880ace85c9b63c5f9551db498cb2d50ba",
+                "reference": "407b0cb880ace85c9b63c5f9551db498cb2d50ba",
                 "shasum": ""
             },
             "require": {
@@ -988,7 +988,7 @@
             },
             "require-dev": {
                 "ext-curl": "*",
-                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4",
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4 || ^7.0",
                 "psr/log": "^1.0"
             },
             "suggest": {
@@ -1030,7 +1030,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2018-03-26T16:33:04+00:00"
+            "time": "2018-04-22T15:46:56+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -1445,16 +1445,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.6.17",
+            "version": "v5.6.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "0f787c763ae8fb9fae0c8c809830ba4fa81e2d9d"
+                "reference": "088f286d0b5145275ced93799e23980a81898d10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/0f787c763ae8fb9fae0c8c809830ba4fa81e2d9d",
-                "reference": "0f787c763ae8fb9fae0c8c809830ba4fa81e2d9d",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/088f286d0b5145275ced93799e23980a81898d10",
+                "reference": "088f286d0b5145275ced93799e23980a81898d10",
                 "shasum": ""
             },
             "require": {
@@ -1580,7 +1580,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-04-17T12:51:04+00:00"
+            "time": "2018-04-26T13:25:23+00:00"
         },
         {
             "name": "laravel/passport",
@@ -1778,16 +1778,16 @@
         },
         {
             "name": "laravelcollective/html",
-            "version": "v5.6.6",
+            "version": "v5.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelCollective/html.git",
-                "reference": "b3a10245c791a211e5f8ec37117f4549cd22aabe"
+                "reference": "38f2c6ff0d3dfc497175a5cff5e24b3937f6e2c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/b3a10245c791a211e5f8ec37117f4549cd22aabe",
-                "reference": "b3a10245c791a211e5f8ec37117f4549cd22aabe",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/38f2c6ff0d3dfc497175a5cff5e24b3937f6e2c9",
+                "reference": "38f2c6ff0d3dfc497175a5cff5e24b3937f6e2c9",
                 "shasum": ""
             },
             "require": {
@@ -1801,7 +1801,7 @@
             "require-dev": {
                 "illuminate/database": "5.6.*",
                 "mockery/mockery": "~1.0",
-                "phpunit/phpunit": "~5.4"
+                "phpunit/phpunit": "~7.1"
             },
             "type": "library",
             "extra": {
@@ -1842,7 +1842,7 @@
             ],
             "description": "HTML and Form Builders for the Laravel Framework",
             "homepage": "https://laravelcollective.com",
-            "time": "2018-04-09T14:09:32+00:00"
+            "time": "2018-04-26T16:09:18+00:00"
         },
         {
             "name": "lcobucci/jwt",

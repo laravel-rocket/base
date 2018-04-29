@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Middleware\Api\V1;
 
-use App\Exceptions\APIErrorException;
+use App\Exceptions\Api\V1\APIErrorException;
 
 class ErrorHandling
 {

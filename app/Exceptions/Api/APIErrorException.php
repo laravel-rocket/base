@@ -1,9 +1,9 @@
 <?php
-namespace App\Exceptions\Api\Admin;
+namespace App\Exceptions\Api;
 
-use App\Http\Responses\Api\V1\Status;
+use Exception;
 
-class APIErrorException extends \App\Exceptions\Api\APIErrorException
+class APIErrorException extends Exception
 {
     /** @var string */
     protected $userMessage = '';
@@ -28,26 +28,5 @@ class APIErrorException extends \App\Exceptions\Api\APIErrorException
         $this->extraData   = $extraData;
         $this->config      = $this->errorConfig();
         parent::__construct($message, $this->config['code'], null);
-    }
-
-    /**
-     * @return \Response|\Illuminate\Http\JsonResponse
-     */
-    public function getErrorResponse()
-    {
-        return Status::error($this->errorName, $this->userMessage, $this->extraData)->response();
-    }
-
-    /**
-     * @return array
-     */
-    protected function errorConfig()
-    {
-        $error = config('api.errors.'.$this->errorName);
-        if (empty($error)) {
-            $error = config('api.errors.unknown');
-        }
-
-        return $error;
     }
 }

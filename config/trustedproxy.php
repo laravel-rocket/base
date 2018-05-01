@@ -32,13 +32,13 @@ return [
      * Or, to trust all proxies that connect
      * directly to your server, uncomment this:
      */
-     # 'proxies' => '*',
+     // 'proxies' => '*',
 
     /*
      * Or, to trust ALL proxies, including those that
      * are in a chain of forwarding, uncomment this:
     */
-    # 'proxies' => '**',
+    // 'proxies' => '**',
 
     /*
      * Default Header Names
@@ -63,9 +63,9 @@ return [
      */
     'headers' => [
         (defined('Illuminate\Http\Request::HEADER_FORWARDED') ? Illuminate\Http\Request::HEADER_FORWARDED : 'forwarded') => 'FORWARDED',
-        Illuminate\Http\Request::HEADER_X_FORWARDED_FOR    => 'X_FORWARDED_FOR',
-        Illuminate\Http\Request::HEADER_X_FORWARDED_HOST  => 'X_FORWARDED_HOST',
-        Illuminate\Http\Request::HEADER_X_FORWARDED_PROTO => 'X_FORWARDED_PROTO',
-        Illuminate\Http\Request::HEADER_X_FORWARDED_PORT  => 'X_FORWARDED_PORT',
-    ]
+        Illuminate\Http\Request::HEADER_X_FORWARDED_FOR                                                                  => 'X_FORWARDED_FOR',
+        Illuminate\Http\Request::HEADER_X_FORWARDED_HOST                                                                 => 'X_FORWARDED_HOST',
+        Illuminate\Http\Request::HEADER_X_FORWARDED_PROTO                                                                => 'X_FORWARDED_PROTO',
+        Illuminate\Http\Request::HEADER_X_FORWARDED_PORT                                                                 => 'X_FORWARDED_PORT',
+    ],
 ];

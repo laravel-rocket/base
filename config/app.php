@@ -1,7 +1,7 @@
 <?php
 
 $additionalProviders = [];
-if(env('APP_ENV') === 'local') {
+if (env('APP_ENV') === 'local' || env('APP_ENV') === 'rocket') {
     $additionalProviders += [
         \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         \Barryvdh\Debugbar\ServiceProvider::class,

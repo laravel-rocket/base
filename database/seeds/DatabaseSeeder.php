@@ -6,13 +6,12 @@ class DatabaseSeeder extends Seeder
 {
     /** @var array $seeders */
     protected $seeders = [
-        'AdminUserSeeder',
     ];
 
     protected $environments = [
         'testing'     => [],
-        'local'       => [],
-        'development' => [],
+        'local'       => ['AdminUserSeeder'],
+        'development' => ['AdminUserSeeder'],
         'production'  => [],
     ];
 
@@ -26,11 +25,9 @@ class DatabaseSeeder extends Seeder
         foreach ($this->seeders as $seeder) {
             $this->call($seeder);
         }
-        foreach ($this->environments as $environment => $seeders) {
-            if (app()->environment() === $environment) {
-                foreach ($seeders as $seeder) {
-                    $this->call($seeder);
-                }
+        if (array_key_exists(app()->environment(), $this->environments)) {
+            foreach ($this->environments[app()->environment()] as $seeder) {
+                $this->call($seeder);
             }
         }
     }

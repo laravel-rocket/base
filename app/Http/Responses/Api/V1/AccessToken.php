@@ -4,10 +4,10 @@ namespace App\Http\Responses\Api\V1;
 class AccessToken extends Response
 {
     protected $columns = [
-        'accessToken'   => '',
-        'tokenType'     => '',
-        'rememberToken' => '',
-        'expiresIn'     => 0,
+        'accessToken'  => '',
+        'tokenType'    => '',
+        'refreshToken' => '',
+        'expiresIn'    => 0,
     ];
 
     /**
@@ -28,7 +28,7 @@ class AccessToken extends Response
                 'refreshToken' => array_get($json, 'refresh_token', ''),
                 'expiresIn'    => array_get($json, 'expires_in', ''),
             ];
-            $response = new static($modelArray, 200);
+            $response   = new static($modelArray, 200);
         }
 
         return $response;

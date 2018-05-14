@@ -14,6 +14,9 @@ return [
                 env('AWS_IMAGE_BUCKET'),
             ],
         ],
+        'null' => [
+            'type' => 'null',
+        ],
         'default' => env('STORAGE_TYPE', 'local'),
     ],
     'acceptable' => [
@@ -22,14 +25,18 @@ return [
             'application/octet-stream' => '',
             'application/zip'          => 'zip',
             'text/plain'               => 'txt',
-            'image/png'                => 'png',
-            'image/jpeg'               => 'jpg',
-            'image/gif'                => 'gif',
         ],
         'image' => [
             'image/png'  => 'png',
             'image/jpeg' => 'jpg',
             'image/gif'  => 'gif',
+        ],
+        'video' => [
+            'video/mp4' => 'mp4',
+        ],
+        'audio' => [
+            'audio/mpeg' => 'mp3',
+            'audio/ogg'  => 'ogg',
         ],
     ],
     'categories' => [

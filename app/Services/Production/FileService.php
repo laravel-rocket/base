@@ -33,6 +33,7 @@ class FileService extends BaseService implements FileServiceInterface
             'local' => $fileUploadLocalService,
             's3'    => $fileUploadS3Service,
             'url'   => null,
+            'null'  => null,
         ];
     }
 

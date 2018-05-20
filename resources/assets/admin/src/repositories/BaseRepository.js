@@ -11,8 +11,8 @@ class BaseRepository {
     return this.get(this.PATH, Object.assign({
       "offset": offset || 0,
       "limit": limit || 0,
-      "direction": direction || 'id',
-      "order": order || 'asc',
+      "direction": direction || 'asc',
+      "order": order || 'id',
       "query": searchWord || ''
     }, params));
   }
@@ -75,7 +75,7 @@ class BaseRepository {
     }
 
     if(params instanceof FormData){
-        formData = param;
+      formData = param;
     }else{
       Object.keys(params).forEach(function (key) {
         formData.append(key, params[key]);

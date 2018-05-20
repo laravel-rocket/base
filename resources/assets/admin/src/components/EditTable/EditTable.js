@@ -10,6 +10,8 @@ import {
 } from "reactstrap";
 import DatePicker from 'react-datepicker';
 import ImageInput from "../ImageInput/ImageInput";
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 class EditTable extends Component {
   constructor() {
@@ -18,9 +20,10 @@ class EditTable extends Component {
       model: {},
       formData: {},
     };
-    this.handleDataChange.bind(this);
-    this.handleReset.bind(this);
-    this.handleSubmit.bind(this);
+    this.handleDataChange = this.handleDataChange.bind(this);
+    this.handleReset = this.handleReset.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this)
   }
 
   componentWillReceiveProps(newProps) {
@@ -72,8 +75,20 @@ class EditTable extends Component {
   }
 
   handleSubmit(e) {
-    console.log("handleSubmit");
     this.props.onSubmit(this.state.formData);
+  }
+
+  handleSelectChange(name, value) {
+    if (!value) {
+      return Promise.resolve({options: []});
+    }
+
+    console.log('Get Changes for ' + name + ' -> ' + value);
+    return this.props.onSelect(name, value).then((options) => {
+      console.log("SUCCESS!");
+      console.log(options);
+      return options;
+    });
   }
 
   buildForm(item, key, id) {
@@ -154,8 +169,57 @@ class EditTable extends Component {
             </Col>
           </FormGroup>
         );
-      case 'datetime':
+      case 'textarea':
+        return (
+          <FormGroup key={'input-' + key}>
+            <Label htmlFor={key}>{columnInfo[key].name}</Label>
+            <TextArea type="textarea" id={key} name={key} value={item}
+                      onChange={e => this.handleDataChange(key, e.target.value)}/>
+          </FormGroup>
+        );
       case 'select':
+      case 'select_single':
+        if (columnInfo[key].relation) {
+          return (
+            <FormGroup key={'input-' + key}>
+              <Label htmlFor={key}>{columnInfo[key].name}</Label>
+              <Select.Async
+                multi={false}
+                value={item}
+                onChange={value => this.handleDataChange(key, value)}
+                onValueClick={(value, event) => {
+                  return false;
+                }}
+                valueKey="id"
+                labelKey="name"
+                loadOptions={(value) => {
+                  return this.handleSelectChange(columnInfo[key].relation, value);
+                }}
+                backspaceRemoves={this.state.backspaceRemoves}
+              />
+            </FormGroup>
+          );
+        }
+        const optionValues = [];
+        for (const option of columnInfo[key].options) {
+          optionValues.push({
+            value: option.value,
+            label: option.name,
+          });
+        }
+        return (
+          <FormGroup key={'input-' + key}>
+            <Label htmlFor={key}>{columnInfo[key].name}</Label>
+            <Select
+              name={key}
+              value={item}
+              onChange={(value) => this.handleDataChange(key, value)}
+              options={optionValues}
+            />
+          </FormGroup>
+        );
+      case 'datetime':
+
     }
 
     return (
@@ -217,14 +281,19 @@ EditTable.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.string),
   columnInfo: PropTypes.object,
   model: PropTypes.object,
+  selectCandidates: PropTypes.object,
   onSubmit: PropTypes.func,
+  onSelect: PropTypes.func,
 };
 
 EditTable.defaultProps = {
   columns: ['id'],
   columnInfo: {id: {name: 'ID', type: "integer", editable: false}},
   model: {},
+  selectCandidates: {},
   onSubmit: () => {
+  },
+  onSelect: () => {
   },
 };
 

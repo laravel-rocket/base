@@ -6,6 +6,7 @@ import {
   Badge
 } from "reactstrap";
 import Pagination from "../Pagination/Pagination";
+import { Link } from 'react-router-dom';
 
 class IndexList extends Component {
 
@@ -46,8 +47,11 @@ class IndexList extends Component {
     } = this.props;
     switch (columnInfo[key]['type']) {
       case 'image':
-        return (
-          <img key={'image-' + id + '-' + key} src={item.url} className={'img-thumbnails'} width={50} height={50}/>);
+        if (item !== null && typeof item === 'object') {
+          return (
+            <img key={'image-' + id + '-' + key} src={item.url} className={'img-thumbnails'} width={50} height={50}/>);
+        }
+        return "";
       case 'checkbox':
         const options = [];
         if (!Array.isArray(item)) {
@@ -66,6 +70,35 @@ class IndexList extends Component {
           }
         }
         return (<div>{options}</div>)
+    }
+
+    if (item !== null && typeof item === 'object') {
+      const text = item['name'] || item['id'];
+      if (columnInfo[key].link) {
+        return(<Link to={columnInfo[key].link + '/' + item['id']}>{text}</Link>)
+      }
+      return text
+    }
+
+    if (item instanceof Array) {
+      const data = [];
+      for (const value in item) {
+        let text = "";
+        if (value !== null && typeof value === 'object') {
+          text = value['name'] || value['id'];
+        } else {
+          text = value;
+        }
+        if( data.length > 0){
+          data.push(',');
+        }
+        if (columnInfo[key].link) {
+          data.push(<Link key={value['id']} to={columnInfo[key].link + '/' + value['id']}>{text}</Link>)
+        }else{
+          data.push(text);
+        }
+      }
+      return data;
     }
 
     return item;

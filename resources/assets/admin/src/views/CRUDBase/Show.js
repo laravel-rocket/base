@@ -31,7 +31,7 @@ class Show extends Base {
     }
   }
 
-  componetWillMount() {
+  componentWillMount() {
     let {id} = this.props.match.params;
     this.get(id);
   }

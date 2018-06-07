@@ -1,6 +1,5 @@
 {
   "config": {
-
   },
   "auth": {
     "socials": [
@@ -66,7 +65,6 @@
           ]
         }
       }
-
     },
     "admin_user_notifications": {
       "columns": {
@@ -92,15 +90,22 @@
   },
   "admin": {
     "cruds": {
-       "exclude": [
-         "admin_roles",
-         "files",
-         "admin_password_resets",
-         "password_resets",
-         "user_service_authentications"
-       ],
+      "exclude": [
+        "admin_roles",
+        "files",
+        "admin_password_resets",
+        "password_resets",
+        "user_service_authentications"
+      ],
       "include": [
       ]
-    }
+    },
+    "roles": [
+      {
+        "name": "super_user",
+        "displayName": "Super User",
+        "subRoles": []
+      }
+    ]
   }
 }

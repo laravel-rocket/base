@@ -104,6 +104,11 @@
       {
         "name": "super_user",
         "displayName": "Super User",
+        "subRoles": ["site_admin"]
+      },
+      {
+        "name": "site_admin",
+        "displayName": "Site Admin",
         "subRoles": []
       }
     ]

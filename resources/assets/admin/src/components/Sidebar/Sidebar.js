@@ -3,6 +3,7 @@ import {NavLink} from 'react-router-dom';
 import {Badge, Nav, NavItem} from 'reactstrap';
 import classNames from 'classnames';
 import nav from './_nav'
+import RoleHelper from "../../helpers/RoleHelper";
 
 class Sidebar extends Component {
 
@@ -51,7 +52,15 @@ class Sidebar extends Component {
 
     // nav item with nav link
     const navItem = (item, key) => {
+      const authUser = this.props.params.information.authUser;
       const classes = classNames( "nav-link", item.class);
+
+      if( item.roles ){
+        if( !RoleHelper.hasRole(authUser, item.roles) ){
+          return null;
+        }
+      }
+
       return (
         <NavItem key={key}>
           <NavLink to={item.url} className={ classes } activeClassName="active">

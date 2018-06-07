@@ -89,5 +89,18 @@
         }
       }
     }
+  },
+  "admin": {
+    "cruds": {
+       "exclude": [
+         "admin_roles",
+         "files",
+         "admin_password_resets",
+         "password_resets",
+         "user_service_authentications"
+       ],
+      "include": [
+      ]
+    }
   }
 }

@@ -12,6 +12,7 @@ import DatePicker from 'react-datepicker';
 import ImageInput from "../ImageInput/ImageInput";
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import noImage from '../../../images/no-image.png';
 
 class EditTable extends Component {
   constructor() {
@@ -130,10 +131,11 @@ class EditTable extends Component {
           </FormGroup>
         );
       case 'image':
+        const image = item.url || noImage;
         return (
           <FormGroup key={'input-' + key}>
             <Label htmlFor={key}>{columnInfo[key].name}</Label>
-            <ImageInput onChange={e => this.handleDataChange(key, e.target.value)} currentImageUrl={item.url}
+            <ImageInput onChange={e => this.handleDataChange(key, e.target.value)} currentImageUrl={image}
                         name={key} thumbnailSize={200}/>
           </FormGroup>
         );

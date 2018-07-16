@@ -117,7 +117,7 @@ class EditTable extends Component {
             <Input type="file"
                    id={key}
                    name={key}
-                   onChange={e => this.handleDataChange(key, e.target.value)}/>
+                   onChange={e => this.handleDataChange(key, e.target.files[0])}/>
           </FormGroup>
         );
       case 'date':
@@ -131,11 +131,12 @@ class EditTable extends Component {
           </FormGroup>
         );
       case 'image':
-        const image = item.url || noImage;
+        const image = (item && typeof item === 'object') ? item.url || noImage : 
+                    (item && typeof item === 'string') ? item : noImage;
         return (
           <FormGroup key={'input-' + key}>
             <Label htmlFor={key}>{columnInfo[key].name}</Label>
-            <ImageInput onChange={e => this.handleDataChange(key, e.target.value)} currentImageUrl={image}
+            <ImageInput onChange={e => this.handleDataChange(key, e.target.files[0])} currentImageUrl={image}
                         name={key} thumbnailSize={200}/>
           </FormGroup>
         );

@@ -159,9 +159,9 @@ class FileService extends BaseService implements FileServiceInterface
             return true;
         }
 
-        $fileUploadServices = array_get($this->fileUploadServices, $storageType);
-        if (!empty($fileUploadServices)) {
-            $fileUploadServices->delete([
+        $fileUploadService = array_get($this->fileUploadServices, $storageType);
+        if (!empty($fileUploadService)) {
+            $fileUploadService->delete([
                 's3_key' => $key,
             ]);
         }
@@ -265,5 +265,9 @@ class FileService extends BaseService implements FileServiceInterface
         }
 
         return null;
+    }
+
+    protected function getDominantColor($filePath)
+    {
     }
 }

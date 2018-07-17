@@ -301,7 +301,7 @@ definitions:
     type: object
     properties:
       id:
-        type: string
+        type: integer
         description: Unique identifier representing a specific campaign
       name:
         type: string

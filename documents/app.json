@@ -13,7 +13,8 @@
           "selection": "multiple",
           "target": "role"
         }
-      }
+      },
+      "requiredRoles": ["super_user"]
     },
     "admin_user_roles": {
       "columns": {

@@ -120,6 +120,11 @@ class File extends Base
     protected $dates  = [
     ];
 
+    protected $casts  = [
+        'is_enabled' => 'boolean',
+        'thumbnails' => 'array',
+    ];
+
     protected $presenter = \App\Presenters\FilePresenter::class;
 
     // Relations

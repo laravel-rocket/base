@@ -11,7 +11,7 @@ import {
 import DatePicker from 'react-datepicker';
 import ImageInput from "../ImageInput/ImageInput";
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
+import {Async as SelectAsync} from 'react-select';
 
 class EditTable extends Component {
   constructor() {
@@ -33,30 +33,49 @@ class EditTable extends Component {
     })
   }
 
-  handleDataChange(key, data) {
+  handleDataChange(key, data, actionMeta) {
     const {
       columnInfo,
     } = this.props;
     const newFormData = this.state.formData;
     const newModelData = this.state.model;
+    console.log(columnInfo[key].type);
+    console.log(key);
+    console.log(data);
+    console.log(actionMeta);
 
+    const formKey = columnInfo[key].queryName;
+
+    let pos = 0;
     switch (columnInfo[key].type) {
       case "checkbox":
         if (!Array.isArray(newModelData[key])) {
           newModelData[key] = [];
-          newFormData[key] = [];
+          newFormData[formKey] = [];
         }
-        const pos = newModelData[key].indexOf(data);
+        pos = newModelData[key].indexOf(data);
         if (pos >= 0) {
           newModelData[key].splice(pos, 1);
         } else {
           newModelData[key].push(data);
         }
-        newFormData[key] = newModelData[key];
+        newFormData[formKey] = newModelData[key];
+        break;
+      case "select_multiple":
+        if (!Array.isArray(newModelData[key])) {
+          newModelData[key] = [];
+        }
+        newModelData[key] = data;
+        newFormData[formKey] = [];
+        console.log(newModelData[key]);
+        newModelData[key].forEach((item) => {
+          console.log(item);
+          newFormData[formKey].push(item.value);
+        });
         break;
       default:
         newFormData[key] = data;
-        newModelData[key] = data;
+        newModelData[formKey] = data;
     }
 
     this.setState({
@@ -86,8 +105,12 @@ class EditTable extends Component {
     console.log('Get Changes for ' + name + ' -> ' + value);
     return this.props.onSelect(name, value).then((options) => {
       console.log("SUCCESS!");
-      console.log(options);
-      return options;
+      return options.options.map(function (option) {
+        return {
+          label: option.name,
+          value: option.id,
+        };
+      });
     });
   }
 
@@ -97,6 +120,10 @@ class EditTable extends Component {
     } = this.props;
     if (item === undefined) {
       item = '';
+    }
+    console.log(key);
+    if (!columnInfo[key]) {
+      return null;
     }
     switch (columnInfo[key].type) {
       case 'password':
@@ -173,29 +200,48 @@ class EditTable extends Component {
         return (
           <FormGroup key={'input-' + key}>
             <Label htmlFor={key}>{columnInfo[key].name}</Label>
-            <TextArea type="textarea" id={key} name={key} value={item}
-                      onChange={e => this.handleDataChange(key, e.target.value)}/>
+            <Input type="textarea" id={key} name={key} value={item}
+                   onChange={e => this.handleDataChange(key, e.target.value)}/>
           </FormGroup>
         );
       case 'select':
       case 'select_single':
+      case 'select_multiple':
+        const isMulti = columnInfo[key].type === 'select_multiple';
+        console.log(item);
+
+        let defaultValues = null;
+        if (isMulti) {
+          defaultValues = [];
+          if (Array.isArray(item)) {
+            item.forEach((value) => {
+              defaultValues.push({
+                value: value.id || value.value,
+                label: value.name,
+              });
+            });
+          }
+        } else {
+          if (item && typeof item === 'object') {
+            defaultValues = {
+              value: item.id || item.value,
+              label: value.name || value.label,
+            }
+          }
+        }
         if (columnInfo[key].relation) {
           return (
             <FormGroup key={'input-' + key}>
               <Label htmlFor={key}>{columnInfo[key].name}</Label>
-              <Select.Async
-                multi={false}
-                value={item}
-                onChange={value => this.handleDataChange(key, value)}
-                onValueClick={(value, event) => {
-                  return false;
-                }}
-                valueKey="id"
-                labelKey="name"
+              <SelectAsync
+                isMulti={isMulti}
+                name={key}
+                onChange={(value, actionMeta) => this.handleDataChange(key, value, actionMeta)}
                 loadOptions={(value) => {
                   return this.handleSelectChange(columnInfo[key].relation, value);
                 }}
                 backspaceRemoves={this.state.backspaceRemoves}
+                value={defaultValues}
               />
             </FormGroup>
           );
@@ -211,10 +257,11 @@ class EditTable extends Component {
           <FormGroup key={'input-' + key}>
             <Label htmlFor={key}>{columnInfo[key].name}</Label>
             <Select
+              isMulti={isMulti}
               name={key}
-              value={item}
-              onChange={(value) => this.handleDataChange(key, value)}
+              onChange={(value, actionMeta) => this.handleDataChange(key, value)}
               options={optionValues}
+              defaultValue={defaultValues}
             />
           </FormGroup>
         );

@@ -55,7 +55,7 @@ class Sidebar extends Component {
       const authUser = this.props.params.information.authUser;
       const classes = classNames( "nav-link", item.class);
 
-      if( item.roles ){
+      if( item.roles && item.roles.length > 0 ){
         if( !RoleHelper.hasRole(authUser, item.roles) ){
           return null;
         }

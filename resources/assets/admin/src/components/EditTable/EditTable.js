@@ -27,9 +27,42 @@ class EditTable extends Component {
   }
 
   componentWillReceiveProps(newProps) {
+    const {
+      columns,columnInfo
+    } = newProps;
+    const newFormData = this.state.formData;
+    for (
+      let i = 0;
+      i < columns.length;
+      i++
+    ) {
+      const key = columns[i];
+      const formKey = columnInfo[key].queryName;
+      switch (columnInfo[key].type) {
+        case "checkbox":
+          if (!Array.isArray(newProps.model[key])) {
+            newFormData[formKey] = [];
+          }else{
+            newFormData[formKey] = newProps.model[key];
+          }
+          break;
+        case "select_multiple":
+          newFormData[formKey] = [];
+          if (Array.isArray(newProps.model[key])) {
+            newFormData[formKey] = [];
+            newProps.model[key].forEach((item) => {
+              console.log(item);
+              newFormData[formKey].push(item.value || item.id);
+            });
+          }
+          break;
+      }
+    }
+
     this.setState({
       ...this.state,
       model: Object.assign({}, newProps.model),
+      formData: Object.assign({}, newFormData),
     })
   }
 
@@ -72,6 +105,11 @@ class EditTable extends Component {
           console.log(item);
           newFormData[formKey].push(item.value);
         });
+        break;
+      case "select_single":
+        newModelData[key] = data;
+        newFormData[formKey] = data.value;
+        console.log(newModelData[key]);
         break;
       default:
         newFormData[key] = data;
@@ -122,7 +160,7 @@ class EditTable extends Component {
       item = '';
     }
     console.log(key);
-    if (!columnInfo[key]) {
+    if( !columnInfo[key] ){
       return null;
     }
     switch (columnInfo[key].type) {
@@ -217,18 +255,19 @@ class EditTable extends Component {
             item.forEach((value) => {
               defaultValues.push({
                 value: value.id || value.value,
-                label: value.name,
+                label: value.name || value.label,
               });
             });
           }
         } else {
-          if (item && typeof item === 'object') {
+          if( item && typeof item === 'object') {
             defaultValues = {
               value: item.id || item.value,
-              label: value.name || value.label,
+              label: item.name || item.label,
             }
           }
         }
+        console.log(defaultValues);
         if (columnInfo[key].relation) {
           return (
             <FormGroup key={'input-' + key}>

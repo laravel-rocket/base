@@ -4,7 +4,7 @@ import {
   Table,
   Badge,
 } from "reactstrap";
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class ShowTable extends Component {
   constructor() {
@@ -43,13 +43,22 @@ class ShowTable extends Component {
             options.push(<div>{columnInfo[key].optionNames[item[i]]}</div>)
           }
         }
-        return (<div>{options}</div>)
+        return (<div>{options}</div>);
+      case 'select_multiple':
+        if (item !== null && Array.isArray(item)) {
+          const items = [];
+          item.forEach(function (object) {
+            items.push(<Badge color="primary" key={key + '_' + object.id}>{object.name}</Badge>)
+          });
+          return (<div>{items}</div>)
+        }
+        return "";
     }
 
     if (item !== null && typeof item === 'object') {
       const text = item['name'] || item['id'];
       if (columnInfo[key].link) {
-        return(<Link to={columnInfo[key].link + '/' + item['id']}>{text}</Link>)
+        return (<Link to={columnInfo[key].link + '/' + item['id']}>{text}</Link>)
       }
       return text
     }
@@ -63,12 +72,12 @@ class ShowTable extends Component {
         } else {
           text = value;
         }
-        if( data.length > 0){
+        if (data.length > 0) {
           data.push(',');
         }
         if (columnInfo[key].link) {
           data.push(<Link key={value['id']} to={columnInfo[key].link + '/' + value['id']}>{text}</Link>)
-        }else{
+        } else {
           data.push(text);
         }
       }

@@ -7,11 +7,13 @@ import {
   Label,
   Input,
   Button,
+  Table,
 } from "reactstrap";
 import DatePicker from 'react-datepicker';
 import ImageInput from "../ImageInput/ImageInput";
 import Select from 'react-select';
 import {Async as SelectAsync} from 'react-select';
+import Map from '../../components/Map/Map'
 
 class EditTable extends Component {
   constructor() {
@@ -19,16 +21,19 @@ class EditTable extends Component {
     this.state = {
       model: {},
       formData: {},
+      options: {},
     };
     this.handleDataChange = this.handleDataChange.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleSelectChange = this.handleSelectChange.bind(this)
+    this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.handleMapClick = this.handleMapClick.bind(this);
+    this.handleDeleteFromList = this.handleDeleteFromList.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
     const {
-      columns,columnInfo
+      columns, columnInfo
     } = newProps;
     const newFormData = this.state.formData;
     for (
@@ -42,16 +47,16 @@ class EditTable extends Component {
         case "checkbox":
           if (!Array.isArray(newProps.model[key])) {
             newFormData[formKey] = [];
-          }else{
+          } else {
             newFormData[formKey] = newProps.model[key];
           }
           break;
         case "select_multiple":
+        case "select_list":
           newFormData[formKey] = [];
           if (Array.isArray(newProps.model[key])) {
             newFormData[formKey] = [];
             newProps.model[key].forEach((item) => {
-              console.log(item);
               newFormData[formKey].push(item.value || item.id);
             });
           }
@@ -72,10 +77,6 @@ class EditTable extends Component {
     } = this.props;
     const newFormData = this.state.formData;
     const newModelData = this.state.model;
-    console.log(columnInfo[key].type);
-    console.log(key);
-    console.log(data);
-    console.log(actionMeta);
 
     const formKey = columnInfo[key].queryName;
 
@@ -100,16 +101,13 @@ class EditTable extends Component {
         }
         newModelData[key] = data;
         newFormData[formKey] = [];
-        console.log(newModelData[key]);
         newModelData[key].forEach((item) => {
-          console.log(item);
           newFormData[formKey].push(item.value);
         });
         break;
       case "select_single":
         newModelData[key] = data;
         newFormData[formKey] = data.value;
-        console.log(newModelData[key]);
         break;
       default:
         newFormData[key] = data;
@@ -124,6 +122,82 @@ class EditTable extends Component {
     console.log(this.state);
   }
 
+  handleAddToList(key, value, actionMeta) {
+    const {
+      columnInfo,
+    } = this.props;
+    const newFormData = this.state.formData;
+    const newModelData = this.state.model;
+    const formKey = columnInfo[key].queryName;
+
+    let newItem = null;
+    if (Array.isArray(this.state.options[key])) {
+      this.state.options[key].forEach((item) => {
+        if (item.id === value.value) {
+          newItem = item;
+        }
+      });
+    } else {
+      newItem = {
+        id: value,
+      };
+    }
+    if (!Array.isArray(newModelData[key])) {
+      newModelData[key] = [];
+    }
+    let exists = false;
+    newModelData[key].forEach((item) => {
+      if (item.id === newItem.id) {
+        exists = true;
+      }
+    });
+    if (!exists) {
+      newModelData[key].push(newItem);
+      newFormData[formKey] = [];
+      newModelData[key].forEach((item) => {
+        newFormData[formKey].push(item.id);
+      });
+    }
+    this.setState({
+      ...this.state,
+      model: newModelData,
+      formData: newFormData,
+    });
+    console.log(this.state);
+  }
+
+  handleDeleteFromList(key, entry)
+  {
+    console.log(this.state);
+
+    const {
+      columnInfo,
+    } = this.props;
+    const newFormData = this.state.formData;
+    const newModelData = this.state.model;
+    const formKey = columnInfo[key].queryName;
+
+    if( Array.isArray(this.state.model[key])){
+      newModelData[key] = [];
+      this.state.model[key].forEach((item) => {
+        if (item.id !== entry.id) {
+          newModelData[key].push(item);
+        }
+      });
+      newFormData[formKey] = [];
+      newModelData[key].forEach((item) => {
+        newFormData[formKey].push(item.id);
+      });
+    }
+    this.setState({
+      ...this.state,
+      model: newModelData,
+      formData: newFormData,
+    });
+
+    console.log(this.state);
+  }
+
   handleReset(e) {
     this.setState({
       ...this.state,
@@ -135,14 +209,18 @@ class EditTable extends Component {
     this.props.onSubmit(this.state.formData);
   }
 
-  handleSelectChange(name, value) {
+  handleSelectChange(key, name, value) {
     if (!value) {
       return Promise.resolve({options: []});
     }
 
-    console.log('Get Changes for ' + name + ' -> ' + value);
     return this.props.onSelect(name, value).then((options) => {
-      console.log("SUCCESS!");
+      const newOptions = this.state.options;
+      newOptions[key] = options.options;
+      this.setState({
+        ...this.state,
+        options: newOptions,
+      });
       return options.options.map(function (option) {
         return {
           label: option.name,
@@ -152,15 +230,35 @@ class EditTable extends Component {
     });
   }
 
+  handleMapClick(key, latitude, longitude) {
+    const {
+      columnInfo,
+    } = this.props;
+    const newFormData = this.state.formData;
+    const newModelData = this.state.model;
+
+    newFormData[columnInfo[key].longitudeQueryName] = longitude;
+    newFormData[columnInfo[key].latitudeQueryName] = latitude;
+    newModelData[columnInfo[key].longitudeQueryName] = longitude;
+    newModelData[columnInfo[key].latitudeQueryName] = latitude;
+
+    this.setState({
+      ...this.state,
+      model: newModelData,
+      formData: newFormData,
+    })
+  }
+
+
   buildForm(item, key, id) {
+    const self = this;
     const {
       columnInfo,
     } = this.props;
     if (item === undefined) {
       item = '';
     }
-    console.log(key);
-    if( !columnInfo[key] ){
+    if (!columnInfo[key]) {
       return null;
     }
     switch (columnInfo[key].type) {
@@ -246,7 +344,6 @@ class EditTable extends Component {
       case 'select_single':
       case 'select_multiple':
         const isMulti = columnInfo[key].type === 'select_multiple';
-        console.log(item);
 
         let defaultValues = null;
         if (isMulti) {
@@ -260,14 +357,14 @@ class EditTable extends Component {
             });
           }
         } else {
-          if( item && typeof item === 'object') {
+          if (item && typeof item === 'object') {
             defaultValues = {
               value: item.id || item.value,
               label: item.name || item.label,
             }
           }
         }
-        console.log(defaultValues);
+
         if (columnInfo[key].relation) {
           return (
             <FormGroup key={'input-' + key}>
@@ -277,7 +374,7 @@ class EditTable extends Component {
                 name={key}
                 onChange={(value, actionMeta) => this.handleDataChange(key, value, actionMeta)}
                 loadOptions={(value) => {
-                  return this.handleSelectChange(columnInfo[key].relation, value);
+                  return this.handleSelectChange(key, columnInfo[key].relation, value);
                 }}
                 backspaceRemoves={this.state.backspaceRemoves}
                 value={defaultValues}
@@ -302,6 +399,74 @@ class EditTable extends Component {
               options={optionValues}
               defaultValue={defaultValues}
             />
+          </FormGroup>
+        );
+      case 'location':
+        const longitude = this.state.model[columnInfo[key].longitudeQueryName];
+        const latitude = this.state.model[columnInfo[key].latitudeQueryName];
+
+        return (
+          <FormGroup key={'input-' + key}>
+            <Label htmlFor={key}>{columnInfo[key].name}</Label>
+            <Row>
+              <Col md="8">
+                <Map height={"300px"} latitude={parseFloat(latitude)} longitude={parseFloat(longitude)}
+                     onClick={(latitude, longitude) => {
+                       this.handleMapClick(key, latitude, longitude)
+                     }}/>
+              </Col>
+              <Col md="4">
+                <Label htmlFor={key}>Longitude</Label>
+                <Input type="text" id={key} name={columnInfo[key].longitudeQueryName} value={longitude}
+                       onChange={e => this.handleDataChange(key, e.target.value)}/>
+                <Label htmlFor={key}>Latitude</Label>
+                <Input type="text" id={key} name={columnInfo[key].latitudeQueryName} value={latitude}
+                       onChange={e => this.handleDataChange(key, e.target.value)}/>
+              </Col>
+            </Row>
+          </FormGroup>
+        );
+      case 'list':
+
+        let columns = [];
+        if (Array.isArray(item) && columnInfo[key].relation) {
+          columns = item.map((entry, i) => {
+            return (<tr>
+              {Object.keys(columnInfo[key].columns).map((column, i) =>
+                <td key={"item-" + i}>{entry[column]}</td>)}
+              <td>
+                <Button size="sm" color="danger" onClick={e => {
+                  self.handleDeleteFromList(key, entry);
+                  return false;
+                }}><i className="fa fa-trash-o"></i> Delete</Button>
+              </td>
+            </tr>)
+          });
+        }
+        return (
+          <FormGroup key={'input-' + key}>
+            <Label htmlFor={key}>{columnInfo[key].name}</Label>
+            <SelectAsync
+              name={key}
+              onChange={(value, actionMeta) => self.handleAddToList(key, value, actionMeta)}
+              loadOptions={(value) => {
+                return self.handleSelectChange(key, columnInfo[key].relation, value);
+              }}
+              backspaceRemoves={true}
+              value={""}
+            />
+            <Table responsive>
+              <thead>
+              <tr key={"header"}>
+                {Object.keys(columnInfo[key].columns).map((column, i) => <th
+                  key={key + i}>{columnInfo[key].columns[column]}</th>)}
+                <th>&nbsp;</th>
+              </tr>
+              </thead>
+              <tbody>
+              {columns}
+              </tbody>
+            </Table>
           </FormGroup>
         );
       case 'datetime':

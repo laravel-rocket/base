@@ -2,9 +2,10 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {
   Table,
-  Badge,
+  Badge, Col,
 } from "reactstrap";
 import {Link} from 'react-router-dom';
+import Map from "../Map/Map";
 
 class ShowTable extends Component {
   constructor() {
@@ -15,9 +16,10 @@ class ShowTable extends Component {
   buildRowItemContent(item, key, id) {
     const {
       columnInfo,
+      model
     } = this.props;
     if (item === undefined) {
-      return "";
+      item = '';
     }
     switch (columnInfo[key].type) {
       case 'image':
@@ -53,6 +55,13 @@ class ShowTable extends Component {
           return (<div>{items}</div>)
         }
         return "";
+      case 'location':
+        const longitude = model[columnInfo[key].longitudeQueryName];
+        const latitude = model[columnInfo[key].latitudeQueryName];
+        console.log(longitude);
+        return (
+          <Map height={"300px"} latitude={parseFloat(latitude)} longitude={parseFloat(longitude)}/>
+        );
     }
 
     if (item !== null && typeof item === 'object') {
@@ -101,6 +110,9 @@ class ShowTable extends Component {
       i++
     ) {
       const rowData = this.buildRowItemContent(model[columns[i]], columns[i], model['id']);
+      if( columnInfo[columns[i]].type === 'list'){
+        continue;
+      }
       rows.push(
         <tr key={columns[i]}>
           <th>{columnInfo[columns[i]].name}</th>

@@ -11,12 +11,14 @@ class Request extends BaseRequest
     {
         $transformed = [];
 
-        foreach ($validator->errors() as $field => $message) {
+        $validateErrors = $validator->getMessageBag();
+        foreach ($validateErrors->getMessages() as $field => $message) {
             $transformed[] = [
                 'name'    => $field,
                 'message' => $message[0],
             ];
         }
+
         throw new APIErrorException('wrongParameter', 'Wrong Parameters', ['invalidParams' => $transformed]);
     }
 

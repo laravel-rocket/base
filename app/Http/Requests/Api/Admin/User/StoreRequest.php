@@ -23,12 +23,14 @@ class StoreRequest extends Request
     public function rules()
     {
         return [
+            'name' => 'required'
         ];
     }
 
     public function messages()
     {
         return [
+            'name.required'          => trans('validation.required'),
         ];
     }
 }

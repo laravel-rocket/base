@@ -145,7 +145,7 @@ class App extends Component {
         ...this.state.params,
         alert: {
           ...this.state.params.alert,
-          successMessage: message,
+          errorMessage: message,
         }
       }
     });

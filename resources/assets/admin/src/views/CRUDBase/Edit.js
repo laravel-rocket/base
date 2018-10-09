@@ -31,7 +31,8 @@ class Edit extends Base {
     this.state = {
       model: {},
       id: 0,
-      relationModels: {}
+      relationModels: {},
+      errors: {}
     };
   }
 
@@ -49,23 +50,49 @@ class Edit extends Base {
   }
 
   handleOnSubmit(formData) {
+
     const id = this.state.id;
     if (id > 0) {
       this.repository.update(id, formData).then(repos => {
-        this.props.history.push(this.path + '/' + id);
-        this.props.methods.successMessage('Successfully Updated ');
+        if (repos.errorCode) {
+          let errors = [];
+          for (let i = 0; i < repos.invalidParams.length; i++) {
+            errors[repos.invalidParams[i].name] = repos.invalidParams[i].message
+          }
+          this.setState({
+            ...this.state,
+            errors: errors
+          });
+          this.props.methods.errorMessage('Failed ' + repos.detail);
+        } else {
+          this.props.history.push(this.path + '/' + id);
+          this.props.methods.successMessage('Successfully Updated ');
+        }
       });
     } else {
       this.repository.store(formData).then(repos => {
-        this.props.history.push(this.path + '/' + repos.id);
+        if (repos.errorCode) {
+          let errors = [];
+          for (let i = 0; i < repos.invalidParams.length; i++) {
+            errors[repos.invalidParams[i].name] = repos.invalidParams[i].message
+          }
+          this.setState({
+            ...this.state,
+            errors: errors
+          });
+          this.props.methods.errorMessage('Failed ' + repos.detail);
+        } else {
+          this.props.methods.successMessage('Successfully Created ');
+          this.props.history.push(this.path + '/' + repos.id);
+        }
       });
     }
+    return false;
   }
 
   get(id) {
     this.repository.show(id).then(repos => {
       this.setState({id: id, model: repos});
-      console.log(this.state);
     }).catch(error => {
       this.props.methods.errorMessage('Data Fetch Failed. Please access again later');
     });
@@ -73,7 +100,6 @@ class Edit extends Base {
 
   getRelationCandidates(name, searchWord) {
     if( !this.relationRepositories[name] ) {
-      console.log('No Relation Repository Found');
       return Promise.resolve({ options: [] });
     }
 
@@ -91,7 +117,6 @@ class Edit extends Base {
       });
       return {options: repos.items};
     }).catch(error => {
-      console.log(error);
       this.props.methods.errorMessage('Data Fetch Failed. Please access again later');
     });
   }
@@ -113,6 +138,7 @@ class Edit extends Base {
                   selectCandidates={this.relationModels}
                   onSubmit={this.handleOnSubmit}
                   onSelect={this.getRelationCandidates}
+                  errors={this.state.errors}
                 />
               </CardBlock>
             </Card>

@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Requests\Api\Admin;
 
-use App\Exceptions\APIErrorException;
+use App\Exceptions\Api\Admin\APIErrorException;
 use Illuminate\Contracts\Validation\Validator;
 use LaravelRocket\Foundation\Http\Requests\APIRequest as BaseRequest;
 

@@ -107,7 +107,6 @@ class Index extends Base {
           page: Math.floor(offset / limit) + 1,
         }
       });
-      console.log(this.state);
     }).catch(error => {
       this.props.methods.errorMessage('Data Fetch Failed. Please access again later');
     });
@@ -135,7 +134,6 @@ class Index extends Base {
   }
 
   handleDeleteClick(id) {
-    console.log('Delete Item ' + id);
     this.props.methods.confirmation('Delete Data', 'Are you okay to delete this item?', () => {
       this.deleteItem(id)
     }, null)

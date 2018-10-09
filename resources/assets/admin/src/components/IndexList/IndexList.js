@@ -1,286 +1,111 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {
-  Row,
-  Col,
-  FormGroup,
-  Label,
-  Input,
+  Table,
   Button,
+  Badge
 } from "reactstrap";
-import DatePicker from 'react-datepicker';
-import ImageInput from "../ImageInput/ImageInput";
-import Select from 'react-select';
-import {Async as SelectAsync} from 'react-select';
+import Pagination from "../Pagination/Pagination";
+import { Link } from 'react-router-dom';
 
-class EditTable extends Component {
+class IndexList extends Component {
+
   constructor() {
     super();
-    this.state = {
-      model: {},
-      formData: {},
-    };
-    this.handleDataChange = this.handleDataChange.bind(this);
-    this.handleReset = this.handleReset.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleSelectChange = this.handleSelectChange.bind(this)
+    this.handlePaginationClick = this.handlePaginationClick.bind(this);
+    this.state = {}
   }
 
-  componentWillReceiveProps(newProps) {
-    this.setState({
-      ...this.state,
-      model: Object.assign({}, newProps.model),
-    })
+  handlePaginationClick(page) {
+    const {
+      getIndexList,
+    } = this.props;
+    getIndexList(page);
   }
 
-  handleDataChange(key, data, actionMeta) {
+  buildHeader() {
+    const headers = [];
+    const {
+      columns,
+      columnInfo,
+    } = this.props;
+    for (
+      let i = 0;
+      i < columns.length;
+      i++
+    ) {
+      const headerText = "" + columnInfo[columns[i]]['name'];
+      headers.push(<th key={'header-' + columns[i]}>{headerText}</th>);
+    }
+    headers.push(<th key={'header-buttons'}>&nbsp;</th>);
+    return headers;
+  }
+
+  buildRowItemContent(item, key, id) {
     const {
       columnInfo,
     } = this.props;
-    const newFormData = this.state.formData;
-    const newModelData = this.state.model;
-    console.log(columnInfo[key].type);
-    console.log(key);
-    console.log(data);
-    console.log(actionMeta);
-
-    const formKey = columnInfo[key].queryName;
-
-    let pos = 0;
-    switch (columnInfo[key].type) {
-      case "checkbox":
-        if (!Array.isArray(newModelData[key])) {
-          newModelData[key] = [];
-          newFormData[formKey] = [];
-        }
-        pos = newModelData[key].indexOf(data);
-        if (pos >= 0) {
-          newModelData[key].splice(pos, 1);
-        } else {
-          newModelData[key].push(data);
-        }
-        newFormData[formKey] = newModelData[key];
-        break;
-      case "select_multiple":
-        if (!Array.isArray(newModelData[key])) {
-          newModelData[key] = [];
-        }
-        newModelData[key] = data;
-        newFormData[formKey] = [];
-        console.log(newModelData[key]);
-        newModelData[key].forEach((item) => {
-          console.log(item);
-          newFormData[formKey].push(item.value);
-        });
-        break;
-      default:
-        newFormData[key] = data;
-        newModelData[formKey] = data;
-    }
-
-    this.setState({
-      ...this.state,
-      model: newModelData,
-      formData: newFormData,
-    });
-    console.log(this.state);
-  }
-
-  handleReset(e) {
-    this.setState({
-      ...this.state,
-      model: Object.assign({}, this.props.model),
-    })
-  }
-
-  handleSubmit(e) {
-    this.props.onSubmit(this.state.formData);
-  }
-
-  handleSelectChange(name, value) {
-    if (!value) {
-      return Promise.resolve({options: []});
-    }
-
-    console.log('Get Changes for ' + name + ' -> ' + value);
-    return this.props.onSelect(name, value).then((options) => {
-      console.log("SUCCESS!");
-      return options.options.map(function (option) {
-        return {
-          label: option.name,
-          value: option.id,
-        };
-      });
-    });
-  }
-
-  buildForm(item, key, id) {
-    const {
-      columnInfo,
-    } = this.props;
-    if (item === undefined) {
-      item = '';
-    }
-    console.log(key);
-    if (!columnInfo[key]) {
-      return null;
-    }
-    switch (columnInfo[key].type) {
-      case 'password':
-        return (
-          <FormGroup key={'input-' + key}>
-            <Label htmlFor={key}>{columnInfo[key].name}</Label>
-            <Input type="password"
-                   id={key}
-                   name={key}
-                   onChange={e => this.handleDataChange(key, e.target.value)}/>
-          </FormGroup>
-        );
-      case 'file':
-        return (
-          <FormGroup key={'input-' + key}>
-            <Label htmlFor={key}>{columnInfo[key].name}</Label>
-            <Input type="file"
-                   id={key}
-                   name={key}
-                   onChange={e => this.handleDataChange(key, e.target.value)}/>
-          </FormGroup>
-        );
-      case 'date':
-        return (
-          <FormGroup key={'input-' + key}>
-            <Label htmlFor={key}>{columnInfo[key].name}</Label>
-            <DatePicker
-              selected={item}
-              onChange={e => this.handleDataChange(key, e.target.value)}
-            />
-          </FormGroup>
-        );
+    switch (columnInfo[key]['type']) {
       case 'image':
-        return (
-          <FormGroup key={'input-' + key}>
-            <Label htmlFor={key}>{columnInfo[key].name}</Label>
-            <ImageInput onChange={e => this.handleDataChange(key, e.target.value)} currentImageUrl={item.url}
-                        name={key} thumbnailSize={200}/>
-          </FormGroup>
-        );
+        if (item !== null && typeof item === 'object') {
+          return (
+            <img key={'image-' + id + '-' + key} src={item.url} className={'img-thumbnails'} width={50} height={50}/>);
+        }
+        return "";
       case 'checkbox':
         const options = [];
+        if (!Array.isArray(item)) {
+          return options;
+        }
         for (
           let i = 0;
-          i < columnInfo[key].options.length;
+          i < item.length;
           i++
         ) {
-          const option = columnInfo[key].options[i];
-          options.push(
-            <div className="checkbox" key={key + '_' + option}>
-              <Label check htmlFor={key + '_' + option}>
-                <Input
-                  onChange={e => this.handleDataChange(key, e.target.value)}
-                  checked={item.indexOf(option) >= 0}
-                  type="checkbox"
-                  id={key + '_' + option}
-                  name={key}
-                  value={option}/> {columnInfo[key].optionNames[option]}
-              </Label>
-            </div>
-          )
-        }
-        return (
-          <FormGroup key={'input-' + key} row>
-            <Col md="3"><Label>{columnInfo[key].name}</Label></Col>
-            <Col md="9">
-              <FormGroup check>
-                {options}
-              </FormGroup>
-            </Col>
-          </FormGroup>
-        );
-      case 'textarea':
-        return (
-          <FormGroup key={'input-' + key}>
-            <Label htmlFor={key}>{columnInfo[key].name}</Label>
-            <Input type="textarea" id={key} name={key} value={item}
-                   onChange={e => this.handleDataChange(key, e.target.value)}/>
-          </FormGroup>
-        );
-      case 'select':
-      case 'select_single':
-      case 'select_multiple':
-        const isMulti = columnInfo[key].type === 'select_multiple';
-        console.log(item);
-
-        let defaultValues = null;
-        if (isMulti) {
-          defaultValues = [];
-          if (Array.isArray(item)) {
-            item.forEach((value) => {
-              defaultValues.push({
-                value: value.id || value.value,
-                label: value.name,
-              });
-            });
-          }
-        } else {
-          if (item && typeof item === 'object') {
-            defaultValues = {
-              value: item.id || item.value,
-              label: item.name,
-            }
+          if (columnInfo[key].presentation === 'badge') {
+            options.push(<Badge color="secondary"
+                                key={key + '_' + item[i]}>{columnInfo[key].optionNames[item[i]]}</Badge>)
+          } else {
+            options.push(<div key={key + '_' + item[i]}>{columnInfo[key].optionNames[item[i]]}</div>)
           }
         }
-        console.log(defaultValues);
-        if (columnInfo[key].relation) {
-          return (
-            <FormGroup key={'input-' + key}>
-              <Label htmlFor={key}>{columnInfo[key].name}</Label>
-              <SelectAsync
-                isMulti={isMulti}
-                name={key}
-                onChange={(value, actionMeta) => this.handleDataChange(key, value, actionMeta)}
-                loadOptions={(value) => {
-                  return this.handleSelectChange(columnInfo[key].relation, value);
-                }}
-                backspaceRemoves={this.state.backspaceRemoves}
-                value={defaultValues}
-              />
-            </FormGroup>
-          );
-        }
-        const optionValues = [];
-        for (const option of columnInfo[key].options) {
-          optionValues.push({
-            value: option.value,
-            label: option.name,
-          });
-        }
-        return (
-          <FormGroup key={'input-' + key}>
-            <Label htmlFor={key}>{columnInfo[key].name}</Label>
-            <Select
-              isMulti={isMulti}
-              name={key}
-              onChange={(value, actionMeta) => this.handleDataChange(key, value)}
-              options={optionValues}
-              defaultValue={defaultValues}
-            />
-          </FormGroup>
-        );
-      case 'datetime':
-
+        return (<div>{options}</div>)
     }
 
-    return (
-      <FormGroup key={'input-' + key}>
-        <Label htmlFor={key}>{columnInfo[key].name}</Label>
-        <Input type="text" id={key} name={key} value={item}
-               onChange={e => this.handleDataChange(key, e.target.value)}/>
-      </FormGroup>
-    );
+    if (item !== null && typeof item === 'object') {
+      const text = item['name'] || item['id'];
+      if (columnInfo[key].link) {
+        return(<Link to={columnInfo[key].link + '/' + item['id']}>{text}</Link>)
+      }
+      return text
+    }
+
+    if (item instanceof Array) {
+      const data = [];
+      for (const value in item) {
+        let text = "";
+        if (value !== null && typeof value === 'object') {
+          text = value['name'] || value['id'];
+        } else {
+          text = value;
+        }
+        if( data.length > 0){
+          data.push(',');
+        }
+        if (columnInfo[key].link) {
+          data.push(<Link key={value['id']} to={columnInfo[key].link + '/' + value['id']}>{text}</Link>)
+        }else{
+          data.push(text);
+        }
+      }
+      return data;
+    }
+
+    return item;
   }
 
-  buildRows() {
-    const rows = [];
+  buildRowItem(row) {
+    const rowItems = [];
     const {
       columns,
     } = this.props;
@@ -289,60 +114,123 @@ class EditTable extends Component {
       i < columns.length;
       i++
     ) {
-      const form = this.buildForm(this.state.model[columns[i]], columns[i], this.state.model['id']);
+      const rowData = this.buildRowItemContent(row[columns[i]], columns[i], row['id']);
+      rowItems.push(<td key={'data-' + row['id'] + '-' + columns[i]}>{rowData}</td>);
+    }
+    rowItems.push(
+      <td key={'data-' + row['id'] + '-buttons'}>
+        <Button size="sm" color="primary" onClick={e => this.props.onShowClick(row['id'])}><i
+          className="fa fa-folder"></i> Show</Button>{' '}
+        <Button size="sm" color="info" onClick={e => this.props.onEditClick(row['id'])}><i
+          className="fa fa-pencil"></i> Edit</Button>{' '}
+        <Button size="sm" color="danger" onClick={e => this.props.onDeleteClick(row['id'])}><i
+          className="fa fa-trash-o"></i> Delete</Button>
+      </td>
+    );
+    return rowItems;
+  }
+
+  buildRows() {
+    const rows = [];
+    const {
+      list,
+    } = this.props;
+    if (!list.items) {
+      return rows;
+    }
+
+    for (
+      let i = 0;
+      i < list.items.length;
+      i++
+    ) {
+      const rowItem = this.buildRowItem(list.items[i]);
       rows.push(
-        <Row key={columns[i]}>
-          <Col xs="12">
-            {form}
-          </Col>
-        </Row>
+        <tr key={list.items[i].id}>
+          {rowItem}
+        </tr>
       );
     }
 
     return rows;
   }
 
-
   render() {
+    const header = this.buildHeader();
     const rows = this.buildRows();
+    const {
+      list,
+      activePage,
+      totalItemCount
+    } = this.props;
 
     return (
       <div>
-        {rows}
-        <Row>
-          <Col xs="12">
-            <Button type="submit" size="sm" color="primary" onClick={e => {
-              this.handleSubmit()
-            }}><i className="fa fa-dot-circle-o"></i> Submit</Button>
-            {' '}
-            <Button type="reset" size="sm" color="danger" onClick={e => {
-              this.handleReset()
-            }}><i className="fa fa-ban"></i> Reset</Button>
-          </Col>
-        </Row>
+        <Pagination
+          activePage={activePage}
+          itemsCountPerPage={list.limit}
+          totalItemsCount={totalItemCount || 0}
+          onChange={this.handlePaginationClick}/>
+        <Table responsive>
+          <thead>
+          <tr>
+            {header}
+          </tr>
+          </thead>
+          <tbody>
+          {rows}
+          </tbody>
+        </Table>
+        <Pagination
+          activePage={activePage}
+          itemsCountPerPage={list.limit}
+          totalItemsCount={totalItemCount || 0}
+          onChange={this.handlePaginationClick}/>
       </div>
     );
   }
 }
 
-EditTable.propTypes = {
+IndexList.propTypes = {
+  activePage: PropTypes.number,
+  totalItemCount: PropTypes.number,
   columns: PropTypes.arrayOf(PropTypes.string),
   columnInfo: PropTypes.object,
-  model: PropTypes.object,
-  selectCandidates: PropTypes.object,
-  onSubmit: PropTypes.func,
-  onSelect: PropTypes.func,
+  list: PropTypes.object,
+  getIndexList: PropTypes.func.isRequired,
+  basePath: PropTypes.string.isRequired,
+  onShowClick: PropTypes.func.isRequired,
+  onEditClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
 };
 
-EditTable.defaultProps = {
+IndexList.defaultProps = {
+  activePage: 1,
+  totalItemCount: 0,
   columns: ['id'],
   columnInfo: {id: {name: 'ID', type: "integer", editable: false}},
-  model: {},
-  selectCandidates: {},
-  onSubmit: () => {
+  basePath: "",
+  list: {
+    count: 0,
+    offset: 0,
+    limit: 10,
+    items: [],
   },
-  onSelect: () => {
+  getIndexList: () => {
+    return {
+      count: 0,
+      offset: 0,
+      limit: 10,
+      items: [],
+    }
   },
+  onShowClick: () => {
+  },
+  onEditClick: () => {
+  },
+  onDeleteClick: () => {
+  },
+
 };
 
-export default EditTable;
+export default IndexList;

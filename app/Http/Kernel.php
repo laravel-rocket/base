@@ -54,6 +54,7 @@ class Kernel extends HttpKernel
             'bindings',
         ],
         'api.admin' => [
+            \App\Http\Middleware\Api\Admin\ErrorHandling::class,
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,

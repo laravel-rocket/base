@@ -16,12 +16,13 @@ import {Async as SelectAsync} from 'react-select';
 import Map from '../../components/Map/Map'
 
 class EditTable extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       model: {},
       formData: {},
       options: {},
+      errors: props.errors,
     };
     this.handleDataChange = this.handleDataChange.bind(this);
     this.handleReset = this.handleReset.bind(this);
@@ -68,6 +69,7 @@ class EditTable extends Component {
       ...this.state,
       model: Object.assign({}, newProps.model),
       formData: Object.assign({}, newFormData),
+      errors: newProps.errors,
     })
   }
 
@@ -119,7 +121,6 @@ class EditTable extends Component {
       model: newModelData,
       formData: newFormData,
     });
-    console.log(this.state);
   }
 
   handleAddToList(key, value, actionMeta) {
@@ -255,6 +256,9 @@ class EditTable extends Component {
     const {
       columnInfo,
     } = this.props;
+    const {
+      errors,
+    } = this.state;
     if (item === undefined) {
       item = '';
     }
@@ -487,6 +491,9 @@ class EditTable extends Component {
     const {
       columns,
     } = this.props;
+    const {
+      errors,
+    } = this.state;
     for (
       let i = 0;
       i < columns.length;
@@ -497,6 +504,8 @@ class EditTable extends Component {
         <Row key={columns[i]}>
           <Col xs="12">
             {form}
+            <p className="alert-danger">
+              {errors && errors[columns[i]] && errors[columns[i]]}</p>
           </Col>
         </Row>
       );
@@ -514,9 +523,9 @@ class EditTable extends Component {
         {rows}
         <Row>
           <Col xs="12">
-            <Button type="submit" size="sm" color="primary" onClick={e => {
+            <Button type="button" size="sm" color="primary" onClick={e => {
               this.handleSubmit()
-            }}><i className="fa fa-dot-circle-o"></i> Submit</Button>
+            }}><i className="fa fa-dot-circle-o"></i> Ok men</Button>
             {' '}
             <Button type="reset" size="sm" color="danger" onClick={e => {
               this.handleReset()

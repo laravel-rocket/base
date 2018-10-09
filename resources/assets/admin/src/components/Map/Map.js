@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import ReactGoogleMapLoader from "react-google-maps-loader"
-import ReactGoogleMap from "react-google-maps"
+import ReactGoogleMap from "react-google-map"
 import PropTypes from "prop-types";
 
 

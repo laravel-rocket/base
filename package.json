@@ -63,7 +63,7 @@
     "react-datetime": "^2.14.0",
     "react-dom": "^15.6.1",
     "react-file-reader": "^1.1.4",
-    "react-google-maps": "^9.4.5",
+    "react-google-map": "^3.1.1",
     "react-google-maps-loader": "^4.2.3",
     "react-router-dom": "4.1.2",
     "react-router-with-props": "^0.1.1",

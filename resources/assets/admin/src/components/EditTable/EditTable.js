@@ -111,7 +111,7 @@ class EditTable extends Component {
         break;
       default:
         newFormData[key] = data;
-        newModelData[formKey] = data;
+        newModelData[key] = data;
     }
 
     this.setState({

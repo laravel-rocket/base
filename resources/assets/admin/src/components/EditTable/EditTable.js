@@ -16,13 +16,12 @@ import {Async as SelectAsync} from 'react-select';
 import Map from '../../components/Map/Map'
 
 class EditTable extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       model: {},
       formData: {},
       options: {},
-      errors: props.errors,
     };
     this.handleDataChange = this.handleDataChange.bind(this);
     this.handleReset = this.handleReset.bind(this);
@@ -69,7 +68,6 @@ class EditTable extends Component {
       ...this.state,
       model: Object.assign({}, newProps.model),
       formData: Object.assign({}, newFormData),
-      errors: newProps.errors,
     })
   }
 
@@ -121,6 +119,7 @@ class EditTable extends Component {
       model: newModelData,
       formData: newFormData,
     });
+    this.props.onModelChange(newModelData);
   }
 
   handleAddToList(key, value, actionMeta) {
@@ -164,13 +163,11 @@ class EditTable extends Component {
       model: newModelData,
       formData: newFormData,
     });
-    console.log(this.state);
+    this.props.onModelChange(newModelData);
   }
 
   handleDeleteFromList(key, entry)
   {
-    console.log(this.state);
-
     const {
       columnInfo,
     } = this.props;
@@ -195,15 +192,15 @@ class EditTable extends Component {
       model: newModelData,
       formData: newFormData,
     });
-
-    console.log(this.state);
+    this.props.onModelChange(newModelData);
   }
 
   handleReset(e) {
     this.setState({
       ...this.state,
-      model: Object.assign({}, this.props.model),
-    })
+      model: Object.assign({}, this.props.initialModel),
+    });
+    this.props.onModelChange(Object.assign({}, this.props.initialModel));
   }
 
   handleSubmit(e) {
@@ -256,9 +253,6 @@ class EditTable extends Component {
     const {
       columnInfo,
     } = this.props;
-    const {
-      errors,
-    } = this.state;
     if (item === undefined) {
       item = '';
     }
@@ -442,7 +436,7 @@ class EditTable extends Component {
         let columns = [];
         if (Array.isArray(item) && columnInfo[key].relation) {
           columns = item.map((entry, i) => {
-            return (<tr>
+            return (<tr key={"row-"+i}>
               {Object.keys(columnInfo[key].columns).map((column, i) =>
                 <td key={"item-" + i}>{entry[column]}</td>)}
               <td>
@@ -498,9 +492,6 @@ class EditTable extends Component {
     const {
       columns,
     } = this.props;
-    const {
-      errors,
-    } = this.state;
     for (
       let i = 0;
       i < columns.length;
@@ -511,8 +502,6 @@ class EditTable extends Component {
         <Row key={columns[i]}>
           <Col xs="12">
             {form}
-            <p className="alert-danger">
-              {errors && errors[columns[i]] && errors[columns[i]]}</p>
           </Col>
         </Row>
       );
@@ -530,11 +519,11 @@ class EditTable extends Component {
         {rows}
         <Row>
           <Col xs="12">
-            <Button type="button" size="sm" color="primary" onClick={e => {
+            <Button type="submit" size="sm" color="primary" onClick={e => {
               this.handleSubmit()
-            }}><i className="fa fa-dot-circle-o"></i> Ok men</Button>
+            }}><i className="fa fa-dot-circle-o"></i> Submit</Button>
             {' '}
-            <Button type="reset" size="sm" color="danger" onClick={e => {
+            <Button size="sm" color="danger" onClick={e => {
               this.handleReset()
             }}><i className="fa fa-ban"></i> Reset</Button>
           </Col>
@@ -548,19 +537,24 @@ EditTable.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.string),
   columnInfo: PropTypes.object,
   model: PropTypes.object,
+  initialModel: PropTypes.object,
   selectCandidates: PropTypes.object,
   onSubmit: PropTypes.func,
   onSelect: PropTypes.func,
+  onModelChange: PropTypes.func,
 };
 
 EditTable.defaultProps = {
   columns: ['id'],
   columnInfo: {id: {name: 'ID', type: "integer", editable: false}},
   model: {},
+  initialModel: {},
   selectCandidates: {},
   onSubmit: () => {
   },
   onSelect: () => {
+  },
+  onModelChange: () => {
   },
 };
 

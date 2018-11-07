@@ -406,15 +406,22 @@ class EditTable extends Component {
           </FormGroup>
         );
       case 'location':
-        const longitude = this.state.model[columnInfo[key].longitudeQueryName];
-        const latitude = this.state.model[columnInfo[key].latitudeQueryName];
+        let longitude = this.state.model[columnInfo[key].longitudeQueryName];
+        let latitude = this.state.model[columnInfo[key].latitudeQueryName];
+        if(!longitude){
+          longitude = columnInfo[key].defaultLongtitude
+        }
+        if(!latitude){
+          latitude = columnInfo[key].defaultLatitude
+        }
+        let zoom = columnInfo[key].zoom
 
         return (
           <FormGroup key={'input-' + key}>
             <Label htmlFor={key}>{columnInfo[key].name}</Label>
             <Row>
               <Col md="8">
-                <Map height={"300px"} latitude={parseFloat(latitude)} longitude={parseFloat(longitude)}
+                <Map height={"300px"} latitude={parseFloat(latitude)} longitude={parseFloat(longitude)} zoom={parseInt(zoom)}
                      onClick={(latitude, longitude) => {
                        this.handleMapClick(key, latitude, longitude)
                      }}/>

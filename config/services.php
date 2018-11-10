@@ -17,12 +17,13 @@ return [
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
+        'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
     ],
 
     'ses' => [
         'key'    => env('AWS_KEY'),
         'secret' => env('AWS_SECRET'),
-        'region' => env('AWS_SES_REGION'),
+        'region' => env('AWS_SES_REGION', 'us-east-1'),
     ],
 
     'sparkpost' => [
@@ -33,6 +34,10 @@ return [
         'model'  => \App\Models\User::class,
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
+        'webhook' => [
+            'secret' => env('STRIPE_WEBHOOK_SECRET'),
+            'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
+        ],
     ],
 
     /* NEW SERVICE INFO */

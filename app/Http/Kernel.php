@@ -27,7 +27,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middlewareGroups = [
-        'web' => [
+        'web'       => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
@@ -37,7 +37,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\User\SetDefaultValues::class,
         ],
-        'admin' => [
+        'admin'     => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
@@ -74,10 +74,12 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'bindings'   => \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        'can'        => \Illuminate\Auth\Middleware\Authorize::class,
-        'throttle'   => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'auth.basic'    => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'bindings'      => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'can'           => \Illuminate\Auth\Middleware\Authorize::class,
+        'throttle'      => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        'verified'      => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         'admin.auth'   => \App\Http\Middleware\Admin\Authenticate::class,
         'admin.guest'  => \App\Http\Middleware\Admin\RedirectIfAuthenticated::class,
@@ -86,5 +88,20 @@ class Kernel extends HttpKernel
         'user.guest'   => \App\Http\Middleware\User\RedirectIfAuthenticated::class,
         'user.values'  => \App\Http\Middleware\User\SetDefaultValues::class,
         'api.auth'     => \App\Http\Middleware\Api\V1\Authenticate::class,
+    ];
+
+    /**
+     * The priority-sorted list of middleware.
+     *
+     * This forces the listed middleware to always be in the given order.
+     *
+     * @var array
+     */
+    protected $middlewarePriority = [
+        \Illuminate\Session\Middleware\StartSession::class,
+        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        \Illuminate\Session\Middleware\AuthenticateSession::class,
+        \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        \Illuminate\Auth\Middleware\Authorize::class,
     ];
 }

@@ -95,7 +95,7 @@ html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -ms-overflow-style: scrollbar;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 *,
@@ -3669,8 +3669,7 @@ tbody.collapse.show {
 .navbar .nav-tabs .active.dropdown-toggle,
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-item.show .navbar .dropdown-toggle,
-.navbar
-.nav-tabs .nav-item.show .dropdown-toggle {
+.navbar .nav-tabs .nav-item.show .dropdown-toggle {
   color: #3e515b;
   background-color: #e4e5e6;
   border-color: #ddd #ddd #e4e5e6;
@@ -3685,8 +3684,7 @@ tbody.collapse.show {
 .navbar .nav-pills .active.dropdown-toggle,
 .show > .nav-pills .nav-link,
 .show > .nav-pills .navbar .dropdown-toggle,
-.navbar
-.show > .nav-pills .dropdown-toggle {
+.navbar .show > .nav-pills .dropdown-toggle {
   color: #fff;
   background-color: #20a8d8;
 }
@@ -4159,16 +4157,13 @@ tbody.collapse.show {
 .navbar .navbar-light .navbar-nav .show > .dropdown-toggle,
 .navbar-light .navbar-nav .active > .nav-link,
 .navbar-light .navbar-nav .navbar .active > .dropdown-toggle,
-.navbar
-.navbar-light .navbar-nav .active > .dropdown-toggle,
+.navbar .navbar-light .navbar-nav .active > .dropdown-toggle,
 .navbar-light .navbar-nav .nav-link.show,
 .navbar-light .navbar-nav .navbar .show.dropdown-toggle,
-.navbar
-.navbar-light .navbar-nav .show.dropdown-toggle,
+.navbar .navbar-light .navbar-nav .show.dropdown-toggle,
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-light .navbar-nav .navbar .active.dropdown-toggle,
-.navbar
-.navbar-light .navbar-nav .active.dropdown-toggle {
+.navbar .navbar-light .navbar-nav .active.dropdown-toggle {
   color: rgba(0, 0, 0, 0.9);
 }
 
@@ -4220,16 +4215,13 @@ tbody.collapse.show {
 .navbar .navbar-dark .navbar-nav .show > .dropdown-toggle,
 .navbar-dark .navbar-nav .active > .nav-link,
 .navbar-dark .navbar-nav .navbar .active > .dropdown-toggle,
-.navbar
-.navbar-dark .navbar-nav .active > .dropdown-toggle,
+.navbar .navbar-dark .navbar-nav .active > .dropdown-toggle,
 .navbar-dark .navbar-nav .nav-link.show,
 .navbar-dark .navbar-nav .navbar .show.dropdown-toggle,
-.navbar
-.navbar-dark .navbar-nav .show.dropdown-toggle,
+.navbar .navbar-dark .navbar-nav .show.dropdown-toggle,
 .navbar-dark .navbar-nav .nav-link.active,
 .navbar-dark .navbar-nav .navbar .active.dropdown-toggle,
-.navbar
-.navbar-dark .navbar-nav .active.dropdown-toggle {
+.navbar .navbar-dark .navbar-nav .active.dropdown-toggle {
   color: white;
 }
 
@@ -11716,7 +11708,7 @@ base-chart.chart {
   padding: 0.5rem 1rem;
   margin-right: 0;
   background-color: #fff;
-  background-image: url(/images/logo.png?01fb1da17b77e9ca7f9e946a4b0dd92c);
+  background-image: url(/images/logo.png?5cd884e67efe0a747007f96130e50c64);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 70px auto;
@@ -11815,40 +11807,31 @@ base-chart.chart {
 .navbar .navbar-nav .open > .dropdown-toggle:hover,
 .navbar-nav .active > .nav-link,
 .navbar-nav .navbar .active > .dropdown-toggle,
-.navbar
-.navbar-nav .active > .dropdown-toggle,
+.navbar .navbar-nav .active > .dropdown-toggle,
 .navbar-nav .active > .nav-link:focus,
 .navbar-nav .navbar .active > .dropdown-toggle:focus,
-.navbar
-.navbar-nav .active > .dropdown-toggle:focus,
+.navbar .navbar-nav .active > .dropdown-toggle:focus,
 .navbar-nav .active > .nav-link:hover,
 .navbar-nav .navbar .active > .dropdown-toggle:hover,
-.navbar
-.navbar-nav .active > .dropdown-toggle:hover,
+.navbar .navbar-nav .active > .dropdown-toggle:hover,
 .navbar-nav .nav-link.open,
 .navbar-nav .navbar .open.dropdown-toggle,
-.navbar
-.navbar-nav .open.dropdown-toggle,
+.navbar .navbar-nav .open.dropdown-toggle,
 .navbar-nav .nav-link.open:focus,
 .navbar-nav .navbar .open.dropdown-toggle:focus,
-.navbar
-.navbar-nav .open.dropdown-toggle:focus,
+.navbar .navbar-nav .open.dropdown-toggle:focus,
 .navbar-nav .nav-link.open:hover,
 .navbar-nav .navbar .open.dropdown-toggle:hover,
-.navbar
-.navbar-nav .open.dropdown-toggle:hover,
+.navbar .navbar-nav .open.dropdown-toggle:hover,
 .navbar-nav .nav-link.active,
 .navbar-nav .navbar .active.dropdown-toggle,
-.navbar
-.navbar-nav .active.dropdown-toggle,
+.navbar .navbar-nav .active.dropdown-toggle,
 .navbar-nav .nav-link.active:focus,
 .navbar-nav .navbar .active.dropdown-toggle:focus,
-.navbar
-.navbar-nav .active.dropdown-toggle:focus,
+.navbar .navbar-nav .active.dropdown-toggle:focus,
 .navbar-nav .nav-link.active:hover,
 .navbar-nav .navbar .active.dropdown-toggle:hover,
-.navbar
-.navbar-nav .active.dropdown-toggle:hover {
+.navbar .navbar-nav .active.dropdown-toggle:hover {
   color: #29363d;
 }
 

@@ -14,6 +14,10 @@ import ImageInput from "../ImageInput/ImageInput";
 import Select from 'react-select';
 import {Async as SelectAsync} from 'react-select';
 import Map from '../../components/Map/Map'
+import "react-datepicker/dist/react-datepicker.css";
+import './EditTable.css';
+import moment from 'moment';
+
 
 class EditTable extends Component {
   constructor() {
@@ -109,11 +113,18 @@ class EditTable extends Component {
         newModelData[key] = data;
         newFormData[formKey] = data.value;
         break;
+      case "date":
+        newModelData[key] = data.format('YYYY-MM-DD');
+        newFormData[formKey] = data.format('YYYY-MM-DD');
+        break;
+      case "datetime":
+        newModelData[key] = data.format('YYYY-MM-DD h:mm:ss');
+        newFormData[formKey] = data.format('YYYY-MM-DD h:mm:ss');
+        break;
       default:
-        newFormData[key] = data;
+        newFormData[formKey] = data;
         newModelData[key] = data;
     }
-
     this.setState({
       ...this.state,
       model: newModelData,
@@ -277,24 +288,30 @@ class EditTable extends Component {
             <Input type="file"
                    id={key}
                    name={key}
-                   onChange={e => this.handleDataChange(key, e.target.value)}/>
+                   onChange={e => this.handleDataChange(key, e.target.files[0])}/>
           </FormGroup>
         );
       case 'date':
+        if (!item) {
+          item = moment();
+        } else {
+          item = moment(item);
+        }
         return (
           <FormGroup key={'input-' + key}>
             <Label htmlFor={key}>{columnInfo[key].name}</Label>
             <DatePicker
-              selected={item}
-              onChange={e => this.handleDataChange(key, e.target.value)}
+               selected={item}
+               onChange={e => this.handleDataChange(key, moment(e))}
             />
+
           </FormGroup>
         );
       case 'image':
         return (
           <FormGroup key={'input-' + key}>
             <Label htmlFor={key}>{columnInfo[key].name}</Label>
-            <ImageInput onChange={e => this.handleDataChange(key, e.target.value)} currentImageUrl={item.url}
+            <ImageInput onChange={e => this.handleDataChange(key, e.target.files[0])} currentImageUrl={item.url}
                         name={key} thumbnailSize={200}/>
           </FormGroup>
         );
@@ -468,6 +485,22 @@ class EditTable extends Component {
           </FormGroup>
         );
       case 'datetime':
+          if (!item) {
+            item = moment();
+          } else {
+            item = moment(item);
+          }
+          return (
+              <FormGroup key={'input-' + key}>
+                <Label htmlFor={key}>{columnInfo[key].name}</Label>
+                <DatePicker
+                    selected={item}
+                    onChange={e => this.handleDataChange(key, moment(e))}
+                    showTimeSelect
+                    dateFormat="LLL"
+                />
+              </FormGroup>
+          );
 
     }
 

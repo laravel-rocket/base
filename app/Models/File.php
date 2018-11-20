@@ -82,6 +82,10 @@ class File extends Base
      */
     protected $table = 'files';
 
+    protected $casts  = [
+        'is_enabled' => 'boolean',
+        'thumbnails' => 'array',
+    ];
     /**
      * The attributes that are mass assignable.
      *

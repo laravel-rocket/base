@@ -4,26 +4,43 @@ export default {
       name: "ID",
       type: "number",
       editable: false,
+      queryName: "id"
     },
     name: {
       name: "Name",
       type: "string",
       editable: true,
+      queryName: "name"
     },
     email: {
       name: "Email",
       type: "string",
       editable: true,
+      queryName: "email"
     },
     password: {
       name: "Password",
       type: "password",
       editable: true,
+      queryName: "password"
     },
     profileImage: {
       name: "Profile Image",
       type: "image",
       editable: true,
+      queryName: "profile_image_id"
+    },
+    dateTime: {
+        name: "Date Time",
+        type: "datetime",
+        editable: true,
+        queryName: "datetime"
+    },
+    date: {
+        name: "Date",
+        type: "date",
+        editable: true,
+        queryName: "date"
     },
     roles: {
       name: "Role",
@@ -55,6 +72,8 @@ export default {
     "roles",
   ],
   "edit": [
+    'date',
+    'dateTime',
     "profileImage",
     "name",
     "email",

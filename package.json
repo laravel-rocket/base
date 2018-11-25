@@ -51,6 +51,7 @@
     "classnames": "^2.2.5",
     "font-awesome": "^4.7.0",
     "history": "4.6.3",
+    "moment": "^2.22.2",
     "npm": "^6.1.0",
     "object-path": "^0.11.4",
     "paginator": "^1.0.0",

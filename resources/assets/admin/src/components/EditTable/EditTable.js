@@ -15,7 +15,6 @@ import Select from 'react-select';
 import {Async as SelectAsync} from 'react-select';
 import Map from '../../components/Map/Map'
 import "react-datepicker/dist/react-datepicker.css";
-import './EditTable.css';
 import moment from 'moment';
 
 

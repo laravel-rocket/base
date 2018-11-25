@@ -1937,11 +1937,6 @@ pre code {
   opacity: 1;
 }
 
-.form-control:-ms-input-placeholder {
-  color: #536c79;
-  opacity: 1;
-}
-
 .form-control::-ms-input-placeholder {
   color: #536c79;
   opacity: 1;
@@ -11708,7 +11703,7 @@ base-chart.chart {
   padding: 0.5rem 1rem;
   margin-right: 0;
   background-color: #fff;
-  background-image: url(/images/logo.png?5cd884e67efe0a747007f96130e50c64);
+  background-image: url(/images/logo.png?a961dfbf36f110092c3f2d35778fa3db);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 70px auto;
@@ -14059,5 +14054,9 @@ hr.transparent {
 
 *[dir="rtl"].callout-dark {
   border-right-color: #29363d;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
+  padding: 0;
 }
 

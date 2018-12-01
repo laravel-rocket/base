@@ -178,8 +178,7 @@ class EditTable extends Component {
     this.props.onModelChange(newModelData);
   }
 
-  handleDeleteFromList(key, entry)
-  {
+  handleDeleteFromList(key, entry) {
     const {
       columnInfo,
     } = this.props;
@@ -187,7 +186,7 @@ class EditTable extends Component {
     const newModelData = this.state.model;
     const formKey = columnInfo[key].queryName;
 
-    if( Array.isArray(this.state.model[key])){
+    if (Array.isArray(this.state.model[key])) {
       newModelData[key] = [];
       this.state.model[key].forEach((item) => {
         if (item.id !== entry.id) {
@@ -305,8 +304,8 @@ class EditTable extends Component {
           <FormGroup key={'input-' + key}>
             <Label htmlFor={key}>{columnInfo[key].name}</Label>
             <DatePicker
-               selected={item}
-               onChange={e => this.handleDataChange(key, moment(e))}
+              selected={item}
+              onChange={e => this.handleDataChange(key, moment(e))}
             />
 
           </FormGroup>
@@ -380,7 +379,7 @@ class EditTable extends Component {
             defaultValues = {
               value: item.id || item.value,
               label: item.name || item.label,
-            }
+            };
           }
         }
 
@@ -407,6 +406,21 @@ class EditTable extends Component {
             value: option.value,
             label: option.name,
           });
+          if (Array.isArray(item)) {
+            if( item.includes(option.value)){
+              defaultValues.push({
+                value: option.value,
+                label: option.name,
+              });
+            }
+          }else{
+            if( option.value === item){
+              defaultValues = {
+                value: option.value,
+                label: option.name,
+              };
+            }
+          }
         }
         return (
           <FormGroup key={'input-' + key}>
@@ -416,17 +430,17 @@ class EditTable extends Component {
               name={key}
               onChange={(value, actionMeta) => this.handleDataChange(key, value)}
               options={optionValues}
-              defaultValue={defaultValues}
+              value={defaultValues}
             />
           </FormGroup>
         );
       case 'location':
         let longitude = this.state.model[columnInfo[key].longitudeQueryName];
         let latitude = this.state.model[columnInfo[key].latitudeQueryName];
-        if(!longitude){
+        if (!longitude) {
           longitude = columnInfo[key].defaultLongtitude
         }
-        if(!latitude){
+        if (!latitude) {
           latitude = columnInfo[key].defaultLatitude
         }
         let zoom = columnInfo[key].zoom
@@ -436,7 +450,8 @@ class EditTable extends Component {
             <Label htmlFor={key}>{columnInfo[key].name}</Label>
             <Row>
               <Col md="8">
-                <Map height={"300px"} latitude={parseFloat(latitude)} longitude={parseFloat(longitude)} zoom={parseInt(zoom)}
+                <Map height={"300px"} latitude={parseFloat(latitude)} longitude={parseFloat(longitude)}
+                     zoom={parseInt(zoom)}
                      onClick={(latitude, longitude) => {
                        this.handleMapClick(key, latitude, longitude)
                      }}/>
@@ -457,7 +472,7 @@ class EditTable extends Component {
         let columns = [];
         if (Array.isArray(item) && columnInfo[key].relation) {
           columns = item.map((entry, i) => {
-            return (<tr key={"row-"+i}>
+            return (<tr key={"row-" + i}>
               {Object.keys(columnInfo[key].columns).map((column, i) =>
                 <td key={"item-" + i}>{entry[column]}</td>)}
               <td>
@@ -496,22 +511,22 @@ class EditTable extends Component {
           </FormGroup>
         );
       case 'datetime':
-          if (!item) {
-            item = moment();
-          } else {
-            item = moment(item);
-          }
-          return (
-              <FormGroup key={'input-' + key}>
-                <Label htmlFor={key}>{columnInfo[key].name}</Label>
-                <DatePicker
-                    selected={item}
-                    onChange={e => this.handleDataChange(key, moment(e))}
-                    showTimeSelect
-                    dateFormat="LLL"
-                />
-              </FormGroup>
-          );
+        if (!item) {
+          item = moment();
+        } else {
+          item = moment(item);
+        }
+        return (
+          <FormGroup key={'input-' + key}>
+            <Label htmlFor={key}>{columnInfo[key].name}</Label>
+            <DatePicker
+              selected={item}
+              onChange={e => this.handleDataChange(key, moment(e))}
+              showTimeSelect
+              dateFormat="LLL"
+            />
+          </FormGroup>
+        );
 
     }
 

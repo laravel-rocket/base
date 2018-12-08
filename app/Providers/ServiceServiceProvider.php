@@ -45,10 +45,5 @@ class ServiceServiceProvider extends ServiceProvider
             \App\Services\UserServiceAuthenticationServiceInterface::class,
             \App\Services\Production\UserServiceAuthenticationService::class
         );
-
-        $this->app->singleton(
-            \App\Services\ExportServiceInterface::class,
-            \App\Services\Production\ExportService::class
-        );
     }
 }

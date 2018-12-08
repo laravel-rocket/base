@@ -1,15 +1,15 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
-use App\Exports\AdminModelExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Request;
-use App\Services\ExportServiceInterface;
+use LaravelRocket\Foundation\Exports\AdminModelExport;
+use LaravelRocket\Foundation\Services\ExportServiceInterface;
 use function ICanBoogie\singularize;
 
 class ExportController extends Controller
 {
-    /** @var \App\Services\ExportServiceInterface $exportService */
+    /** @var \LaravelRocket\Foundation\Services\ExportServiceInterface $exportService */
     protected $exportService;
 
     public function __construct(ExportServiceInterface $exportService)

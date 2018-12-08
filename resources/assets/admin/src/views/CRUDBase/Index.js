@@ -10,8 +10,20 @@ import {
 
 import IndexList from "../../components/IndexList/IndexList";
 import Base from "./Base";
+import columns from './_columns'
+import info from './_info'
 
 class Index extends Base {
+
+  setPageInfo() {
+    this.title = info.title;
+    this.path = info.path;
+    this.exportable = info.exportable;
+  }
+
+  setColumnInfo() {
+    this.columns = columns;
+  }
 
   bindMethods() {
     this.getIndexList = this.getIndexList.bind(this);
@@ -140,6 +152,10 @@ class Index extends Base {
   }
 
   render() {
+    const exportButton = this.exportable ? (<a className="btn btn-primary btn-sm" href={"/admin" + this.path + '/' + 'export'}>
+      <i className="fa fa-download"></i> Download
+    </a>) : null;
+
     return (
       <div className="animated fadeIn">
         <Row>
@@ -147,9 +163,13 @@ class Index extends Base {
             <Card>
               <CardHeader>
                 {this.title}
-                <Button className="float-right" size="sm" color="primary" onClick={this.handleCreateNew}>
-                  <i className="fa fa-plus-circle"></i> Create New
-                </Button>
+                <div className="float-right">
+                  {exportButton}
+                  {" "}
+                  <Button size="sm" color="primary" onClick={this.handleCreateNew}>
+                    <i className="fa fa-plus-circle"></i> Create New
+                  </Button>
+                </div>
               </CardHeader>
               <CardBlock className="card-body">
                 <IndexList

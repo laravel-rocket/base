@@ -6,7 +6,7 @@ import {
   Badge
 } from "reactstrap";
 import Pagination from "../Pagination/Pagination";
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class IndexList extends Component {
 
@@ -75,7 +75,7 @@ class IndexList extends Component {
     if (item !== null && typeof item === 'object') {
       const text = item['name'] || item['id'];
       if (columnInfo[key].link) {
-        return(<Link to={columnInfo[key].link + '/' + item['id']}>{text}</Link>)
+        return (<Link to={columnInfo[key].link + '/' + item['id']}>{text}</Link>)
       }
       return text
     }
@@ -89,12 +89,12 @@ class IndexList extends Component {
         } else {
           text = value;
         }
-        if( data.length > 0){
+        if (data.length > 0) {
           data.push(',');
         }
         if (columnInfo[key].link) {
           data.push(<Link key={value['id']} to={columnInfo[key].link + '/' + value['id']}>{text}</Link>)
-        }else{
+        } else {
           data.push(text);
         }
       }
@@ -171,16 +171,18 @@ class IndexList extends Component {
           itemsCountPerPage={list.limit}
           totalItemsCount={totalItemCount || 0}
           onChange={this.handlePaginationClick}/>
-        <Table responsive>
-          <thead>
-          <tr>
-            {header}
-          </tr>
-          </thead>
-          <tbody>
-          {rows}
-          </tbody>
-        </Table>
+        <div style={{overflowY: "auto"}}>
+          <Table responsive>
+            <thead>
+            <tr>
+              {header}
+            </tr>
+            </thead>
+            <tbody>
+            {rows}
+            </tbody>
+          </Table>
+        </div>
         <Pagination
           activePage={activePage}
           itemsCountPerPage={list.limit}

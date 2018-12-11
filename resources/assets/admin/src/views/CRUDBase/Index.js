@@ -10,8 +10,9 @@ import {
 
 import IndexList from "../../components/IndexList/IndexList";
 import Base from "./Base";
-import columns from './_columns'
+import queryString from 'query-string'
 import info from './_info'
+import columns from './_columns'
 
 class Index extends Base {
 
@@ -67,8 +68,20 @@ class Index extends Base {
   }
 
   componentWillMount() {
+    const values = queryString.parse(this.props.location.search);
+    let offset = 0;
+    if( values.offset > 0){
+      offset = parseInt(values.offset);
+      this.setState({
+        params: {
+          ...this.state.params,
+          page: Math.floor(offset / this.getDefaultPageSize()),
+          offset: parseInt(offset),
+        }
+      });
+    }
     this.getIndexList(
-      this.state.params.offset,
+      offset,
       this.state.params.limit,
       this.state.params.order,
       this.state.params.direction
@@ -104,6 +117,10 @@ class Index extends Base {
 
   }
 
+  getExportUrl() {
+    return "/admin" + this.path + '/' + 'export';
+  }
+
   getIndexList(offset, limit, order, direction, searchWord = '', params = {}) {
     this.repository.index(offset, limit, order, direction, searchWord, params).then(repos => {
       this.setState({
@@ -119,6 +136,11 @@ class Index extends Base {
           page: Math.floor(offset / limit) + 1,
         }
       });
+      if( offset > 0 ) {
+        this.props.history.push({pathname: this.path, search: "offset=" + offset});
+      }else{
+        this.props.history.push({pathname: this.path});
+      }
     }).catch(error => {
       this.props.methods.errorMessage('Data Fetch Failed. Please access again later');
     });
@@ -152,7 +174,8 @@ class Index extends Base {
   }
 
   render() {
-    const exportButton = this.exportable ? (<a className="btn btn-primary btn-sm" href={"/admin" + this.path + '/' + 'export'}>
+    const exportUrl = this.getExportUrl();
+    const exportButton = this.exportable ? (<a className="btn btn-primary btn-sm" href={exportUrl}>
       <i className="fa fa-download"></i> Download
     </a>) : null;
 

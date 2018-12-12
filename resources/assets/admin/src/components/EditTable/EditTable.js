@@ -361,6 +361,8 @@ class EditTable extends Component {
       case 'select':
       case 'select_single':
       case 'select_multiple':
+        console.log(item);
+
         const isMulti = columnInfo[key].type === 'select_multiple';
 
         let defaultValues = null;
@@ -380,6 +382,7 @@ class EditTable extends Component {
               value: item.id || item.value,
               label: item.name || item.label,
             };
+            console.log(defaultValues);
           }
         }
 
@@ -396,6 +399,7 @@ class EditTable extends Component {
                 }}
                 backspaceRemoves={this.state.backspaceRemoves}
                 value={defaultValues}
+                defaultOptions={[]}
               />
             </FormGroup>
           );

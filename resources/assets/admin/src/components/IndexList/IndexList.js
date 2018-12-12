@@ -69,7 +69,26 @@ class IndexList extends Component {
             options.push(<div key={key + '_' + item[i]}>{columnInfo[key].optionNames[item[i]]}</div>)
           }
         }
-        return (<div>{options}</div>)
+        return (<div>{options}</div>);
+      case 'select_multiple':
+        if (item !== null && Array.isArray(item)) {
+          const items = [];
+          item.forEach(function (object) {
+            items.push(<Badge color="primary" key={key + '_' + object.id}>{object.name}</Badge>)
+          });
+          return (<div>{items}</div>)
+        }
+        return "";
+      case 'datetime':
+        if (item !== null && parseInt(item) > 1000000000) {
+          const datetime = new Date(item * 1000);
+          return [
+              datetime.getFullYear(),
+              datetime.getMonth() + 1,
+              datetime.getDate()
+            ].join('/') + ' '
+            + datetime.toLocaleTimeString();
+        }
     }
 
     if (item !== null && typeof item === 'object') {
@@ -108,6 +127,9 @@ class IndexList extends Component {
     const rowItems = [];
     const {
       columns,
+      hasShowButton,
+      hasEditButton,
+      hasDeleteButton,
     } = this.props;
     for (
       let i = 0;
@@ -117,14 +139,28 @@ class IndexList extends Component {
       const rowData = this.buildRowItemContent(row[columns[i]], columns[i], row['id']);
       rowItems.push(<td key={'data-' + row['id'] + '-' + columns[i]}>{rowData}</td>);
     }
+    const buttons = [];
+    if (hasShowButton) {
+      buttons.push(<Button key="show" size="sm" color="primary" onClick={e => this.props.onShowClick(row['id'])}><i
+        className="fa fa-folder"></i> Show</Button>)
+    }
+    if (hasEditButton) {
+      if (buttons.length > 0) {
+        buttons.push((<span key="space-edit">&nbsp;</span>));
+      }
+      buttons.push(<Button key="edit" size="sm" color="info" onClick={e => this.props.onEditClick(row['id'])}><i
+        className="fa fa-pencil"></i> Edit</Button>)
+    }
+    if (hasDeleteButton) {
+      if (buttons.length > 0) {
+        buttons.push((<span key="space-delete">&nbsp;</span>));
+      }
+      buttons.push(<Button key="delete" size="sm" color="danger" onClick={e => this.props.onDeleteClick(row['id'])}><i
+        className="fa fa-trash-o"></i> Delete</Button>)
+    }
     rowItems.push(
       <td key={'data-' + row['id'] + '-buttons'}>
-        <Button size="sm" color="primary" onClick={e => this.props.onShowClick(row['id'])}><i
-          className="fa fa-folder"></i> Show</Button>{' '}
-        <Button size="sm" color="info" onClick={e => this.props.onEditClick(row['id'])}><i
-          className="fa fa-pencil"></i> Edit</Button>{' '}
-        <Button size="sm" color="danger" onClick={e => this.props.onDeleteClick(row['id'])}><i
-          className="fa fa-trash-o"></i> Delete</Button>
+        {buttons}
       </td>
     );
     return rowItems;
@@ -204,6 +240,9 @@ IndexList.propTypes = {
   onShowClick: PropTypes.func.isRequired,
   onEditClick: PropTypes.func.isRequired,
   onDeleteClick: PropTypes.func.isRequired,
+  hasShowButton: PropTypes.bool,
+  hasEditButton: PropTypes.bool,
+  hasDeleteButton: PropTypes.bool,
 };
 
 IndexList.defaultProps = {
@@ -218,6 +257,9 @@ IndexList.defaultProps = {
     limit: 10,
     items: [],
   },
+  hasShowButton: true,
+  hasEditButton: true,
+  hasDeleteButton: true,
   getIndexList: () => {
     return {
       count: 0,

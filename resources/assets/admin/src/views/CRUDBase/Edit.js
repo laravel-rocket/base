@@ -4,7 +4,7 @@ import {
   Col,
   Card,
   CardHeader,
-  CardBlock,
+  CardBody,
 } from "reactstrap";
 
 import EditTable from "../../components/EditTable/EditTable";
@@ -144,7 +144,7 @@ class Edit extends Base {
               <CardHeader>
                 {this.title}
               </CardHeader>
-              <CardBlock className="card-body">
+              <CardBody className="card-body">
                 <EditTable
                   columns={this.columns.edit}
                   columnInfo={this.columns.columns}
@@ -156,7 +156,7 @@ class Edit extends Base {
                   onModelChange={this.handleModelChange}
                   errors={this.state.errors}
                 />
-              </CardBlock>
+              </CardBody>
             </Card>
           </Col>
         </Row>

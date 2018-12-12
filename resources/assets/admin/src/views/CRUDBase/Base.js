@@ -6,6 +6,7 @@ class Base extends Component {
 
   constructor(props) {
     super(props);
+    this.setInfo();
     this.setPageInfo();
     this.setColumnInfo();
     this.bindMethods();
@@ -13,9 +14,15 @@ class Base extends Component {
     this.setRepository();
   }
 
+  setInfo()
+  {
+    this.info = info;
+  }
+
   setPageInfo() {
-    this.title = info.title;
-    this.path = info.path;
+    this.title = this.info.title || '';
+    this.path = this.info.path || '';
+    this.exportable = this.info.exportable;
   }
 
   setRepository() {

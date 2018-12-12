@@ -4,12 +4,11 @@ import {
   Col,
   Card,
   CardHeader,
-  CardBlock,
+  CardBody,
   Button,
 } from "reactstrap";
 
 import ShowTable from "../../components/ShowTable/ShowTable";
-import ShowListTable from "../../components/ShowListTable/ShowListTable"
 import Base from "./Base";
 
 class Show extends Base {
@@ -65,39 +64,7 @@ class Show extends Base {
     });
   }
 
-  renderList() {
-    const lists = [];
-    this.columns.show.forEach((item) => {
-      if (this.columns.columns[item] && this.columns.columns[item].type === 'list') {
-        lists.push(
-          (
-            <Row>
-              <Col xs="12" lg="12">
-                <Card>
-                  <CardHeader>
-                    {this.columns.columns[item].name}
-                  </CardHeader>
-                  <CardBlock className="card-body">
-
-                    <ShowListTable
-                      key={"list-" + item}
-                      columns={this.columns.columns[item].columns}
-                      items={this.state.params.model[item]}
-                    />
-                  </CardBlock>
-                </Card>
-              </Col>
-            </Row>
-          )
-        );
-      }
-    });
-
-    return lists;
-  }
-
   render() {
-    const list = this.renderList();
     return (
       <div className="animated fadeIn">
         <Row>
@@ -105,23 +72,20 @@ class Show extends Base {
             <Card>
               <CardHeader>
                 {this.title}
-                <Button className="float-right" size="sm" color="primary" onClick={e => {
-                  this.handleEditClick()
-                }}>
+                <Button className="float-right" size="sm" color="primary" onClick={e => { this.handleEditClick() }}>
                   <i className="fa fa-pencil"></i> Edit
                 </Button>
               </CardHeader>
-              <CardBlock className="card-body">
+              <CardBody className="card-body">
                 <ShowTable
                   columns={this.columns.show}
                   columnInfo={this.columns.columns}
                   model={this.state.params.model}
                 />
-              </CardBlock>
+              </CardBody>
             </Card>
           </Col>
         </Row>
-        {list}
       </div>
     )
   }

@@ -46,7 +46,7 @@ class FileService extends BaseService implements FileServiceInterface
 
         $file = $this->upload($categoryType, $tempFile, $mediaType, $metaInputs);
 
-        unlink($handle);
+        unlink($tempFile);
 
         return $file;
     }

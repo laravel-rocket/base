@@ -162,7 +162,7 @@ class FileService extends BaseService implements FileServiceInterface
         $fileUploadService = array_get($this->fileUploadServices, $storageType);
         if (!empty($fileUploadService)) {
             $fileUploadService->delete([
-                's3_key' => $key,
+                'key' => $key,
             ]);
         }
 

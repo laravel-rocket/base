@@ -8,14 +8,14 @@ class TestCase extends BaseTestCase
     /** @var bool */
     protected $useDatabase = true;
 
-    public function setUp()
+    public function setUp(): void
     {
 
         //        exec('php artisan migrate --database testing');
         parent::setUp();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         //        exec('php artisan migrate:rollback --database testing');

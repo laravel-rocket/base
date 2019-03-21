@@ -71,7 +71,7 @@ class AdminUserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param   $request
+     * @param $request
      *
      * @throws APIErrorException
      *

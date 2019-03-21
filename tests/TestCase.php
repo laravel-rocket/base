@@ -20,12 +20,12 @@ abstract class TestCase extends BaseTestCase
 
     protected $clientName = 'TEST_CLIENT';
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
     }

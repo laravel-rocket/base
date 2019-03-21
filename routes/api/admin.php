@@ -1,8 +1,8 @@
 <?php
 
-Route::group(['prefix' => 'api', 'as' => 'api.', 'namespace' => 'Api'], function() {
-    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function() {
-        Route::group(['middleware' => ['admin.auth']], function() {
+Route::group(['prefix' => 'api', 'as' => 'api.', 'namespace' => 'Api'], function () {
+    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
+        Route::group(['middleware' => ['admin.auth']], function () {
             Route::get('information', 'IndexController@information');
             Route::get('me', 'MeController@show');
             Route::put('me', 'MeController@update');

@@ -14,7 +14,7 @@ class UserControllerTest extends TestCase
         $this->assertNotNull($controller);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $authUser     = factory(\App\Models\AdminUser::class)->create();

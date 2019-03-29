@@ -46,7 +46,7 @@ class FileService extends BaseService implements FileServiceInterface
 
         $file = $this->upload($categoryType, $tempFile, $mediaType, $metaInputs);
 
-        unlink($handle);
+        unlink($tempFile);
 
         return $file;
     }
@@ -96,7 +96,7 @@ class FileService extends BaseService implements FileServiceInterface
             'media_type'         => $mediaType,
             'format'             => $mediaType,
             'file_size'          => 0,
-            'original_filename'  => array_get($metaInputs, 'originalFileName', ''),
+            'original_file_name'  => array_get($metaInputs, 'originalFileName', ''),
             'width'              => 0,
             'height'             => 0,
             'is_enabled'         => true,
@@ -162,7 +162,7 @@ class FileService extends BaseService implements FileServiceInterface
         $fileUploadService = array_get($this->fileUploadServices, $storageType);
         if (!empty($fileUploadService)) {
             $fileUploadService->delete([
-                's3_key' => $key,
+                'key' => $key,
             ]);
         }
 
@@ -193,7 +193,7 @@ class FileService extends BaseService implements FileServiceInterface
             'media_type'         => $mediaType,
             'format'             => $mediaType,
             'file_size'          => 0,
-            'original_filename'  => array_get($metaInputs, 'originalFileName', ''),
+            'original_file_name'  => array_get($metaInputs, 'originalFileName', ''),
             'width'              => 0,
             'height'             => 0,
             'is_enabled'         => true,

@@ -1,9 +1,11 @@
 <?php
 namespace App\Exceptions;
 
+use App\Http\Responses\Api\V1\Status;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
+use Illuminate\Support\Str;
 use LaravelRocket\Foundation\Services\SlackServiceInterface;
 
 class Handler extends ExceptionHandler
@@ -71,6 +73,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if (Str::start($request->path(), 'api/v1')) {
+            return Status::error('unknown', $exception->getMessage())->withStatus(500)->response();
+        }
+
         return parent::render($request, $exception);
     }
 }

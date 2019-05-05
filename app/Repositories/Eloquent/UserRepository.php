@@ -3,6 +3,7 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\User;
 use App\Repositories\UserRepositoryInterface;
+use Illuminate\Support\Arr;
 use LaravelRocket\Foundation\Repositories\Eloquent\SingleKeyModelRepository;
 
 class UserRepository extends SingleKeyModelRepository implements UserRepositoryInterface
@@ -27,7 +28,7 @@ class UserRepository extends SingleKeyModelRepository implements UserRepositoryI
     protected function buildQueryByFilter($query, $filter)
     {
         if (array_key_exists('query', $filter)) {
-            $searchWord = array_get($filter, 'query');
+            $searchWord = Arr::get($filter, 'query');
             if (!empty($searchWord)) {
                 $query = $query->where(function ($q) use ($searchWord) {
                     $q->where('name', 'LIKE', '%'.$searchWord.'%');

@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Responses\Api\V1;
 
+use Illuminate\Support\Arr;
+
 class AccessToken extends Response
 {
     protected $columns = [
@@ -23,10 +25,10 @@ class AccessToken extends Response
         if (!empty($body)) {
             $json       = json_decode($body, true);
             $modelArray = [
-                'tokenType'    => array_get($json, 'token_type', ''),
-                'accessToken'  => array_get($json, 'access_token', ''),
-                'refreshToken' => array_get($json, 'refresh_token', ''),
-                'expiresIn'    => array_get($json, 'expires_in', ''),
+                'tokenType'    => Arr::get($json, 'token_type', ''),
+                'accessToken'  => Arr::get($json, 'access_token', ''),
+                'refreshToken' => Arr::get($json, 'refresh_token', ''),
+                'expiresIn'    => Arr::get($json, 'expires_in', ''),
             ];
             $response   = new static($modelArray, 200);
         }

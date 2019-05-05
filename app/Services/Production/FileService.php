@@ -4,6 +4,7 @@ namespace App\Services\Production;
 use App\Models\File;
 use App\Repositories\FileRepositoryInterface;
 use App\Services\FileServiceInterface;
+use Illuminate\Support\Arr;
 use LaravelRocket\Foundation\Services\FileUploadLocalServiceInterface;
 use LaravelRocket\Foundation\Services\FileUploadS3ServiceInterface;
 use LaravelRocket\Foundation\Services\FileUploadServiceInterface;
@@ -75,20 +76,20 @@ class FileService extends BaseService implements FileServiceInterface
         if (!array_key_exists($mediaType, $acceptableFileList)) {
             return null;
         }
-        $ext = array_get($acceptableFileList, $mediaType);
+        $ext = Arr::get($acceptableFileList, $mediaType);
 
         $storageConfig = $this->getStorageConfig($categoryType);
-        $storageType   = array_get($storageConfig, 'type');
+        $storageType   = Arr::get($storageConfig, 'type');
 
         $model     = null;
         $modelData = [
             'url'                => $path,
             'storage_type'       => $storageType,
-            'title'              => array_get($metaInputs, 'title', ''),
+            'title'              => Arr::get($metaInputs, 'title', ''),
             'file_type'          => File::FILE_TYPE_IMAGE,
             'file_category_type' => $categoryType,
-            'entity_type'        => array_get($metaInputs, 'entityType', ''),
-            'entity_id'          => array_get($metaInputs, 'entityId', 0),
+            'entity_type'        => Arr::get($metaInputs, 'entityType', ''),
+            'entity_id'          => Arr::get($metaInputs, 'entityId', 0),
             's3_key'             => '',
             's3_bucket'          => '',
             's3_region'          => '',
@@ -96,7 +97,7 @@ class FileService extends BaseService implements FileServiceInterface
             'media_type'         => $mediaType,
             'format'             => $mediaType,
             'file_size'          => 0,
-            'original_filename'  => array_get($metaInputs, 'originalFileName', ''),
+            'original_filename'  => Arr::get($metaInputs, 'originalFileName', ''),
             'width'              => 0,
             'height'             => 0,
             'is_enabled'         => true,
@@ -104,41 +105,41 @@ class FileService extends BaseService implements FileServiceInterface
         $dstPath = $path;
         if ($conf['type'] == 'image') {
             $dstPath = $path.'.converted';
-            $format  = array_get($conf, 'format', 'jpeg');
-            $size    = $this->imageService->convert($path, $dstPath, $format, array_get($conf, 'size'));
+            $format  = Arr::get($conf, 'format', 'jpeg');
+            $size    = $this->imageService->convert($path, $dstPath, $format, Arr::get($conf, 'size'));
             if (!file_exists($dstPath)) {
                 return null;
             }
-            $modelData['width']  = array_get($size, 'width', 0);
-            $modelData['height'] = array_get($size, 'height', 0);
+            $modelData['width']  = Arr::get($size, 'width', 0);
+            $modelData['height'] = Arr::get($size, 'height', 0);
         }
         $modelData['file_size'] = filesize($path);
 
-        $seed = array_get($conf, 'seed_prefix', '').time().rand();
+        $seed = Arr::get($conf, 'seed_prefix', '').time().rand();
         $key  = $this->generateFileName($seed, null, $ext);
 
-        $fileUploadServices = array_get($this->fileUploadServices, $storageType);
+        $fileUploadServices = Arr::get($this->fileUploadServices, $storageType);
         if (!empty($fileUploadServices)) {
             $result = $fileUploadServices->upload($dstPath, $mediaType, $key, $conf);
 
-            if (!array_get($result, 'success', false)) {
+            if (!Arr::get($result, 'success', false)) {
                 return null;
             }
 
-            $modelData['url']           = array_get($result, 'url', 0);
-            $modelData['s3_bucket']     = array_get($result, 's3_bucket', array_get($result, 'bucket', ''));
-            $modelData['s3_region']     = array_get($result, 's3_region', array_get($result, 'region', ''));
-            $modelData['s3_key']        = array_get($result, 's3_key', array_get($result, 'key', ''));
+            $modelData['url']           = Arr::get($result, 'url', 0);
+            $modelData['s3_bucket']     = Arr::get($result, 's3_bucket', Arr::get($result, 'bucket', ''));
+            $modelData['s3_region']     = Arr::get($result, 's3_region', Arr::get($result, 'region', ''));
+            $modelData['s3_key']        = Arr::get($result, 's3_key', Arr::get($result, 'key', ''));
             $modelData['thumbnails']    = [];
 
             if ($conf['type'] == File::FILE_TYPE_IMAGE) {
-                $format = array_get($conf, 'format', 'jpeg');
-                foreach (array_get($conf, 'thumbnails', []) as $thumbnail) {
+                $format = Arr::get($conf, 'format', 'jpeg');
+                foreach (Arr::get($conf, 'thumbnails', []) as $thumbnail) {
                     $this->imageService->convert($path, $dstPath, $format, $thumbnail, true);
                     $thumbnailKey = $this->getThumbnailKeyFromKey($key, $thumbnail);
                     $result       = $fileUploadServices->upload($dstPath, $mediaType, $thumbnailKey, $conf);
 
-                    if (array_get($result, 'success', false)) {
+                    if (Arr::get($result, 'success', false)) {
                         $modelData['thumbnails'][] = $thumbnail;
                     }
                 }
@@ -159,7 +160,7 @@ class FileService extends BaseService implements FileServiceInterface
             return true;
         }
 
-        $fileUploadService = array_get($this->fileUploadServices, $storageType);
+        $fileUploadService = Arr::get($this->fileUploadServices, $storageType);
         if (!empty($fileUploadService)) {
             $fileUploadService->delete([
                 's3_key' => $key,
@@ -181,11 +182,11 @@ class FileService extends BaseService implements FileServiceInterface
         $modelData = [
             'url'                => $url,
             'storage_type'       => File::STORAGE_TYPE_URL,
-            'title'              => array_get($metaInputs, 'title', ''),
-            'file_type'          => array_get($conf, 'type', File::FILE_TYPE_FILE),
+            'title'              => Arr::get($metaInputs, 'title', ''),
+            'file_type'          => Arr::get($conf, 'type', File::FILE_TYPE_FILE),
             'file_category_type' => $categoryType,
-            'entity_type'        => array_get($metaInputs, 'entityType', ''),
-            'entity_id'          => array_get($metaInputs, 'entityId', 0),
+            'entity_type'        => Arr::get($metaInputs, 'entityType', ''),
+            'entity_id'          => Arr::get($metaInputs, 'entityId', 0),
             's3_key'             => '',
             's3_bucket'          => '',
             's3_region'          => '',
@@ -193,7 +194,7 @@ class FileService extends BaseService implements FileServiceInterface
             'media_type'         => $mediaType,
             'format'             => $mediaType,
             'file_size'          => 0,
-            'original_filename'  => array_get($metaInputs, 'originalFileName', ''),
+            'original_filename'  => Arr::get($metaInputs, 'originalFileName', ''),
             'width'              => 0,
             'height'             => 0,
             'is_enabled'         => true,
@@ -209,7 +210,7 @@ class FileService extends BaseService implements FileServiceInterface
 
         $config = $this->getCategoryConfig($categoryType);
         if (!empty($config)) {
-            $storageType = array_get($config, 'storage', $storageType);
+            $storageType = Arr::get($config, 'storage', $storageType);
         }
         $storageConfig = config('file.storage.'.$storageType);
         if (empty($storageConfig)) {

@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Request;
+use Illuminate\Support\Str;
 use LaravelRocket\Foundation\Exports\AdminModelExport;
 use LaravelRocket\Foundation\Services\ExportServiceInterface;
 use function ICanBoogie\singularize;
@@ -20,7 +21,7 @@ class ExportController extends Controller
     public function export($model, Request $request)
     {
         $format    = $request->get('format', 'csv');
-        $modelName = singularize(ucfirst(camel_case($model)));
+        $modelName = singularize(ucfirst(Str::camel($model)));
 
         if (!$this->exportService->checkModelExportable($modelName)) {
             abort(404);

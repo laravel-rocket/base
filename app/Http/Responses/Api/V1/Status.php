@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Responses\Api\V1;
 
+use Illuminate\Support\Arr;
+
 class Status extends Response
 {
     protected $columns         = [
@@ -31,13 +33,13 @@ class Status extends Response
 
         $response = new static([
             'isSuccess'     => false,
-            'type'          => array_get($extraData, 'type', ''),
-            'title'         => array_get($extraData, 'title', ''),
-            'status'        => (int) array_get($extraData, 'status', 0),
-            'errorCode'     => (int) array_get($error, 'code'),
-            'detail'        => empty($message) ? array_get($error, 'message', '') : $message,
-            'invalidParams' => array_get($extraData, 'invalidParams', []),
-        ], array_get($error, 'statusCode', 400));
+            'type'          => Arr::get($extraData, 'type', ''),
+            'title'         => Arr::get($extraData, 'title', ''),
+            'status'        => (int) Arr::get($extraData, 'status', 0),
+            'errorCode'     => (int) Arr::get($error, 'code'),
+            'detail'        => empty($message) ? Arr::get($error, 'message', '') : $message,
+            'invalidParams' => Arr::get($extraData, 'invalidParams', []),
+        ], Arr::get($error, 'statusCode', 400));
 
         return $response;
     }
@@ -46,9 +48,9 @@ class Status extends Response
     {
         $response = new static([
             'isSuccess'     => true,
-            'type'          => array_get($extraData, 'type', ''),
-            'title'         => array_get($extraData, 'title', ''),
-            'status'        => (int) array_get($extraData, 'status', 0),
+            'type'          => Arr::get($extraData, 'type', ''),
+            'title'         => Arr::get($extraData, 'title', ''),
+            'status'        => (int) Arr::get($extraData, 'status', 0),
             'errorCode'     => 0,
             'detail'        => $message,
             'invalidParams' => [],

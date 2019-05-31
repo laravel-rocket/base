@@ -38,6 +38,6 @@ class CreateAdminUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('CreateAdminUsersTable');
+        Schema::dropIfExists('admin_users');
     }
 }

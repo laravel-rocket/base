@@ -4,7 +4,7 @@ class AdminUserRepository extends BaseRepository {
 
   constructor(){
     super();
-    this.PATH = "/admin-users";
+    this.PATH = "/admin_users";
   }
 
 }

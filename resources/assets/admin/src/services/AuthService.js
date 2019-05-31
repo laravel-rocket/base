@@ -4,7 +4,7 @@ class AuthService {
 
   static signOut() {
     const repository = new BaseRepository();
-    return repository.post('/sign-out');
+    return repository.post('/signout');
   }
 }
 

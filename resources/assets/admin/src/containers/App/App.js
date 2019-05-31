@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Switch, Route, Redirect} from 'react-router-dom';
+import {Switch, Route, Redirect, BrowserRouter} from 'react-router-dom';
 import {Container} from 'reactstrap';
 import {PropsRoute} from 'react-router-with-props';
 import Header from '../../components/Header/Header';
@@ -151,8 +151,7 @@ class App extends Component {
     });
   }
 
-  signOut()
-  {
+  signOut() {
     AuthService.signOut().then(repos => {
       window.location = '/admin'
     }).catch(error => {
@@ -160,8 +159,7 @@ class App extends Component {
     });
   }
 
-  moveToProfileEdit()
-  {
+  moveToProfileEdit() {
     this.props.history.push('/me');
   }
 
@@ -203,19 +201,22 @@ class App extends Component {
                   onDismissSuccess={this.handleOnSuccessAlertDismiss}
                   errorMessage={this.state.params.alert.errorMessage}
                   successMessage={this.state.params.alert.successMessage}/>
-                <Switch>
-                  <PropsRoute path="/dashboard" name="Dashboard" component={Dashboard} {...this.state}/>
-                  <PropsRoute path="/me" name="Edit Profile" component={MeEdit} {...this.state}/>
-                  <PropsRoute path="/admin-users/:id/edit" name="Admin Users Edit" component={AdminUserEdit} {...this.state}/>
-                  <PropsRoute path="/admin-users/create" name="Admin Users Create" component={AdminUserEdit} {...this.state}/>
-                  <PropsRoute path="/admin-users/:id" name="Admin Users Show" component={AdminUserShow} {...this.state}/>
-                  <PropsRoute path="/admin-users" name="Admin Users" component={AdminUserIndex} {...this.state}/>
-                  <PropsRoute path="/users/:id/edit" name="Users Edit" component={UserEdit} {...this.state}/>
-                  <PropsRoute path="/users/create" name="Users Create" component={UserEdit} {...this.state}/>
-                  <PropsRoute path="/users/:id" name="Users Show" component={UserShow} {...this.state}/>
-                  <PropsRoute path="/users" name="Users" component={UserIndex} {...this.state}/>
-                  <Redirect from="/" to="/dashboard"/>
-                </Switch>
+                  <Switch>
+                    <PropsRoute path="/dashboard" name="Dashboard" component={Dashboard} {...this.state}/>
+                    <PropsRoute path="/me" name="Edit Profile" component={MeEdit} {...this.state}/>
+                    <PropsRoute path="/admin_users/:id/edit" name="Admin Users Edit"
+                                component={AdminUserEdit} {...this.state}/>
+                    <PropsRoute path="/admin_users/create" name="Admin Users Create"
+                                component={AdminUserEdit} {...this.state}/>
+                    <PropsRoute path="/admin_users/:id" name="Admin Users Show"
+                                component={AdminUserShow} {...this.state}/>
+                    <PropsRoute path="/admin_users" name="Admin Users" component={AdminUserIndex} {...this.state}/>
+                    <PropsRoute path="/users/:id/edit" name="Users Edit" component={UserEdit} {...this.state}/>
+                    <PropsRoute path="/users/create" name="Users Create" component={UserEdit} {...this.state}/>
+                    <PropsRoute path="/users/:id" name="Users Show" component={UserShow} {...this.state}/>
+                    <PropsRoute path="/users" name="Users" component={UserIndex} {...this.state}/>
+                    <Redirect from="/" to="/dashboard"/>
+                  </Switch>
               </Container>
             </div>
           </main>

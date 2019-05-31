@@ -1,4 +1,4 @@
 export default {
-  path: '/admin-users',
+  path: '/admin_users',
   title: 'Admin Users',
 }

@@ -30,20 +30,9 @@ export default {
       editable: true,
       queryName: "profile_image_id"
     },
-    dateTime: {
-        name: "Date Time",
-        type: "datetime",
-        editable: true,
-        queryName: "datetime"
-    },
-    date: {
-        name: "Date",
-        type: "date",
-        editable: true,
-        queryName: "date"
-    },
     roles: {
       name: "Role",
+      queryName: "admin_user_role",
       type: "checkbox",
       presentation: "badge",
       editable: true,
@@ -72,8 +61,6 @@ export default {
     "roles",
   ],
   "edit": [
-    'date',
-    'dateTime',
     "profileImage",
     "name",
     "email",

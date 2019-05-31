@@ -6,9 +6,9 @@ Route::group(['prefix' => 'api', 'as' => 'api.', 'namespace' => 'Api'], function
             Route::get('information', 'IndexController@information');
             Route::get('me', 'MeController@show');
             Route::put('me', 'MeController@update');
-            Route::post('sign-out', 'AuthController@postSignOut');
+            Route::post('signout', 'AuthController@postSignOut');
 
-            Route::resource('admin-users', 'AdminUserController')->only([
+            Route::resource('admin_users', 'AdminUserController')->only([
                 'index', 'show', 'store', 'update', 'destroy',
             ]);
             Route::resource('users', 'UserController')->only([

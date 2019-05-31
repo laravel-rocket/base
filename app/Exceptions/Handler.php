@@ -73,10 +73,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        /*
         if (Str::start($request->path(), 'api/v1')) {
             return Status::error('unknown', $exception->getMessage())->withStatus(500)->response();
         }
-
+          */
         return parent::render($request, $exception);
     }
 }

@@ -57,7 +57,8 @@ class Show extends Base {
   // Utility Functions
   get(id) {
     this.repository.show(id).then(repos => {
-      this.setState({params: {model: repos}});
+      let model = this.mapAPIToModel(repos);
+      this.setState({params: {model: model}});
       console.log(this.state);
     }).catch(error => {
       this.props.methods.errorMessage('Data Fetch Failed. Please access again later');

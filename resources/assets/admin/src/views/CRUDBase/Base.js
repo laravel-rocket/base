@@ -40,6 +40,15 @@ class Base extends Component {
     this.state = {};
   }
 
+  mapAPIToModel(apiResult) {
+    let model = {};
+    for( let column of Object.keys(this.columns.columns)) {
+      let apiResultName = this.columns.columns[column].apiName || column;
+      model[column] = apiResult[apiResultName];
+    }
+
+    return model;
+  }
 }
 
 export default Base;

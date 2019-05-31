@@ -7,6 +7,7 @@ import {
 } from "reactstrap";
 import Pagination from "../Pagination/Pagination";
 import {Link} from 'react-router-dom';
+import moment from 'moment'
 
 class IndexList extends Component {
 
@@ -81,14 +82,10 @@ class IndexList extends Component {
         return "";
       case 'datetime':
         if (item !== null && parseInt(item) > 1000000000) {
-          const datetime = new Date(item * 1000);
-          return [
-              datetime.getFullYear(),
-              datetime.getMonth() + 1,
-              datetime.getDate()
-            ].join('/') + ' '
-            + datetime.toLocaleTimeString();
+          let daytime = new moment.unix(item);
+          return daytime.format('YYYY-MM-DD hh:mm:ss Z')
         }
+        return item
     }
 
     if (item !== null && typeof item === 'object') {

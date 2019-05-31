@@ -101,7 +101,7 @@ class AdminUserController extends Controller
             throw new APIErrorException('unknown', 'AdminUser Creation Failed');
         }
 
-        $roles = $request->get('roles', []);
+        $roles = $request->get('admin_user_role', []);
         $this->adminUserRoleRepository->updateMultipleEntries($adminUser->id, 'admin_user_id', 'role', $roles);
 
         return AdminUser::updateWithModel($adminUser)->response();
@@ -162,7 +162,7 @@ class AdminUserController extends Controller
 
         $adminUser = $this->adminUserRepository->update($adminUser, $input);
 
-        $roles = $request->get('roles', []);
+        $roles = $request->get('admin_user_role', []);
         $this->adminUserRoleRepository->updateMultipleEntries($adminUser->id, 'admin_user_id', 'role', $roles);
 
         return AdminUser::updateWithModel($adminUser)->response();

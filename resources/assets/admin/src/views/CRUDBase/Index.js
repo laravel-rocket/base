@@ -129,6 +129,11 @@ class Index extends Base {
 
   getIndexList(offset, limit, order, direction, searchWord = '', params = {}) {
     this.repository.index(offset, limit, order, direction, searchWord, params).then(repos => {
+      let records = [];
+      for( let record of repos.items) {
+        records.push(this.mapAPIToModel(record));
+      }
+      repos.items = records;
       this.setState({
         params: {
           ...this.state.params,

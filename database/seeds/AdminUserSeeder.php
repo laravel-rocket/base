@@ -26,5 +26,17 @@ class AdminUserSeeder extends Seeder
             'admin_user_id' => $adminUser->id,
             'role'          => AdminUserRole::ROLE_SUPER_USER,
         ]);
+
+        $adminUser = $adminUserRepository->create([
+            'name'     => 'Test Site Admin',
+            'email'    => 'test2@example.com',
+            'password' => 'testtest',
+        ]);
+
+        $adminUserRoleRepository->create([
+            'admin_user_id' => $adminUser->id,
+            'role'          => AdminUserRole::ROLE_SITE_ADMIN,
+        ]);
+
     }
 }

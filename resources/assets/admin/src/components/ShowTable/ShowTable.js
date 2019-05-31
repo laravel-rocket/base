@@ -6,6 +6,7 @@ import {
 } from "reactstrap";
 import {Link} from 'react-router-dom';
 import Map from "../Map/Map";
+import moment from 'moment'
 
 class ShowTable extends Component {
   constructor() {
@@ -62,6 +63,12 @@ class ShowTable extends Component {
         return (
           <Map height={"300px"} latitude={parseFloat(latitude)} longitude={parseFloat(longitude)}/>
         );
+      case 'datetime':
+        if (item !== null && parseInt(item) > 1000000000) {
+          let daytime = new moment.unix(item);
+          return daytime.format('YYYY-MM-DD hh:mm:ss Z')
+        }
+        return item
     }
 
     if (item !== null && typeof item === 'object') {

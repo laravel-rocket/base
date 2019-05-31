@@ -101,7 +101,8 @@ class Edit extends Base {
 
   get(id) {
     this.repository.show(id).then(repos => {
-      this.setState({id: id, model: repos, initialModel: repos});
+      let model = this.mapAPIToModel(repos);
+      this.setState({id: id, model: model, initialModel: model});
       console.log(this.state);
     }).catch(error => {
       this.props.methods.errorMessage('Data Fetch Failed. Please access again later');

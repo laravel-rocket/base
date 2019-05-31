@@ -83,7 +83,7 @@ class EditTable extends Component {
     const newFormData = this.state.formData;
     const newModelData = this.state.model;
 
-    const formKey = columnInfo[key].queryName;
+    const formKey = columnInfo[key].queryName || key;
 
     let pos = 0;
     switch (columnInfo[key].type) {

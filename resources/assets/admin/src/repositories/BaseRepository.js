@@ -78,7 +78,13 @@ class BaseRepository {
       formData = param;
     }else{
       Object.keys(params).forEach(function (key) {
-        formData.append(key, params[key]);
+        if( Array.isArray(params[key])){
+          for(let value of params[key]) {
+            formData.append(key + "[]", value);
+          }
+        }else{
+          formData.append(key, params[key]);
+        }
       });
     }
 

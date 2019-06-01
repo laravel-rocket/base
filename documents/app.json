@@ -86,13 +86,14 @@
             }
           ]
         }
-      }
+      },
+      "requiredRoles": ["site_admin"]
     }
   },
   "admin": {
     "cruds": {
       "exclude": [
-        "admin_roles",
+        "admin_user_roles",
         "files",
         "admin_password_resets",
         "password_resets",

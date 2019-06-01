@@ -16,7 +16,7 @@ export default {
             "name": "Admin Users",
             "url": "\/admin_users",
             "icon": "fa fa-user-secret",
-            "roles": ["super_user"],
+            "roles": ["super_user"]
         },
         {
             "name": "Users",

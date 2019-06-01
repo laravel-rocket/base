@@ -40,8 +40,8 @@ class ShowTable extends Component {
           i++
         ) {
           if (columnInfo[key].presentation === 'badge') {
-            options.push(<Badge color="secondary"
-                                key={key + '_' + item[i]}>{columnInfo[key].optionNames[item[i]]}</Badge>)
+            options.push(<div><Badge color="secondary"
+                                key={key + '_' + item[i]}>{columnInfo[key].optionNames[item[i]]}</Badge></div>)
           } else {
             options.push(<div>{columnInfo[key].optionNames[item[i]]}</div>)
           }
@@ -51,7 +51,7 @@ class ShowTable extends Component {
         if (item !== null && Array.isArray(item)) {
           const items = [];
           item.forEach(function (object) {
-            items.push(<Badge color="primary" key={key + '_' + object.id}>{object.name}</Badge>)
+            items.push(<div><Badge color="primary" key={key + '_' + object.id}>{object.name}</Badge></div>)
           });
           return (<div>{items}</div>)
         }

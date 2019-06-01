@@ -21,14 +21,15 @@ class Response extends ResponseBase
 
     /**
      * @param \LaravelRocket\Foundation\Models\Base[] $models
+     * @param string|null $columnName
      *
      * @return static[]
      */
-    public static function updateWithModels($models)
+    public static function updateWithModels($models, $columnName = null)
     {
         $response = [];
         foreach ($models as $model) {
-            $response[] = static::updateWithModel($model);
+            $response[] = $columnName ? $model->{$columnName} : static::updateWithModel($model);
         }
 
         return $response;

@@ -304,7 +304,7 @@ class EditTable extends Component {
           <FormGroup key={'input-' + key}>
             <Label htmlFor={key}>{columnInfo[key].name}</Label>
             <DatePicker
-              selected={item}
+              selected={item.toDate()}
               onChange={e => this.handleDataChange(key, moment(e))}
             />
 
@@ -524,7 +524,7 @@ class EditTable extends Component {
           <FormGroup key={'input-' + key}>
             <Label htmlFor={key}>{columnInfo[key].name}</Label>
             <DatePicker
-              selected={item}
+              selected={item.toDate()}
               onChange={e => this.handleDataChange(key, moment(e))}
               showTimeSelect
               dateFormat="LLL"

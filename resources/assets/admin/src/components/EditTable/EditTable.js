@@ -16,6 +16,7 @@ import {Async as SelectAsync} from 'react-select';
 import Map from '../../components/Map/Map'
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
+import countries from 'country-data';
 
 
 class EditTable extends Component {
@@ -407,21 +408,24 @@ class EditTable extends Component {
         const optionValues = [];
         for (const option of columnInfo[key].options) {
           optionValues.push({
-            value: option.value,
-            label: option.name,
+            value: option,
+            label: columnInfo[key].optionNames[option],
           });
           if (Array.isArray(item)) {
-            if( item.includes(option.value)){
+            if (item.includes(option)) {
+              if (!defaultValues) {
+                defaultValues = [];
+              }
               defaultValues.push({
-                value: option.value,
-                label: option.name,
+                value: option,
+                label: columnInfo[key].optionNames[option],
               });
             }
-          }else{
-            if( option.value === item){
+          } else {
+            if (option === item) {
               defaultValues = {
-                value: option.value,
-                label: option.name,
+                value: option,
+                label: columnInfo[key].optionNames[option],
               };
             }
           }
@@ -531,9 +535,170 @@ class EditTable extends Component {
             />
           </FormGroup>
         );
+      case 'country':
+        let countryList = [];
+        for (let country of countries.countries.all) {
+          if (country.alpha2.length === 2) {
+            countryList.push({
+              value: country.alpha2,
+              label: country.name,
+            });
+          }
+        }
+        defaultValues = null;
+        if (isMulti) {
+          defaultValues = [];
+          if (Array.isArray(item)) {
+            item.forEach((value) => {
+              defaultValues.push({
+                value: value.id || value.value,
+                label: value.name || value.label,
+              });
+            });
+          }
+        } else {
+          if (item && typeof item === 'object') {
+            defaultValues = {
+              value: item.id || item.value,
+              label: item.name || item.label,
+            };
+            console.log(defaultValues);
+          }
+        }
+        return (
+          <FormGroup key={'input-' + key}>
+            <Label htmlFor={key}>{columnInfo[key].name}</Label>
+            <Select
+              name={key}
+              onChange={(value, actionMeta) => this.handleDataChange(key, value)}
+              options={countryList}
+              value={defaultValues}
+            />
+          </FormGroup>
+        );
+      case 'language':
+        let languageList = [];
+        for (let language of countries.languages.all) {
+          if (language.alpha2.length === 2) {
+            languageList.push({
+              value: language.alpha2,
+              label: language.name,
+            });
+          }
+        }
+        defaultValues = null;
+        if (isMulti) {
+          defaultValues = [];
+          if (Array.isArray(item)) {
+            item.forEach((value) => {
+              defaultValues.push({
+                value: value.id || value.value,
+                label: value.name || value.label,
+              });
+            });
+          }
+        } else {
+          if (item && typeof item === 'object') {
+            defaultValues = {
+              value: item.id || item.value,
+              label: item.name || item.label,
+            };
+            console.log(defaultValues);
+          }
+        }
+        return (
+          <FormGroup key={'input-' + key}>
+            <Label htmlFor={key}>{columnInfo[key].name}</Label>
+            <Select
+              name={key}
+              onChange={(value, actionMeta) => this.handleDataChange(key, value)}
+              options={languageList}
+              value={defaultValues}
+            />
+          </FormGroup>
+        );
+      case 'currency':
+        let currencyList = [];
+        for (let currency of countries.currencies.all) {
+          currencyList.push({
+            value: currency.code,
+            label: currency.name,
+          });
+        }
+        defaultValues = null;
+        if (isMulti) {
+          defaultValues = [];
+          if (Array.isArray(item)) {
+            item.forEach((value) => {
+              defaultValues.push({
+                value: value.id || value.value,
+                label: value.name || value.label,
+              });
+            });
+          }
+        } else {
+          if (item && typeof item === 'object') {
+            defaultValues = {
+              value: item.id || item.value,
+              label: item.name || item.label,
+            };
+            console.log(defaultValues);
+          }
+        }
+        return (
+          <FormGroup key={'input-' + key}>
+            <Label htmlFor={key}>{columnInfo[key].name}</Label>
+            <Select
+              name={key}
+              onChange={(value, actionMeta) => this.handleDataChange(key, value)}
+              options={currencyList}
+              value={defaultValues}
+            />
+          </FormGroup>
+        );
+      case 'phone': {
+        let phoneList = {};
+        for (let currency of countries.currencies.all) {
+          phoneList.push({
+            value: currency.countryCallingCodes,
+            label: currency.name,
+          });
+        }
+        defaultValues = null;
+        if (isMulti) {
+          defaultValues = [];
+          if (Array.isArray(item)) {
+            item.forEach((value) => {
+              defaultValues.push({
+                value: value.id || value.value,
+                label: value.name || value.label,
+              });
+            });
+          }
+        } else {
+          if (item && typeof item === 'object') {
+            defaultValues = {
+              value: item.id || item.value,
+              label: item.name || item.label,
+            };
+            console.log(defaultValues);
+          }
+        }
+        return (
+          <FormGroup key={'input-' + key}>
+            <Label htmlFor={key}>{columnInfo[key].name}</Label>
+            <Select
+              name={key}
+              onChange={(value, actionMeta) => this.handleDataChange(key, value)}
+              options={phoneList}
+              value={defaultValues}
+            />
+          </FormGroup>
+        );
+      }
 
     }
-
+    console.log(countries);
     return (
       <FormGroup key={'input-' + key}>
         <Label htmlFor={key}>{columnInfo[key].name}</Label>

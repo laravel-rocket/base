@@ -97,7 +97,13 @@
         "files",
         "admin_password_resets",
         "password_resets",
-        "user_service_authentications"
+        "user_service_authentications",
+        "company_currencies",
+        "company_languages",
+        "simulation_notes",
+        "simulation_prospects",
+        "simulation_salaries",
+        "simulation_debts"
       ],
       "include": [
       ]

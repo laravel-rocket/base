@@ -17,6 +17,7 @@ import Map from '../../components/Map/Map'
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
 import countries from 'country-data';
+import HTMLEditor from '../HTMLEditor/HTMLEditor'
 
 
 class EditTable extends Component {
@@ -359,6 +360,14 @@ class EditTable extends Component {
                    onChange={e => this.handleDataChange(key, e.target.value)}/>
           </FormGroup>
         );
+      case 'html':
+        return (
+          <FormGroup key={'input-' + key}>
+            <Label htmlFor={key}>{columnInfo[key].name}</Label>
+            <HTMLEditor id={key} name={key} value={item}
+                        onChange={html => this.handleDataChange(key, html)}/>
+          </FormGroup>
+        );
       case 'select':
       case 'select_single':
       case 'select_multiple':
@@ -526,13 +535,19 @@ class EditTable extends Component {
         }
         return (
           <FormGroup key={'input-' + key}>
-            <Label htmlFor={key}>{columnInfo[key].name}</Label>
-            <DatePicker
-              selected={item.toDate()}
-              onChange={e => this.handleDataChange(key, moment(e))}
-              showTimeSelect
-              dateFormat="LLL"
-            />
+            <Row>
+              <Col md={3} xs={12}>
+                <Label htmlFor={key}>{columnInfo[key].name}</Label>
+              </Col>
+              <Col md={9} xs={12}>
+                <DatePicker
+                  selected={item.toDate()}
+                  onChange={e => this.handleDataChange(key, moment(e))}
+                  showTimeSelect
+                  dateFormat="yyyy/MM/dd hh:mm:ss"
+                />
+              </Col>
+            </Row>
           </FormGroup>
         );
       case 'country':

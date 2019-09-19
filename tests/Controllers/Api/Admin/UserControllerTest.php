@@ -44,7 +44,7 @@ class UserControllerTest extends TestCase
 
         $user = factory(\App\Models\User::class)->create();
 
-        $testData = str_random(10);
+        $testData = \Illuminate\Support\Str::random(10);
         $id       = $user->id;
 
         $user->name = $testData;

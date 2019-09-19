@@ -5,6 +5,7 @@ use App\Models\File;
 use App\Repositories\FileRepositoryInterface;
 use App\Services\FileServiceInterface;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use LaravelRocket\Foundation\Services\FileUploadLocalServiceInterface;
 use LaravelRocket\Foundation\Services\FileUploadS3ServiceInterface;
 use LaravelRocket\Foundation\Services\FileUploadServiceInterface;
@@ -61,7 +62,7 @@ class FileService extends BaseService implements FileServiceInterface
 
         // Support Android Retrofit Bad Data Format
         $checkData = @file_get_contents($path);
-        if (starts_with($checkData, 'Content-Length:')) {
+        if (Str::startsWith($checkData, 'Content-Length:')) {
             $pos = strpos($checkData, "\r\n\r\n");
             if ($pos !== false) {
                 \Log::info('Detect Wrong Data');

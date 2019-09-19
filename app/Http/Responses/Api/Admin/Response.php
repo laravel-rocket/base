@@ -21,7 +21,7 @@ class Response extends ResponseBase
 
     /**
      * @param \LaravelRocket\Foundation\Models\Base[] $models
-     * @param string|null $columnName
+     * @param string|null                             $columnName
      *
      * @return static[]
      */

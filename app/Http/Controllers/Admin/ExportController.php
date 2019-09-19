@@ -3,10 +3,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Request;
+use function ICanBoogie\singularize;
 use Illuminate\Support\Str;
 use LaravelRocket\Foundation\Exports\AdminModelExport;
 use LaravelRocket\Foundation\Services\ExportServiceInterface;
-use function ICanBoogie\singularize;
 
 class ExportController extends Controller
 {

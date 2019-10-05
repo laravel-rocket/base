@@ -27,19 +27,19 @@ class Aside extends Component {
           <NavItem>
             <NavLink className={classnames({ active: this.state.activeTab === '1' })}
                      onClick={() => { this.toggle('1'); }}>
-              <i className="icon-list"></i>
+              <i className="icon-list"/>
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink className={classnames({ active: this.state.activeTab === '2' })}
                      onClick={() => { this.toggle('2'); }}>
-              <i className="icon-speech"></i>
+              <i className="icon-speech"/>
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink className={classnames({ active: this.state.activeTab === '3' })}
                      onClick={() => { this.toggle('3'); }}>
-              <i className="icon-settings"></i>
+              <i className="icon-settings"/>
             </NavLink>
           </NavItem>
         </Nav>
@@ -54,8 +54,8 @@ class Aside extends Component {
                 <img src={'img/avatars/7.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com"/>
               </div>
               <div>Meeting with <strong>Lucas</strong></div>
-              <small className="text-muted mr-3"><i className="icon-calendar"></i>&nbsp; 1 - 3pm</small>
-              <small className="text-muted"><i className="icon-location-pin"></i>&nbsp; Palo Alto, CA</small>
+              <small className="text-muted mr-3"><i className="icon-calendar"/>&nbsp; 1 - 3pm</small>
+              <small className="text-muted"><i className="icon-location-pin"/>&nbsp; Palo Alto, CA</small>
             </div>
             <hr className="mx-3 my-0"/>
             <div className="callout callout-info m-0 py-3">
@@ -63,8 +63,8 @@ class Aside extends Component {
                 <img src={'img/avatars/4.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com"/>
               </div>
               <div>Skype with <strong>Megan</strong></div>
-              <small className="text-muted mr-3"><i className="icon-calendar"></i>&nbsp; 4 - 5pm</small>
-              <small className="text-muted"><i className="icon-social-skype"></i>&nbsp; On-line</small>
+              <small className="text-muted mr-3"><i className="icon-calendar"/>&nbsp; 4 - 5pm</small>
+              <small className="text-muted"><i className="icon-social-skype"/>&nbsp; On-line</small>
             </div>
             <hr className="transparent mx-3 my-0"/>
             <div className="callout m-0 py-2 text-muted text-center bg-light text-uppercase">
@@ -73,8 +73,8 @@ class Aside extends Component {
             <hr className="transparent mx-3 my-0"/>
             <div className="callout callout-danger m-0 py-3">
               <div>New UI Project - <strong>deadline</strong></div>
-              <small className="text-muted mr-3"><i className="icon-calendar"></i>&nbsp; 10 - 11pm</small>
-              <small className="text-muted"><i className="icon-home"></i>&nbsp; creativeLabs HQ</small>
+              <small className="text-muted mr-3"><i className="icon-calendar"/>&nbsp; 10 - 11pm</small>
+              <small className="text-muted"><i className="icon-home"/>&nbsp; creativeLabs HQ</small>
               <div className="avatars-stack mt-2">
                 <div className="avatar avatar-xs">
                   <img src={'img/avatars/2.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com"/>
@@ -96,14 +96,14 @@ class Aside extends Component {
             <hr className="mx-3 my-0"/>
             <div className="callout callout-success m-0 py-3">
               <div><strong>#10 Startups.Garden</strong> Meetup</div>
-              <small className="text-muted mr-3"><i className="icon-calendar"></i>&nbsp; 1 - 3pm</small>
-              <small className="text-muted"><i className="icon-location-pin"></i>&nbsp; Palo Alto, CA</small>
+              <small className="text-muted mr-3"><i className="icon-calendar"/>&nbsp; 1 - 3pm</small>
+              <small className="text-muted"><i className="icon-location-pin"/>&nbsp; Palo Alto, CA</small>
             </div>
             <hr className="mx-3 my-0"/>
             <div className="callout callout-primary m-0 py-3">
               <div><strong>Team meeting</strong></div>
-              <small className="text-muted mr-3"><i className="icon-calendar"></i>&nbsp; 4 - 6pm</small>
-              <small className="text-muted"><i className="icon-home"></i>&nbsp; creativeLabs HQ</small>
+              <small className="text-muted mr-3"><i className="icon-calendar"/>&nbsp; 4 - 6pm</small>
+              <small className="text-muted"><i className="icon-home"/>&nbsp; creativeLabs HQ</small>
               <div className="avatars-stack mt-2">
                 <div className="avatar avatar-xs">
                   <img src={'img/avatars/2.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com"/>

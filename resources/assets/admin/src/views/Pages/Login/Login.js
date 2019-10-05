@@ -15,11 +15,11 @@ class Login extends Component {
                     <h1>Login</h1>
                     <p className="text-muted">Sign In to your account</p>
                     <InputGroup className="mb-3">
-                      <InputGroupAddon><i className="icon-user"></i></InputGroupAddon>
+                      <InputGroupAddon><i className="icon-user"/></InputGroupAddon>
                       <Input type="text" placeholder="Username"/>
                     </InputGroup>
                     <InputGroup className="mb-4">
-                      <InputGroupAddon><i className="icon-lock"></i></InputGroupAddon>
+                      <InputGroupAddon><i className="icon-lock"/></InputGroupAddon>
                       <Input type="password" placeholder="Password"/>
                     </InputGroup>
                     <Row>

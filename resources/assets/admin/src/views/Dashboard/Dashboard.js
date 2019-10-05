@@ -440,7 +440,7 @@ class Dashboard extends Component {
                   <ButtonDropdown id='card1' isOpen={this.state.card1}
                                   toggle={() => { this.setState({ card1: !this.state.card1 }); }}>
                     <DropdownToggle caret className="p-0" color="transparent">
-                      <i className="icon-settings"></i>
+                      <i className="icon-settings"/>
                     </DropdownToggle>
                     <DropdownMenu className={this.state.card1 ? "show" : ""} right>
                       <DropdownItem>Action</DropdownItem>
@@ -466,7 +466,7 @@ class Dashboard extends Component {
                   <Dropdown id='card2' isOpen={this.state.card2}
                             toggle={() => { this.setState({ card2: !this.state.card2 }); }}>
                     <DropdownToggle caret className="p-0" color="transparent">
-                      <i className="icon-settings"></i>
+                      <i className="icon-settings"/>
                     </DropdownToggle>
                     <DropdownMenu className={this.state.card2 ? "show" : ""} right>
                       <DropdownItem>Action</DropdownItem>
@@ -491,7 +491,7 @@ class Dashboard extends Component {
                   <Dropdown id='card3' isOpen={this.state.card3}
                             toggle={() => { this.setState({ card3: !this.state.card3 }); }}>
                     <DropdownToggle caret className="p-0" color="transparent">
-                      <i className="icon-settings"></i>
+                      <i className="icon-settings"/>
                     </DropdownToggle>
                     <DropdownMenu className={this.state.card3 ? "show" : ""} right>
                       <DropdownItem>Action</DropdownItem>
@@ -516,7 +516,7 @@ class Dashboard extends Component {
                   <ButtonDropdown id='card4' isOpen={this.state.card4}
                                   toggle={() => { this.setState({ card4: !this.state.card4 }); }}>
                     <DropdownToggle caret className="p-0" color="transparent">
-                      <i className="icon-settings"></i>
+                      <i className="icon-settings"/>
                     </DropdownToggle>
                     <DropdownMenu className={this.state.card4 ? "show" : ""} right>
                       <DropdownItem>Action</DropdownItem>
@@ -544,7 +544,7 @@ class Dashboard extends Component {
                     <div className="small text-muted">November 2015</div>
                   </Col>
                   <Col sm="7" className="d-none d-sm-inline-block">
-                    <Button color="primary" className="float-right"><i className="icon-cloud-download"></i></Button>
+                    <Button color="primary" className="float-right"><i className="icon-cloud-download"/></Button>
                     <ButtonToolbar className="float-right" aria-label="Toolbar with button groups">
                       <ButtonGroup className="mr-3" data-toggle="buttons" aria-label="First group">
                         <Label htmlFor="option1" className="btn btn-outline-secondary">
@@ -600,7 +600,7 @@ class Dashboard extends Component {
         <Row>
           <Col xs="6" sm="6" lg="3">
             <div className="social-box facebook">
-              <i className="fa fa-facebook"></i>
+              <i className="fa fa-facebook"/>
               <div className="chart-wrapper">
                 <Line data={makeSocialBoxData(0)} options={socialChartOpts} height={90}/>
               </div>
@@ -619,7 +619,7 @@ class Dashboard extends Component {
 
           <Col xs="6" sm="6" lg="3">
             <div className="social-box twitter">
-              <i className="fa fa-twitter"></i>
+              <i className="fa fa-twitter"/>
               <div className="chart-wrapper">
                 <Line data={makeSocialBoxData(1)} options={socialChartOpts} height={90}/>
               </div>
@@ -639,7 +639,7 @@ class Dashboard extends Component {
           <Col xs="6" sm="6" lg="3">
 
             <div className="social-box linkedin">
-              <i className="fa fa-linkedin"></i>
+              <i className="fa fa-linkedin"/>
               <div className="chart-wrapper">
                 <Line data={makeSocialBoxData(2)} options={socialChartOpts} height={90}/>
               </div>
@@ -658,7 +658,7 @@ class Dashboard extends Component {
 
           <Col xs="6" sm="6" lg="3">
             <div className="social-box google-plus">
-              <i className="fa fa-google-plus"></i>
+              <i className="fa fa-google-plus"/>
               <div className="chart-wrapper">
                 <Line data={makeSocialBoxData(3)} options={socialChartOpts} height={90}/>
               </div>
@@ -806,7 +806,7 @@ class Dashboard extends Component {
                     <hr className="mt-0"/>
                     <ul className="horizontal-bars type-2">
                       <li>
-                        <i className="icon-user"></i>
+                        <i className="icon-user"/>
                         <span className="title">Male</span>
                         <span className="value">43%</span>
                         <div className="bars">
@@ -814,16 +814,16 @@ class Dashboard extends Component {
                         </div>
                       </li>
                       <li>
-                        <i className="icon-user-female"></i>
+                        <i className="icon-user-female"/>
                         <span className="title">Female</span>
                         <span className="value">37%</span>
                         <div className="bars">
                           <Progress className="progress-xs" color="warning" value="37"/>
                         </div>
                       </li>
-                      <li className="divider"></li>
+                      <li className="divider"/>
                       <li>
-                        <i className="icon-globe"></i>
+                        <i className="icon-globe"/>
                         <span className="title">Organic Search</span>
                         <span className="value">191,235 <span className="text-muted small">(56%)</span></span>
                         <div className="bars">
@@ -831,7 +831,7 @@ class Dashboard extends Component {
                         </div>
                       </li>
                       <li>
-                        <i className="icon-social-facebook"></i>
+                        <i className="icon-social-facebook"/>
                         <span className="title">Facebook</span>
                         <span className="value">51,223 <span className="text-muted small">(15%)</span></span>
                         <div className="bars">
@@ -839,7 +839,7 @@ class Dashboard extends Component {
                         </div>
                       </li>
                       <li>
-                        <i className="icon-social-twitter"></i>
+                        <i className="icon-social-twitter"/>
                         <span className="title">Twitter</span>
                         <span className="value">37,564 <span className="text-muted small">(11%)</span></span>
                         <div className="bars">
@@ -847,7 +847,7 @@ class Dashboard extends Component {
                         </div>
                       </li>
                       <li>
-                        <i className="icon-social-linkedin"></i>
+                        <i className="icon-social-linkedin"/>
                         <span className="title">LinkedIn</span>
                         <span className="value">27,319 <span className="text-muted small">(8%)</span></span>
                         <div className="bars">
@@ -856,7 +856,7 @@ class Dashboard extends Component {
                       </li>
                       <li className="divider text-center">
                         <Button color="link" size="sm" className="text-muted" data-toggle="tooltip" data-placement="top"
-                                title="" data-original-title="show more"><i className="icon-options"></i></Button>
+                                title="" data-original-title="show more"><i className="icon-options"/></Button>
                       </li>
                     </ul>
                   </Col>
@@ -886,7 +886,7 @@ class Dashboard extends Component {
                     <hr className="mt-0"/>
                     <ul className="icons-list">
                       <li>
-                        <i className="icon-screen-desktop bg-primary"></i>
+                        <i className="icon-screen-desktop bg-primary"/>
                         <div className="desc">
                           <div className="title">iMac 4k</div>
                           <small>Lorem ipsum dolor sit amet</small>
@@ -896,11 +896,11 @@ class Dashboard extends Component {
                           <strong>1.924</strong>
                         </div>
                         <div className="actions">
-                          <Button color="link" className="text-muted"><i className="icon-settings"></i></Button>
+                          <Button color="link" className="text-muted"><i className="icon-settings"/></Button>
                         </div>
                       </li>
                       <li>
-                        <i className="icon-screen-smartphone bg-info"></i>
+                        <i className="icon-screen-smartphone bg-info"/>
                         <div className="desc">
                           <div className="title">Samsung Galaxy Edge</div>
                           <small>Lorem ipsum dolor sit amet</small>
@@ -910,11 +910,11 @@ class Dashboard extends Component {
                           <strong>1.224</strong>
                         </div>
                         <div className="actions">
-                          <Button color="link" className="text-muted"><i className="icon-settings"></i></Button>
+                          <Button color="link" className="text-muted"><i className="icon-settings"/></Button>
                         </div>
                       </li>
                       <li>
-                        <i className="icon-screen-smartphone bg-warning"></i>
+                        <i className="icon-screen-smartphone bg-warning"/>
                         <div className="desc">
                           <div className="title">iPhone 6S</div>
                           <small>Lorem ipsum dolor sit amet</small>
@@ -924,11 +924,11 @@ class Dashboard extends Component {
                           <strong>1.163</strong>
                         </div>
                         <div className="actions">
-                          <Button color="link" className="text-muted"><i className="icon-settings"></i></Button>
+                          <Button color="link" className="text-muted"><i className="icon-settings"/></Button>
                         </div>
                       </li>
                       <li>
-                        <i className="icon-user bg-danger"></i>
+                        <i className="icon-user bg-danger"/>
                         <div className="desc">
                           <div className="title">Premium accounts</div>
                           <small>Lorem ipsum dolor sit amet</small>
@@ -938,11 +938,11 @@ class Dashboard extends Component {
                           <strong>928</strong>
                         </div>
                         <div className="actions">
-                          <Button color="link" className="text-muted"><i className="icon-settings"></i></Button>
+                          <Button color="link" className="text-muted"><i className="icon-settings"/></Button>
                         </div>
                       </li>
                       <li>
-                        <i className="icon-social-spotify bg-success"></i>
+                        <i className="icon-social-spotify bg-success"/>
                         <div className="desc">
                           <div className="title">Spotify Subscriptions</div>
                           <small>Lorem ipsum dolor sit amet</small>
@@ -952,11 +952,11 @@ class Dashboard extends Component {
                           <strong>893</strong>
                         </div>
                         <div className="actions">
-                          <Button color="link" className="text-muted"><i className="icon-settings"></i></Button>
+                          <Button color="link" className="text-muted"><i className="icon-settings"/></Button>
                         </div>
                       </li>
                       <li>
-                        <i className="icon-cloud-download bg-danger"></i>
+                        <i className="icon-cloud-download bg-danger"/>
                         <div className="desc">
                           <div className="title">Ebook</div>
                           <small>Lorem ipsum dolor sit amet</small>
@@ -966,11 +966,11 @@ class Dashboard extends Component {
                           <strong>121.924</strong>
                         </div>
                         <div className="actions">
-                          <Button color="link" className="text-muted"><i className="icon-settings"></i></Button>
+                          <Button color="link" className="text-muted"><i className="icon-settings"/></Button>
                         </div>
                       </li>
                       <li>
-                        <i className="icon-camera bg-warning"></i>
+                        <i className="icon-camera bg-warning"/>
                         <div className="desc">
                           <div className="title">Photos</div>
                           <small>Lorem ipsum dolor sit amet</small>
@@ -980,12 +980,12 @@ class Dashboard extends Component {
                           <strong>12.125</strong>
                         </div>
                         <div className="actions">
-                          <Button color="link" className="text-muted"><i className="icon-settings"></i></Button>
+                          <Button color="link" className="text-muted"><i className="icon-settings"/></Button>
                         </div>
                       </li>
                       <li className="divider text-center">
                         <Button color="link" size="sm" className="text-muted" data-toggle="tooltip" data-placement="top"
-                                title="show more"><i className="icon-options"></i></Button>
+                                title="show more"><i className="icon-options"/></Button>
                       </li>
                     </ul>
                   </Col>
@@ -994,7 +994,7 @@ class Dashboard extends Component {
                 <Table hover responsive className="table-outline mb-0 d-none d-sm-table">
                   <thead className="thead-default">
                   <tr>
-                    <th className="text-center"><i className="icon-people"></i></th>
+                    <th className="text-center"><i className="icon-people"/></th>
                     <th>User</th>
                     <th className="text-center">Country</th>
                     <th>Usage</th>
@@ -1031,7 +1031,7 @@ class Dashboard extends Component {
                       <Progress className="progress-xs" color="success" value="50"/>
                     </td>
                     <td className="text-center">
-                      <i className="fa fa-cc-mastercard" style={{fontSize: 24 + 'px'}}></i>
+                      <i className="fa fa-cc-mastercard" style={{fontSize: 24 + 'px'}}/>
                     </td>
                     <td>
                       <div className="small text-muted">Last login</div>
@@ -1067,7 +1067,7 @@ class Dashboard extends Component {
                       <Progress className="progress-xs" color="info" value="10"/>
                     </td>
                     <td className="text-center">
-                      <i className="fa fa-cc-visa" style={{fontSize: 24 + 'px'}}></i>
+                      <i className="fa fa-cc-visa" style={{fontSize: 24 + 'px'}}/>
                     </td>
                     <td>
                       <div className="small text-muted">Last login</div>
@@ -1102,7 +1102,7 @@ class Dashboard extends Component {
                       <Progress className="progress-xs" color="warning" value="74"/>
                     </td>
                     <td className="text-center">
-                      <i className="fa fa-cc-stripe" style={{fontSize: 24 + 'px'}}></i>
+                      <i className="fa fa-cc-stripe" style={{fontSize: 24 + 'px'}}/>
                     </td>
                     <td>
                       <div className="small text-muted">Last login</div>
@@ -1137,7 +1137,7 @@ class Dashboard extends Component {
                       <Progress className="progress-xs" color="danger" value="98"/>
                     </td>
                     <td className="text-center">
-                      <i className="fa fa-paypal" style={{fontSize: 24 + 'px'}}></i>
+                      <i className="fa fa-paypal" style={{fontSize: 24 + 'px'}}/>
                     </td>
                     <td>
                       <div className="small text-muted">Last login</div>
@@ -1172,7 +1172,7 @@ class Dashboard extends Component {
                       <Progress className="progress-xs" color="info" value="22"/>
                     </td>
                     <td className="text-center">
-                      <i className="fa fa-google-wallet" style={{fontSize: 24 + 'px'}}></i>
+                      <i className="fa fa-google-wallet" style={{fontSize: 24 + 'px'}}/>
                     </td>
                     <td>
                       <div className="small text-muted">Last login</div>
@@ -1207,7 +1207,7 @@ class Dashboard extends Component {
                       <Progress className="progress-xs" color="success" value="43"/>
                     </td>
                     <td className="text-center">
-                      <i className="fa fa-cc-amex" style={{fontSize: 24 + 'px'}}></i>
+                      <i className="fa fa-cc-amex" style={{fontSize: 24 + 'px'}}/>
                     </td>
                     <td>
                       <div className="small text-muted">Last login</div>

@@ -139,21 +139,21 @@ class IndexList extends Component {
     const buttons = [];
     if (hasShowButton) {
       buttons.push(<Button key="show" size="sm" color="primary" onClick={e => this.props.onShowClick(row['id'])}><i
-        className="fa fa-folder"></i> Show</Button>)
+        className="fa fa-folder"/> Show</Button>)
     }
     if (hasEditButton) {
       if (buttons.length > 0) {
         buttons.push((<span key="space-edit">&nbsp;</span>));
       }
       buttons.push(<Button key="edit" size="sm" color="info" onClick={e => this.props.onEditClick(row['id'])}><i
-        className="fa fa-pencil"></i> Edit</Button>)
+        className="fa fa-pencil"/> Edit</Button>)
     }
     if (hasDeleteButton) {
       if (buttons.length > 0) {
         buttons.push((<span key="space-delete">&nbsp;</span>));
       }
       buttons.push(<Button key="delete" size="sm" color="danger" onClick={e => this.props.onDeleteClick(row['id'])}><i
-        className="fa fa-trash-o"></i> Delete</Button>)
+        className="fa fa-trash-o"/> Delete</Button>)
     }
     rowItems.push(
       <td key={'data-' + row['id'] + '-buttons'}>

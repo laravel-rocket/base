@@ -496,7 +496,7 @@ class EditTable extends Component {
                 <Button size="sm" color="danger" onClick={e => {
                   self.handleDeleteFromList(key, entry);
                   return false;
-                }}><i className="fa fa-trash-o"></i> Delete</Button>
+                }}><i className="fa fa-trash-o"/> Delete</Button>
               </td>
             </tr>)
           });
@@ -762,11 +762,11 @@ class EditTable extends Component {
           <Col xs="12">
             <Button type="submit" size="sm" color="primary" onClick={e => {
               this.handleSubmit()
-            }}><i className="fa fa-dot-circle-o"></i> Submit</Button>
+            }}><i className="fa fa-dot-circle-o"/> Submit</Button>
             {' '}
             <Button size="sm" color="danger" onClick={e => {
               this.handleReset()
-            }}><i className="fa fa-ban"></i> Reset</Button>
+            }}><i className="fa fa-ban"/> Reset</Button>
           </Col>
         </Row>
       </div>

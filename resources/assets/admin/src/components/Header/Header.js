@@ -70,7 +70,7 @@ class Header extends Component {
 
   render() {
     const notificaitons = ObjectHelper.get(this.state, "params.information.notifications", []).map((notification) =>
-      <DropdownItem><i className="fa fa-bell"></i> Notificaiton</DropdownItem>
+      <DropdownItem><i className="fa fa-bell"/> Notificaiton</DropdownItem>
     );
 
     return (
@@ -82,7 +82,7 @@ class Header extends Component {
           <NavItem>
             <Dropdown isOpen={this.state.notificationDropDownOpen} toggle={this.handleNotificationDropDownToggle}>
               <DropdownToggle className="nav-link dropdown-toggle">
-                <i className="icon-bell"></i>
+                <i className="icon-bell"/>
                 {ObjectHelper.get(this.state, "params.information.notificationCount", 0) > 0 &&
                 <Badge pill
                        color="danger">{ObjectHelper.get(this.state, "params.information.notificationCount", 0)}</Badge>
@@ -108,9 +108,9 @@ class Header extends Component {
               </DropdownToggle>
               <DropdownMenu right className={this.state.profileDropDownOpen ? 'show' : ''}>
                 <DropdownItem header tag="div" className="text-center"><strong>Settings</strong></DropdownItem>
-                <DropdownItem onClick={this.props.methods.moveToProfileEdit}><i className="fa fa-user"></i> Profile</DropdownItem>
+                <DropdownItem onClick={this.props.methods.moveToProfileEdit}><i className="fa fa-user"/> Profile</DropdownItem>
                 <DropdownItem divider/>
-                <DropdownItem onClick={(e)=>{this.handleSignOutOnClick(e)}}><i className="fa fa-lock"></i>Sign out</DropdownItem>
+                <DropdownItem onClick={(e)=>{this.handleSignOutOnClick(e)}}><i className="fa fa-lock"/>Sign out</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </NavItem>

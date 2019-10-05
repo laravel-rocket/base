@@ -74,7 +74,7 @@ class Show extends Base {
               <CardHeader>
                 {this.title}
                 <Button className="float-right" size="sm" color="primary" onClick={e => { this.handleEditClick() }}>
-                  <i className="fa fa-pencil"></i> Edit
+                  <i className="fa fa-pencil"/> Edit
                 </Button>
               </CardHeader>
               <CardBody className="card-body">

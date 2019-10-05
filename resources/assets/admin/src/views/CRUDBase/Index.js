@@ -187,7 +187,7 @@ class Index extends Base {
   render() {
     const exportUrl = this.getExportUrl();
     const exportButton = this.exportable ? (<a className="btn btn-primary btn-sm" href={exportUrl}>
-      <i className="fa fa-download"></i> Download
+      <i className="fa fa-download"/> Download
     </a>) : null;
 
     return (
@@ -201,7 +201,7 @@ class Index extends Base {
                   {exportButton}
                   {" "}
                   <Button size="sm" color="primary" onClick={this.handleCreateNew}>
-                    <i className="fa fa-plus-circle"></i> Create New
+                    <i className="fa fa-plus-circle"/> Create New
                   </Button>
                 </div>
               </CardHeader>

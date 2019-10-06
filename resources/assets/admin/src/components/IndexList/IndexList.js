@@ -127,6 +127,7 @@ class IndexList extends Component {
       hasShowButton,
       hasEditButton,
       hasDeleteButton,
+      additionalButtons,
     } = this.props;
     for (
       let i = 0;
@@ -154,6 +155,26 @@ class IndexList extends Component {
       }
       buttons.push(<Button key="delete" size="sm" color="danger" onClick={e => this.props.onDeleteClick(row['id'])}><i
         className="fa fa-trash-o"/> Delete</Button>)
+    }
+    if( additionalButtons.length > 0 ){
+      for(let button of additionalButtons) {
+        if (buttons.length > 0) {
+          buttons.push((<span key="space-delete">&nbsp;</span>));
+        }
+        if( button.isHidden(row)) {
+          continue;
+        }
+        buttons.push(
+          <Button
+            color={button.color || 'primary'}
+            key={button.key}
+            size="sm"
+            onClick={e => button.onPush(row)}
+            disabled={!button.isEnabled(row)}
+          >
+            <i className={"fa "+button.icon}/> {button.label}</Button>
+        )
+      }
     }
     rowItems.push(
       <td key={'data-' + row['id'] + '-buttons'}>
@@ -194,16 +215,18 @@ class IndexList extends Component {
     const {
       list,
       activePage,
-      totalItemCount
+      totalItemCount,
+      hasPagination
     } = this.props;
+    const pagination =hasPagination ? (<Pagination
+      activePage={activePage}
+      itemsCountPerPage={list.limit}
+      totalItemsCount={totalItemCount || 0}
+      onChange={this.handlePaginationClick}/>) : null;
 
     return (
       <div>
-        <Pagination
-          activePage={activePage}
-          itemsCountPerPage={list.limit}
-          totalItemsCount={totalItemCount || 0}
-          onChange={this.handlePaginationClick}/>
+        {pagination}
         <div style={{overflowY: "auto"}}>
           <Table responsive>
             <thead>
@@ -216,11 +239,7 @@ class IndexList extends Component {
             </tbody>
           </Table>
         </div>
-        <Pagination
-          activePage={activePage}
-          itemsCountPerPage={list.limit}
-          totalItemsCount={totalItemCount || 0}
-          onChange={this.handlePaginationClick}/>
+        {pagination}
       </div>
     );
   }
@@ -240,6 +259,8 @@ IndexList.propTypes = {
   hasShowButton: PropTypes.bool,
   hasEditButton: PropTypes.bool,
   hasDeleteButton: PropTypes.bool,
+  additionalButtons: PropTypes.array,
+  hasPagination: PropTypes.bool,
 };
 
 IndexList.defaultProps = {
@@ -271,7 +292,8 @@ IndexList.defaultProps = {
   },
   onDeleteClick: () => {
   },
-
+  additionalButtons: [],
+  hasPagination: true,
 };
 
 export default IndexList;

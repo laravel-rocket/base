@@ -50,6 +50,7 @@ class App extends Component {
         successMessage: this.successMessage.bind(this),
         signOut: this.signOut.bind(this),
         moveToProfileEdit: this.moveToProfileEdit.bind(this),
+        setTitle: this.setTitle.bind(this),
       }
     };
     this.handleConfirmationOnOK = this.handleConfirmationOnOK.bind(this);
@@ -148,6 +149,12 @@ class App extends Component {
           errorMessage: message,
         }
       }
+    });
+  }
+
+  setTitle(title){
+    this.setState({
+      title: title,
     });
   }
 

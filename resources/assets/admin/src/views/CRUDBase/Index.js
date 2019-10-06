@@ -6,11 +6,14 @@ import {
   CardHeader,
   CardBody,
   Button,
+  Input,
 } from "reactstrap";
 
 import IndexList from "../../components/IndexList/IndexList";
 import Base from "./Base";
 import queryString from 'query-string'
+import ButtonGroup from "../../components/ButtonGroup/ButtonGroup";
+import DropdownMenu from "../../components/DropdownMenu/DropDownMenu";
 
 class Index extends Base {
 
@@ -44,6 +47,16 @@ class Index extends Base {
   }
 
   setInitialState(props) {
+    this.defaultParams = {
+      offset: 0,
+      limit: this.getDefaultPageSize(),
+      order: this.getDefaultOrder(),
+      direction: this.getDefaultDirection(),
+      searchWord: '',
+      page: 1,
+      queryParams: this.getDefaultFilters(),
+      list: {},
+    };
     this.state = {
       params: {
         offset: 0,
@@ -52,7 +65,7 @@ class Index extends Base {
         direction: this.getDefaultDirection(),
         searchWord: '',
         page: 1,
-        queryParams: {},
+        queryParams: this.getDefaultFilters(),
         list: {},
       },
       methods: {
@@ -62,7 +75,19 @@ class Index extends Base {
   }
 
   getDefaultPageSize() {
+    if (this.info.limits && this.info.limits.default > 0) {
+      return this.info.limits.default;
+    }
+
     return 20;
+  }
+
+  getPageSizeOptions() {
+    if (this.info.limits && Array.isArray(this.info.limits.options)) {
+      return this.info.limits.options;
+    }
+
+    return null;
   }
 
   getDefaultOrder() {
@@ -73,25 +98,60 @@ class Index extends Base {
     return 'asc';
   }
 
-  componentWillMount() {
-    const values = queryString.parse(this.props.location.search);
-    let offset = 0;
-    if( values.offset > 0){
-      offset = parseInt(values.offset);
-      this.setState({
-        params: {
-          ...this.state.params,
-          page: Math.floor(offset / this.getDefaultPageSize()),
-          offset: parseInt(offset),
-        }
-      });
+  getDefaultFilters() {
+    if (!this.info.filters) {
+      return {};
     }
+    const result = {};
+    Object.keys(this.info.filters).forEach((type) => {
+      const filter = this.info.filters[type];
+      if (filter.default) {
+        result[type] = filter.default;
+      }
+    });
+    return result;
+  }
+
+  parseQueryString() {
+    const queryParams = queryString.parse(this.props.location.search);
+    const params = this.state.params;
+    Object.keys(queryParams).forEach((key, index) => {
+      switch (key) {
+        case "offset":
+          params.page = Math.floor(queryParams[key] / this.getDefaultPageSize());
+          params.offset = parseInt(queryParams[key]);
+          break;
+        case "limit":
+          params.limit = parseInt(queryParams[key]);
+          break;
+        case "direction":
+        case "order":
+          params[key] = queryParams[key];
+          break;
+        case "query":
+          params.searchWord = queryParams[key];
+          break;
+        default:
+          params.queryParams[key] = queryParams[key];
+          break;
+      }
+    });
+    this.setState({
+      params: params,
+    })
+  }
+
+  componentWillMount() {
+    this.parseQueryString();
     this.getIndexList(
-      offset,
+      this.state.params.offset,
       this.state.params.limit,
       this.state.params.order,
-      this.state.params.direction
+      this.state.params.direction,
+      this.state.params.searchWord,
+      this.state.params.queryParams
     );
+    this.props.methods.setTitle(this.info.title);
   }
 
   componentWillReceiveProps(newProps) {
@@ -127,6 +187,28 @@ class Index extends Base {
     return "/admin" + this.path + '/' + 'export';
   }
 
+  generateCurrentQueryParam() {
+    const params = {};
+    ['offset', 'limit', 'direction', 'order'].forEach((name) => {
+      if (this.defaultParams[name] !== this.state.params[name]) {
+        params[name] = this.state.params[name];
+      }
+    });
+    if (this.defaultParams.searchWord !== this.state.params.searchWord) {
+      params.query = this.state.params.searchWord;
+    }
+    Object.keys(this.state.params.queryParams).forEach((key) => {
+      if (this.defaultParams.queryParams[key] !== this.state.params.queryParams[key])
+        params[key] = this.state.params.queryParams[key];
+    });
+
+    const query = Object.keys(params)
+      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(params[key]))
+      .join('&');
+
+    return query;
+  }
+
   getIndexList(offset, limit, order, direction, searchWord = '', params = {}) {
     this.repository.index(offset, limit, order, direction, searchWord, params).then(repos => {
       let records = [];
@@ -157,6 +239,96 @@ class Index extends Base {
     });
   }
 
+
+  applyFilter(type, value) {
+    const params = this.state.params.queryParams;
+    if (params[type] !== value) {
+      params[type] = value;
+      const newParams = {
+        ...this.state.params,
+        queryParams: params,
+      };
+      this.setState({
+        params: newParams
+      });
+      this.getIndexListByPage(1, newParams);
+    }
+  }
+
+  buildFilters() {
+    const result = [];
+    if (this.info.filters) {
+      Object.keys(this.info.filters).forEach((type) => {
+        const filter = this.info.filters[type];
+        result.push((<ButtonGroup
+          key={"filter-" + type}
+          options={filter.options}
+          onChange={(option, index) => {
+            this.applyFilter(type, option.value)
+          }}
+          value={this.state.params.queryParams[type]}
+        />))
+      })
+    }
+
+    return result;
+  }
+
+  applyLimitOption(option) {
+    const limit = parseInt(option.value);
+    if (limit > 0 && parseInt(this.state.params.limit) !== limit) {
+      const newParams = {
+        ...this.state.params,
+        limit: String(limit),
+      };
+      this.setState({
+        params: newParams
+      });
+      this.getIndexListByPage(1, newParams);
+    }
+  }
+
+  buildLimitOptions() {
+    const options = this.getPageSizeOptions();
+    if (!options) {
+      return null;
+    }
+
+    return (
+      <span className={"limit-options"}>
+        <DropdownMenu options={options} value={this.state.params.limit} onChange={(value) => {
+          this.applyLimitOption(value)
+        }}/>
+      </span>
+    )
+  }
+
+  applySearchWord(searchWord) {
+    if (this.state.params.searchWord !== searchWord) {
+      const newParams = {
+        ...this.state.params,
+        searchWord: searchWord,
+      };
+      this.setState({
+        params: newParams,
+      });
+      this.getIndexListByPage(1, newParams);
+    }
+  }
+
+  buildSearchField() {
+    if (!this.info.searchable) {
+      return null;
+    }
+
+    return (
+      <div className="search-input float-right">
+        <Input type="text" id={"search"} name={"search"} value={this.state.params.searchWord}
+               onChange={e => this.applySearchWord(e.target.value)}/>
+      </div>
+    )
+  }
+
   deleteItem(id) {
     this.repository.destroy(id).then(repos => {
       this.props.methods.successMessage('Delete Item Successfully');
@@ -175,7 +347,8 @@ class Index extends Base {
   }
 
   handleCreateNew() {
-    this.props.history.push(this.path + '/create');
+    const params = queryString.stringify(this.state.params.queryParams);
+    this.props.history.push(this.path + '/create?' + params);
   }
 
   handleDeleteClick(id) {
@@ -189,6 +362,17 @@ class Index extends Base {
     const exportButton = this.exportable ? (<a className="btn btn-primary btn-sm" href={exportUrl}>
       <i className="fa fa-download"/> Download
     </a>) : null;
+    const filters = this.buildFilters();
+    const filterWrapper = (filters.length > 0) ? (
+      <Row className={"filter"}>
+        <Col xs="12" lg="12">
+          {filters}
+        </Col>
+      </Row>
+    ) : null;
+    const limitOptions = this.buildLimitOptions();
+    const searchField = this.buildSearchField();
+    const additionalElements = this.getAdditionalElements();
 
     return (
       <div className="animated fadeIn">
@@ -197,6 +381,7 @@ class Index extends Base {
             <Card>
               <CardHeader>
                 {this.title}
+                {limitOptions}
                 <div className="float-right">
                   {exportButton}
                   {" "}
@@ -204,8 +389,10 @@ class Index extends Base {
                     <i className="fa fa-plus-circle"/> Create New
                   </Button>
                 </div>
+              {searchField}
               </CardHeader>
               <CardBody className="card-body">
+                {filterWrapper}
                 <IndexList
                   activePage={this.state.params.page}
                   totalItemCount={this.state.params.list.count || 0}
@@ -225,10 +412,10 @@ class Index extends Base {
             </Card>
           </Col>
         </Row>
+        {additionalElements}
       </div>
     )
   }
 }
 
 export default Index;
-

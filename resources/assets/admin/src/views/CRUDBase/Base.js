@@ -19,9 +19,13 @@ class Base extends Component {
     this.info = info;
   }
 
+  getPath() {
+    return this.info.path || '';
+  }
+
   setPageInfo() {
     this.title = this.info.title || '';
-    this.path = this.info.path || '';
+    this.path = this.getPath();
     this.exportable = this.info.exportable;
   }
 
@@ -38,6 +42,11 @@ class Base extends Component {
 
   setInitialState(props) {
     this.state = {};
+  }
+
+  getAdditionalElements()
+  {
+    return null;
   }
 
   mapAPIToModel(apiResult) {

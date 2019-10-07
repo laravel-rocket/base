@@ -29,6 +29,12 @@ class ShowTable extends Component {
             <img key={'image-' + id + '-' + key} src={item.url} className={'img-thumbnails'} width={50} height={50}/>);
         }
         return "";
+      case 'boolean':
+        if( item ){
+          return (<div><Badge color="success">TRUE</Badge></div>)
+        }else{
+          return (<div><Badge color="danger">FALSE</Badge></div>)
+        }
       case 'checkbox':
         const options = [];
         if (!Array.isArray(item)) {
@@ -47,6 +53,15 @@ class ShowTable extends Component {
           }
         }
         return (<div>{options}</div>);
+      case 'select_single':
+        if( Array.isArray(columnInfo[key]['options']) && columnInfo[key]['options'].length ){
+          for( const option of columnInfo[key]['options']){
+            if( option.value == item ){
+              return option.name;
+            }
+          }
+        }
+        break;
       case 'select_multiple':
         if (item !== null && Array.isArray(item)) {
           const items = [];

@@ -89,6 +89,11 @@ class EditTable extends Component {
 
     let pos = 0;
     switch (columnInfo[key].type) {
+      case "boolean":
+        const actualValue = data ? 1 : 0
+        newFormData[formKey] = actualValue;
+        newModelData[key] = !!actualValue;
+        break;
       case "checkbox":
         if (!Array.isArray(newModelData[key])) {
           newModelData[key] = [];
@@ -318,6 +323,26 @@ class EditTable extends Component {
             <Label htmlFor={key}>{columnInfo[key].name}</Label>
             <ImageInput onChange={e => this.handleDataChange(key, e.target.files[0])} currentImageUrl={item.url}
                         name={key} thumbnailSize={200}/>
+          </FormGroup>
+        );
+      case 'boolean':
+        return (
+          <FormGroup key={'input-' + key} row>
+            <Col md="12">
+              <FormGroup check>
+                <div className="checkbox" key={key + '_true'}>
+                  <Label check htmlFor={key + '_true'}>
+                    <Input
+                      onChange={e => this.handleDataChange(key, !item)}
+                      checked={item}
+                      type="checkbox"
+                      id={key + '_true'}
+                      name={key}
+                      value={1}/> {columnInfo[key].name}
+                  </Label>
+                </div>
+              </FormGroup>
+            </Col>
           </FormGroup>
         );
       case 'checkbox':

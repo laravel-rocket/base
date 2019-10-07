@@ -71,6 +71,21 @@ class IndexList extends Component {
           }
         }
         return (<div>{options}</div>);
+      case 'boolean':
+        if( item ){
+          return (<div><Badge color="success">TRUE</Badge></div>)
+        }else{
+          return (<div><Badge color="danger">FALSE</Badge></div>)
+        }
+      case 'select_single':
+        if( Array.isArray(columnInfo[key]['options']) && columnInfo[key]['options'].length ){
+          for( const option of columnInfo[key]['options']){
+            if( option.value == item ){
+              return option.name;
+            }
+          }
+        }
+        break;
       case 'select_multiple':
         if (item !== null && Array.isArray(item)) {
           const items = [];

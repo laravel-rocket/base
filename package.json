@@ -56,7 +56,7 @@
     "font-awesome": "^4.7.0",
     "history": "4.6.3",
     "moment": "^2.22.2",
-    "npm": "^6.1.0",
+    "npm": "^6.13.4",
     "object-path": "^0.11.4",
     "paginator": "^1.0.0",
     "prop-types": "^15.6.1",

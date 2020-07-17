@@ -33,7 +33,7 @@
     "js-yaml": "^3.13.1",
     "laravel-mix": "^2.0",
     "lazysizes": "^1.4.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.19",
     "node-sass": "^4.5.3",
     "nprogress": "^0.2.0",
     "popper.js": "^1.13.0",

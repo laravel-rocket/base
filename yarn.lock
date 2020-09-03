@@ -5130,10 +5130,10 @@ lazy-property@~1.0.0:
   resolved "https://registry.yarnpkg.com/lazy-property/-/lazy-property-1.0.0.tgz#84ddc4b370679ba8bd4cdcfa4c06b43d57111147"
   integrity sha1-hN3Es3Bnm6i9TNz6TAa0PVcREUc=
 
-lazysizes@^1.4.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/lazysizes/-/lazysizes-1.5.0.tgz#664dfa86e7085378ba89388a4ceb860a43f2ba99"
-  integrity sha1-Zk36hucIU3i6iTiKTOuGCkPyupk=
+lazysizes@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/lazysizes/-/lazysizes-5.2.1.tgz#f450e36a995efb5817acb8c904f3d2f2efc29ffa"
+  integrity sha512-607dEMlbcnkny2lGYVqoA/rQO+WGpWh/BISeS1eLfT8nHQw6E+R8ybJoKKGVlZ2czKPTATrsU95f+nkwix0fXw==
 
 lcid@^1.0.0:
   version "1.0.0"

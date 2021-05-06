@@ -66,7 +66,7 @@
     "react-datepicker": "^2.6.0",
     "react-datetime": "^2.14.0",
     "react-dom": "^16.8.6",
-    "react-draft-wysiwyg": "^1.13.2",
+    "react-draft-wysiwyg": "^1.14.6",
     "react-file-reader": "^1.1.4",
     "react-google-map": "^3.1.1",
     "react-google-maps-loader": "^4.2.3",

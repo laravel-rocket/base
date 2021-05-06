@@ -2892,10 +2892,10 @@ draft-js@^0.10.5:
     immutable "~3.7.4"
     object-assign "^4.1.0"
 
-draftjs-utils@^0.9.3:
-  version "0.9.4"
-  resolved "https://registry.yarnpkg.com/draftjs-utils/-/draftjs-utils-0.9.4.tgz#976c61aa133dbbbfedd65ae1dd6627d7b98c6f08"
-  integrity sha512-KYjABSbGpJrwrwmxVj5UhfV37MF/p0QRxKIyL+/+QOaJ8J9z1FBKxkblThbpR0nJi9lxPQWGg+gh+v0dAsSCCg==
+draftjs-utils@^0.10.2:
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/draftjs-utils/-/draftjs-utils-0.10.2.tgz#a7f16d2c1c174ac38ba3bbf700c256f176b2699c"
+  integrity sha512-EstHqr3R3JVcilJrBaO/A+01GvwwKmC7e4TCjC7S94ZeMh4IVmf60OuQXtHHpwItK8C2JCi3iljgN5KHkJboUg==
 
 duplexer3@^0.1.4:
   version "0.1.4"
@@ -4167,10 +4167,10 @@ html-minifier@^3.0.1, html-minifier@^3.2.3, html-minifier@^3.5.8:
     relateurl "0.2.x"
     uglify-js "3.4.x"
 
-html-to-draftjs@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/html-to-draftjs/-/html-to-draftjs-1.4.0.tgz#8a3cbbba5b49d50be8ce85cc08b112d5bf00fc1d"
-  integrity sha1-ijy7ultJ1QvozoXMCLES1b8A/B0=
+html-to-draftjs@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/html-to-draftjs/-/html-to-draftjs-1.5.0.tgz#0df0eabf429deaedb63f5c859889e2c983606e86"
+  integrity sha512-kggLXBNciKDwKf+KYsuE+V5gw4dZ7nHyGMX9m0wy7urzWjKGWyNFetmArRLvRV0VrxKN70WylFsJvMTJx02OBQ==
 
 html-webpack-plugin@^2.30.1:
   version "2.30.1"
@@ -5283,7 +5283,7 @@ libnpx@^10.2.0:
     y18n "^4.0.0"
     yargs "^11.0.0"
 
-linkify-it@^2.0.3:
+linkify-it@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/linkify-it/-/linkify-it-2.2.0.tgz#e3b54697e78bf915c70a38acd78fd09e0058b1cf"
   integrity sha512-GnAl/knGn+i1U/wjBz3akz2stz+HrHLsxMwHQGofCDfPvlf+gDKN58UtfmUquTY4/MXeE2x7k19KQmeoZi94Iw==
@@ -7644,16 +7644,16 @@ react-dom@^16.8.6:
     prop-types "^15.6.2"
     scheduler "^0.16.2"
 
-react-draft-wysiwyg@^1.13.2:
-  version "1.13.2"
-  resolved "https://registry.yarnpkg.com/react-draft-wysiwyg/-/react-draft-wysiwyg-1.13.2.tgz#1fc4130d057f0e731386bf831acca71108141899"
-  integrity sha512-qENNISR+bxO6G/ThTD6cai+LGrzkiGt6Fx9mqecJGPmyTIYVE5odsO7yEQVNBpZhgr5TvHAvwm3IoamcuFanDw==
+react-draft-wysiwyg@^1.14.6:
+  version "1.14.6"
+  resolved "https://registry.yarnpkg.com/react-draft-wysiwyg/-/react-draft-wysiwyg-1.14.6.tgz#3ea1f9a0a6c767f2be2901034100b9c5a0e3ea9a"
+  integrity sha512-EMIteBVnlMAP3T97OfjlKchsHZ15mYWQwRw8QIInOtAvlZnnTydRjuHMCN0PuQ2dsXwMkJ7+MWc2aTL5RiXmFg==
   dependencies:
-    classnames "^2.2.5"
-    draftjs-utils "^0.9.3"
-    html-to-draftjs "^1.4.0"
-    linkify-it "^2.0.3"
-    prop-types "^15.6.0"
+    classnames "^2.2.6"
+    draftjs-utils "^0.10.2"
+    html-to-draftjs "^1.5.0"
+    linkify-it "^2.2.0"
+    prop-types "^15.7.2"
 
 react-file-reader@^1.1.4:
   version "1.1.4"

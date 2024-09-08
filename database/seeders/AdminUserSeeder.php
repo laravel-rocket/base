@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Seeders;
 
 use App\Models\AdminUserRole;
@@ -18,25 +19,25 @@ class AdminUserSeeder extends Seeder
         $adminUserRoleRepository = \App::make('App\Repositories\AdminUserRoleRepositoryInterface');
 
         $adminUser = $adminUserRepository->create([
-            'name'     => 'TestUser',
-            'email'    => 'test@example.com',
+            'name' => 'TestUser',
+            'email' => 'test@example.com',
             'password' => 'testtest',
         ]);
 
         $adminUserRoleRepository->create([
             'admin_user_id' => $adminUser->id,
-            'role'          => AdminUserRole::ROLE_SUPER_USER,
+            'role' => AdminUserRole::ROLE_SUPER_USER,
         ]);
 
         $adminUser = $adminUserRepository->create([
-            'name'     => 'Test Site Admin',
-            'email'    => 'test2@example.com',
+            'name' => 'Test Site Admin',
+            'email' => 'test2@example.com',
             'password' => 'testtest',
         ]);
 
         $adminUserRoleRepository->create([
             'admin_user_id' => $adminUser->id,
-            'role'          => AdminUserRole::ROLE_SITE_ADMIN,
+            'role' => AdminUserRole::ROLE_SITE_ADMIN,
         ]);
 
     }

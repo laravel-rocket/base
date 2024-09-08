@@ -1,20 +1,19 @@
 <?php
+
 namespace App\Http\Responses\Api\Admin;
 
 class AdminUser extends Response
 {
     protected array $columns = [
-        'id'           => '',
-        'name'         => '',
+        'id' => '',
+        'name' => '',
         'profileImage' => null,
-        'email'        => '',
-        'roles'        => [],
+        'email' => '',
+        'roles' => [],
     ];
 
     /**
-     * @param \App\Models\AdminUser $model
-     *
-     * @return static
+     * @param  \App\Models\AdminUser  $model
      */
     public static function updateWithModel($model): static
     {
@@ -24,15 +23,15 @@ class AdminUser extends Response
         }
 
         $response = new static([], 400);
-        if (!empty($model)) {
+        if (! empty($model)) {
             $modelArray = [
-                'id'           => $model->id,
-                'name'         => $model->name,
+                'id' => $model->id,
+                'name' => $model->name,
                 'profileImage' => Image::updateWithModel($model->present()->profileImage),
-                'email'        => $model->email,
-                'roles'        => $roles,
+                'email' => $model->email,
+                'roles' => $roles,
             ];
-            $response   = new static($modelArray, 200);
+            $response = new static($modelArray, 200);
         }
 
         return $response;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Models;
 
 use App\Models\User;
@@ -11,14 +12,14 @@ class UserTest extends TestCase
     public function testGetInstance()
     {
         /** @var \App\Models\User $user */
-        $user = new User();
+        $user = new User;
         $this->assertNotNull($user);
     }
 
     public function testStoreNew()
     {
         /** @var \App\Models\User $user */
-        $userModel = new User();
+        $userModel = new User;
 
         $userData = factory(User::class)->make();
         foreach ($userData->toFillableArray() as $key => $value) {

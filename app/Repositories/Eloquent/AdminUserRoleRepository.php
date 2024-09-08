@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repositories\Eloquent;
 
 use App\Models\AdminUserRole;
@@ -9,7 +10,7 @@ class AdminUserRoleRepository extends SingleKeyModelRepository implements AdminU
 {
     public function getBlankModel(): \LaravelRocket\Foundation\Models\Base
     {
-        return new AdminUserRole();
+        return new AdminUserRole;
     }
 
     public function rules(): array
@@ -23,5 +24,4 @@ class AdminUserRoleRepository extends SingleKeyModelRepository implements AdminU
         return [
         ];
     }
-
 }

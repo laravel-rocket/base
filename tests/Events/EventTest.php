@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Events;
 
 use App\Events\Event;
@@ -11,7 +12,7 @@ class EventTest extends TestCase
     public function testGetInstance()
     {
         /** @var \App\Events\Event $action */
-        $event = new Event();
+        $event = new Event;
         $this->assertNotNull($event);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Controllers\Api\Admin;
 
 use Illuminate\Support\Facades\App;
@@ -18,10 +19,10 @@ class UserControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $authUser     = factory(\App\Models\AdminUser::class)->create();
+        $authUser = factory(\App\Models\AdminUser::class)->create();
         $authUserRole = factory(\App\Models\AdminUserRole::class)->create([
             'admin_user_id' => $authUser->id,
-            'role'          => \App\Models\AdminUserRole::ROLE_SUPER_USER,
+            'role' => \App\Models\AdminUserRole::ROLE_SUPER_USER,
         ]);
         $this->be($authUser, 'admins');
     }
@@ -46,7 +47,7 @@ class UserControllerTest extends TestCase
         $user = factory(\App\Models\User::class)->create();
 
         $testData = \Illuminate\Support\Str::random(10);
-        $id       = $user->id;
+        $id = $user->id;
 
         $user->name = $testData;
 

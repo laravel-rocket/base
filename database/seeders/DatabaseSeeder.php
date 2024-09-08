@@ -6,21 +6,18 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /** @var array $seeders */
     protected array $seeders = [
     ];
 
     protected array $environments = [
-        'testing'     => [],
-        'local'       => [AdminUserSeeder::class],
+        'testing' => [],
+        'local' => [AdminUserSeeder::class],
         'development' => [AdminUserSeeder::class],
-        'production'  => [],
+        'production' => [],
     ];
 
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run(): void
     {

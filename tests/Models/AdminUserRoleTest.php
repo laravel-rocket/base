@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Models;
 
 use App\Models\AdminUserRole;
@@ -11,14 +12,14 @@ class AdminUserRoleTest extends TestCase
     public function testGetInstance()
     {
         /** @var \App\Models\AdminUserRole $adminUserRole */
-        $adminUserRole = new AdminUserRole();
+        $adminUserRole = new AdminUserRole;
         $this->assertNotNull($adminUserRole);
     }
 
     public function testStoreNew()
     {
         /** @var \App\Models\AdminUserRole $adminUserRole */
-        $adminUserRoleModel = new AdminUserRole();
+        $adminUserRoleModel = new AdminUserRole;
 
         $adminUserRoleData = factory(AdminUserRole::class)->make();
         foreach ($adminUserRoleData->toFillableArray() as $key => $value) {

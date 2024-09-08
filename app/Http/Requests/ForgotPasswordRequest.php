@@ -1,12 +1,11 @@
 <?php
+
 namespace App\Http\Requests;
 
 class ForgotPasswordRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -15,8 +14,6 @@ class ForgotPasswordRequest extends Request
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
     public function rules(): array
     {
@@ -29,7 +26,7 @@ class ForgotPasswordRequest extends Request
     {
         return [
             'email.required' => trans('validation.required'),
-            'email.email'    => trans('validation.email'),
+            'email.email' => trans('validation.email'),
         ];
     }
 }

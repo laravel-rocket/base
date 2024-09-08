@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Responses\Api\Admin;
 
 use App\Http\Responses\Response as ResponseBase;
@@ -9,8 +10,6 @@ class Response extends ResponseBase
 
     /**
      * @param \LaravelRocket\Foundation\Models\Base;
-     *
-     * @return static
      */
     public static function updateWithModel($model): static
     {
@@ -20,9 +19,7 @@ class Response extends ResponseBase
     }
 
     /**
-     * @param \LaravelRocket\Foundation\Models\Base[] $models
-     * @param string|null $columnName
-     *
+     * @param  \LaravelRocket\Foundation\Models\Base[]  $models
      * @return static[]
      */
     public static function updateWithModels(array $models, ?string $columnName = null): static

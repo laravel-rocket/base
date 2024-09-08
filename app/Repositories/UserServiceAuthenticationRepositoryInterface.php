@@ -1,8 +1,7 @@
 <?php
+
 namespace App\Repositories;
 
 use LaravelRocket\ServiceAuthentication\Repositories\ServiceAuthenticationRepositoryInterface;
 
-interface UserServiceAuthenticationRepositoryInterface extends ServiceAuthenticationRepositoryInterface
-{
-}
+interface UserServiceAuthenticationRepositoryInterface extends ServiceAuthenticationRepositoryInterface {}

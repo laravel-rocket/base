@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Responses;
 
 class Response
@@ -16,17 +17,13 @@ class Response
         foreach (array_keys($this->columns) as $column) {
             if (array_key_exists($column, $initialValues)) {
                 $this->data[$column] = $initialValues[$column];
-            } elseif (!in_array($column, $this->optionalColumns)) {
+            } elseif (! in_array($column, $this->optionalColumns)) {
                 $this->data[$column] = $this->columns[$column];
             }
         }
         $this->statusCode = $statusCode;
     }
 
-    /**
-     * @param string $name
-     * @param mixed  $value
-     */
     public function set(string $name, mixed $value): void
     {
         if (array_key_exists($name, $this->columns)) {
@@ -35,14 +32,11 @@ class Response
     }
 
     /**
-     * @param string $name
-     * @param mixed|null $default
-     *
      * @return mixed|null
      */
     public function get(string $name, mixed $default = null): mixed
     {
-        if (!array_key_exists($name, $this->columns)) {
+        if (! array_key_exists($name, $this->columns)) {
             return $default;
         }
         if (array_key_exists($name, $this->data)) {
@@ -86,7 +80,7 @@ class Response
                 } else {
                     $ret[$column] = $this->data[$column];
                 }
-            } elseif (!in_array($column, $this->optionalColumns)) {
+            } elseif (! in_array($column, $this->optionalColumns)) {
                 $ret[$column] = $this->columns[$column];
             }
         }

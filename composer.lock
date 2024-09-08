@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "13935a7443de56ca25da7ca1e7c86490",
+    "content-hash": "34d74bc4d585a4cff2cc3a86087c54b1",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -1958,11 +1958,11 @@
         },
         {
             "name": "laravel-rocket/foundation",
-            "version": "dev-laravel10upgrade",
+            "version": "dev-feature/laravel11",
             "dist": {
                 "type": "path",
                 "url": "../foundation",
-                "reference": "9f34b446590b59b42e3e9d68333cff8942bfe69c"
+                "reference": "dc9c6958fc5f1507e96e64a7deb2aec57ee614b8"
             },
             "require": {
                 "aws/aws-sdk-php": "^3.321",
@@ -1979,6 +1979,7 @@
                 "friendsofphp/php-cs-fixer": "^3.25",
                 "laravel/browser-kit-testing": "^7.2",
                 "laravel/framework": "^11.9",
+                "laravel/pint": "^1.17",
                 "maatwebsite/excel": "~3.1.0",
                 "mockery/mockery": "~1.0",
                 "nunomaduro/collision": "^8.0",

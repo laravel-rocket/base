@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Middleware\Admin;
 
 use App\Services\AdminUserServiceInterface;
@@ -10,8 +11,6 @@ class RedirectIfAuthenticated
 
     /**
      * Create a new filter instance.
-     *
-     * @param AdminUserServiceInterface $adminUserService
      */
     public function __construct(AdminUserServiceInterface $adminUserService)
     {
@@ -21,9 +20,7 @@ class RedirectIfAuthenticated
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return mixed
      */
     public function handle($request, \Closure $next)

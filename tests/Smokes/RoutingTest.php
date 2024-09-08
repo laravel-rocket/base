@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Smokes;
 
 use Illuminate\Support\Facades\Route;
@@ -15,7 +16,7 @@ class RoutingTest extends TestCase
 
         foreach ($routeCollection as $route) {
             if (in_array('GET', $route->methods) && strpos($route->uri, '{') === false
-                && !Str::startsWith($route->uri, ['_debugbar'])) {
+                && ! Str::startsWith($route->uri, ['_debugbar'])) {
                 $response = $this->call('GET', $route->uri);
                 $this->assertTrue(
                     in_array($response->status(), [200, 201, 301, 302, 307, 401]),

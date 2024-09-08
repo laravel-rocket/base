@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Exceptions;
 
 use App\Http\Responses\Api\V1\Status;
@@ -7,7 +8,6 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
 use Illuminate\Support\Str;
 use LaravelRocket\Foundation\Services\SlackServiceInterface;
-use PHPUnit\Event\Code\Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -46,7 +46,7 @@ class Handler extends ExceptionHandler
     {
         if ($this->shouldReport($e)) {
             if (in_array(app()->environment(), config('slack.targetEnvironment', []))) {
-                if (!$e instanceof TokenMismatchException) {
+                if (! $e instanceof TokenMismatchException) {
                     // notify to slack
                     try {
                         $slackService = \App::make(SlackServiceInterface::class);
@@ -62,6 +62,7 @@ class Handler extends ExceptionHandler
 
     /**
      * Render an exception into an HTTP response.
+     *
      * @throws \Throwable
      */
     public function render($request, \Throwable $e): \Symfony\Component\HttpFoundation\Response

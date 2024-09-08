@@ -1,6 +1,5 @@
 <?php
+
 namespace App\Services;
 
-interface APIUserServiceInterface extends UserServiceInterface
-{
-}
+interface APIUserServiceInterface extends UserServiceInterface {}

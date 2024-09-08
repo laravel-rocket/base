@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -29,6 +30,7 @@ use LaravelRocket\ServiceAuthentication\Models\ServiceAuthenticationBase;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserServiceAuthentication whereImageUrl($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserServiceAuthentication whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserServiceAuthentication whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class UserServiceAuthentication extends ServiceAuthenticationBase

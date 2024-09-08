@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Repositories;
 
 use App\Models\User;
@@ -17,7 +18,7 @@ class UserRepositoryTest extends TestCase
 
     public function testGetList()
     {
-        $models  = factory(User::class, 3)->create();
+        $models = factory(User::class, 3)->create();
         $userIds = $models->pluck('id')->toArray();
 
         /** @var \App\Repositories\UserRepositoryInterface $repository */
@@ -33,7 +34,7 @@ class UserRepositoryTest extends TestCase
 
     public function testFind()
     {
-        $models  = factory(User::class, 3)->create();
+        $models = factory(User::class, 3)->create();
         $userIds = $models->pluck('id')->toArray();
 
         /** @var \App\Repositories\UserRepositoryInterface $repository */

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -32,6 +33,7 @@ use LaravelRocket\Foundation\Models\AuthenticatableBase;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereProfileImageId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class User extends AuthenticatableBase
@@ -64,7 +66,7 @@ class User extends AuthenticatableBase
      */
     protected $hidden = [];
 
-    protected $dates  = [
+    protected $dates = [
     ];
 
     protected string $presenter = \App\Presenters\UserPresenter::class;

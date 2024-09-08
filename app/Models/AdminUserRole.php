@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use App\Presenters\AdminUserRolePresenter;
@@ -22,12 +23,14 @@ use LaravelRocket\Foundation\Models\Base;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AdminUserRole whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AdminUserRole whereRole($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AdminUserRole whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class AdminUserRole extends Base
 {
-    const ROLE_SITE_ADMIN            = 'site_admin';
-    const ROLE_SUPER_USER            = 'super_user';
+    const ROLE_SITE_ADMIN = 'site_admin';
+
+    const ROLE_SUPER_USER = 'super_user';
 
     /**
      * The database table used by the model.
@@ -53,7 +56,7 @@ class AdminUserRole extends Base
      */
     protected $hidden = [];
 
-    protected $dates  = [
+    protected $dates = [
     ];
 
     protected string $presenter = AdminUserRolePresenter::class;

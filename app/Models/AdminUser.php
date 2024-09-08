@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use App\Presenters\AdminUserPresenter;
@@ -35,6 +36,7 @@ use LaravelRocket\Foundation\Models\AuthenticatableBase;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AdminUser whereProfileImageId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AdminUser whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AdminUser whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class AdminUser extends AuthenticatableBase
@@ -67,7 +69,7 @@ class AdminUser extends AuthenticatableBase
      */
     protected $hidden = [];
 
-    protected array $dates  = [
+    protected array $dates = [
     ];
 
     protected string $presenter = AdminUserPresenter::class;

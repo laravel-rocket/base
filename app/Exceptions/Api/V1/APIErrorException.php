@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Exceptions\Api\V1;
 
 use App\Http\Responses\Api\V1\Status;

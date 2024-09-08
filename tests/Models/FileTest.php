@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Models;
 
 use App\Models\File;
@@ -11,14 +12,14 @@ class FileTest extends TestCase
     public function testGetInstance()
     {
         /** @var \App\Models\File $file */
-        $file = new File();
+        $file = new File;
         $this->assertNotNull($file);
     }
 
     public function testStoreNew()
     {
         /** @var \App\Models\File $file */
-        $fileModel = new File();
+        $fileModel = new File;
 
         $fileData = factory(File::class)->make();
         foreach ($fileData->toFillableArray() as $key => $value) {

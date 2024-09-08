@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services\Production;
 
 use App\Repositories\UserPasswordResetRepositoryInterface;
@@ -6,7 +7,6 @@ use App\Repositories\UserRepositoryInterface;
 use App\Services\FileServiceInterface;
 use App\Services\UserServiceInterface;
 use LaravelRocket\Foundation\Models\AuthenticatableBase;
-use LaravelRocket\Foundation\Models\Base;
 use LaravelRocket\Foundation\Services\Production\AuthenticatableService;
 
 class UserService extends AuthenticatableService implements UserServiceInterface
@@ -23,9 +23,9 @@ class UserService extends AuthenticatableService implements UserServiceInterface
         FileServiceInterface $fileService
     ) {
         parent::__construct($userRepository, $userPasswordResetRepository);
-        $this->authenticatableRepository    = $userRepository;
+        $this->authenticatableRepository = $userRepository;
         $this->passwordResettableRepository = $userPasswordResetRepository;
-        $this->fileService                  = $fileService;
+        $this->fileService = $fileService;
     }
 
     public function getGuardName(): string
@@ -35,9 +35,9 @@ class UserService extends AuthenticatableService implements UserServiceInterface
 
     public function createWithImageUrl(array $input, string $imageUrl): AuthenticatableBase
     {
-        if (!empty($imageUrl)) {
+        if (! empty($imageUrl)) {
             $image = $this->fileService->createFromUrl('profile-image', $imageUrl, 'image/jpeg', []);
-            if (!empty($image)) {
+            if (! empty($image)) {
                 $input['profile_image_id'] = $image->id;
             }
         }

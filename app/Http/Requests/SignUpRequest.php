@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests;
 
 class SignUpRequest extends Request
@@ -10,8 +11,6 @@ class SignUpRequest extends Request
 
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -20,13 +19,11 @@ class SignUpRequest extends Request
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
     public function rules(): array
     {
         return [
-            'email'    => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
         ];
     }
@@ -34,10 +31,10 @@ class SignUpRequest extends Request
     public function messages(): array
     {
         return [
-            'email.required'    => trans('validation.required'),
-            'email.email'       => trans('validation.email'),
+            'email.required' => trans('validation.required'),
+            'email.email' => trans('validation.email'),
             'password.required' => trans('validation.required'),
-            'password.min'      => trans('validation.min.string', ['min' => 6]),
+            'password.min' => trans('validation.min.string', ['min' => 6]),
         ];
     }
 }

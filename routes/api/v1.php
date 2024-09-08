@@ -7,7 +7,7 @@ Route::group(['prefix' => 'api', 'as' => 'api.', 'namespace' => 'Api'], function
         Route::post('signup', 'AuthController@postSignUp')->name('signUp');
         Route::post('signin', 'AuthController@postSignIn')->name('signIn');
 
-//        Route::post('signin/facebook', 'FacebookAuthController@facebookSignIn');
+        //        Route::post('signin/facebook', 'FacebookAuthController@facebookSignIn');
         Route::post('forgot-password', 'PasswordController@forgotPassword')->name('forgetPassword');
 
         Route::group(['middleware' => 'api.auth'], function () {

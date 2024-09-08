@@ -7,13 +7,13 @@ use App\Services\UserServiceInterface;
 class PasswordController extends PasswordControllerBase
 {
     /** @var string $emailSetPageView */
-    protected $emailSetPageView = 'pages.user.auth.forgot-password';
+    protected string $emailSetPageView = 'pages.user.auth.forgot-password';
 
     /** @var string $passwordResetPageView */
-    protected $passwordResetPageView = 'pages.user.auth.reset-password';
+    protected string $passwordResetPageView = 'pages.user.auth.reset-password';
 
     /** @var string $returnAction */
-    protected $returnAction = 'User\IndexController@index';
+    protected string $returnAction = 'User\IndexController@index';
 
     public function __construct(UserServiceInterface $userService)
     {

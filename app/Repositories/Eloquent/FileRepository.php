@@ -3,29 +3,31 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\File;
 use App\Repositories\FileRepositoryInterface;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Arr;
+use LaravelRocket\Foundation\Models\Base;
 use LaravelRocket\Foundation\Repositories\Eloquent\SingleKeyModelRepository;
 
 class FileRepository extends SingleKeyModelRepository implements FileRepositoryInterface
 {
-    public function getBlankModel()
+    public function getBlankModel(): \LaravelRocket\Foundation\Models\Base
     {
         return new File();
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
         ];
     }
 
-    protected function buildQueryByFilter($query, $filter)
+    protected function buildQueryByFilter(\Illuminate\Database\Query\Builder|\Illuminate\Database\Eloquent\Builder|Base $query, array $filter): \Illuminate\Database\Query\Builder|\Illuminate\Database\Eloquent\Builder|Base
     {
         if (array_key_exists('query', $filter)) {
             $searchWord = Arr::get($filter, 'query');

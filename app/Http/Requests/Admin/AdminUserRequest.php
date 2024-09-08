@@ -5,8 +5,7 @@ use App\Repositories\AdminUserRepositoryInterface;
 
 class AdminUserRequest extends Request
 {
-    /** @var \App\Repositories\AdminUserRepositoryInterface */
-    protected $adminUserRepository;
+    protected AdminUserRepositoryInterface $adminUserRepository;
 
     public function __construct(AdminUserRepositoryInterface $adminUserRepository)
     {
@@ -19,7 +18,7 @@ class AdminUserRequest extends Request
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -29,12 +28,12 @@ class AdminUserRequest extends Request
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return $this->adminUserRepository->rules();
     }
 
-    public function messages()
+    public function messages(): array
     {
         return $this->adminUserRepository->messages();
     }

@@ -1,16 +1,19 @@
 <?php
+namespace Database\Seeders;
 
+use Exception;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CSVSeeder extends Seeder
 {
-    protected $table = 'table name';
+    protected string $table = 'table name';
 
-    protected $isTest = false;
+    protected bool $isTest = false;
 
-    protected $isDisabled = false;
+    protected bool $isDisabled = false;
 
-    public function run()
+    public function run(): void
     {
         if (!$this->isDisabled) {
             DB::table($this->table)->delete();

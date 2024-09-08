@@ -7,10 +7,10 @@ class ListBase extends Response
     protected static $itemsResponseModel = Response::class;
 
     /** @var string $itemsColumnName */
-    protected $itemsColumnName = 'items';
+    protected string $itemsColumnName = 'items';
 
     /** @var array $columns */
-    protected $columns = [
+    protected array $columns = [
         'count'  => 0,
         'offset' => 0,
         'limit'  => 10,
@@ -19,13 +19,13 @@ class ListBase extends Response
 
     /**
      * @param array $models
-     * @param int   $offset
-     * @param int   $limit
-     * @param int   $count
+     * @param int $offset
+     * @param int $limit
+     * @param int $count
      *
      * @return static
      */
-    public static function updateListWithModel($models, $offset = 0, $limit = 10, $count = 0)
+    public static function updateListWithModel(array|\Illuminate\Database\Eloquent\Collection $models, int $offset = 0, int $limit = 10, int $count = 0): static
     {
         $items = [];
         foreach ($models as $model) {

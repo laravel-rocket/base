@@ -2,6 +2,23 @@
 
 Route::group([], function () {
     Route::get('/', 'User\IndexController@index')->name('index');
+    Route::get('/healthz', function () {
+
+        try {
+            \Illuminate\Support\Facades\DB::connection()->getPDO();
+            $databaseName = \Illuminate\Support\Facades\DB::connection()->getDatabaseName();
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Database connection failed: '.$e->getMessage(),
+            ])->setStatusCode(500);
+        }
+
+        return response()->json([
+            'status' => 'ok',
+        ]);
+    });
 
     Route::group(['middleware' => ['user.guest']], function () {
         Route::get('signin', 'User\AuthController@getSignIn')->name('signIn.get');

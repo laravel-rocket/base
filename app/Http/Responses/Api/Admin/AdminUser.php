@@ -3,7 +3,7 @@ namespace App\Http\Responses\Api\Admin;
 
 class AdminUser extends Response
 {
-    protected $columns = [
+    protected array $columns = [
         'id'           => '',
         'name'         => '',
         'profileImage' => null,
@@ -16,7 +16,7 @@ class AdminUser extends Response
      *
      * @return static
      */
-    public static function updateWithModel($model)
+    public static function updateWithModel($model): static
     {
         $roles = [];
         foreach ($model->adminUserRoles as $role) {

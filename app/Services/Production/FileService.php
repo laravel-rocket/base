@@ -14,14 +14,11 @@ use LaravelRocket\Foundation\Services\Production\BaseService;
 
 class FileService extends BaseService implements FileServiceInterface
 {
-    /** @var \App\Repositories\FileRepositoryInterface */
-    protected $fileRepository;
+    protected FileRepositoryInterface $fileRepository;
 
-    /** @var ImageServiceInterface */
-    protected $imageService;
+    protected ImageServiceInterface $imageService;
 
-    /** @var FileUploadServiceInterface[] */
-    protected $fileUploadServices;
+    protected array $fileUploadServices;
 
     public function __construct(
         FileRepositoryInterface $fileRepository,
@@ -39,7 +36,7 @@ class FileService extends BaseService implements FileServiceInterface
         ];
     }
 
-    public function uploadFromText($categoryType, $text, $mediaType, $metaInputs)
+    public function uploadFromText(string $categoryType, string $text, string $mediaType, array $metaInputs): ?File
     {
         $tempFile = tempnam(sys_get_temp_dir(), 'upload');
         $handle   = fopen($tempFile, 'w');
@@ -53,7 +50,7 @@ class FileService extends BaseService implements FileServiceInterface
         return $file;
     }
 
-    public function upload($categoryType, $path, $mediaType, $metaInputs)
+    public function upload(int $categoryType, string $path, string $mediaType, array $metaInputs): ?File
     {
         $conf = config('file.categories.'.$categoryType);
         if (empty($conf)) {
@@ -152,7 +149,7 @@ class FileService extends BaseService implements FileServiceInterface
         return $model;
     }
 
-    public function delete($model)
+    public function delete(File $model): ?bool
     {
         $storageType = $model->storageType;
         $key         = $model->s3_key;
@@ -173,7 +170,7 @@ class FileService extends BaseService implements FileServiceInterface
         return true;
     }
 
-    public function createFromUrl($categoryType, $url, $mediaType, $metaInputs)
+    public function createFromUrl(string $categoryType, string $url, string $mediaType, array $metaInputs): ?File
     {
         $conf = config('file.categories.'.$categoryType);
         if (empty($conf)) {
@@ -254,13 +251,7 @@ class FileService extends BaseService implements FileServiceInterface
         return $filename;
     }
 
-    /**
-     * @param string $key
-     * @param array  $size
-     *
-     * @return null|string
-     */
-    protected function getThumbnailKeyFromKey($key, $size)
+    protected function getThumbnailKeyFromKey(string $key, array $size): ?string
     {
         if (preg_match('/^(.+?)\.([^\.]+)$/', $key, $match)) {
             return $match[1].'_'.$size[0].'_'.$size[1].'.'.$match[2];

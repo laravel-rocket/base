@@ -3,7 +3,7 @@ namespace App\Http\Responses\Api\V1;
 
 class Me extends Response
 {
-    protected $columns = [
+    protected array $columns = [
         'id'           => 0,
         'name'         => '',
         'email'        => '',

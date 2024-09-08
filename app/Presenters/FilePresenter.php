@@ -31,33 +31,33 @@ use LaravelRocket\Foundation\Presenters\BasePresenter;
  */
 class FilePresenter extends BasePresenter
 {
-    protected $multilingualFields = [
+    protected array $multilingualFields = [
     ];
 
-    protected $imageFields = [
+    protected array $imageFields = [
     ];
 
-    public function entity_type()
+    public function entity_type(): \Illuminate\Foundation\Application|array|string|\Illuminate\Contracts\Translation\Translator|\Illuminate\Contracts\Foundation\Application|null
     {
         return trans('tables/files/columns.entity_type_options.'.$this->entity->entity_type);
     }
 
-    public function storage_type()
+    public function storage_type(): \Illuminate\Foundation\Application|array|string|\Illuminate\Contracts\Translation\Translator|\Illuminate\Contracts\Foundation\Application|null
     {
         return trans('tables/files/columns.storage_type_options.'.$this->entity->storage_type);
     }
 
-    public function file_category_type()
+    public function file_category_type(): \Illuminate\Foundation\Application|array|string|\Illuminate\Contracts\Translation\Translator|\Illuminate\Contracts\Foundation\Application|null
     {
         return trans('tables/files/columns.file_category_type_options.'.$this->entity->file_category_type);
     }
 
-    public function file_type()
+    public function file_type(): \Illuminate\Foundation\Application|array|string|\Illuminate\Contracts\Translation\Translator|\Illuminate\Contracts\Foundation\Application|null
     {
         return trans('tables/files/columns.file_type_options.'.$this->entity->file_type);
     }
 
-    public function media_type()
+    public function media_type(): \Illuminate\Foundation\Application|array|string|\Illuminate\Contracts\Translation\Translator|\Illuminate\Contracts\Foundation\Application|null
     {
         return trans('tables/files/columns.media_type_options.'.$this->entity->media_type);
     }

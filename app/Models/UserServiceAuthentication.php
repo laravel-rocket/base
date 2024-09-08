@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use LaravelRocket\ServiceAuthentication\Models\ServiceAuthenticationBase;
 
 /**
@@ -62,10 +63,10 @@ class UserServiceAuthentication extends ServiceAuthenticationBase
 
     protected $dates = [];
 
-    protected $presenter = \App\Presenters\UserPresenter::class;
+    protected string $presenter = \App\Presenters\UserPresenter::class;
 
     // Relations
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo('App\Models\User', 'id', 'user_id');
     }

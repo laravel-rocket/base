@@ -5,8 +5,7 @@ use App\Repositories\FileRepositoryInterface;
 
 class FileRequest extends Request
 {
-    /** @var \App\Repositories\FileRepositoryInterface */
-    protected $fileRepository;
+    protected FileRepositoryInterface $fileRepository;
 
     public function __construct(FileRepositoryInterface $fileRepository)
     {
@@ -19,7 +18,7 @@ class FileRequest extends Request
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -29,12 +28,12 @@ class FileRequest extends Request
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return $this->fileRepository->rules();
     }
 
-    public function messages()
+    public function messages(): array
     {
         return $this->fileRepository->messages();
     }

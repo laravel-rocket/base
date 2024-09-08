@@ -5,7 +5,7 @@ use App\Services\APIUserServiceInterface;
 
 class APIUserService extends UserService implements APIUserServiceInterface
 {
-    public function getGuardName()
+    public function getGuardName(): string
     {
         return 'api';
     }

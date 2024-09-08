@@ -8,7 +8,7 @@ class ResetPasswordRequest extends Request
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -18,7 +18,7 @@ class ResetPasswordRequest extends Request
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'email'                 => 'required|email',
@@ -28,7 +28,7 @@ class ResetPasswordRequest extends Request
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'token.required'                 => trans('validation.required'),

@@ -17,10 +17,7 @@ use LaravelRocket\Foundation\Repositories\SingleKeyModelRepositoryInterface;
  * @method  \App\Models\AdminUser[]|\Traversable|array getByFilter($filter,$order = null, $direction = null, $offset = null, $limit = null);
  * @method  \App\Models\AdminUser[]|\Traversable|array allByFilter($filter,$order = null, $direction = null);
  */
-interface AdminUserRepositoryInterface extends SingleKeyModelRepositoryInterface
+interface AdminUserRepositoryInterface extends \LaravelRocket\Foundation\Repositories\AuthenticatableRepositoryInterface
 {
-    /**
-     * @return \App\Models\AdminUser
-     */
-    public function getBlankModel();
+    public function getBlankModel(): \App\Models\AdminUser;
 }

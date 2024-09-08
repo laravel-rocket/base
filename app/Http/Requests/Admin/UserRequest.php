@@ -5,8 +5,7 @@ use App\Repositories\UserRepositoryInterface;
 
 class UserRequest extends Request
 {
-    /** @var \App\Repositories\UserRepositoryInterface */
-    protected $userRepository;
+    protected UserRepositoryInterface $userRepository;
 
     public function __construct(UserRepositoryInterface $userRepository)
     {
@@ -19,7 +18,7 @@ class UserRequest extends Request
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -29,12 +28,12 @@ class UserRequest extends Request
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return $this->userRepository->rules();
     }
 
-    public function messages()
+    public function messages(): array
     {
         return $this->userRepository->messages();
     }

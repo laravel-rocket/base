@@ -1,6 +1,9 @@
 <?php
 namespace App\Models;
 
+use App\Presenters\AdminUserPresenter;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use LaravelRocket\Foundation\Models\AuthenticatableBase;
@@ -8,7 +11,7 @@ use LaravelRocket\Foundation\Models\AuthenticatableBase;
 /**
  * App\Models\AdminUser.
  *
- * @method \App\Presenters\AdminUserPresenter present()
+ * @method AdminUserPresenter present()
  *
  * @property int $id
  * @property string $name
@@ -64,18 +67,18 @@ class AdminUser extends AuthenticatableBase
      */
     protected $hidden = [];
 
-    protected $dates  = [
+    protected array $dates  = [
     ];
 
-    protected $presenter = \App\Presenters\AdminUserPresenter::class;
+    protected string $presenter = AdminUserPresenter::class;
 
     // Relations
-    public function profileImage()
+    public function profileImage(): BelongsTo
     {
         return $this->belongsTo(\App\Models\File::class, 'profile_image_id', 'id');
     }
 
-    public function adminUserRoles()
+    public function adminUserRoles(): HasMany
     {
         return $this->hasMany(\App\Models\AdminUserRole::class, 'admin_user_id', 'id');
     }

@@ -1,6 +1,7 @@
 <?php
 namespace Tests\Controllers\Api\Admin;
 
+use Illuminate\Support\Facades\App;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase
@@ -10,7 +11,7 @@ class UserControllerTest extends TestCase
     public function testGetInstance()
     {
         /** @var \App\Http\Controllers\Api\Admin\UserController $controller */
-        $controller = \App::make(\App\Http\Controllers\Api\Admin\UserController::class);
+        $controller = App::make(\App\Http\Controllers\Api\Admin\UserController::class);
         $this->assertNotNull($controller);
     }
 

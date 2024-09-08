@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Presenters;
 
 use LaravelRocket\Foundation\Presenters\BasePresenter;
@@ -16,18 +17,18 @@ use LaravelRocket\Foundation\Presenters\BasePresenter;
  */
 class AdminUserPresenter extends BasePresenter
 {
-    protected $multilingualFields = [
+    protected array $multilingualFields = [
     ];
 
-    protected $imageFields = [
-    'profile_image',
+    protected array $imageFields = [
+        'profile_image',
     ];
 
-    public function profileImage()
+    public function profileImage(): \App\Models\File
     {
         $model = $this->entity->profileImage;
         if (!$model) {
-            $model      = new \App\Models\File();
+            $model = new \App\Models\File();
             $model->url = \URLHelper::asset('images/user.png', 'common');
         }
 

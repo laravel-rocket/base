@@ -7,6 +7,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
 use Illuminate\Support\Str;
 use LaravelRocket\Foundation\Services\SlackServiceInterface;
+use PHPUnit\Event\Code\Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -39,44 +40,36 @@ class Handler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param \Exception $exception
-     *
-     * @return void
-     *
-     * @throws \Exception
+     * @throws \Throwable
      */
-    public function report(Exception $exception)
+    public function report(\Throwable $e): void
     {
-        if ($this->shouldReport($exception)) {
+        if ($this->shouldReport($e)) {
             if (in_array(app()->environment(), config('slack.targetEnvironment', []))) {
-                if (!$exception instanceof TokenMismatchException) {
+                if (!$e instanceof TokenMismatchException) {
                     // notify to slack
                     try {
                         $slackService = \App::make(SlackServiceInterface::class);
-                        $slackService->exception($exception);
+                        $slackService->exception($e);
                     } catch (\Throwable $t) {
                     }
                 }
             }
         }
 
-        parent::report($exception);
+        parent::report($e);
     }
 
     /**
      * Render an exception into an HTTP response.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \Exception               $exception
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Throwable
      */
-    public function render($request, Exception $exception)
+    public function render($request, \Throwable $e): \Symfony\Component\HttpFoundation\Response
     {
         if (Str::start($request->path(), 'api/v1')) {
-            return Status::error('unknown', $exception->getMessage())->withStatus(500)->response();
+            return Status::error('unknown', $e->getMessage())->withStatus(500)->response();
         }
 
-        return parent::render($request, $exception);
+        return parent::render($request, $e);
     }
 }

@@ -1,6 +1,7 @@
 <?php
-namespace Tests\Services;
+namespace Tests\Smokes;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
@@ -10,7 +11,7 @@ class RoutingTest extends TestCase
 
     public function testRoute()
     {
-        $routeCollection = \Route::getRoutes();
+        $routeCollection = Route::getRoutes();
 
         foreach ($routeCollection as $route) {
             if (in_array('GET', $route->methods) && strpos($route->uri, '{') === false

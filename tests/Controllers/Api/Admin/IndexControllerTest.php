@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Controllers\Admin;
+namespace Tests\Controllers\Api\Admin;
 
 use Tests\TestCase;
 

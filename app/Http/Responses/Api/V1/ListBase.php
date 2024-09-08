@@ -10,7 +10,7 @@ class ListBase extends Response
     protected $itemsColumnName = 'items';
 
     /** @var array $columns */
-    protected $columns = [
+    protected array $columns = [
         'hasNext' => false,
         'offset'  => 0,
         'limit'   => 10,
@@ -19,13 +19,13 @@ class ListBase extends Response
 
     /**
      * @param array $models
-     * @param int   $offset
-     * @param int   $limit
-     * @param bool  $hasNext
+     * @param int $offset
+     * @param int $limit
+     * @param bool $hasNext
      *
      * @return static
      */
-    public static function updateListWithModel($models, $offset = 0, $limit = 10, $hasNext = false)
+    public static function updateListWithModel(array|\Illuminate\Database\Eloquent\Collection $models, int $offset = 0, int $limit = 10, bool $hasNext = false): static
     {
         $items = [];
         foreach ($models as $model) {

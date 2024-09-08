@@ -3,7 +3,7 @@ namespace App\Http\Responses\Api\Admin;
 
 class AdminUserRole extends Response
 {
-    protected $columns = [
+    protected array $columns = [
         'name' => '',
         'role' => '',
     ];
@@ -13,7 +13,7 @@ class AdminUserRole extends Response
      *
      * @return static
      */
-    public static function updateWithModel($model)
+    public static function updateWithModel($model): static
     {
         $response = new static([], 400);
         if (!empty($model)) {

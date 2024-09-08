@@ -5,7 +5,7 @@ use Illuminate\Support\Arr;
 
 class AccessToken extends Response
 {
-    protected $columns = [
+    protected array $columns = [
         'accessToken'  => '',
         'tokenType'    => '',
         'refreshToken' => '',
@@ -17,7 +17,7 @@ class AccessToken extends Response
      *
      * @return static
      */
-    public static function updateWithResponse($response)
+    public static function updateWithResponse(\Psr\Http\Message\ResponseInterface $response): static
     {
         $body = (string) $response->getBody();
 

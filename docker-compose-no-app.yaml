@@ -1,0 +1,17 @@
+services:
+    db:
+        image: mysql:8.0
+        container_name: laravel_db
+        restart: always
+        environment:
+            MYSQL_DATABASE: laravel
+            MYSQL_USER: laraveluser
+            MYSQL_PASSWORD: laravelpassword
+            MYSQL_ROOT_PASSWORD: rootpassword
+        volumes:
+            - db_data:/var/lib/mysql
+        ports:
+            - "3306:3306"
+
+volumes:
+    db_data:

@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use LaravelRocket\Foundation\Models\AuthenticatableBase;
@@ -66,10 +67,10 @@ class User extends AuthenticatableBase
     protected $dates  = [
     ];
 
-    protected $presenter = \App\Presenters\UserPresenter::class;
+    protected string $presenter = \App\Presenters\UserPresenter::class;
 
     // Relations
-    public function profileImage()
+    public function profileImage(): BelongsTo
     {
         return $this->belongsTo(\App\Models\File::class, 'profile_image_id', 'id');
     }

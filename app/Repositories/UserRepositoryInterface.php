@@ -17,10 +17,7 @@ use LaravelRocket\Foundation\Repositories\SingleKeyModelRepositoryInterface;
  * @method  \App\Models\User[]|\Traversable|array getByFilter($filter,$order = null, $direction = null, $offset = null, $limit = null);
  * @method  \App\Models\User[]|\Traversable|array allByFilter($filter,$order = null, $direction = null);
  */
-interface UserRepositoryInterface extends SingleKeyModelRepositoryInterface
+interface UserRepositoryInterface extends \LaravelRocket\Foundation\Repositories\AuthenticatableRepositoryInterface
 {
-    /**
-     * @return \App\Models\User
-     */
     public function getBlankModel();
 }

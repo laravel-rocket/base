@@ -10,7 +10,7 @@ class StoreRequest extends Request
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -20,13 +20,15 @@ class StoreRequest extends Request
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
+            'email' => 'required|email',
+            'password' => 'required',
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
         ];

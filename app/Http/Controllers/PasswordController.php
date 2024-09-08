@@ -7,16 +7,16 @@ use LaravelRocket\Foundation\Services\AuthenticatableServiceInterface;
 
 class PasswordController extends Controller
 {
-    protected $authenticatableService;
+    protected AuthenticatableServiceInterface $authenticatableService;
 
     /** @var string $emailSetPageView */
-    protected $emailSetPageView = '';
+    protected string $emailSetPageView = '';
 
     /** @var string $passwordResetPageView */
-    protected $passwordResetPageView = '';
+    protected string $passwordResetPageView = '';
 
     /** @var string $returnAction */
-    protected $returnAction = '';
+    protected string $returnAction = '';
 
     public function __construct(AuthenticatableServiceInterface $authenticatableService)
     {

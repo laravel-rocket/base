@@ -34,12 +34,12 @@ class Request extends BaseRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [];
     }

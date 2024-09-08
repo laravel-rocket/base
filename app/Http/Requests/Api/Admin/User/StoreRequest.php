@@ -10,7 +10,7 @@ class StoreRequest extends Request
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -20,14 +20,14 @@ class StoreRequest extends Request
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'name' => 'required',
+            'email' => 'required|email',
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'name.required'          => trans('validation.required'),

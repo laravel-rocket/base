@@ -5,6 +5,7 @@ use App\Repositories\UserRepositoryInterface;
 use App\Repositories\UserServiceAuthenticationRepositoryInterface;
 use App\Services\UserServiceAuthenticationServiceInterface;
 use App\Services\UserServiceInterface;
+use LaravelRocket\Foundation\Repositories\PasswordResettableRepositoryInterface;
 use LaravelRocket\ServiceAuthentication\Services\Production\ServiceAuthenticationService;
 
 class UserServiceAuthenticationService extends ServiceAuthenticationService implements UserServiceAuthenticationServiceInterface
@@ -23,6 +24,7 @@ class UserServiceAuthenticationService extends ServiceAuthenticationService impl
         UserServiceAuthenticationRepositoryInterface $serviceAuthenticationRepository,
         UserServiceInterface $authenticatableService
     ) {
+        parent::__construct($authenticatableRepository, $serviceAuthenticationRepository, $authenticatableService);
         $this->authenticatableRepository       = $authenticatableRepository;
         $this->serviceAuthenticationRepository = $serviceAuthenticationRepository;
         $this->authenticatableService          = $authenticatableService;

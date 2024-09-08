@@ -8,21 +8,20 @@ use LaravelRocket\Foundation\Services\Production\AuthenticatableService;
 
 class AdminUserService extends AuthenticatableService implements AdminUserServiceInterface
 {
-    /** @var string $resetEmailTitle */
-    protected $resetEmailTitle = 'Reset Password';
+    protected string $resetEmailTitle = 'Reset Password';
 
-    /** @var string $resetEmailTemplate */
-    protected $resetEmailTemplate = 'emails.admin.reset_password';
+    protected string $resetEmailTemplate = 'emails.admin.reset_password';
 
     public function __construct(
         AdminUserRepositoryInterface $adminUserRepository,
         AdminPasswordResetRepositoryInterface $adminUserPasswordResetRepository
     ) {
+        parent::__construct($adminUserRepository, $adminUserPasswordResetRepository);
         $this->authenticatableRepository    = $adminUserRepository;
         $this->passwordResettableRepository = $adminUserPasswordResetRepository;
     }
 
-    public function getGuardName()
+    public function getGuardName(): string
     {
         return 'admins';
     }

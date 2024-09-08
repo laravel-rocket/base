@@ -5,14 +5,14 @@ use App\Http\Responses\Response as ResponseBase;
 
 class Response extends ResponseBase
 {
-    protected $columns = [];
+    protected array $columns = [];
 
     /**
      * @param \LaravelRocket\Foundation\Models\Base;
      *
      * @return static
      */
-    public static function updateWithModel($model)
+    public static function updateWithModel($model): static
     {
         $response = new static([]);
 
@@ -21,11 +21,11 @@ class Response extends ResponseBase
 
     /**
      * @param \LaravelRocket\Foundation\Models\Base[] $models
-     * @param string|null                             $columnName
+     * @param string|null $columnName
      *
      * @return static[]
      */
-    public static function updateWithModels($models, $columnName = null)
+    public static function updateWithModels(array $models, ?string $columnName = null): static
     {
         $response = [];
         foreach ($models as $model) {

@@ -13,13 +13,13 @@ use LaravelRocket\Foundation\Presenters\BasePresenter;
  */
 class AdminUserRolePresenter extends BasePresenter
 {
-    protected $multilingualFields = [
+    protected array $multilingualFields = [
     ];
 
     protected $imageFields = [
     ];
 
-    public function adminUser()
+    public function adminUser(): \App\Models\AdminUser
     {
         $model = $this->entity->adminUser;
         if (!$model) {

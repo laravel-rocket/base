@@ -3,7 +3,7 @@ namespace App\Http\Responses\Api\V1;
 
 class User extends Response
 {
-    protected $columns = [
+    protected array $columns = [
         'id'           => '',
         'name'         => '',
         'profileImage' => null,
@@ -14,7 +14,7 @@ class User extends Response
      *
      * @return static
      */
-    public static function updateWithModel($model)
+    public static function updateWithModel($model): static
     {
         $response = new static([], 400);
         if (!empty($model)) {

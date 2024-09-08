@@ -5,8 +5,7 @@ use App\Repositories\AdminUserRoleRepositoryInterface;
 
 class AdminUserRoleRequest extends Request
 {
-    /** @var \App\Repositories\AdminUserRoleRepositoryInterface */
-    protected $adminUserRoleRepository;
+    protected AdminUserRoleRepositoryInterface $adminUserRoleRepository;
 
     public function __construct(AdminUserRoleRepositoryInterface $adminUserRoleRepository)
     {
@@ -19,7 +18,7 @@ class AdminUserRoleRequest extends Request
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -29,12 +28,12 @@ class AdminUserRoleRequest extends Request
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return $this->adminUserRoleRepository->rules();
     }
 
-    public function messages()
+    public function messages(): array
     {
         return $this->adminUserRoleRepository->messages();
     }

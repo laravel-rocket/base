@@ -7,25 +7,21 @@ use LaravelRocket\Foundation\Repositories\Eloquent\SingleKeyModelRepository;
 
 class AdminUserRoleRepository extends SingleKeyModelRepository implements AdminUserRoleRepositoryInterface
 {
-    public function getBlankModel()
+    public function getBlankModel(): \LaravelRocket\Foundation\Models\Base
     {
         return new AdminUserRole();
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
         ];
     }
 
-    protected function buildQueryByFilter($query, $filter)
-    {
-        return parent::buildQueryByFilter($query, $filter);
-    }
 }

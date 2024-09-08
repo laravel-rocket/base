@@ -1,12 +1,14 @@
 <?php
 namespace App\Models;
 
+use App\Presenters\AdminUserRolePresenter;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use LaravelRocket\Foundation\Models\Base;
 
 /**
  * App\Models\AdminUserRole.
  *
- * @method \App\Presenters\AdminUserRolePresenter present()
+ * @method AdminUserRolePresenter present()
  *
  * @property int $id
  * @property int $admin_user_id
@@ -54,10 +56,10 @@ class AdminUserRole extends Base
     protected $dates  = [
     ];
 
-    protected $presenter = \App\Presenters\AdminUserRolePresenter::class;
+    protected string $presenter = AdminUserRolePresenter::class;
 
     // Relations
-    public function adminUser()
+    public function adminUser(): BelongsTo
     {
         return $this->belongsTo(\App\Models\AdminUser::class, 'admin_user_id', 'id');
     }

@@ -1,13 +1,15 @@
 <?php
 namespace App\Models;
 
+use App\Presenters\FilePresenter;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use LaravelRocket\Foundation\Models\Base;
 
 /**
  * App\Models\File.
  *
- * @method \App\Presenters\FilePresenter present()
+ * @method FilePresenter present()
  *
  * @property int $id
  * @property string $url
@@ -121,13 +123,13 @@ class File extends Base
      */
     protected $hidden = [];
 
-    protected $dates  = [
+    protected array $dates  = [
     ];
 
-    protected $presenter = \App\Presenters\FilePresenter::class;
+    protected string $presenter = FilePresenter::class;
 
     // Relations
-    public function profileImages()
+    public function profileImages(): HasMany
     {
         return $this->hasMany(\App\Models\User::class, 'profile_image_id', 'id');
     }

@@ -13,7 +13,7 @@ class SignUpRequest extends Request
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -23,7 +23,7 @@ class SignUpRequest extends Request
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'email'    => 'required|email|unique:users,email',
@@ -31,7 +31,7 @@ class SignUpRequest extends Request
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'email.required'    => trans('validation.required'),

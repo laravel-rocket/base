@@ -1,17 +1,19 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
     /** @var array $seeders */
-    protected $seeders = [
+    protected array $seeders = [
     ];
 
-    protected $environments = [
+    protected array $environments = [
         'testing'     => [],
-        'local'       => ['AdminUserSeeder'],
-        'development' => ['AdminUserSeeder'],
+        'local'       => [AdminUserSeeder::class],
+        'development' => [AdminUserSeeder::class],
         'production'  => [],
     ];
 
@@ -20,7 +22,7 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         foreach ($this->seeders as $seeder) {
             $this->call($seeder);

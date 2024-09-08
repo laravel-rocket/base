@@ -14,13 +14,13 @@ class UserServiceAuthenticationRepository extends ServiceAuthenticationRepositor
         return new UserServiceAuthentication();
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
         ];

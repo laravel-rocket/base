@@ -5,7 +5,7 @@ use Illuminate\Support\Arr;
 
 class Status extends Response
 {
-    protected $columns         = [
+    protected array $columns         = [
         'isSuccess'     => true,
         'type'          => '',
         'title'         => '',
@@ -15,7 +15,7 @@ class Status extends Response
         'invalidParams' => [],
     ];
 
-    protected $optionalColumns = [
+    protected array $optionalColumns = [
         'type',
         'title',
         'status',
@@ -24,7 +24,7 @@ class Status extends Response
         'invalidParams',
     ];
 
-    public static function error($error, $message, $extraData = [])
+    public static function error(string $error, string $message, array $extraData = []): static
     {
         $error = config('api.errors.'.$error);
         if (empty($error)) {
@@ -44,7 +44,7 @@ class Status extends Response
         return $response;
     }
 
-    public static function ok($message = '', $extraData = [], $statusCode = 200)
+    public static function ok(string $message = '', array $extraData = [], int $statusCode = 200): static
     {
         $response = new static([
             'isSuccess'     => true,

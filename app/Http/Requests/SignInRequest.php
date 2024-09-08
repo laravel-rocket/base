@@ -8,7 +8,7 @@ class SignInRequest extends Request
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -18,7 +18,7 @@ class SignInRequest extends Request
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'email'    => 'required|email',
@@ -26,7 +26,7 @@ class SignInRequest extends Request
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'email.required'    => trans('validation.required'),

@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: php:7.1-apache
+      - image: php:8.3-apache
         environment:
           APP_ENV: testing
           APP_DEBUG: true
@@ -15,7 +15,7 @@ jobs:
           DB_PASSWORD: password
           CACHE_DRIVER: file
           QUEUE_DRIVER: sync
-      - image: circleci/mysql:5.7
+      - image: circleci/mysql:8.0
         environment:
           MYSQL_DATABASE: testdb
           MYSQL_ROOT_PASSWORD: password

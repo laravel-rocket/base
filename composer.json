@@ -14,9 +14,9 @@
     "guzzlehttp/guzzle": "^7.2",
     "laravel/sanctum": "^4.0",
     "aws/aws-sdk-php": "~3.24",
-    "laravel-rocket/foundation": "@dev",
-    "laravel-rocket/generator": "@dev",
-    "laravel-rocket/service-auth": "@dev",
+    "laravel-rocket/foundation": "^3.0.0",
+    "laravel-rocket/generator": "^3.0.0",
+    "laravel-rocket/service-auth": "^3.0.0",
     "laravel/passport": "^12.3",
     "laravel/socialite": "^5.16",
     "maatwebsite/excel": "^3.1",
@@ -84,19 +84,5 @@
     }
   },
   "minimum-stability": "dev",
-  "prefer-stable": true,
-  "repositories": [
-    {
-      "type": "path",
-      "url": "../foundation"
-    },
-    {
-      "type": "path",
-      "url": "../service-auth"
-    },
-    {
-      "type": "path",
-      "url": "../generator"
-    }
-  ]
+  "prefer-stable": true
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests\Api\V1\Auth;
 
 use App\Http\Requests\Api\V1\Request;
@@ -23,11 +24,11 @@ class SignUpRequest extends Request
     public function rules()
     {
         return [
-            'email'         => 'required|email|unique:users,email',
-            'password'      => 'required|min:6',
-            'name'          => 'required',
-            'gender'        => 'required|in:male,female',
-            'client_id'     => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+            'name' => 'required',
+            'gender' => 'required|in:male,female',
+            'client_id' => 'required',
             'client_secret' => 'required',
         ];
     }
@@ -35,15 +36,15 @@ class SignUpRequest extends Request
     public function messages()
     {
         return [
-            'email.required'         => trans('validation.required'),
-            'email.email'            => trans('validation.email'),
-            'email.unique'           => trans('validation.unique'),
-            'password.required'      => trans('validation.required'),
-            'name.required'          => trans('validation.required'),
-            'client_id.required'     => trans('validation.required'),
+            'email.required' => trans('validation.required'),
+            'email.email' => trans('validation.email'),
+            'email.unique' => trans('validation.unique'),
+            'password.required' => trans('validation.required'),
+            'name.required' => trans('validation.required'),
+            'client_id.required' => trans('validation.required'),
             'client_secret.required' => trans('validation.required'),
-            'gender.required'        => trans('validation.required'),
-            'gender.in'              => trans('validation.in'),
+            'gender.required' => trans('validation.required'),
+            'gender.in' => trans('validation.in'),
         ];
     }
 }

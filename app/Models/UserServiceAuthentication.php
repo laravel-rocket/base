@@ -1,6 +1,8 @@
 <?php
+
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use LaravelRocket\ServiceAuthentication\Models\ServiceAuthenticationBase;
 
 /**
@@ -28,6 +30,7 @@ use LaravelRocket\ServiceAuthentication\Models\ServiceAuthenticationBase;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserServiceAuthentication whereImageUrl($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserServiceAuthentication whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserServiceAuthentication whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class UserServiceAuthentication extends ServiceAuthenticationBase
@@ -62,10 +65,10 @@ class UserServiceAuthentication extends ServiceAuthenticationBase
 
     protected $dates = [];
 
-    protected $presenter = \App\Presenters\UserPresenter::class;
+    protected string $presenter = \App\Presenters\UserPresenter::class;
 
     // Relations
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo('App\Models\User', 'id', 'user_id');
     }

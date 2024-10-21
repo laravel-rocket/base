@@ -1,5 +1,6 @@
 <?php
-namespace Tests\Controllers\Admin;
+
+namespace Tests\Controllers\Api\Admin;
 
 use Tests\TestCase;
 
@@ -17,10 +18,10 @@ class IndexControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $authUser     = factory(\App\Models\AdminUser::class)->create();
+        $authUser = factory(\App\Models\AdminUser::class)->create();
         $authUserRole = factory(\App\Models\AdminUserRole::class)->create([
             'admin_user_id' => $authUser->id,
-            'role'          => \App\Models\AdminUserRole::ROLE_SUPER_USER,
+            'role' => \App\Models\AdminUserRole::ROLE_SUPER_USER,
         ]);
         $this->be($authUser, 'admins');
     }

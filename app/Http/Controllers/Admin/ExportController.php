@@ -1,16 +1,18 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Request;
-use function ICanBoogie\singularize;
 use Illuminate\Support\Str;
 use LaravelRocket\Foundation\Exports\AdminModelExport;
 use LaravelRocket\Foundation\Services\ExportServiceInterface;
 
+use function ICanBoogie\singularize;
+
 class ExportController extends Controller
 {
-    /** @var \LaravelRocket\Foundation\Services\ExportServiceInterface $exportService */
+    /** @var \LaravelRocket\Foundation\Services\ExportServiceInterface */
     protected $exportService;
 
     public function __construct(ExportServiceInterface $exportService)
@@ -20,35 +22,35 @@ class ExportController extends Controller
 
     public function export($model, Request $request)
     {
-        $format    = $request->get('format', 'csv');
+        $format = $request->get('format', 'csv');
         $modelName = singularize(ucfirst(Str::camel($model)));
 
-        if (!$this->exportService->checkModelExportable($modelName)) {
+        if (! $this->exportService->checkModelExportable($modelName)) {
             abort(404);
         }
 
-        $extension      = 'csv';
+        $extension = 'csv';
         $formatConstant = \Maatwebsite\Excel\Excel::CSV;
         switch (strtolower($format)) {
             case 'excel':
             case 'xlsx':
-                $extension      = 'xlsx';
+                $extension = 'xlsx';
                 $formatConstant = \Maatwebsite\Excel\Excel::XLSX;
                 break;
             case 'csv':
-                $extension      = 'csv';
+                $extension = 'csv';
                 $formatConstant = \Maatwebsite\Excel\Excel::CSV;
                 break;
             case 'tsv':
-                $extension      = 'tsv';
+                $extension = 'tsv';
                 $formatConstant = \Maatwebsite\Excel\Excel::TSV;
                 break;
             case 'html':
-                $extension      = 'html';
+                $extension = 'html';
                 $formatConstant = \Maatwebsite\Excel\Excel::HTML;
                 break;
             case 'pdf':
-                $extension      = 'pdf';
+                $extension = 'pdf';
                 $formatConstant = \Maatwebsite\Excel\Excel::MPDF;
                 break;
         }

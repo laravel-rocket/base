@@ -1,26 +1,25 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /** @var array $seeders */
-    protected $seeders = [
+    protected array $seeders = [
     ];
 
-    protected $environments = [
-        'testing'     => [],
-        'local'       => ['AdminUserSeeder'],
-        'development' => ['AdminUserSeeder'],
-        'production'  => [],
+    protected array $environments = [
+        'testing' => [],
+        'local' => [AdminUserSeeder::class],
+        'development' => [AdminUserSeeder::class],
+        'production' => [],
     ];
 
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         foreach ($this->seeders as $seeder) {
             $this->call($seeder);

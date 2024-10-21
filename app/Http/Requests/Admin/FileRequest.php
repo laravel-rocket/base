@@ -1,12 +1,12 @@
 <?php
+
 namespace App\Http\Requests\Admin;
 
 use App\Repositories\FileRepositoryInterface;
 
 class FileRequest extends Request
 {
-    /** @var \App\Repositories\FileRepositoryInterface */
-    protected $fileRepository;
+    protected FileRepositoryInterface $fileRepository;
 
     public function __construct(FileRepositoryInterface $fileRepository)
     {
@@ -16,25 +16,21 @@ class FileRequest extends Request
 
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return $this->fileRepository->rules();
     }
 
-    public function messages()
+    public function messages(): array
     {
         return $this->fileRepository->messages();
     }

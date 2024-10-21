@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Presenters;
 
 use LaravelRocket\Foundation\Presenters\BasePresenter;
@@ -8,7 +9,7 @@ use LaravelRocket\Foundation\Presenters\BasePresenter;
  */
 class UserServiceAuthenticationPresenter extends BasePresenter
 {
-    protected $multilingualFields = [];
+    protected array $multilingualFields = [];
 
-    protected $imageFields = [];
+    protected array $imageFields = [];
 }

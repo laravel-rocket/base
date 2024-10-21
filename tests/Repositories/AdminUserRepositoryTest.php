@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Repositories;
 
 use App\Models\AdminUser;
@@ -17,7 +18,7 @@ class AdminUserRepositoryTest extends TestCase
 
     public function testGetList()
     {
-        $models       = factory(AdminUser::class, 3)->create();
+        $models = factory(AdminUser::class, 3)->create();
         $adminUserIds = $models->pluck('id')->toArray();
 
         /** @var \App\Repositories\AdminUserRepositoryInterface $repository */
@@ -33,7 +34,7 @@ class AdminUserRepositoryTest extends TestCase
 
     public function testFind()
     {
-        $models       = factory(AdminUser::class, 3)->create();
+        $models = factory(AdminUser::class, 3)->create();
         $adminUserIds = $models->pluck('id')->toArray();
 
         /** @var \App\Repositories\AdminUserRepositoryInterface $repository */

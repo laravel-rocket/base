@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Smokes\Api\V1;
 
 use App\Models\User;
@@ -11,18 +12,18 @@ class AuthenticationTest extends TestCase
     {
         $headers = [];
 
-        $email    = $this->faker->email;
+        $email = $this->faker->email;
         $password = $this->faker->password(8);
 
-        list($clientId, $clientSecret) = $this->getClientIdAndSecret();
+        [$clientId, $clientSecret] = $this->getClientIdAndSecret();
 
         $input = [
-            'name'          => $this->faker->firstName,
-            'email'         => $email,
-            'password'      => $password,
-            'gender'        => $this->faker->randomElement(['male', 'female']),
-            'phone_number'  => $this->faker->phoneNumber,
-            'client_id'     => $clientId,
+            'name' => $this->faker->firstName,
+            'email' => $email,
+            'password' => $password,
+            'gender' => $this->faker->randomElement(['male', 'female']),
+            'phone_number' => $this->faker->phoneNumber,
+            'client_id' => $clientId,
             'client_secret' => $clientSecret,
         ];
 
@@ -44,10 +45,10 @@ class AuthenticationTest extends TestCase
     {
         $headers = [];
 
-        $email    = $this->faker->email;
+        $email = $this->faker->email;
         $password = $this->faker->password(8);
 
-        list($clientId, $clientSecret) = $this->getClientIdAndSecret();
+        [$clientId, $clientSecret] = $this->getClientIdAndSecret();
 
         $input = [
         ];
@@ -68,21 +69,21 @@ class AuthenticationTest extends TestCase
 
     public function testSignIn()
     {
-        $email    = $this->faker->email;
+        $email = $this->faker->email;
         $password = $this->faker->password(8);
-        $user     = factory(User::class)->create([
-            'email'    => $email,
+        $user = factory(User::class)->create([
+            'email' => $email,
             'password' => $password,
         ]);
 
         $headers = [];
 
-        list($clientId, $clientSecret) = $this->getClientIdAndSecret();
+        [$clientId, $clientSecret] = $this->getClientIdAndSecret();
 
         $input = [
-            'email'         => $email,
-            'password'      => $password,
-            'client_id'     => $clientId,
+            'email' => $email,
+            'password' => $password,
+            'client_id' => $clientId,
             'client_secret' => $clientSecret,
         ];
 
@@ -100,21 +101,21 @@ class AuthenticationTest extends TestCase
 
     public function testSignOut()
     {
-        $email    = $this->faker->email;
+        $email = $this->faker->email;
         $password = $this->faker->password(8);
-        $user     = factory(User::class)->create([
-            'email'    => $email,
+        $user = factory(User::class)->create([
+            'email' => $email,
             'password' => $password,
         ]);
 
         $headers = [];
 
-        list($clientId, $clientSecret) = $this->getClientIdAndSecret();
+        [$clientId, $clientSecret] = $this->getClientIdAndSecret();
 
         $input = [
-            'email'         => $email,
-            'password'      => $password,
-            'client_id'     => $clientId,
+            'email' => $email,
+            'password' => $password,
+            'client_id' => $clientId,
             'client_secret' => $clientSecret,
         ];
 
@@ -129,7 +130,7 @@ class AuthenticationTest extends TestCase
         $data = json_decode($response->getContent(), true);
         $this->assertResponseStatus(200);
 
-        $type  = $data['tokenType'];
+        $type = $data['tokenType'];
         $token = $data['accessToken'];
 
         $headers = [
@@ -137,7 +138,7 @@ class AuthenticationTest extends TestCase
         ];
 
         $response = $this->call('POST', '/api/v1/signout', $input, [], [], $this->transformHeadersToServerVars($headers));
-        $data     = json_decode($response->getContent(), true);
+        $data = json_decode($response->getContent(), true);
         $this->assertResponseStatus(200);
     }
 }

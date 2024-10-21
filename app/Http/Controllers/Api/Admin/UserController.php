@@ -1,9 +1,9 @@
 <?php
+
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Exceptions\Api\Admin\APIErrorException;
 use App\Http\Controllers\Controller;
-
 use App\Http\Requests\Api\Admin\User\IndexRequest;
 use App\Http\Requests\Api\Admin\User\StoreRequest;
 use App\Http\Requests\Api\Admin\User\UpdateRequest;
@@ -19,10 +19,10 @@ class UserController extends Controller
     /** @var \App\Repositories\UserRepositoryInterface */
     protected $userRepository;
 
-    /** @var \App\Services\AdminUserServiceInterface $adminUserServicee */
+    /** @var \App\Services\AdminUserServiceInterface */
     protected $adminUserService;
 
-    /** @var \App\Services\FileServiceInterface $fileService */
+    /** @var \App\Services\FileServiceInterface */
     protected $fileService;
 
     public function __construct(
@@ -30,33 +30,32 @@ class UserController extends Controller
         FileServiceInterface $fileService,
         AdminUserServiceInterface $adminUserService
     ) {
-        $this->userRepository      = $userRepository;
-        $this->adminUserService    = $adminUserService;
-        $this->fileService         = $fileService;
+        $this->userRepository = $userRepository;
+        $this->adminUserService = $adminUserService;
+        $this->fileService = $fileService;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @param IndexRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function index(IndexRequest $request)
     {
-        $offset    = $request->offset();
-        $limit     = $request->limit();
-        $order     = $request->order();
+        $offset = $request->offset();
+        $limit = $request->limit();
+        $order = $request->order();
         $direction = $request->direction();
 
         $queryWord = $request->get('query');
-        $filter    = [];
-        if (!empty($queryWord)) {
+        $filter = [];
+        if (! empty($queryWord)) {
             $filter['query'] = $queryWord;
         }
 
-        $count      = $this->userRepository->count();
-        $users      = $this->userRepository->getByFilter($filter, $order, $direction, $offset, $limit);
+        $count = $this->userRepository->count();
+        $users = $this->userRepository->getByFilter($filter, $order, $direction, $offset, $limit);
 
         return Users::updateListWithModel($users, $offset, $limit, $count)->response();
     }
@@ -64,11 +63,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreRequest $request
-     *
-     * @throws APIErrorException
      *
      * @return \Illuminate\Http\JsonResponse
+     *
+     * @throws APIErrorException
      */
     public function store(StoreRequest $request)
     {
@@ -79,11 +77,11 @@ class UserController extends Controller
         ]);
 
         if ($request->hasFile('profile_image')) {
-            $file          = $request->file('profile_image');
-            $mediaType     = $file->getClientMimeType();
-            $path          = $file->getPathname();
-            $fileModel     = $this->fileService->upload('default-image', $path, $mediaType, []);
-            if (!empty($fileModel)) {
+            $file = $request->file('profile_image');
+            $mediaType = $file->getClientMimeType();
+            $path = $file->getPathname();
+            $fileModel = $this->fileService->upload('default-image', $path, $mediaType, []);
+            if (! empty($fileModel)) {
                 $input['profile_image_id'] = $fileModel->id;
             }
         }
@@ -100,11 +98,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
+     * @return \Illuminate\Http\JsonResponse
      *
      * @throws APIErrorException
-     *
-     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
@@ -117,9 +114,7 @@ class UserController extends Controller
     }
 
     /**
-     * @param int           $id
-     * @param UpdateRequest $request
-     *
+     * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      *
      * @throws \App\Exceptions\Api\Admin\APIErrorException
@@ -132,18 +127,18 @@ class UserController extends Controller
         }
 
         $input = $request->only([
-        'name',
-        'email',
-        'password',
+            'name',
+            'email',
+            'password',
         ]);
 
         if ($request->hasFile('profile_image')) {
-            $file          = $request->file('profile_image');
-            $mediaType     = $file->getClientMimeType();
-            $path          = $file->getPathname();
-            $fileModel     = $this->fileService->upload('default-image', $path, $mediaType, []);
-            if (!empty($fileModel)) {
-                if (!empty($user->profileImage)) {
+            $file = $request->file('profile_image');
+            $mediaType = $file->getClientMimeType();
+            $path = $file->getPathname();
+            $fileModel = $this->fileService->upload('default-image', $path, $mediaType, []);
+            if (! empty($fileModel)) {
+                if (! empty($user->profileImage)) {
                     $this->fileService->delete($user->profileImage);
                 }
                 $input['profile_image_id'] = $fileModel->id;
@@ -156,8 +151,7 @@ class UserController extends Controller
     }
 
     /**
-     * @param int $id
-     *
+     * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      *
      * @throws \App\Exceptions\Api\Admin\APIErrorException

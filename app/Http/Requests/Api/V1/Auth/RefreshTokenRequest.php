@@ -1,5 +1,6 @@
 <?php
-namespace App\Http\Requests\API\V1\Auth;
+
+namespace App\Http\Requests\Api\V1\Auth;
 
 use App\Http\Requests\Api\V1\Request;
 
@@ -24,8 +25,8 @@ class RefreshTokenRequest extends Request
     {
         return [
             'refresh_token' => 'required',
-            'grant_type'    => 'required',
-            'client_id'     => 'required',
+            'grant_type' => 'required',
+            'client_id' => 'required',
             'client_secret' => 'required',
 
         ];
@@ -35,8 +36,8 @@ class RefreshTokenRequest extends Request
     {
         return [
             'refresh_token.required' => config('api.validateErrors.required'),
-            'grant_type.required'    => config('api.validateErrors.required'),
-            'client_id.required'     => config('api.validateErrors.required'),
+            'grant_type.required' => config('api.validateErrors.required'),
+            'client_id.required' => config('api.validateErrors.required'),
             'client_secret.required' => config('api.validateErrors.required'),
         ];
     }

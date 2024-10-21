@@ -1,31 +1,26 @@
 <?php
+
 namespace App\Http\Responses\Api\V1;
 
 class ListBase extends Response
 {
-    /** @var Response $itemsResponseModel */
+    /** @var Response */
     protected static $itemsResponseModel = Response::class;
 
-    /** @var string $itemsColumnName */
+    /** @var string */
     protected $itemsColumnName = 'items';
 
-    /** @var array $columns */
-    protected $columns = [
+    protected array $columns = [
         'hasNext' => false,
-        'offset'  => 0,
-        'limit'   => 10,
-        'items'   => [],
+        'offset' => 0,
+        'limit' => 10,
+        'items' => [],
     ];
 
     /**
-     * @param array $models
-     * @param int   $offset
-     * @param int   $limit
-     * @param bool  $hasNext
-     *
-     * @return static
+     * @param  array  $models
      */
-    public static function updateListWithModel($models, $offset = 0, $limit = 10, $hasNext = false)
+    public static function updateListWithModel(array|\Illuminate\Database\Eloquent\Collection $models, int $offset = 0, int $limit = 10, bool $hasNext = false): static
     {
         $items = [];
         foreach ($models as $model) {
@@ -33,9 +28,9 @@ class ListBase extends Response
         }
         $response = new static([
             'hasNext' => $hasNext,
-            'offset'  => $offset,
-            'limit'   => $limit,
-            'items'   => $items,
+            'offset' => $offset,
+            'limit' => $limit,
+            'items' => $items,
         ], 200);
 
         return $response;

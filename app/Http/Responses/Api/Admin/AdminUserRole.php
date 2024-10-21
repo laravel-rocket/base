@@ -1,27 +1,26 @@
 <?php
+
 namespace App\Http\Responses\Api\Admin;
 
 class AdminUserRole extends Response
 {
-    protected $columns = [
+    protected array $columns = [
         'name' => '',
         'role' => '',
     ];
 
     /**
-     * @param \App\Models\AdminUserRole $model
-     *
-     * @return static
+     * @param  \App\Models\AdminUserRole  $model
      */
-    public static function updateWithModel($model)
+    public static function updateWithModel($model): static
     {
         $response = new static([], 400);
-        if (!empty($model)) {
+        if (! empty($model)) {
             $modelArray = [
-                'name'         => $model->present()->role,
-                'role'         => $model->role,
+                'name' => $model->present()->role,
+                'role' => $model->role,
             ];
-            $response   = new static($modelArray, 200);
+            $response = new static($modelArray, 200);
         }
 
         return $response;

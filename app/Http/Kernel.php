@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -17,7 +18,6 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \App\Http\Middleware\TrustProxies::class,
         \LaravelRocket\Foundation\Http\Middleware\SecurityHeaders::class,
     ];
 
@@ -27,7 +27,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middlewareGroups = [
-        'web'       => [
+        'web' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
@@ -37,7 +37,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\User\SetDefaultValues::class,
         ],
-        'admin'     => [
+        'admin' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
@@ -47,7 +47,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\Admin\SetDefaultValues::class,
         ],
-        'api.v1'    => [
+        'api.v1' => [
             \App\Http\Middleware\Api\V1\ErrorHandling::class,
             \App\Http\Middleware\Api\V1\SetDefaultValues::class,
             'throttle:60,1',
@@ -74,20 +74,20 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth.basic'    => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'bindings'      => \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        'can'           => \Illuminate\Auth\Middleware\Authorize::class,
-        'throttle'      => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
-        'verified'      => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
-        'admin.auth'   => \App\Http\Middleware\Admin\Authenticate::class,
-        'admin.guest'  => \App\Http\Middleware\Admin\RedirectIfAuthenticated::class,
+        'admin.auth' => \App\Http\Middleware\Admin\Authenticate::class,
+        'admin.guest' => \App\Http\Middleware\Admin\RedirectIfAuthenticated::class,
         'admin.values' => \App\Http\Middleware\Admin\SetDefaultValues::class,
-        'user.auth'    => \App\Http\Middleware\User\Authenticate::class,
-        'user.guest'   => \App\Http\Middleware\User\RedirectIfAuthenticated::class,
-        'user.values'  => \App\Http\Middleware\User\SetDefaultValues::class,
-        'api.auth'     => \App\Http\Middleware\Api\V1\Authenticate::class,
+        'user.auth' => \App\Http\Middleware\User\Authenticate::class,
+        'user.guest' => \App\Http\Middleware\User\RedirectIfAuthenticated::class,
+        'user.values' => \App\Http\Middleware\User\SetDefaultValues::class,
+        'api.auth' => \App\Http\Middleware\Api\V1\Authenticate::class,
     ];
 
     /**

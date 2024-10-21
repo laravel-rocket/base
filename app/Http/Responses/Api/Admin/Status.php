@@ -1,21 +1,22 @@
 <?php
+
 namespace App\Http\Responses\Api\Admin;
 
 use Illuminate\Support\Arr;
 
 class Status extends Response
 {
-    protected $columns         = [
-        'isSuccess'     => true,
-        'type'          => '',
-        'title'         => '',
-        'status'        => '',
-        'errorCode'     => 0,
-        'detail'        => '',
+    protected array $columns = [
+        'isSuccess' => true,
+        'type' => '',
+        'title' => '',
+        'status' => '',
+        'errorCode' => 0,
+        'detail' => '',
         'invalidParams' => [],
     ];
 
-    protected $optionalColumns = [
+    protected array $optionalColumns = [
         'type',
         'title',
         'status',
@@ -24,7 +25,7 @@ class Status extends Response
         'invalidParams',
     ];
 
-    public static function error($error, $message, $extraData = [])
+    public static function error(string $error, string $message, array $extraData = []): static
     {
         $error = config('api.errors.'.$error);
         if (empty($error)) {
@@ -32,27 +33,27 @@ class Status extends Response
         }
 
         $response = new static([
-            'isSuccess'     => false,
-            'type'          => Arr::get($extraData, 'type', ''),
-            'title'         => Arr::get($extraData, 'title', ''),
-            'status'        => (int) Arr::get($extraData, 'status', 0),
-            'errorCode'     => (int) Arr::get($error, 'code'),
-            'detail'        => empty($message) ? Arr::get($error, 'message', '') : $message,
+            'isSuccess' => false,
+            'type' => Arr::get($extraData, 'type', ''),
+            'title' => Arr::get($extraData, 'title', ''),
+            'status' => (int) Arr::get($extraData, 'status', 0),
+            'errorCode' => (int) Arr::get($error, 'code'),
+            'detail' => empty($message) ? Arr::get($error, 'message', '') : $message,
             'invalidParams' => Arr::get($extraData, 'invalidParams', []),
         ], Arr::get($error, 'statusCode', 400));
 
         return $response;
     }
 
-    public static function ok($message = '', $extraData = [], $statusCode = 200)
+    public static function ok(string $message = '', array $extraData = [], int $statusCode = 200): static
     {
         $response = new static([
-            'isSuccess'     => true,
-            'type'          => Arr::get($extraData, 'type', ''),
-            'title'         => Arr::get($extraData, 'title', ''),
-            'status'        => (int) Arr::get($extraData, 'status', 0),
-            'errorCode'     => 0,
-            'detail'        => $message,
+            'isSuccess' => true,
+            'type' => Arr::get($extraData, 'type', ''),
+            'title' => Arr::get($extraData, 'title', ''),
+            'status' => (int) Arr::get($extraData, 'status', 0),
+            'errorCode' => 0,
+            'detail' => $message,
             'invalidParams' => [],
         ], $statusCode);
 

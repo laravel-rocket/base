@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests\Api\V1;
 
 use App\Http\Requests\Request as BaseRequest;
@@ -7,8 +8,6 @@ use Illuminate\Contracts\Validation\Validator;
 class Request extends BaseRequest
 {
     /**
-     * @param \Illuminate\Contracts\Validation\Validator $validator
-     *
      * @throws \App\Exceptions\Api\V1\APIErrorException
      */
     protected function failedValidation(Validator $validator)
@@ -19,7 +18,7 @@ class Request extends BaseRequest
 
         foreach ($errors->keys() as $key) {
             $transformed[] = [
-                'name'    => $key,
+                'name' => $key,
                 'message' => $errors->get($key, [])[0],
             ];
         }
@@ -31,25 +30,23 @@ class Request extends BaseRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [];
     }
 
     public function onlyNonNull($keys)
     {
-        $data   = parent::only($keys);
+        $data = parent::only($keys);
         $result = [];
         foreach ($data as $key => $value) {
-            if (!is_null($value)) {
+            if (! is_null($value)) {
                 $result[$key] = $value;
             }
         }

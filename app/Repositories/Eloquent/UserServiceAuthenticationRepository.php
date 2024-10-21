@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repositories\Eloquent;
 
 use App\Models\UserServiceAuthentication;
@@ -11,16 +12,16 @@ class UserServiceAuthenticationRepository extends ServiceAuthenticationRepositor
 
     public function getBlankModel()
     {
-        return new UserServiceAuthentication();
+        return new UserServiceAuthentication;
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
         ];

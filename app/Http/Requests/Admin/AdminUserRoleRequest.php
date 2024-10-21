@@ -1,12 +1,12 @@
 <?php
+
 namespace App\Http\Requests\Admin;
 
 use App\Repositories\AdminUserRoleRepositoryInterface;
 
 class AdminUserRoleRequest extends Request
 {
-    /** @var \App\Repositories\AdminUserRoleRepositoryInterface */
-    protected $adminUserRoleRepository;
+    protected AdminUserRoleRepositoryInterface $adminUserRoleRepository;
 
     public function __construct(AdminUserRoleRepositoryInterface $adminUserRoleRepository)
     {
@@ -16,25 +16,21 @@ class AdminUserRoleRequest extends Request
 
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return $this->adminUserRoleRepository->rules();
     }
 
-    public function messages()
+    public function messages(): array
     {
         return $this->adminUserRoleRepository->messages();
     }

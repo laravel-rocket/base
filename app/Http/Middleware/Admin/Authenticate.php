@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Middleware\Admin;
 
 use App\Services\AdminUserServiceInterface;
@@ -11,8 +12,6 @@ class Authenticate
 
     /**
      * Create a new filter instance.
-     *
-     * @param AdminUserServiceInterface $adminUserService
      */
     public function __construct(AdminUserServiceInterface $adminUserService)
     {
@@ -22,14 +21,12 @@ class Authenticate
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        if (!$this->adminUserService->isSignedIn()) {
+        if (! $this->adminUserService->isSignedIn()) {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {

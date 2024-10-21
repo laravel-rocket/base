@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services\Production;
 
 use App\Repositories\UserRepositoryInterface;
@@ -15,7 +16,7 @@ class UserServiceAuthenticationService extends ServiceAuthenticationService impl
     /** @var \App\Repositories\UserRepositoryInterface */
     protected $authenticatableRepository;
 
-    /** @var UserServiceInterface $authenticatableService */
+    /** @var UserServiceInterface */
     protected $authenticatableService;
 
     public function __construct(
@@ -23,8 +24,9 @@ class UserServiceAuthenticationService extends ServiceAuthenticationService impl
         UserServiceAuthenticationRepositoryInterface $serviceAuthenticationRepository,
         UserServiceInterface $authenticatableService
     ) {
-        $this->authenticatableRepository       = $authenticatableRepository;
+        parent::__construct($authenticatableRepository, $serviceAuthenticationRepository, $authenticatableService);
+        $this->authenticatableRepository = $authenticatableRepository;
         $this->serviceAuthenticationRepository = $serviceAuthenticationRepository;
-        $this->authenticatableService          = $authenticatableService;
+        $this->authenticatableService = $authenticatableService;
     }
 }

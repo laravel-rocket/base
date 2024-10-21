@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests;
 
 use App\Models\User;
@@ -34,8 +35,8 @@ abstract class TestCase extends BaseTestCase
     {
         $client = \DB::table('oauth_clients')->where('name', $this->clientName)->first();
         if (empty($client)) {
-            $clients = new ClientRepository();
-            $client  = $clients->createPasswordGrantClient(
+            $clients = new ClientRepository;
+            $client = $clients->createPasswordGrantClient(
                 null,
                 $this->clientName,
                 'http://localhost'
@@ -50,21 +51,21 @@ abstract class TestCase extends BaseTestCase
      */
     protected function getAuthenticationHeaders()
     {
-        $email    = $this->faker->email;
+        $email = $this->faker->email;
         $password = $this->faker->password(8);
-        $user     = factory(User::class)->create([
-            'email'    => $email,
+        $user = factory(User::class)->create([
+            'email' => $email,
             'password' => $password,
         ]);
 
         $headers = [];
 
-        list($clientId, $clientSecret) = $this->getClientIdAndSecret();
+        [$clientId, $clientSecret] = $this->getClientIdAndSecret();
 
         $input = [
-            'email'         => $email,
-            'password'      => $password,
-            'client_id'     => $clientId,
+            'email' => $email,
+            'password' => $password,
+            'client_id' => $clientId,
             'client_secret' => $clientSecret,
         ];
 
@@ -78,7 +79,7 @@ abstract class TestCase extends BaseTestCase
         );
         $data = json_decode($response->getContent(), true);
 
-        $type  = $data['tokenType'];
+        $type = $data['tokenType'];
         $token = $data['accessToken'];
 
         $headers = [

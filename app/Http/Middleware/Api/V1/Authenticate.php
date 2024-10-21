@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Middleware\Api\V1;
 
 use App\Exceptions\APIErrorException;
@@ -13,8 +14,6 @@ class Authenticate
 
     /**
      * Create a new filter instance.
-     *
-     * @param APIUserServiceInterface $userService
      */
     public function __construct(APIUserServiceInterface $userService)
     {
@@ -24,8 +23,6 @@ class Authenticate
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
      *
      * @return mixed
      *

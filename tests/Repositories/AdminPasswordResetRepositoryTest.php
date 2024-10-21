@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Repositories;
 
 use Tests\TestCase;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Repositories;
 
 use App\Models\File;
@@ -17,7 +18,7 @@ class FileRepositoryTest extends TestCase
 
     public function testGetList()
     {
-        $models  = factory(File::class, 3)->create();
+        $models = factory(File::class, 3)->create();
         $fileIds = $models->pluck('id')->toArray();
 
         /** @var \App\Repositories\FileRepositoryInterface $repository */
@@ -33,7 +34,7 @@ class FileRepositoryTest extends TestCase
 
     public function testFind()
     {
-        $models  = factory(File::class, 3)->create();
+        $models = factory(File::class, 3)->create();
         $fileIds = $models->pluck('id')->toArray();
 
         /** @var \App\Repositories\FileRepositoryInterface $repository */

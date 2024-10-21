@@ -1,13 +1,16 @@
 <?php
+
 namespace App\Models;
 
+use App\Presenters\FilePresenter;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use LaravelRocket\Foundation\Models\Base;
 
 /**
  * App\Models\File.
  *
- * @method \App\Presenters\FilePresenter present()
+ * @method FilePresenter present()
  *
  * @property int $id
  * @property string $url
@@ -60,20 +63,28 @@ use LaravelRocket\Foundation\Models\Base;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\File whereWidth($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\File withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\File withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class File extends Base
 {
     use SoftDeletes;
 
-    const FILE_TYPE_FILE            = 'file';
-    const FILE_TYPE_IMAGE           = 'image';
-    const FILE_TYPE_IMAGE_VIDEO     = 'video';
-    const STORAGE_TYPE_LOCAL        = 'local';
-    const STORAGE_TYPE_S3           = 's3';
-    const STORAGE_TYPE_S3_LOCAL     = 'local';
+    const FILE_TYPE_FILE = 'file';
+
+    const FILE_TYPE_IMAGE = 'image';
+
+    const FILE_TYPE_IMAGE_VIDEO = 'video';
+
+    const STORAGE_TYPE_LOCAL = 'local';
+
+    const STORAGE_TYPE_S3 = 's3';
+
+    const STORAGE_TYPE_S3_LOCAL = 'local';
+
     const STORAGE_TYPE_S3_LOCAL_URL = 'url';
-    const STORAGE_TYPE_URL          = 'url';
+
+    const STORAGE_TYPE_URL = 'url';
 
     /**
      * The database table used by the model.
@@ -82,10 +93,11 @@ class File extends Base
      */
     protected $table = 'files';
 
-    protected $casts  = [
+    protected $casts = [
         'is_enabled' => 'boolean',
         'thumbnails' => 'array',
     ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -121,13 +133,13 @@ class File extends Base
      */
     protected $hidden = [];
 
-    protected $dates  = [
+    protected array $dates = [
     ];
 
-    protected $presenter = \App\Presenters\FilePresenter::class;
+    protected string $presenter = FilePresenter::class;
 
     // Relations
-    public function profileImages()
+    public function profileImages(): HasMany
     {
         return $this->hasMany(\App\Models\User::class, 'profile_image_id', 'id');
     }

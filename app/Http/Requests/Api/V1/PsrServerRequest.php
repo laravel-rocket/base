@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests\Api\V1;
 
 use Zend\Diactoros\ServerRequest;

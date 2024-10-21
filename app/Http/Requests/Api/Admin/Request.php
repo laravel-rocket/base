@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests\Api\Admin;
 
 use App\Exceptions\Api\Admin\APIErrorException;
@@ -14,7 +15,7 @@ class Request extends BaseRequest
         $validateErrors = $validator->getMessageBag();
         foreach ($validateErrors->getMessages() as $field => $message) {
             $transformed[] = [
-                'name'    => $field,
+                'name' => $field,
                 'message' => $message[0],
             ];
         }
@@ -24,25 +25,23 @@ class Request extends BaseRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [];
     }
 
     public function onlyNonNull($keys)
     {
-        $data   = parent::only($keys);
+        $data = parent::only($keys);
         $result = [];
         foreach ($data as $key => $value) {
-            if (!is_null($value)) {
+            if (! is_null($value)) {
                 $result[$key] = $value;
             }
         }

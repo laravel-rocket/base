@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ForgotPasswordRequest;
@@ -7,16 +8,13 @@ use LaravelRocket\Foundation\Services\AuthenticatableServiceInterface;
 
 class PasswordController extends Controller
 {
-    protected $authenticatableService;
+    protected AuthenticatableServiceInterface $authenticatableService;
 
-    /** @var string $emailSetPageView */
-    protected $emailSetPageView = '';
+    protected string $emailSetPageView = '';
 
-    /** @var string $passwordResetPageView */
-    protected $passwordResetPageView = '';
+    protected string $passwordResetPageView = '';
 
-    /** @var string $returnAction */
-    protected $returnAction = '';
+    protected string $returnAction = '';
 
     public function __construct(AuthenticatableServiceInterface $authenticatableService)
     {
@@ -37,7 +35,6 @@ class PasswordController extends Controller
     /**
      * Send a reset link to the given user.
      *
-     * @param \App\Http\Requests\ForgotPasswordRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -52,8 +49,7 @@ class PasswordController extends Controller
     /**
      * Display the password reset view for the given token.
      *
-     * @param string $token
-     *
+     * @param  string  $token
      * @return \Illuminate\Http\Response
      */
     public function getResetPassword($token = null)
@@ -70,14 +66,13 @@ class PasswordController extends Controller
     /**
      * Reset the given user's password.
      *
-     * @param \App\Http\Requests\ResetPasswordRequest $request
      *
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function postResetPassword(ResetPasswordRequest $request)
     {
-        $email    = $request->get('email');
-        $token    = $request->get('token');
+        $email = $request->get('email');
+        $token = $request->get('token');
         $password = $request->get('password');
         if ($password == $request->get('password_confirmation')) {
             if ($this->authenticatableService->resetPassword($email, $password, $token)) {

@@ -1,35 +1,37 @@
 <?php
+
 namespace App\Repositories\Eloquent;
 
 use App\Models\User;
 use App\Repositories\UserRepositoryInterface;
 use Illuminate\Support\Arr;
-use LaravelRocket\Foundation\Repositories\Eloquent\SingleKeyModelRepository;
+use LaravelRocket\Foundation\Models\Base;
+use LaravelRocket\Foundation\Repositories\Eloquent\AuthenticatableRepository;
 
-class UserRepository extends SingleKeyModelRepository implements UserRepositoryInterface
+class UserRepository extends AuthenticatableRepository implements UserRepositoryInterface
 {
-    public function getBlankModel()
+    public function getBlankModel(): User
     {
-        return new User();
+        return new User;
     }
 
-    public function rules()
-    {
-        return [
-        ];
-    }
-
-    public function messages()
+    public function rules(): array
     {
         return [
         ];
     }
 
-    protected function buildQueryByFilter($query, $filter)
+    public function messages(): array
+    {
+        return [
+        ];
+    }
+
+    protected function buildQueryByFilter(\Illuminate\Database\Query\Builder|\Illuminate\Database\Eloquent\Builder|Base $query, array $filter): \Illuminate\Database\Query\Builder|\Illuminate\Database\Eloquent\Builder|Base
     {
         if (array_key_exists('query', $filter)) {
             $searchWord = Arr::get($filter, 'query');
-            if (!empty($searchWord)) {
+            if (! empty($searchWord)) {
                 $query = $query->where(function ($q) use ($searchWord) {
                     $q->where('name', 'LIKE', '%'.$searchWord.'%');
                 });

@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Smokes\Api\V1;
 
 use Tests\TestCase as BaseTestCase;

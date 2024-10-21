@@ -1,45 +1,30 @@
 <?php
+
 namespace App\Http\Responses;
 
 class Response
 {
-    /**
-     * @var array
-     */
-    protected $columns = [];
+    protected array $columns = [];
 
-    /**
-     * @var array
-     */
-    protected $optionalColumns = [];
+    protected array $optionalColumns = [];
 
-    /**
-     * @var int
-     */
-    protected $statusCode = 200;
+    protected int $statusCode = 200;
 
-    /**
-     * @var array
-     */
-    protected $data = [];
+    protected array $data = [];
 
-    public function __construct($initialValues, $statusCode = 200)
+    public function __construct(array $initialValues, int $statusCode = 200)
     {
         foreach (array_keys($this->columns) as $column) {
             if (array_key_exists($column, $initialValues)) {
                 $this->data[$column] = $initialValues[$column];
-            } elseif (!in_array($column, $this->optionalColumns)) {
+            } elseif (! in_array($column, $this->optionalColumns)) {
                 $this->data[$column] = $this->columns[$column];
             }
         }
         $this->statusCode = $statusCode;
     }
 
-    /**
-     * @param string $name
-     * @param mixed  $value
-     */
-    public function set($name, $value)
+    public function set(string $name, mixed $value): void
     {
         if (array_key_exists($name, $this->columns)) {
             $this->data[$name] = $value;
@@ -47,14 +32,11 @@ class Response
     }
 
     /**
-     * @param string $name
-     * @param mixed  $default
-     *
      * @return mixed|null
      */
-    public function get($name, $default = null)
+    public function get(string $name, mixed $default = null): mixed
     {
-        if (!array_key_exists($name, $this->columns)) {
+        if (! array_key_exists($name, $this->columns)) {
             return $default;
         }
         if (array_key_exists($name, $this->data)) {
@@ -67,30 +49,19 @@ class Response
         return $default;
     }
 
-    /**
-     * @param int $statusCode
-     *
-     * @return $this
-     */
-    public function withStatus($statusCode)
+    public function withStatus(int|string $statusCode): static
     {
         $this->statusCode = (int) $statusCode;
 
         return $this;
     }
 
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function response()
+    public function response(): \Illuminate\Http\JsonResponse
     {
         return response()->json($this->toArray(), $this->statusCode);
     }
 
-    /**
-     * @return array
-     */
-    public function toArray()
+    public function toArray(): array
     {
         $ret = [];
         foreach (array_keys($this->columns) as $column) {
@@ -109,7 +80,7 @@ class Response
                 } else {
                     $ret[$column] = $this->data[$column];
                 }
-            } elseif (!in_array($column, $this->optionalColumns)) {
+            } elseif (! in_array($column, $this->optionalColumns)) {
                 $ret[$column] = $this->columns[$column];
             }
         }

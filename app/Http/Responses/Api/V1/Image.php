@@ -1,25 +1,24 @@
 <?php
+
 namespace App\Http\Responses\Api\V1;
 
 class Image extends Response
 {
-    protected $columns = [
-        'id'  => 0,
+    protected array $columns = [
+        'id' => 0,
         'url' => '',
 
     ];
 
     /**
-     * @param \App\Models\File $model
-     *
-     * @return static
+     * @param  \App\Models\File  $model
      */
-    public static function updateWithModel($model)
+    public static function updateWithModel($model): static
     {
         $response = new static([], 400);
-        if (!empty($model)) {
+        if (! empty($model)) {
             $modelArray = [
-                'id'  => $model->id,
+                'id' => $model->id,
                 'url' => $model->url,
 
             ];

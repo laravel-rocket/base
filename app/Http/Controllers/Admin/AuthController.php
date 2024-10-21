@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -15,13 +16,13 @@ class AuthController extends Controller
         $this->adminUserService = $adminUserService;
     }
 
-    public function getSignIn()
+    public function getSignIn(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\Foundation\Application
     {
         return view('pages.admin.auth.signin', [
         ]);
     }
 
-    public function postSignIn(SignInRequest $request)
+    public function postSignIn(SignInRequest $request): \Illuminate\Http\RedirectResponse
     {
         $adminUser = $this->adminUserService->signIn($request->all());
         if (empty($adminUser)) {
@@ -34,7 +35,7 @@ class AuthController extends Controller
         );
     }
 
-    public function postSignOut()
+    public function postSignOut(): \Illuminate\Http\RedirectResponse
     {
         $this->adminUserService->signOut();
 

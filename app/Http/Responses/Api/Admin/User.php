@@ -1,35 +1,34 @@
 <?php
+
 namespace App\Http\Responses\Api\Admin;
 
 class User extends Response
 {
-    protected $columns = [
-        'id'           => 0,
-        'name'         => '',
-        'email'        => '',
-        'createdAt'    => null,
-        'updatedAt'    => null,
+    protected array $columns = [
+        'id' => 0,
+        'name' => '',
+        'email' => '',
+        'createdAt' => null,
+        'updatedAt' => null,
         'profileImage' => null,
     ];
 
     /**
-     * @param \App\Models\User $model
-     *
-     * @return static
+     * @param  \App\Models\User  $model
      */
-    public static function updateWithModel($model)
+    public static function updateWithModel($model): static
     {
         $response = new static([], 400);
-        if (!empty($model)) {
+        if (! empty($model)) {
             $modelArray = [
-                'id'           => $model->id,
-                'name'         => $model->name,
-                'email'        => $model->email,
-                'createdAt'    => $model->created_at ? $model->created_at->timestamp : null,
-                'updatedAt'    => $model->updated_at ? $model->updated_at->timestamp : null,
+                'id' => $model->id,
+                'name' => $model->name,
+                'email' => $model->email,
+                'createdAt' => $model->created_at ? $model->created_at->timestamp : null,
+                'updatedAt' => $model->updated_at ? $model->updated_at->timestamp : null,
                 'profileImage' => Image::updateWithModel($model->profileImage),
             ];
-            $response   = new static($modelArray, 200);
+            $response = new static($modelArray, 200);
         }
 
         return $response;

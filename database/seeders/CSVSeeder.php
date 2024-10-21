@@ -1,18 +1,22 @@
 <?php
 
+namespace Database\Seeders;
+
+use Exception;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CSVSeeder extends Seeder
 {
-    protected $table = 'table name';
+    protected string $table = 'table name';
 
-    protected $isTest = false;
+    protected bool $isTest = false;
 
-    protected $isDisabled = false;
+    protected bool $isDisabled = false;
 
-    public function run()
+    public function run(): void
     {
-        if (!$this->isDisabled) {
+        if (! $this->isDisabled) {
             DB::table($this->table)->delete();
         }
         $csvFile = dirname(__FILE__).'/data/'.$this->table.'.csv';
@@ -36,27 +40,27 @@ class CSVSeeder extends Seeder
 
     public function csvToArray($filename = '', $delimiter = ',')
     {
-        if (!file_exists($filename) || !is_readable($filename)) {
+        if (! file_exists($filename) || ! is_readable($filename)) {
             return false;
         }
 
         $header = null;
-        $data   = [];
+        $data = [];
 
         if (($handle = fopen($filename, 'r')) !== false) {
             while (($row = fgetcsv($handle, 1500, $delimiter)) !== false) {
                 if (count($row) == 1 && trim($row[0]) == '') {
                     continue;
                 }
-                if (!$header) {
+                if (! $header) {
                     $header = $row;
                 } else {
                     try {
                         $rowData = array_combine($header, $row);
-                        if (!array_key_exists('created_at', $rowData)) {
+                        if (! array_key_exists('created_at', $rowData)) {
                             $rowData['created_at'] = \DateTimeHelper::now();
                         }
-                        if (!array_key_exists('updated_at', $rowData)) {
+                        if (! array_key_exists('updated_at', $rowData)) {
                             $rowData['updated_at'] = \DateTimeHelper::now();
                         }
                         $data[] = $rowData;

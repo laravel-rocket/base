@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Listeners;
 
 use LaravelRocket\Foundation\Tests\Listeners\DatabaseSetupListener as BaseDatabaseSetupListener;

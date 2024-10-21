@@ -1,12 +1,15 @@
 <?php
+
 namespace App\Models;
 
+use App\Presenters\AdminUserRolePresenter;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use LaravelRocket\Foundation\Models\Base;
 
 /**
  * App\Models\AdminUserRole.
  *
- * @method \App\Presenters\AdminUserRolePresenter present()
+ * @method AdminUserRolePresenter present()
  *
  * @property int $id
  * @property int $admin_user_id
@@ -20,12 +23,14 @@ use LaravelRocket\Foundation\Models\Base;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AdminUserRole whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AdminUserRole whereRole($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AdminUserRole whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class AdminUserRole extends Base
 {
-    const ROLE_SITE_ADMIN            = 'site_admin';
-    const ROLE_SUPER_USER            = 'super_user';
+    const ROLE_SITE_ADMIN = 'site_admin';
+
+    const ROLE_SUPER_USER = 'super_user';
 
     /**
      * The database table used by the model.
@@ -51,13 +56,13 @@ class AdminUserRole extends Base
      */
     protected $hidden = [];
 
-    protected $dates  = [
+    protected $dates = [
     ];
 
-    protected $presenter = \App\Presenters\AdminUserRolePresenter::class;
+    protected string $presenter = AdminUserRolePresenter::class;
 
     // Relations
-    public function adminUser()
+    public function adminUser(): BelongsTo
     {
         return $this->belongsTo(\App\Models\AdminUser::class, 'admin_user_id', 'id');
     }

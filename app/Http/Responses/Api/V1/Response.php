@@ -1,25 +1,24 @@
 <?php
+
 namespace App\Http\Responses\Api\V1;
 
 use App\Http\Responses\Response as ResponseBase;
 
 class Response extends ResponseBase
 {
-    protected $columns = [];
+    protected array $columns = [];
 
     /**
      * @param \LaravelRocket\Foundation\Models\Base;
-     *
-     * @return static
      */
-    public static function updateWithModel($model)
+    public static function updateWithModel($model): static
     {
         $response = new static([]);
 
         return $response;
     }
 
-    protected static function date($date)
+    protected static function date($date): ?string
     {
         if ($date instanceof \DateTime) {
             return $date->format('Y-m-d');
@@ -28,7 +27,7 @@ class Response extends ResponseBase
         return null;
     }
 
-    protected static function dateTime($dateTime)
+    protected static function dateTime($dateTime): ?string
     {
         if ($dateTime instanceof \DateTime) {
             return $dateTime->format('U');
@@ -37,7 +36,7 @@ class Response extends ResponseBase
         return null;
     }
 
-    protected static function generateArray(array $items, string $class)
+    protected static function generateArray(array $items, string $class): array
     {
         $ret = [];
         foreach ($items as $item) {

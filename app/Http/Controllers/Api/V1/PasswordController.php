@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
@@ -9,23 +10,21 @@ use App\Services\UserServiceInterface;
 
 class PasswordController extends Controller
 {
-    /** @var \App\Services\UserServiceInterface $userService */
+    /** @var \App\Services\UserServiceInterface */
     protected $userService;
 
-    /** @var \App\Services\APIUserServiceInterface $userService */
+    /** @var \App\Services\APIUserServiceInterface */
     protected $apiUserService;
 
     public function __construct(
         UserServiceInterface $userService,
         APIUserServiceInterface $apiUserService
     ) {
-        $this->userService    = $userService;
+        $this->userService = $userService;
         $this->apiUserService = $apiUserService;
     }
 
     /**
-     * @param \App\Http\Requests\Api\V1\Auth\PasswordRequest $request
-     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function forgotPassword(PasswordRequest $request)
